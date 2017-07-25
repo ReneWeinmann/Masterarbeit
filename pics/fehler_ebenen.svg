@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.0"
+   width="1052.3622"
+   height="744.09448"
+   id="svg2">
+  <defs
+     id="defs4">
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="TriangleOutS"
+       style="overflow:visible">
+      <path
+         d="M 5.77,0 L -2.88,5 L -2.88,-5 L 5.77,0 z"
+         transform="scale(0.2,0.2)"
+         id="path3457"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none" />
+    </marker>
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="TriangleOutM"
+       style="overflow:visible">
+      <path
+         d="M 5.77,0 L -2.88,5 L -2.88,-5 L 5.77,0 z"
+         transform="scale(0.4,0.4)"
+         id="path3454"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none" />
+    </marker>
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="Arrow1Lend"
+       style="overflow:visible">
+      <path
+         d="M 0,0 L 5,-5 L -12.5,0 L 5,5 L 0,0 z"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         id="path3311"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none" />
+    </marker>
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="Arrow2Mend"
+       style="overflow:visible">
+      <path
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.97309,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z"
+         transform="scale(-0.6,-0.6)"
+         id="path3335"
+         style="font-size:12px;fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round" />
+    </marker>
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="Arrow2Lend"
+       style="overflow:visible">
+      <path
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.97309,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         id="path3329"
+         style="font-size:12px;fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round" />
+    </marker>
+    <linearGradient
+       id="linearGradient3207">
+      <stop
+         id="stop3209"
+         style="stop-color:#8080ff;stop-opacity:1"
+         offset="0" />
+      <stop
+         id="stop3211"
+         style="stop-color:#0000ff;stop-opacity:0"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3199">
+      <stop
+         id="stop3201"
+         style="stop-color:#ffcc00;stop-opacity:1"
+         offset="0" />
+      <stop
+         id="stop3203"
+         style="stop-color:#ffcc00;stop-opacity:0"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3191">
+      <stop
+         id="stop3193"
+         style="stop-color:#8dd35f;stop-opacity:1"
+         offset="0" />
+      <stop
+         id="stop3195"
+         style="stop-color:#008000;stop-opacity:0"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3163">
+      <stop
+         id="stop3165"
+         style="stop-color:#ff0000;stop-opacity:1"
+         offset="0" />
+      <stop
+         id="stop3167"
+         style="stop-color:#ff0000;stop-opacity:0"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       x1="130"
+       y1="717.21936"
+       x2="130"
+       y2="213.21933"
+       id="linearGradient3169"
+       xlink:href="#linearGradient3163"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.5869209,0,0,1.4736145,12.345786,-290.68216)" />
+    <linearGradient
+       x1="660"
+       y1="717.21936"
+       x2="660"
+       y2="213.21933"
+       id="linearGradient3197"
+       xlink:href="#linearGradient3191"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.5869209,0,0,1.4736145,260.80894,-290.68216)" />
+    <linearGradient
+       x1="385.71429"
+       y1="717.21936"
+       x2="385.71429"
+       y2="213.21933"
+       id="linearGradient3205"
+       xlink:href="#linearGradient3199"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.8668086,0,0,1.4736145,-354.01515,-290.68216)" />
+    <linearGradient
+       x1="1082.8572"
+       y1="717.21936"
+       x2="1082.8572"
+       y2="213.21933"
+       id="linearGradient3213"
+       xlink:href="#linearGradient3207"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.9786482,0,0,1.4736145,-219.50719,-290.68216)" />
+  </defs>
+  <g
+     transform="translate(-26.571428,-23.924107)"
+     id="layer1">
+    <rect
+       width="119.0611"
+       height="736.80731"
+       x="29.114954"
+       y="26.468178"
+       id="rect2383"
+       style="opacity:1;fill:url(#linearGradient3169);fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       width="378.69547"
+       height="736.80731"
+       x="176.69186"
+       y="26.468178"
+       id="rect3171"
+       style="opacity:1;fill:url(#linearGradient3205);fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       width="119.0611"
+       height="736.80731"
+       x="588.64618"
+       y="26.468178"
+       id="rect3175"
+       style="opacity:1;fill:url(#linearGradient3197);fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       width="198.52577"
+       height="736.80731"
+       x="740.96613"
+       y="26.468178"
+       id="rect3179"
+       style="opacity:1;fill:url(#linearGradient3213);fill-opacity:1;stroke:#000000;stroke-width:4.00000048;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       width="63.722839"
+       height="217.84531"
+       x="56.784084"
+       y="175.19508"
+       id="rect3215"
+       style="opacity:1;fill:#d5e5ff;fill-opacity:1;stroke:#000000;stroke-width:4.00000048;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       x="-356.84451"
+       y="95.737274"
+       transform="matrix(0,-0.999647,1.0003531,0,0,0)"
+       id="text3217"
+       xml:space="preserve"
+       style="font-size:28.16225624px;font-style:normal;font-weight:normal;line-height:125%;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"><tspan
+         x="-356.84451"
+         y="95.737274"
+         id="tspan3219"
+         style="font-size:28.16225624px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Calibri;-inkscape-font-specification:Calibri">Spezifikation</tspan></text>
+    <rect
+       width="90.553513"
+       height="217.84531"
+       x="204.18509"
+       y="175.19508"
+       id="rect3221"
+       style="opacity:1;fill:#d5e5ff;fill-opacity:1;stroke:#000000;stroke-width:4.00000048;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       x="-283.43423"
+       y="241.30875"
+       transform="matrix(0,-0.999647,1.0003531,0,0,0)"
+       id="text3223"
+       xml:space="preserve"
+       style="font-size:28.16225624px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"><tspan
+         x="-283.43423"
+         y="241.30875"
+         id="tspan3225"
+         style="font-size:28.16225624px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Calibri;-inkscape-font-specification:Calibri">Verhalten</tspan><tspan
+         x="-283.43423"
+         y="276.51157"
+         id="tspan3239"
+         style="font-size:28.16225624px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Calibri;-inkscape-font-specification:Calibri">in HDL</tspan></text>
+    <rect
+       width="63.722839"
+       height="217.84531"
+       x="616.03583"
+       y="172.68147"
+       id="rect3227"
+       style="opacity:1;fill:#d5e5ff;fill-opacity:1;stroke:#000000;stroke-width:4.00000048;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       x="-336.90735"
+       y="654.28284"
+       transform="matrix(0,-0.999647,1.0003531,0,0,0)"
+       id="text3229"
+       xml:space="preserve"
+       style="font-size:28.16225624px;font-style:normal;font-weight:normal;line-height:125%;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"><tspan
+         x="-336.90735"
+         y="654.28284"
+         id="tspan3231"
+         style="font-size:28.16225624px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Calibri;-inkscape-font-specification:Calibri">Fertigung</tspan></text>
+    <rect
+       width="63.722839"
+       height="217.84531"
+       x="808.36755"
+       y="176.03294"
+       id="rect3233"
+       style="opacity:1;fill:#d5e5ff;fill-opacity:1;stroke:#000000;stroke-width:4.00000048;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       x="-327.58148"
+       y="849.37933"
+       transform="matrix(0,-0.999647,1.0003531,0,0,0)"
+       id="text3235"
+       xml:space="preserve"
+       style="font-size:28.16225624px;font-style:normal;font-weight:normal;line-height:125%;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"><tspan
+         x="-327.58148"
+         y="849.37933"
+         id="tspan3237"
+         style="font-size:28.16225624px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Calibri;-inkscape-font-specification:Calibri">Betrieb</tspan></text>
+    <rect
+       width="90.553513"
+       height="217.84531"
+       x="322.40771"
+       y="175.19508"
+       id="rect3241"
+       style="opacity:1;fill:#d5e5ff;fill-opacity:1;stroke:#000000;stroke-width:4.00000048;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       x="-283.6405"
+       y="358.94647"
+       transform="matrix(0,-0.999647,1.0003531,0,0,0)"
+       id="text3243"
+       xml:space="preserve"
+       style="font-size:28.16225624px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"><tspan
+         x="-283.6405"
+         y="358.94647"
+         id="tspan3247"
+         style="font-size:28.16225624px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Calibri;-inkscape-font-specification:Calibri">Register-</tspan><tspan
+         x="-283.6405"
+         y="394.14929"
+         id="tspan3251"
+         style="font-size:28.16225624px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Calibri;-inkscape-font-specification:Calibri">Transfer-Ebene</tspan></text>
+    <rect
+       width="90.553513"
+       height="217.84531"
+       x="440.63031"
+       y="175.19508"
+       id="rect3253"
+       style="opacity:1;fill:#d5e5ff;fill-opacity:1;stroke:#000000;stroke-width:4.00000048;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       x="-284.94"
+       y="492.17105"
+       transform="matrix(0,-0.999647,1.0003531,0,0,0)"
+       id="text3255"
+       xml:space="preserve"
+       style="font-size:28.16225624px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"><tspan
+         x="-284.94"
+         y="492.17105"
+         id="tspan3259"
+         style="font-size:28.16225624px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Calibri;-inkscape-font-specification:Calibri">Layout</tspan></text>
+    <path
+       d="M 121.34746,284.14309 C 190.1215,284.14309 199.51339,284.14309 199.51339,284.14309"
+       id="path4087"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3.5;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#Arrow2Mend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       d="M 295.53653,284.14309 C 299.10614,284.14309 317.736,284.14309 317.736,284.14309"
+       id="path5127"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3.5;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#Arrow2Mend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       d="M 413.75915,284.14309 C 417.32875,284.14309 435.95862,284.14309 435.95862,284.14309"
+       id="path5135"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3.5;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#Arrow2Mend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       d="M 532.54464,284.14309 C 536.11424,284.14309 611.36412,284.14309 611.36412,284.14309"
+       id="path5137"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3.5;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#Arrow2Mend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       d="M 681.10171,284.14309 C 684.67131,284.14309 803.69587,284.14309 803.69587,284.14309"
+       id="path5139"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3.5;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#Arrow2Mend);stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       d="M 708.33051,838.31976 A 309.89459,148.07771 0 1 1 88.541321,838.31976 A 309.89459,148.07771 0 1 1 708.33051,838.31976 z"
+       transform="matrix(0.4012931,0,0,0.4413915,-1.9874258,309.27928)"
+       id="path5141"
+       style="opacity:1;fill:#d5e5ff;fill-opacity:1;stroke:#000000;stroke-width:10.6922636;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       x="157.83839"
+       y="673.60938"
+       transform="scale(1.0003531,0.999647)"
+       id="text5143"
+       xml:space="preserve"
+       style="font-size:32.85596466px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Calibri;-inkscape-font-specification:Calibri"><tspan
+         x="157.83839"
+         y="673.60938"
+         id="tspan5145"
+         style="font-size:32.85596466px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Calibri;-inkscape-font-specification:Calibri">Spezifikations-</tspan><tspan
+         x="157.83839"
+         y="714.67932"
+         id="tspan5147"
+         style="font-size:32.85596466px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Calibri;-inkscape-font-specification:Calibri">fehler</tspan></text>
+    <path
+       d="M 708.33051,838.31976 A 309.89459,148.07771 0 1 1 88.541321,838.31976 A 309.89459,148.07771 0 1 1 708.33051,838.31976 z"
+       transform="matrix(0.3187392,0,0,0.3497287,239.04241,244.18745)"
+       id="path5149"
+       style="opacity:1;fill:#d5e5ff;fill-opacity:1;stroke:#000000;stroke-width:13.47811413;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       x="365.09216"
+       y="528.10443"
+       transform="scale(1.0003531,0.999647)"
+       id="text5151"
+       xml:space="preserve"
+       style="font-size:32.85596466px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Calibri;-inkscape-font-specification:Calibri"><tspan
+         x="365.09216"
+         y="528.10443"
+         id="tspan5155"
+         style="font-size:32.85596466px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Calibri;-inkscape-font-specification:Calibri">Entwurfs-</tspan><tspan
+         x="365.09216"
+         y="569.17438"
+         id="tspan5159"
+         style="font-size:32.85596466px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Calibri;-inkscape-font-specification:Calibri">fehler</tspan></text>
+    <path
+       d="M 708.33051,838.31976 A 309.89459,148.07771 0 1 1 88.541321,838.31976 A 309.89459,148.07771 0 1 1 708.33051,838.31976 z"
+       transform="matrix(0.3187392,0,0,0.3497287,474.22588,263.54327)"
+       id="path5161"
+       style="opacity:1;fill:#d5e5ff;fill-opacity:1;stroke:#000000;stroke-width:13.47811413;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       x="600.19257"
+       y="550.98737"
+       transform="scale(1.0003531,0.999647)"
+       id="text5163"
+       xml:space="preserve"
+       style="font-size:32.85596466px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Calibri;-inkscape-font-specification:Calibri"><tspan
+         x="600.19257"
+         y="550.98737"
+         id="tspan5167"
+         style="font-size:32.85596466px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Calibri;-inkscape-font-specification:Calibri">Fertigungs-</tspan><tspan
+         x="600.19257"
+         y="592.05731"
+         id="tspan5171"
+         style="font-size:32.85596466px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Calibri;-inkscape-font-specification:Calibri">fehler</tspan></text>
+    <g
+       transform="matrix(0.5869209,0,0,0.5865066,17.124549,-72.020414)"
+       id="g5185">
+      <path
+         d="M 708.33051,838.31976 A 309.89459,148.07771 0 1 1 88.541321,838.31976 A 309.89459,148.07771 0 1 1 708.33051,838.31976 z"
+         transform="matrix(0.7342384,0,0,0.6851965,1042.168,725.11136)"
+         id="path5173"
+         style="opacity:1;fill:#d5e5ff;fill-opacity:1;stroke:#000000;stroke-width:10.81334877;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         x="1334.5782"
+         y="1273.3103"
+         id="text5175"
+         xml:space="preserve"
+         style="font-size:56px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Calibri;-inkscape-font-specification:Calibri"><tspan
+           x="1334.5782"
+           y="1273.3103"
+           id="tspan5179"
+           style="font-size:56px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Calibri;-inkscape-font-specification:Calibri">Alterung,</tspan><tspan
+           x="1334.5782"
+           y="1343.3103"
+           id="tspan5183"
+           style="font-size:56px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Calibri;-inkscape-font-specification:Calibri">äußerer Einfluss</tspan></text>
+    </g>
+    <path
+       d="M 51.229267,96.786796 C 78.354156,96.786796 650.83121,96.786796 650.83121,96.786796"
+       id="path5211"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:50.00000381;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#TriangleOutS);stroke-miterlimit:1.89999998;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       x="184.92696"
+       y="103.93716"
+       transform="scale(1.0003531,0.999647)"
+       id="text6822"
+       xml:space="preserve"
+       style="font-size:28.16225624px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Calibri;-inkscape-font-specification:Calibri"><tspan
+         x="184.92696"
+         y="103.93716"
+         id="tspan6826"
+         style="font-size:28.16225624px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#ffffff;font-family:Calibri;-inkscape-font-specification:Calibri">Entwicklungsfluss</tspan></text>
+  </g>
+</svg>

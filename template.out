@@ -1,0 +1,35 @@
+\BOOKMARK [1][-]{toc.1}{Inhaltsverzeichnis}{}% 1
+\BOOKMARK [0][-]{chapter*.3}{Abbildungsverzeichnis}{}% 2
+\BOOKMARK [0][-]{chapter*.4}{Tabellenverzeichnis}{}% 3
+\BOOKMARK [0][-]{chapter*.5}{List of Algorithms}{}% 4
+\BOOKMARK [0][-]{chapter.1}{Einleitung}{}% 5
+\BOOKMARK [1][-]{section.1.1}{Motivation}{chapter.1}% 6
+\BOOKMARK [1][-]{section.1.2}{State of the Art}{chapter.1}% 7
+\BOOKMARK [1][-]{section.1.3}{Aufbau der Arbeit}{chapter.1}% 8
+\BOOKMARK [0][-]{chapter.2}{Grundlagen}{}% 9
+\BOOKMARK [1][-]{section.2.1}{Verlustleistung}{chapter.2}% 10
+\BOOKMARK [2][-]{subsection.2.1.1}{Allgemein}{section.2.1}% 11
+\BOOKMARK [2][-]{subsection.2.1.2}{Statische Verlustleistung}{section.2.1}% 12
+\BOOKMARK [2][-]{subsection.2.1.3}{Dynamische Verlustleistung}{section.2.1}% 13
+\BOOKMARK [1][-]{section.2.2}{Genetische Algorithmen}{chapter.2}% 14
+\BOOKMARK [2][-]{subsection.2.2.1}{Crossover}{section.2.2}% 15
+\BOOKMARK [2][-]{subsection.2.2.2}{Mutation}{section.2.2}% 16
+\BOOKMARK [2][-]{subsection.2.2.3}{Fitness}{section.2.2}% 17
+\BOOKMARK [1][-]{section.2.3}{SIMD Prozessor}{chapter.2}% 18
+\BOOKMARK [2][-]{subsection.2.3.1}{VLIW}{section.2.3}% 19
+\BOOKMARK [2][-]{subsection.2.3.2}{Pipelining}{section.2.3}% 20
+\BOOKMARK [2][-]{subsection.2.3.3}{Scheduling}{section.2.3}% 21
+\BOOKMARK [2][-]{subsection.2.3.4}{XXX}{section.2.3}% 22
+\BOOKMARK [1][-]{section.2.4}{Register Allokation}{chapter.2}% 23
+\BOOKMARK [2][-]{subsection.2.4.1}{virtuelle Register}{section.2.4}% 24
+\BOOKMARK [2][-]{subsection.2.4.2}{X2 Modus}{section.2.4}% 25
+\BOOKMARK [2][-]{subsection.2.4.3}{MAC Modus}{section.2.4}% 26
+\BOOKMARK [0][-]{chapter.3}{Architektur}{}% 27
+\BOOKMARK [1][-]{section.3.1}{Aufbau der Architektur}{chapter.3}% 28
+\BOOKMARK [2][-]{subsection.3.1.1}{MIPS Prozessor}{section.3.1}% 29
+\BOOKMARK [2][-]{subsection.3.1.2}{Register File Organisation}{section.3.1}% 30
+\BOOKMARK [0][-]{chapter.4}{Evaluation}{}% 31
+\BOOKMARK [1][-]{section.4.1}{Evaluation}{chapter.4}% 32
+\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 33
+\BOOKMARK [1][-]{section.5.1}{Evaluation}{chapter.5}% 34
+\BOOKMARK [0][-]{appendix.A}{Source Code}{}% 35

@@ -1,0 +1,37 @@
+\nomenclatureentry{aALM@[{ALM}]\begingroup Adaptive Logic Module\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aAUI@[{AUI}]\begingroup Attachment Unit Interface\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aASIC@[{ASIC}]\begingroup Application Specific Integrated Circuit\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aBIST@[{BIST}]\begingroup Built-In Self-Test\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aCRAM@[{CRAM}]\begingroup Configuration RAM\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aCRC@[{CRC}]\begingroup Cyclic Redundany Check\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aCSMA/CD@[{CSMA/CD}]\begingroup Carrier Sense Multiple Access Collision Detection\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aECC@[{ECC}]\begingroup Error-Correction Code oder Error Checking and Correction\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aEEPROM@[{EEPROM}]\begingroup Electrically Erasable Programmable Read-only Memory\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aFIFO@[{FIFO}]\begingroup First In First Out\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aFIT@[{FIT}]\begingroup Failures in time\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aFSM@[{FSM}]\begingroup Finite State Machine\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aGbE@[{GbE}]\begingroup Gigabit-Ethernet\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aIEEE@[{IEEE}]\begingroup Institute of Electrical and Electronics Engineers\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aI/O@[{I/O}]\begingroup Input/Output\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aLAB@[{LAB}]\begingroup Logical Array Block\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aIP@[{IP}]\begingroup Intellectual Property\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aIP@[{IP}]\begingroup Internet Protocol\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aISO@[{ISO}]\begingroup International Standardization Organization\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aJTAG@[{JTAG}]\begingroup Joint Test Action Group\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aLAN@[{LAN}]\begingroup Local Area Network\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aLUT@[{LUT}]\begingroup Lookup Table\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aMAC@[{MAC}]\begingroup Medium Access Control\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aMTBF@[{MTBF}]\begingroup Mean-Time-Between-Failures\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aMTTR@[{MTTR}]\begingroup Mean-Time-To-Repair\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aMTU@[{MTU}]\begingroup Maximum Transfer Unit\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aOSI@[{OSI}]\begingroup Open Systems Interchange\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aPHY@[{PHY}]\begingroup Physical Layer\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aRAM@[{RAM}]\begingroup Random Access Memory\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aROM@[{ROM}]\begingroup Read-Only Memory\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aSAN@[{SAN}]\begingroup Storage Area Network\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aSER@[{SER}]\begingroup Soft Error Rate\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aTMR@[{TMR}]\begingroup Triple Modular Redundancy\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aUSB@[{USB}]\begingroup Universal Serial Bus\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aVHDL@[{VHDL}]\begingroup Very High Speed Integrated Circuit Description Language\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aVLAN@[{VLAN}]\begingroup Virtual Local Area Network\nomeqref {0.0}|nompageref}{1}
+\nomenclatureentry{aVQM@[{VQM}]\begingroup Verilog Quartus Mapping\nomeqref {0.0}|nompageref}{1}
