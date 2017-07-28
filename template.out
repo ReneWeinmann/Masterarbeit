@@ -18,17 +18,19 @@
 \BOOKMARK [2][-]{subsection.2.3.1}{VLIW}{section.2.3}% 18
 \BOOKMARK [2][-]{subsection.2.3.2}{Pipelining}{section.2.3}% 19
 \BOOKMARK [2][-]{subsection.2.3.3}{Scheduling}{section.2.3}% 20
-\BOOKMARK [2][-]{subsection.2.3.4}{XXX}{section.2.3}% 21
+\BOOKMARK [2][-]{subsection.2.3.4}{Hamming-Distanze}{section.2.3}% 21
 \BOOKMARK [1][-]{section.2.4}{Register Allokation}{chapter.2}% 22
 \BOOKMARK [2][-]{subsection.2.4.1}{virtuelle Register}{section.2.4}% 23
 \BOOKMARK [2][-]{subsection.2.4.2}{X2 Modus}{section.2.4}% 24
 \BOOKMARK [2][-]{subsection.2.4.3}{MAC Modus}{section.2.4}% 25
-\BOOKMARK [0][-]{chapter.3}{Architektur}{}% 26
-\BOOKMARK [1][-]{section.3.1}{Aufbau der Architektur}{chapter.3}% 27
-\BOOKMARK [2][-]{subsection.3.1.1}{MIPS Prozessor}{section.3.1}% 28
-\BOOKMARK [2][-]{subsection.3.1.2}{Register File Organisation}{section.3.1}% 29
-\BOOKMARK [0][-]{chapter.4}{Evaluation}{}% 30
-\BOOKMARK [1][-]{section.4.1}{Evaluation}{chapter.4}% 31
-\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 32
+\BOOKMARK [0][-]{chapter.3}{Implementierung}{}% 26
+\BOOKMARK [1][-]{section.3.1}{Heuristik}{chapter.3}% 27
+\BOOKMARK [0][-]{chapter.4}{Architektur}{}% 28
+\BOOKMARK [1][-]{section.4.1}{Aufbau der Architektur}{chapter.4}% 29
+\BOOKMARK [2][-]{subsection.4.1.1}{MIPS Prozessor}{section.4.1}% 30
+\BOOKMARK [2][-]{subsection.4.1.2}{Register File Organisation}{section.4.1}% 31
+\BOOKMARK [0][-]{chapter.5}{Evaluation}{}% 32
 \BOOKMARK [1][-]{section.5.1}{Evaluation}{chapter.5}% 33
-\BOOKMARK [0][-]{appendix.A}{Source Code}{}% 34
+\BOOKMARK [0][-]{chapter.6}{Conclusion}{}% 34
+\BOOKMARK [1][-]{section.6.1}{Evaluation}{chapter.6}% 35
+\BOOKMARK [0][-]{appendix.A}{Source Code}{}% 36

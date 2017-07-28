@@ -119,8 +119,9 @@
 %\setcounter{secnumdepth}{5}															% set depth of section numbering
 \usepackage{amssymb}																			% provides mathmatical math symbols such as dots, arrows, etc.
 \usepackage{amsmath}																			% provides align environment
-\usepackage{dsfont}																				% double stroke font for number set symbols, (N, Z, Q, R, C)
-\usepackage[english,intoc]{nomencl}												% create list of abbreviations (add it to TOC)
+\usepackage{dsfont}	
+\usepackage{ngerman}																		% double stroke font for number set symbols, (N, Z, Q, R, C)
+\usepackage[german,intoc]{nomencl}												% create list of abbreviations (add it to TOC)
 \usepackage{datetime}
 
 %
@@ -270,9 +271,9 @@ escapechar=||}																						% text within defined char is escaped to \La
 	pdfpagelabels]							% set PDF page labels
 	{hyperref}
 \hypersetup{% �=\304; �=\326; �=\334; �=\344; �=\366; �=\374; �=\377
-  pdftitle={Design and Evaluation of a High Performance Vector Processor Memory Architecture for CNN-Based Scene Labelling Algorithms},
-  pdfauthor={Somer Kelef},
-  pdfsubject={Design and Evaluation of a High Performance Vector Processor Memory Architecture for CNN-Based Scene Labelling Algorithms}
+  pdftitle={Power Optimization of Register File Accesses in a Hearing Aid Processor Using Genetic Optimization Algorithms},
+  pdfauthor={Rene Weinmann},
+  pdfsubject={Power Optimization of Register File Accesses in a Hearing Aid Processor Using Genetic Optimization Algorithms}
 }
 
 %-------------------- Definitionen ------------------------------%
@@ -316,7 +317,7 @@ This applies also to all graphics, drawings and images included in the thesis.
 
 \begin{tabularx}{0.97\textwidth}{p{4cm} X p{5cm}}
 	\hrulefill & ~ & Hannover, \shortdate\today\\
-	Somer Kelef
+	Rene Weinmann
 \end{tabularx}
 \clearpage
 \newpage
@@ -362,6 +363,10 @@ This applies also to all graphics, drawings and images included in the thesis.
 \newpage
 %
 \input{fundamentals}
+\clearpage
+\newpage
+%
+\input{Implementierung}
 \clearpage
 \newpage
 %
