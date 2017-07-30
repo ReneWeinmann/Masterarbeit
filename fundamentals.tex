@@ -1,4 +1,4 @@
-% !TeX spellcheck = en_US
+% !TeX spellcheck = de_DE
 \chapter{Grundlagen}
 \label{chap:grundlagen}
 
@@ -8,13 +8,25 @@ Bla bla
 \label{sec:verlustleistung}
 Unter Verlustleistung in integrierten Schaltungen versteht man die in den Transistoren umgesetzte Leistung die in Form von Wärme verloren geht.
 Hierbei wird in statische \(P_{stat}\) und dynamische Verlustleistung \(P_{dyn}\) unterschieden. 
-\subsection{Statische Verlustleistung}
-Jedes mal wenn eine Kapazität geladen oder entladen werden muss, entsteht eine dynamische Verlustleistung\(P_C\). Die zweiter dynamische Verlustleistung\(P_SC\) entsteht beim Schaltevorgang von Transistoren insbesondere von Inverter-Schaltungen. In diesem Fall existiert beim Umschalten eine kurze Zeitspanne in der beide Transistoren durchgeschaltet sind. In diesem Fall besteht ein Kurzschlussstrom \(I_{SC}\)zwischen Versorgungsspannung \(V_{DD}\) und Ground\(V_{SS}\). Die dynamische Verlustleistung ist proportional zur Schaltaktivität\(\alpha\) und somit auch zur Taktfrequenz $f'$.
 \subsection{Dynamische Verlustleistung}
+Jedes mal wenn eine Kapazität geladen oder entladen werden muss, entsteht eine dynamische Verlustleistung\(P_C\). Die zweiter dynamische Verlustleistung\(P_{SC}\) entsteht beim Schaltevorgang von Transistoren insbesondere von Inverter-Schaltungen. In diesem Fall existiert beim Umschalten eine kurze Zeitspanne in der beide Transistoren durchgeschaltet sind. In diesem Fall besteht ein Kurzschlussstrom \(I_{SC}\)zwischen Versorgungsspannung \(V_{DD}\) und Masse \(V_{SS}\). Die dynamische Verlustleistung ist proportional zur Schaltaktivität\(\alpha\) und somit auch zur Taktfrequenz $f$.
+\begin{equation}
+P_{dyn} = \alpha  C_L  V_{dd}^{2}  f
+\label{eq:dynVerlustleistung}
+\end{equation}
+\subsection{Statische Verlustleistung}
 Sobald die Verlustleistung unabhängig von der Taktrate wird, kann diese als statische \(P_{Stat}\) bezeichnet werden. Dies ist der Fall, wenn die Transistoren so konzeptioniert sind, dass ein konstanter Strom zwischen\(V_{DD}\) und\(V_{SS}\)besteht. Dieser Strom ist untabhängig von der angelegten Gatespannung. Der dadurch auftretende Srom wird Leakagestrom genannt. Mit immer kleiner werdenden Strukturen wird dieser Strom deutliche wichtiger. In diesem Fall hängt der Strom von der Gatespannung ab und die statische wird eine dynamische Verlustleistung.
 
+
 Die gesamte Verlustleistung ist die Summer der drei erwähnten Verlusten.
-\[P = P_{ C }+P_{ SC }+P_{ Stat}\]
+\begin{equation}
+	\begin{aligned}
+		P &= P_{ C }+P_{ SC }+P_{ Stat}\\
+		P &= P_{dyn}+P_{Stat}
+	\label{eq:verlustleistung}
+	\end{aligned}
+\end{equation}
+
 \section{Genetische Algorithmen}
 \label{sec:genetischer_algo}
 Genetische Algorithmen wurden ursprünglich entwickelt um evolutionäre Prozesse aus der Natur nachzuempfinden. Erstmals wurde diese Art von Algorithmen von John Holland 1975 entwickelt und untersucht.
