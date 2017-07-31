@@ -45,14 +45,22 @@ Die Fitness einer Generation gibt an wie gut sich das Chromosom an das gegebene 
 \label{sec:VLIW}
 
 \subsection{VLIW}
+VLIW ist eine Eigenschaft von Mikroprozessor-Architekuren. VLIW steht hierbei fuer Very Long Instruction Word und bedeutet soviel wie sehr langes Instruktionsword. Das Ziel dieser Struktur ist eine schnelle Abarbeitung des Befehlsatzes, wobei hierbei einige Befehle parallel ausgefuehrt werden. Um dies zu ermoeglichen sind mehrere Instruktions-Dekoder vonnoeten. Der verwendete TUKUTURI-Prozessor besitzt zwei solcher Dekoder auch Isue-Slots genannt und kann somit zwei Befehle parallel ausfuehren. Eine VLIW-Architekur geht meist mit Pipelining einher. 
 \subsection{Pipelining}
+
+\subsection{Compiler}
+Um von einer Programmiersprache (in diesem Fall Assembler) zu einem von dem Prozessor ausfuehrbaren Programm zu gelangen, ist es noetig die Programmiersprache in Maschinencode zu uebersetzten. Dies ist die Aufgabe des Compilers. Der verwendete Compiler stueckelt den Code auf in so genannte Micro Instructions (MI). Hierbei ist eine MI eine Anweisung welche der Prozessor in einem Taktzyklus ausfuehren kann, dabei kann es sich auch um mehrere Micro Operation (MO) handeln. Im Falle der verwendeten MOAI-Architektur handelt es sich um zwei MOs die parallel ausgefuehrt werden koennen. Diese MOs werden wiederum gruppiert in sogenannte Straight Line Microcode (SLM). Ein SLM ist hierbei so definiert, dass es nur eine Einsprungstelle und eine Austrittsstelle gibt. Ausserdem duerfen sich keine Spruenge und Verzweigungen in einer SLM befinden.
 \subsection{Scheduling}
 \subsection{Hamming-Distanze}
-
+Die Hamming-Distanz ist nach dem amerikanischen Mathematiker Richard Wesley Hamming benannt und gibt ein Mass fuer die Unterschiedlichkeit zweier Zeichenketten an. Hierbei ist die Hamming-Distanz die Anzahl der unterschiedlichen Stellen der beiden Codewoerter.
+\begin{equation}
+	00110 \text{ und } 00100 -> \text{Hamming-Distanze}= 1
+	\label{eq:hammingdistanze}
+\end{equation}
 
 \section{Register Allokation}
 \label{sec:register allok}
-\subsection{virtuelle Register}
-Bei virtuellen Registern handelt es sich um Register die an beliebiger Stelle allokiert werden können, das heisst der Compiler kann selbst entscheiden wo im Registerfile er diese Variable allokiert. Dies hat den Vorteile, dass somit fuer den Code geeignete/optimale Register ausgewaehlt werden koennen. Hierbei kann darauf geachtet werden, dass beide Register-Files gleich ausgelastete sind und dass es moeglich beibt X2- oder MAC-Befehle (werden im naechsten kapitel beschrieben) allokiert werden koennen. Ausserdem koennen die Register in diesem Fall so allokiert werden, dass die Verlustleistungsaufnahme minimiert werd.
+\subsection{Virtuelle Register}
+Bei virtuellen Registern handelt es sich um Register die an beliebiger Stelle allokiert werden können, das heisst der Compiler kann selbst entscheiden wo im Registerfile er diese Variable platziert. Dies hat den Vorteile, dass somit fuer den Code geeignete/optimale Register ausgewaehlt werden koennen. Hierbei kann darauf geachtet werden, dass beide Register-Files gleich ausgelastete sind und dass es moeglich beibt X2- oder MAC-Befehle (werden im naechsten kapitel beschrieben) allokiert werden koennen. Ausserdem koennen die Register in diesem Fall so allokiert werden, dass die Verlustleistungsaufnahme minimiert werden. Soll ein virtuelles Register verwendet werden so muss dieses im Code mit einem X gekennzeichnet sein. Die Abbildung XXX veranschaulicht die Instruktionen und die daraus resultierende Register-Allokation. 
 \subsection{X2 Modus}
 \subsection{MAC Modus}

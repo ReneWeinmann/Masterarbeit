@@ -13,23 +13,24 @@
 \contentsline {subsection}{\numberline {2.2.1}Crossover}{5}{subsection.2.2.1}
 \contentsline {subsection}{\numberline {2.2.2}Mutation}{6}{subsection.2.2.2}
 \contentsline {subsection}{\numberline {2.2.3}Fitness}{6}{subsection.2.2.3}
-\contentsline {section}{\numberline {2.3}SIMD Prozessor}{7}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}VLIW}{7}{subsection.2.3.1}
+\contentsline {section}{\numberline {2.3}SIMD Prozessor}{6}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}VLIW}{6}{subsection.2.3.1}
 \contentsline {subsection}{\numberline {2.3.2}Pipelining}{7}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}Scheduling}{7}{subsection.2.3.3}
-\contentsline {subsection}{\numberline {2.3.4}Hamming-Distanze}{7}{subsection.2.3.4}
-\contentsline {section}{\numberline {2.4}Register Allokation}{7}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}virtuelle Register}{7}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}X2 Modus}{7}{subsection.2.4.2}
-\contentsline {subsection}{\numberline {2.4.3}MAC Modus}{7}{subsection.2.4.3}
-\contentsline {chapter}{\numberline {3}Implementierung}{8}{chapter.3}
-\contentsline {section}{\numberline {3.1}Heuristik}{9}{section.3.1}
-\contentsline {chapter}{\numberline {4}Architektur}{10}{chapter.4}
-\contentsline {section}{\numberline {4.1}Aufbau der Architektur}{10}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}MIPS Prozessor}{10}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Register File Organisation}{10}{subsection.4.1.2}
-\contentsline {chapter}{\numberline {5}Evaluation}{11}{chapter.5}
-\contentsline {section}{\numberline {5.1}Evaluation}{11}{section.5.1}
-\contentsline {chapter}{\numberline {6}Conclusion}{12}{chapter.6}
-\contentsline {section}{\numberline {6.1}Evaluation}{12}{section.6.1}
-\contentsline {chapter}{\numberline {A}Source Code}{13}{appendix.A}
+\contentsline {subsection}{\numberline {2.3.3}Compiler}{7}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.4}Scheduling}{7}{subsection.2.3.4}
+\contentsline {subsection}{\numberline {2.3.5}Hamming-Distanze}{7}{subsection.2.3.5}
+\contentsline {section}{\numberline {2.4}Register Allokation}{8}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Virtuelle Register}{8}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}X2 Modus}{8}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}MAC Modus}{8}{subsection.2.4.3}
+\contentsline {chapter}{\numberline {3}Implementierung}{9}{chapter.3}
+\contentsline {section}{\numberline {3.1}Heuristik}{10}{section.3.1}
+\contentsline {chapter}{\numberline {4}Architektur}{11}{chapter.4}
+\contentsline {section}{\numberline {4.1}Aufbau der Architektur}{11}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}MIPS Prozessor}{11}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Register File Organisation}{11}{subsection.4.1.2}
+\contentsline {chapter}{\numberline {5}Evaluation}{12}{chapter.5}
+\contentsline {section}{\numberline {5.1}Evaluation}{12}{section.5.1}
+\contentsline {chapter}{\numberline {6}Conclusion}{13}{chapter.6}
+\contentsline {section}{\numberline {6.1}Evaluation}{13}{section.6.1}
+\contentsline {chapter}{\numberline {A}Source Code}{14}{appendix.A}
