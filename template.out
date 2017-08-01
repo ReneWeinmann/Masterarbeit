@@ -26,12 +26,17 @@
 \BOOKMARK [2][-]{subsection.2.4.3}{MAC Modus}{section.2.4}% 26
 \BOOKMARK [0][-]{chapter.3}{Implementierung}{}% 27
 \BOOKMARK [1][-]{section.3.1}{Heuristik}{chapter.3}% 28
-\BOOKMARK [0][-]{chapter.4}{Architektur}{}% 29
-\BOOKMARK [1][-]{section.4.1}{Aufbau der Architektur}{chapter.4}% 30
-\BOOKMARK [2][-]{subsection.4.1.1}{MIPS Prozessor}{section.4.1}% 31
-\BOOKMARK [2][-]{subsection.4.1.2}{Register File Organisation}{section.4.1}% 32
-\BOOKMARK [0][-]{chapter.5}{Evaluation}{}% 33
-\BOOKMARK [1][-]{section.5.1}{Evaluation}{chapter.5}% 34
-\BOOKMARK [0][-]{chapter.6}{Conclusion}{}% 35
-\BOOKMARK [1][-]{section.6.1}{Evaluation}{chapter.6}% 36
-\BOOKMARK [0][-]{appendix.A}{Source Code}{}% 37
+\BOOKMARK [1][-]{section.3.2}{Genetischer Algorithmus}{chapter.3}% 29
+\BOOKMARK [2][-]{subsection.3.2.1}{Fitness-Funktion}{section.3.2}% 30
+\BOOKMARK [2][-]{subsection.3.2.2}{Startpopulation}{section.3.2}% 31
+\BOOKMARK [2][-]{subsection.3.2.3}{dynamische Anpassung}{section.3.2}% 32
+\BOOKMARK [2][-]{subsection.3.2.4}{Algorithmus Modi}{section.3.2}% 33
+\BOOKMARK [0][-]{chapter.4}{Architektur}{}% 34
+\BOOKMARK [1][-]{section.4.1}{Aufbau der Architektur}{chapter.4}% 35
+\BOOKMARK [2][-]{subsection.4.1.1}{MIPS Prozessor}{section.4.1}% 36
+\BOOKMARK [2][-]{subsection.4.1.2}{Register File Organisation}{section.4.1}% 37
+\BOOKMARK [0][-]{chapter.5}{Evaluation}{}% 38
+\BOOKMARK [1][-]{section.5.1}{Evaluation}{chapter.5}% 39
+\BOOKMARK [0][-]{chapter.6}{Conclusion}{}% 40
+\BOOKMARK [1][-]{section.6.1}{Evaluation}{chapter.6}% 41
+\BOOKMARK [0][-]{appendix.A}{Source Code}{}% 42

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.5.24)  31 JUL 2017 14:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.5.24)  1 AUG 2017 16:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1421,7 +1421,7 @@ LaTeX Info: Redefining \nameref on input line 292.
 \openout4 = `template.out'.
 
  (./title.tex
-<pics/IMS_LUH.pdf, id=152, 225.83778pt x 69.21844pt>
+<pics/IMS_LUH.pdf, id=172, 225.83778pt x 69.21844pt>
 File: pics/IMS_LUH.pdf Graphic file (type pdf)
  <use pics/IMS_LUH.pdf>
 Package pdftex.def Info: pics/IMS_LUH.pdf used on input line 43.
@@ -1568,7 +1568,7 @@ Overfull \vbox (7.14983pt too high) has occurred while \output is active []
 
 [8] (./Implementierung.tex
 chapter 3.
-)
+
 Overfull \vbox (7.14983pt too high) has occurred while \output is active []
 
 
@@ -1580,13 +1580,28 @@ Overfull \vbox (7.14983pt too high) has occurred while \output is active []
 Overfull \vbox (7.14983pt too high) has occurred while \output is active []
 
 
-[10] (./architecture.tex
+[10]
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 20.
+ (/opt/latex/2015/texmf-dist/tex/latex/lm/omslmr.fd
+File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 20.
+)
+Overfull \vbox (7.14983pt too high) has occurred while \output is active []
+
+
+[11]
+Overfull \vbox (7.14983pt too high) has occurred while \output is active []
+
+
+[12] (./architecture.tex
 chapter 4.
 )
 Overfull \vbox (7.14983pt too high) has occurred while \output is active []
 
 
-[11
+[13
 
 
 
@@ -1596,7 +1611,7 @@ chapter 5.
 Overfull \vbox (7.14983pt too high) has occurred while \output is active []
 
 
-[12
+[14
 
 
 
@@ -1606,7 +1621,7 @@ chapter 6.
 Overfull \vbox (7.14983pt too high) has occurred while \output is active []
 
 
-[13
+[15
 
 
 
@@ -1621,36 +1636,30 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 8.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 8.
- [14
+ [16
 
 
 
-]) [15]
+]) [17]
 (./template.bbl)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 406.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 406.
  (./template.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 406.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 406.
+Package rerunfilecheck Info: File `template.out' has not changed.
+(rerunfilecheck)             Checksum: 5EB20898F27850F51313614C0D1E715B;2582.
 
-
-Package rerunfilecheck Warning: File `template.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `template.out':
-(rerunfilecheck)             Before: D177EB809C9827A710DB3FE534FC9497;2229
-(rerunfilecheck)             After:  413A5F9A9205CEF3E667E2EA43DE5ADD;2229.
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 18353 strings out of 493027
- 278213 string characters out of 6137691
- 552435 words of memory out of 5000000
- 21178 multiletter control sequences out of 15000+600000
- 97548 words of font info for 122 fonts, out of 8000000 for 9000
+ 18399 strings out of 493027
+ 278890 string characters out of 6137691
+ 552577 words of memory out of 5000000
+ 21202 multiletter control sequences out of 15000+600000
+ 98094 words of font info for 128 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  76i,12n,114p,1249b,2249s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/opt/latex/2015/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/opt/latex/2015/tex
@@ -1667,10 +1676,10 @@ tex/2015/texmf-dist/fonts/type1/public/lm/lmss12.pfb></opt/latex/2015/texmf-dis
 t/fonts/type1/public/lm/lmss17.pfb></opt/latex/2015/texmf-dist/fonts/type1/publ
 ic/lm/lmssbx10.pfb></opt/latex/2015/texmf-dist/fonts/type1/public/lm/lmsy10.pfb
 >
-Output written on template.pdf (24 pages, 307136 bytes).
+Output written on template.pdf (26 pages, 312881 bytes).
 PDF statistics:
- 476 PDF objects out of 1000 (max. 8388607)
- 431 compressed objects within 5 object streams
- 145 named destinations out of 1000 (max. 500000)
- 27950 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 511 PDF objects out of 1000 (max. 8388607)
+ 464 compressed objects within 5 object streams
+ 152 named destinations out of 1000 (max. 500000)
+ 27990 words of extra memory for PDF output out of 29859 (max. 10000000)
 

@@ -6,3 +6,35 @@ Um in ein Register zu schreiben, muss eine geeignete Adresse an den Adressbus an
 \section{Heuristik}
 \label{sec:Heuristik}
 Um die Hammingdistanz zu berechnen werden die Adressen der letzten Anweisung gespeichert. Da die Architektur zwei Issue-Slots aufweist und diese auf beide Register-Files zugreifen können muss es dementsprechend vier Target-Adressleitungen geben(siehe Abbildung XXX). Wollen beide Instruktionen an das selbe Register-File schreiben, so werden entweder die alle zehn Adressleitungen für die Adressierung verwendet. Verwenden beiden Instruktionen unterschiedliche Register werden jeweils die unteren fünf Adressleitungen des jeweiligen Registers verwendet. Die Adressen bleiben solange in an der Adressleitung angelegt, bis ein neuer Befehl diese Leitungen benutzen muss. Die Distanz wird nun immer mit den zuletzt verwendeten Adressen bestimmt. 
+
+\section{Genetischer Algorithmus}
+\label{sec:genetischerAlgorithmus}
+Die Gene des implementierten genetischen Algorithmuses wurden so gewaehlt, dass diese die zu allokierenden Register repraesentieren. Die Anzahl der Gene haengt hierbei jeweils von der Menge der virtuellen Registern ab. Jedes Gen enspricht einem Mapping von virtuellen zu reelen Registern.
+Die Populationsgroesse wurde aus der Literatur [LLL] entnommen. Im Kapitel XXX wird der Einfluss der Population auf die Ergenisse genauer untersucht. 
+
+
+\subsection{Fitness-Funktion}
+Da die Registeralokation dem Scheduling untergeordnet ist und von diesem aufgerufen wird, muss die Fitnessfunktion an die des Scheduling angepasst werden. Aus diesem Grund wurde zum einfacheren Vorgehen zwei Verschiedene Fitness-Funktionen implementiert. Zum einen der Wert der an die uebergeornete Funktion weitergegeben wird und zum Andern eine interene Fitness um die Ergebnisse zu evaluieren.
+Der Uebergabewert besteht lediglich aus der Anzahl der Register die nicht im Register-File allokiert werden konnten. Bei der internen Fitness-Funktion wurden mehrere Ansaetze evaluiert.
+\begin{itemize}
+	\item Hamming-Distanz\\
+		Als erste Variante wurde die Summe der Hamming-Distanzen als Fitness-Funktion verwendet. Hierzu wurden die Hammingdistanzen der Target- sowie Source-Register ermittelt. Wie im Falle der Heueristik mussten die verschiedenen Issue-Slots berueksichtigt werden. Da jeden Adress-Dekoder zwei Source-Adressen aufweist, gibt es in diesem Fall vier Moeglichkeiten der Allokation.
+	\item gewichtete Hamming-Distanz\\
+		blabla
+	\item Lastkapazitaet\\
+		blabla
+	\item Hamming-Distanz und Lastkapazitaet\\
+		blabla
+	\item Adresssumme\\
+		blabla
+\end{itemize}
+ 
+\subsection{Startpopulation}
+Die Startpopulation besteht im Normalfall aus zufaellig gewaehlten Genen. Hierbei werden nur Register verwendet die nicht bereits von reelen Registern blockiert sind.
+Um eine schnellere Konvergenz zu einem globalen Minimum zu geweehrleisten wird ein Gene der Startpopulation durch ein Heuristik-Algorithmus bestimmt. Dadurch wird bereits an einem lokalen Minimum gestartet und der genetische Algorithmus muss dies nicht selbst finden. 
+Nachteilig ist hierbei jedoch das durch ungeeignete Parameter der Algorithmus bei dem bereis sehr starken lokalen Minimum stagniert und keine Verbesserung mehr finden kann. Aus diesem Grund sollte beim Start mit der Heueristik eine hoehere Mutationswahrscheinlichkeit eingesetzt werden um dieses Minimu dennoch zu ueberwinden.
+
+\subsection{dynamische Anpassung}
+
+\subsection{Algorithmus Modi}
+%Tabelle mit allen Modis 
