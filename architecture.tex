@@ -6,6 +6,75 @@
 
 \subsection{MIPS Prozessor}
 \subsection{Register File Organisation}
-In dieser Arbeit wird eine Architektur mit einem 64Byte Register verwendet. Die beiden Instruktionsdekoder für die Issue slots 0 und 1
+In dieser Arbeit wird eine Architektur mit 64Byte Register verwendet. Dabei handelt es sich nicht um ein monolithisches Register-File sondern om ein Multishared Register-File. Hierbei wird das Register in zwei oder mehr Teile getrennt, die Anzahl haengt hierbei von den Issue Solts ab. Durch diese Aufteilung koennen Einsparungen in der Logik fuer die Schreib- und Leseports generiert werden. Durch die Trennung ist es jedoch immernoch moeglich, dass Instuktionen aus dem Issue-Slot 1 in das Register-File 0 schreiben oder lesen koennen. Die Aufteilung und die Zuordnung der Schreib- und Leseports koennen aus der Abbildung XXX und Tabelle TTT entnommen werden.
+
+\begin{figure}
+	\centering
+	\includesvg[width=1.0\textwidth]{register_orga}
+\end{figure}
+
+ 
+\begin{table}[]
+	
+	\begin{minipage}{.4\textwidth}
+		\flushleft
+		\label{schreib-port}
+		\begin{tabular}{cccccc}
+			\multicolumn{2}{l}{Schreib-Instruktion}                 & \multicolumn{4}{|l}{Schreib-Ports}                                                               \\ 
+			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3} \\ 
+			\hline
+			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} \\ 
+			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{} \\ 
+			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{} \\ 
+			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1}                    
+		\end{tabular}
+		\caption{Schreib-Port}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{.4\textwidth}
+		\flushleft
+		\label{lese-port}
+		\begin{tabular}{cccccccccccccccccc}
+			\multicolumn{4}{l}{Lese-Inst.}                 & \multicolumn{8}{|l}{Lese-Ports}                                                               \\ 
+			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2}& \multicolumn{1}{c}{3} &
+			\multicolumn{1}{c}{4} & \multicolumn{1}{c}{5} & \multicolumn{1}{c}{6}& \multicolumn{1}{c}{7} \\
+			\hline
+            \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2}& \multicolumn{1}{c}{3} &
+            \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+            \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2}& \multicolumn{1}{c}{} &
+            \multicolumn{1}{c}{3} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+            \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{3}& \multicolumn{1}{c}{} &
+            \multicolumn{1}{c}{2} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+            \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+            \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+            \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3}& \multicolumn{1}{c}{} &
+            \multicolumn{1}{c}{1} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+           	\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+            \multicolumn{1}{c}{1} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+            \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+            \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+            \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+            \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3}& \multicolumn{1}{c}{} \\
+            \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3}& \multicolumn{1}{c}{} &
+            \multicolumn{1}{c}{0} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+            \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+            \multicolumn{1}{c}{0} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+            \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+            \multicolumn{1}{c}{0} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+            \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+            \multicolumn{1}{c}{0} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3}& \multicolumn{1}{c}{} \\
+            \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{2} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+            \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+            \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{2} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+            \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{3}& \multicolumn{1}{c}{} \\
+            \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{3} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+            \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2}& \multicolumn{1}{c}{} \\
+            \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+            \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2}& \multicolumn{1}{c}{3} \\
+                  
+		\end{tabular}
+		\caption{Lese-Port}
+	\end{minipage}
+\end{table}
 In this thesis an architecture  with an 64 byte register file (RF) is used.
 The two instruction decoders for issue 0 and issue 1 share this flexible register file (RF). In order to enlarge the bottleneck of the register file ports in an VLIW architecture, the register file is divided into two smaller files.

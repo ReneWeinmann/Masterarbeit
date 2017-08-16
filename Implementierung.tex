@@ -35,6 +35,28 @@ Um eine schnellere Konvergenz zu einem globalen Minimum zu geweehrleisten wird e
 Nachteilig ist hierbei jedoch das durch ungeeignete Parameter der Algorithmus bei dem bereis sehr starken lokalen Minimum stagniert und keine Verbesserung mehr finden kann. Aus diesem Grund sollte beim Start mit der Heueristik eine hoehere Mutationswahrscheinlichkeit eingesetzt werden um dieses Minimu dennoch zu ueberwinden.
 
 \subsection{dynamische Anpassung}
-
+\newpage
 \subsection{Algorithmus Modi}
-%Tabelle mit allen Modis 
+
+-M -> Allocation Mode
+
+	%Tabelle mit allen Modis 
+	\begin{table}[htp]
+		\centering
+		\begin{tabular}{ccccccccc}
+			\multicolumn{2}{l}{}                 & \multicolumn{7}{|l}{Modi}                                                               \\ 
+			\multicolumn{2}{c}{Algorithmus-Konfig.}  & \multicolumn{1}{|c}{-E} & \multicolumn{1}{c}{-M} & \multicolumn{1}{c}{-R} & \multicolumn{1}{c}{-D} & \multicolumn{1}{c}{-H} & \multicolumn{1}{c}{-U} & \multicolumn{1}{c}{-o} \\ 
+			\hline
+		\multicolumn{2}{l}{Heuristik alt}  & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{1} \\
+		\multicolumn{2}{l}{Heuristik neu}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{1} \\ 
+		\multicolumn{2}{l}{Genetischer Algo. Hamming-Fitness}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{3} \\
+			\multicolumn{2}{r}{}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{3} \\
+			\multicolumn{2}{r}{Heuristik als Startpop.}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{3} \\
+			\multicolumn{2}{r}{dynamischer Genetischer Algo.}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{3} \\
+		\multicolumn{2}{l}{Genetischer Algo. Load-Fitness}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{3} \\ 
+		\multicolumn{2}{l}{Genetischer Algo. Hamming+Load-Fitness}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{3}                     
+		\end{tabular}
+		\newline
+		\caption{Algorithmus-Konfiguration}
+	\end{table}
+

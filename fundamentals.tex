@@ -4,6 +4,49 @@
 
 Bla bla
 
+
+\section{SIMD Prozessor}
+\label{sec:VLIW}
+
+\subsection{VLIW}
+VLIW ist eine Eigenschaft von Mikroprozessor-Architekuren. VLIW steht hierbei fuer Very Long Instruction Word und bedeutet soviel wie sehr langes Instruktionsword. Das Ziel dieser Struktur ist eine schnelle Abarbeitung des Befehlsatzes, wobei hierbei einige Befehle parallel ausgefuehrt werden. Um dies zu ermoeglichen sind mehrere Instruktions-Dekoder vonnoeten. Der verwendete TUKUTURI-Prozessor besitzt zwei solcher Dekoder auch Isue-Slots genannt und kann somit zwei Befehle parallel ausfuehren. Eine VLIW-Architekur geht meist mit Pipelining einher. 
+\subsection{Pipelining}
+
+\subsection{Compiler}
+Um von einer Programmiersprache (in diesem Fall Assembler) zu einem von dem Prozessor ausfuehrbaren Programm zu gelangen, ist es noetig die Programmiersprache in Maschinencode zu uebersetzten. Dies ist die Aufgabe des Compilers. Der verwendete Compiler stueckelt den Code auf in so genannte Micro Instructions (MI). Hierbei ist eine MI eine Anweisung welche der Prozessor in einem Taktzyklus ausfuehren kann, dabei kann es sich auch um mehrere Micro Operation (MO) handeln. Im Falle der verwendeten MOAI-Architektur handelt es sich um zwei MOs die parallel ausgefuehrt werden koennen. Diese MOs werden wiederum gruppiert in sogenannte Straight Line Microcode (SLM). Ein SLM ist hierbei so definiert, dass es nur eine Einsprungstelle und eine Austrittsstelle gibt. Ausserdem duerfen sich keine Spruenge und Verzweigungen in einer SLM befinden.
+\subsection{Scheduling}
+Das Scheduling ist zustaendig fuer die Anordnung der MIs bzw. der MOs die sich in einem SLM befinden. Hierbei geht der Algorithmus so vor, dass er die Anordnung sucht die den geringesten Kritischenpfad aufweist. Hierbei gibt es verschiedene Ansatzmoeglichkeiten. Die einfachste Methode ist das List-Scheduling. Hierbei wird bei jedem einfuegen eines MOs in ein MI ueberprueft, ob die zugehoerigen Register allokiert werden koennen, ist dies nicht der Fall wird mit der naechsten MO begonnen. Im darauffolgenden Schritt wird nun nochmals versucht die MO einzufuegen. Dies wird solange wiederholt bis alle MOs einer MI zugeortnet sind.
+Diese Art von ALgorithmus findet jedoch nicht immer eine optimale Loesung und ist gerade fuer grosse Programme nicht geeignet. Aus diesem Grund wurde zusaetzlich ein genetischer Algroithmus eingesetzt der die laenge der SLM reduziert.
+\subsection{Hamming-Distanze}
+Die Hamming-Distanz ist nach dem amerikanischen Mathematiker Richard Wesley Hamming benannt und gibt ein Mass fuer die Unterschiedlichkeit zweier Zeichenketten an. Hierbei ist die Hamming-Distanz die Anzahl der unterschiedlichen Stellen der beiden Codewoerter.
+\begin{equation}
+	00110 \text{ und } 00100 -> \text{Hamming-Distanze}= 1
+	\label{eq:hammingdistanze}
+\end{equation}
+
+\section{Register Allokation}
+\label{sec:register allok}
+\subsection{Virtuelle Register}
+Bei virtuellen Registern handelt es sich um Register die an beliebiger Stelle allokiert werden können, das heisst der Compiler kann selbst entscheiden wo im Registerfile er diese Variable platziert. 
+Die Idee hierbei ist es dem Compiler die Aufgabe zu uebergeben ein geeignetes Register zu suchen. Das Codebeispiel \ref{phyReg} zeigt anhand einer einfachen Addition diese Funktion. Da der Prozessor nicht mit Registeradressen addieren kann, muessen zwei Hilfsvariabeln verwendet werden. In diesem Fall wurden die Regsiter V0R0 und V0R1 gewaehlt. Mithilfe dieser Register kann der Prozessor nun eine Addition in Zeile drei durchfuehren.
+\renewcommand{\lstlistingname}{Codebeispiel}
+\begin{lstlisting}[frame=single, caption={physikalische Register},captionpos=b,label=phyReg]
+MV V0R0 0x100
+MV V0R1 0x101
+ADD V0R0 V0R0 V0R1
+STORE 0x100 V0R0
+\end{lstlisting}
+Um nun den Code etwas flexibler zu gestallten, wird dem Compiler nun ueberlassen welches Register er benutzt. Die selbe Addition ist in \ref{virtReg} mit virtuellen Registern realisiert. Hierbei wird dem Compiler durch ein  x gekennzeichnet, dass es sich um ein virtuelles Register handelt. Dieser waehlt das optimale Register aus, so dass sich der Programmierer um diese Aufgabe nich bemuehen muss. Dies hat den Vorteile, dass somit fuer den Code geeignete/optimale Register ausgewaehlt werden koennen. Hierbei wird darauf geachtet, dass beide Register-Files gleich ausgelastete sind und dass es moeglich beibt X2- oder MAC-Befehle (werden im naechsten Kapitel beschrieben) allokiert werden koennen. Ausserdem sind die Register in diesem Fall so allokiert, dass die Verlustleistungsaufnahme minimal ist. Wie die Register fuer eine optimale Verlustleistung ausgewaehlt werden muessen wird in dieser Arbeit evaluiert und aufgezeigt.
+
+\begin{lstlisting}[frame=single,caption={virtuelle Register},captionpos=b,label=virtReg]
+MV VxR0 0x100
+MV VxR1 0x101
+ADD VxR0 VxR0 VxR1
+STORE 0x100 VxR0
+\end{lstlisting}
+\subsection{X2 Modus}
+\subsection{MAC Modus}
+
 \section{Verlustleistung}
 \label{sec:verlustleistung}
 Unter Verlustleistung in integrierten Schaltungen versteht man die in den Transistoren umgesetzte Leistung die in Form von Wärme verloren geht.
@@ -20,11 +63,11 @@ Sobald die Verlustleistung unabhängig von der Taktrate wird, kann diese als sta
 
 Die gesamte Verlustleistung ist die Summer der drei erwähnten Verlusten.
 \begin{equation}
-	\begin{aligned}
-		P &= P_{ C }+P_{ SC }+P_{ Stat}\\
-		P &= P_{dyn}+P_{Stat}
-	\label{eq:verlustleistung}
-	\end{aligned}
+\begin{aligned}
+P &= P_{ C }+P_{ SC }+P_{ Stat}\\
+P &= P_{dyn}+P_{Stat}
+\label{eq:verlustleistung}
+\end{aligned}
 \end{equation}
 
 \section{Genetische Algorithmen}
@@ -36,31 +79,8 @@ Durch das Vorbild der Natur sollen mit genetischen Algorithmen schwierige Sachve
 Durch die Fortpflanzung werden die Chromosomen zweier Lebewesen an eine neue Generation weitergegeben, auch dieser Prozess ist bis heute nicht genau entschlüsselt jedoch können einige Merkmale abgebildet werden. Darunter fällt das Crossover und die Mutation.
 \subsection{Crossover}
 Bei dem Crossover-Prozess, handelt es sich um die Fortpflanzung von Generationen. Hierbei ist ausschlaggebend welche Generationen miteinander gepaart werden. Auf den ersten Blick scheint es einleuchtend immer die Generation mit der besten Fitness zu paaren. Dies ist jedoch nicht immer sinnvoll, da so schnell ein lokales Minimum erreicht wird. Aus diesem Grund gibt es verschiedene Ansätze um geeignete Eltern für die neue Generation zu finden. Die am weitesten verbreitete Methode ist die Roulette Wheel Selection. Hierbei wird zufällig ein Elternpaar gewählt, wobei die Chance einer jeden Generation ausgewählt zu werden proportional zur Fitness ist. Dieses Verfahren trägt ihren Namen daher, dass es einem Roulette-Rad gleicht, wobei das Rad in Stücke unterteilt ist, welche die Größe proportional zur Fitness haben. Die Auswahl kann nun einem Drehen an einem Rad gleichgesetzt werden. Hierbei ist es wahrscheinlicher, dass die Generationen mit höher Fitness ausgewählt werden. Es ist jedoch auch möglich, dass Populationsmitglieder mit niedriger Fitness gepaart werden.
- 
+
 \subsection{Mutation}
 Auch der Prozess der Mutation stammt aus der Natur. Hierbei besteht eine geringe Chance, dass Chromosomen verändert werden und Eigenschaften aufweisen die in keinem der Elternteile aufzufinden sind. Hierzu werden in dem durch Crossover erzeugtem Chromosom einzelne Gene durch Zufall verändert. Die Wahrscheinlichkeit einer zufälligen Veränderung ist hierbei wie in der Natur sehr gering.
 \subsection{Fitness}
 Die Fitness einer Generation gibt an wie gut sich das Chromosom an das gegebene Problem angepasst hat. Diese Bewertung ist sehr wichtig für die richtige Funktion des Algorithmus. Dabei muss die Fitness-Funktion so entwickelt werden, dass die Generationen unterscheidbar sind und eine Einordnung in der Population möglich ist.  
-\section{SIMD Prozessor}
-\label{sec:VLIW}
-
-\subsection{VLIW}
-VLIW ist eine Eigenschaft von Mikroprozessor-Architekuren. VLIW steht hierbei fuer Very Long Instruction Word und bedeutet soviel wie sehr langes Instruktionsword. Das Ziel dieser Struktur ist eine schnelle Abarbeitung des Befehlsatzes, wobei hierbei einige Befehle parallel ausgefuehrt werden. Um dies zu ermoeglichen sind mehrere Instruktions-Dekoder vonnoeten. Der verwendete TUKUTURI-Prozessor besitzt zwei solcher Dekoder auch Isue-Slots genannt und kann somit zwei Befehle parallel ausfuehren. Eine VLIW-Architekur geht meist mit Pipelining einher. 
-\subsection{Pipelining}
-
-\subsection{Compiler}
-Um von einer Programmiersprache (in diesem Fall Assembler) zu einem von dem Prozessor ausfuehrbaren Programm zu gelangen, ist es noetig die Programmiersprache in Maschinencode zu uebersetzten. Dies ist die Aufgabe des Compilers. Der verwendete Compiler stueckelt den Code auf in so genannte Micro Instructions (MI). Hierbei ist eine MI eine Anweisung welche der Prozessor in einem Taktzyklus ausfuehren kann, dabei kann es sich auch um mehrere Micro Operation (MO) handeln. Im Falle der verwendeten MOAI-Architektur handelt es sich um zwei MOs die parallel ausgefuehrt werden koennen. Diese MOs werden wiederum gruppiert in sogenannte Straight Line Microcode (SLM). Ein SLM ist hierbei so definiert, dass es nur eine Einsprungstelle und eine Austrittsstelle gibt. Ausserdem duerfen sich keine Spruenge und Verzweigungen in einer SLM befinden.
-\subsection{Scheduling}
-\subsection{Hamming-Distanze}
-Die Hamming-Distanz ist nach dem amerikanischen Mathematiker Richard Wesley Hamming benannt und gibt ein Mass fuer die Unterschiedlichkeit zweier Zeichenketten an. Hierbei ist die Hamming-Distanz die Anzahl der unterschiedlichen Stellen der beiden Codewoerter.
-\begin{equation}
-	00110 \text{ und } 00100 -> \text{Hamming-Distanze}= 1
-	\label{eq:hammingdistanze}
-\end{equation}
-
-\section{Register Allokation}
-\label{sec:register allok}
-\subsection{Virtuelle Register}
-Bei virtuellen Registern handelt es sich um Register die an beliebiger Stelle allokiert werden können, das heisst der Compiler kann selbst entscheiden wo im Registerfile er diese Variable platziert. Dies hat den Vorteile, dass somit fuer den Code geeignete/optimale Register ausgewaehlt werden koennen. Hierbei kann darauf geachtet werden, dass beide Register-Files gleich ausgelastete sind und dass es moeglich beibt X2- oder MAC-Befehle (werden im naechsten kapitel beschrieben) allokiert werden koennen. Ausserdem koennen die Register in diesem Fall so allokiert werden, dass die Verlustleistungsaufnahme minimiert werden. Soll ein virtuelles Register verwendet werden so muss dieses im Code mit einem X gekennzeichnet sein. Die Abbildung XXX veranschaulicht die Instruktionen und die daraus resultierende Register-Allokation. 
-\subsection{X2 Modus}
-\subsection{MAC Modus}
