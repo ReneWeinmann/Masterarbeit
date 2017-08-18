@@ -9,16 +9,16 @@ Bla bla
 \label{sec:VLIW}
 
 \subsection{VLIW}
-VLIW ist eine Eigenschaft von Mikroprozessor-Architekuren. VLIW steht hierbei fuer Very Long Instruction Word und bedeutet soviel wie sehr langes Instruktionsword. Das Ziel dieser Struktur ist eine schnelle Abarbeitung des Befehlsatzes, wobei hierbei einige Befehle parallel ausgefuehrt werden. Um dies zu ermoeglichen sind mehrere Instruktions-Dekoder vonnoeten. Der verwendete TUKUTURI-Prozessor besitzt zwei solcher Dekoder auch Issue-Slots genannt und kann somit zwei Befehle parallel ausfuehren. Eine VLIW-Architekur geht meist mit Pipelining einher. 
+VLIW ist eine Eigenschaft von Mikroprozessor-Architekturen. VLIW steht hierbei für Very Long Instruction Word und bedeutet soviel wie sehr langes Instruktions-Wort. Das Ziel dieser Struktur ist eine schnelle Abarbeitung des Befehlsatzes, wobei hierbei einige Befehle parallel ausgeführt werden. Um dies zu ermöglichen sind mehrere Instruktions-Dekoder vonnöten. Der verwendete TUKUTURI-Prozessor besitzt zwei solcher Dekoder auch Issue-Slots genannt und kann somit zwei Befehle parallel ausführen. Eine VLIW-Architekur geht meist mit Pipelining einher. 
 \subsection{Pipelining}
-Wie das Wort Pipelining schon besagt, handet es sich hierbei um eine Befehltabarbeitung am Fliessband(Pipeline). Wurde ein Befehl in Phase 1 abgearbeitet kann dieser an die naechste Phase weitergeleitet werden und der nachfolgende Befehl fuehrt die Phase 1 aus. Somit ist eine parallele verarbeitung mehrerer Befehle moeglich. Die Phasen in einem VLIW Prozessor sind: 1. Fetch 2.Decode 3.Load 4.Execute 5.Write.
+Wie das Wort Pipelining schon besagt, handelt es sich hierbei um eine Befehlsabarbeitung am Fließband(Pipeline). Wurde ein Befehl in Phase 1 abgearbeitet kann dieser an die nächste Phase weitergeleitet werden und der nachfolgende Befehl führt die Phase 1 aus. Somit ist eine parallele Verarbeitung mehrerer Befehle möglich. Die Phasen in einem VLIW Prozessor sind: 1. Fetch 2.Decode 3.Load 4.Execute 5.Write.
 
 \section{Aufbau der Architektur}
 \label{chap:architecture_overview}
 
 \subsection{MIPS Prozessor}
 \subsection{Register File Organisation}
-In dieser Arbeit wird eine Architektur mit 64Byte Register verwendet. Dabei handelt es sich nicht um ein monolithisches Register-File sondern om ein Multishared Register-File. Hierbei wird das Register in zwei oder mehr Teile getrennt, die Anzahl haengt hierbei von den Issue Solts ab. Durch diese Aufteilung koennen Einsparungen in der Logik fuer die Schreib- und Leseports generiert werden. Durch die Trennung ist es jedoch immernoch moeglich, dass Instuktionen aus dem Issue-Slot 1 in das Register-File 0 schreiben oder lesen koennen. Die Aufteilung und die Zuordnung der Schreib- und Leseports koennen aus der Abbildung XXX und Tabelle TTT entnommen werden.
+In dieser Arbeit wird eine Architektur mit 64Byte Register verwendet. Dabei handelt es sich nicht um ein monolithisches Register-File sondern om ein Multishared Register-File. Hierbei wird das Register in zwei oder mehr Teile getrennt, die Anzahl hängt hierbei von den Issue Solts ab. Durch diese Aufteilung koennen Einsparungen in der Logik fuer die Schreib- und Leseports generiert werden. Durch die Trennung ist es jedoch immer noch möglich, dass Instruktionen aus dem Issue-Slot 1 in das Register-File 0 schreiben oder lesen können. Die Aufteilung und die Zuordnung der Schreib- und Leseports können aus der Abbildung XXX und Tabelle TTT entnommen werden.
 
 \begin{figure}
 	\centering
@@ -88,16 +88,15 @@ In dieser Arbeit wird eine Architektur mit 64Byte Register verwendet. Dabei hand
 		\caption{Lese-Port}
 	\end{minipage}
 \end{table}
-In this thesis an architecture  with an 64 byte register file (RF) is used.
-The two instruction decoders for issue 0 and issue 1 share this flexible register file (RF). In order to enlarge the bottleneck of the register file ports in an VLIW architecture, the register file is divided into two smaller files.
+
 
 \subsection{Compiler}
-Um von einer Programmiersprache (in diesem Fall Assembler) zu einem von dem Prozessor ausfuehrbaren Programm zu gelangen, ist es noetig die Programmiersprache in Maschinencode zu uebersetzten. Dies ist die Aufgabe des Compilers. Der verwendete Compiler stueckelt den Code auf in so genannte Micro Instructions (MI). Hierbei ist eine MI eine Anweisung welche der Prozessor in einem Taktzyklus ausfuehren kann, dabei kann es sich auch um mehrere Micro Operation (MO) handeln. Im Falle der verwendeten MOAI-Architektur handelt es sich um zwei MOs die parallel ausgefuehrt werden koennen. Diese MOs werden wiederum gruppiert in sogenannte Straight Line Microcode (SLM). Ein SLM ist hierbei so definiert, dass es nur eine Einsprungstelle und eine Austrittsstelle gibt. Ausserdem duerfen sich keine Spruenge und Verzweigungen in einer SLM befinden.
+Um von einer Programmiersprache (in diesem Fall Assembler) zu einem von dem Prozessor ausführbaren Programm zu gelangen, ist es nötig die Programmiersprache in Maschinencode zu übersetzten. Dies ist die Aufgabe des Compilers. Der verwendete Compiler stückelt den Code auf in so genannte Micro Instructions (MI). Hierbei ist eine MI eine Anweisung welche der Prozessor in einem Taktzyklus ausführen kann, dabei kann es sich auch um mehrere Micro Operation (MO) handeln. Im Falle der verwendeten MOAI-Architektur handelt es sich um zwei MOs die parallel ausgeführt werden können. Diese MOs werden wiederum gruppiert in sogenannte Straight Line Microcode (SLM). Ein SLM ist hierbei so definiert, dass es nur eine Einsprungstelle und eine Austrittsstelle gibt. Außerdem dürfen sich keine Sprünge und Verzweigungen in einer SLM befinden.
 \subsection{Scheduling}
-Das Scheduling ist zustaendig fuer die Anordnung der MIs bzw. der MOs die sich in einem SLM befinden. Hierbei geht der Algorithmus so vor, dass er die Anordnung sucht die den geringesten Kritischenpfad aufweist. Hierbei gibt es verschiedene Ansatzmoeglichkeiten. Die einfachste Methode ist das List-Scheduling. Hierbei wird bei jedem einfuegen eines MOs in ein MI ueberprueft, ob die zugehoerigen Register allokiert werden koennen, ist dies nicht der Fall wird mit der naechsten MO begonnen. Im darauffolgenden Schritt wird nun nochmals versucht die MO einzufuegen. Dies wird solange wiederholt bis alle MOs einer MI zugeortnet sind.
-Diese Art von ALgorithmus findet jedoch nicht immer eine optimale Loesung und ist gerade fuer grosse Programme nicht geeignet. Aus diesem Grund wurde zusaetzlich ein genetischer Algroithmus eingesetzt der die laenge der SLM reduziert.
+Das Scheduling ist zuständig für die Anordnung der MIs bzw. der MOs die sich in einem SLM befinden. Hierbei geht der Algorithmus so vor, dass er die Anordnung sucht die den geringesten Kritischenpfad aufweist. Hierbei gibt es verschiedene Ansatzmöglichkeiten. Die einfachste Methode ist das List-Scheduling. Hierbei wird bei jedem einfügen eines MOs in ein MI unüberprüft, ob die zugehörigen Register allokiert werden können, ist dies nicht der Fall wird mit der nächsten MO begonnen. Im darauffolgenden Schritt wird nun nochmals versucht die MO einzufügen. Dies wird solange wiederholt bis alle MOs einer MI zugeordnet sind.
+Diese Art von Algorithmus findet jedoch nicht immer eine optimale Lösung und ist gerade für große Programme nicht geeignet. Aus diesem Grund wurde zusätzlich ein genetischer Algorithmus eingesetzt der die Länge der SLM reduziert.
 \subsection{Hamming-Distanze}
-Die Hamming-Distanz ist nach dem amerikanischen Mathematiker Richard Wesley Hamming benannt und gibt ein Mass fuer die Unterschiedlichkeit zweier Zeichenketten an. Hierbei ist die Hamming-Distanz die Anzahl der unterschiedlichen Stellen der beiden Codewoerter.
+Die Hamming-Distanz ist nach dem amerikanischen Mathematiker Richard Wesley Hamming benannt und gibt ein Maß für die Unterschiedlichkeit zweier Zeichenketten an. Hierbei ist die Hamming-Distanz die Anzahl der unterschiedlichen Stellen der beiden Codeworte.
 \begin{equation}
 	00110 \text{ und } 00100 -> \text{Hamming-Distanze}= 1
 	\label{eq:hammingdistanze}
@@ -107,7 +106,7 @@ Die Hamming-Distanz ist nach dem amerikanischen Mathematiker Richard Wesley Hamm
 \label{sec:register allok}
 \subsection{Virtuelle Register}
 Bei virtuellen Registern handelt es sich um Register die an beliebiger Stelle im Register-File allokiert werden können, das heisst der Compiler kann selbst entscheiden wo im Registerfile er diese Variable platziert. 
-Die Idee hierbei ist es, dem Compiler die Aufgabe zu uebergeben ein geeignetes Register zu suchen. Das Codebeispiel \ref{phyReg} zeigt anhand einer einfachen Addition diese Funktion. Da der Prozessor nicht mit Registeradressen addieren kann, muessen zwei Hilfsvariabeln verwendet werden. In diesem Fall wurden die Regsiter V0R0 und V0R1 gewaehlt. Mithilfe dieser Register kann der Prozessor nun eine Addition in Zeile drei durchfuehren.
+Die Idee hierbei ist es, dem Compiler die Aufgabe zu übergeben ein geeignetes Register zu suchen. Das Codebeispiel \ref{phyReg} zeigt anhand einer einfachen Addition diese Funktion. Da der Prozessor nicht mit Registeradressen addieren kann, müssen zwei Hilfsvariabeln verwendet werden. In diesem Fall wurden die Register V0R0 und V0R1 gewählt. Mithilfe dieser Register kann der Prozessor nun eine Addition in Zeile drei durchführen.
 \renewcommand{\lstlistingname}{Codebeispiel}
 \begin{lstlisting}[frame=single, caption={physikalische Register},captionpos=b,label=phyReg]
 MV V0R0 0x100
@@ -115,7 +114,7 @@ MV V0R1 0x101
 ADD V0R0 V0R0 V0R1
 STORE 0x100 V0R0
 \end{lstlisting}
-Um nun den Code etwas flexibler zu gestallten, wird  nun dem Compiler ueberlassen welches Register er benutzt. Die selbe Addition ist in \ref{virtReg} mit virtuellen Registern realisiert. Hierbei wird dem Compiler durch ein  x gekennzeichnet, dass es sich um ein virtuelles Register handelt. Dieser waehlt anschliessend ein optimales Register aus, so dass sich der Programmierer um diese Aufgabe nich bemuehen muss. Dies hat den Vorteile, dass somit fuer den Code geeignete/optimale Register ausgewaehlt werden koennen. Hierbei wird darauf geachtet, dass beide Register-Files gleich ausgelastete sind und dass es moeglich beibt X2- oder MAC-Befehle (siehe Kapitel \ref{x2Mode} ff.) allokiert werden koennen. Ausserdem sind die Register in diesem Fall so allokiert, dass die Verlustleistungsaufnahme minimal ist. Wie die Register fuer eine optimale Verlustleistung ausgewaehlt werden muessen wird in dieser Arbeit evaluiert und aufgezeigt.
+Um nun den Code etwas flexibler zu gestalten, wird  nun dem Compiler überlassen welches Register er benutzt. Die selbe Addition ist in \ref{virtReg} mit virtuellen Registern realisiert. Hierbei wird dem Compiler durch ein  x gekennzeichnet, dass es sich um ein virtuelles Register handelt. Dieser wählt anschließend ein optimales Register aus, so dass sich der Programmierer um diese Aufgabe nicht bemühen muss. Dies hat den Vorteile, dass somit fuer den Code geeignete/optimale Register ausgewählt werden können. Hierbei wird darauf geachtet, dass beide Register-Files gleich ausgelastete sind und dass es möglich bleibt X2- oder MAC-Befehle (siehe Kapitel \ref{x2Mode} ff.) allokiert werden können. Außerdem sind die Register in diesem Fall so allokiert, dass die Verlustleistungsaufnahme minimal ist. Wie die Register fuer eine optimale Verlustleistung ausgewählt werden müssen wird in dieser Arbeit evaluiert und aufgezeigt.
 
 \begin{lstlisting}[frame=single,caption={virtuelle Register},captionpos=b,label=virtReg]
 MV VxR0 0x100
@@ -124,7 +123,7 @@ ADD VxR0 VxR0 VxR1
 STORE 0x100 VxR0
 \end{lstlisting}
 \subsection{X2 Betriebsmodus}\label{x2Mode}
-Der X2-Betriebsmodus ermoeglicht es mehrere Funktionseinheiten zu nutzen ohne dabei die Anzahl der zu decodierenden Anweisungen zu erhoehen. Hierbei wird einem Befehl die doppelte Anzahl an Target und Source Registern uebergeben, somit steigt die Zahl der Parameter von drei auf sechs. Beide Instruktionen eines X2-Befehl koenen auf das selben Schreiberegister zugreifen. Bei den Lese Registern gibt es die Vorgabe, dass die geraden Instruktionen auf gerade Register zugreifen und die ungeraden Instruktionen auf ungerade.% Ausserdem muessen die Instruktionen aus immer in einem gespiegelten Register
+Der X2-Betriebsmodus ermöglicht es mehrere Funktionseinheiten zu nutzen ohne dabei die Anzahl der zu decodierenden Anweisungen zu erhöhen. Hierbei wird einem Befehl die doppelte Anzahl an Target und Source Registern übergeben, somit steigt die Zahl der Parameter von drei auf sechs. Beide Instruktionen eines X2-Befehl können auf das selben Schreiberegister zugreifen. Bei den Lese Registern gibt es die Vorgabe, dass die geraden Instruktionen auf gerade Register zugreifen und die ungeraden Instruktionen auf ungerade.% Ausserdem muessen die Instruktionen aus immer in einem gespiegelten Register
 \subsection{MAC Betriebsmodus}\label{macMode}
 
 \section{Verlustleistung}
@@ -138,7 +137,7 @@ P_{dyn} = \alpha  C_L  V_{dd}^{2}  f
 \label{eq:dynVerlustleistung}
 \end{equation}
 \subsection{Statische Verlustleistung}
-Sobald die Verlustleistung unabhängig von der Taktrate wird, kann diese als statische \(P_{Stat}\) bezeichnet werden. Dies ist der Fall, wenn die Transistoren so konzeptioniert sind, dass ein konstanter Strom zwischen\(V_{DD}\) und\(V_{SS}\)besteht. Dieser Strom ist untabhängig von der angelegten Gatespannung. Der dadurch auftretende Srom wird Leakagestrom genannt. Mit immer kleiner werdenden Strukturen wird dieser Strom deutliche wichtiger. In diesem Fall hängt der Strom von der Gatespannung ab und die statische wird eine dynamische Verlustleistung.
+Sobald die Verlustleistung unabhängig von der Taktrate wird, kann diese als statische \(P_{Stat}\) bezeichnet werden. Dies ist der Fall, wenn die Transistoren so konzeptioniert sind, dass ein konstanter Strom zwischen\(V_{DD}\) und\(V_{SS}\)besteht. Dieser Strom ist unabhängig von der angelegten Gatespannung. Der dadurch auftretende Strom wird Leakagestrom genannt. Mit immer kleiner werdenden Strukturen wird dieser Strom deutliche wichtiger. In diesem Fall hängt der Strom von der Gatespannung ab und die statische wird eine dynamische Verlustleistung.
 
 
 Die gesamte Verlustleistung ist die Summer der drei erwähnten Verlusten.
