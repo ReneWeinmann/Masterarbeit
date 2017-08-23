@@ -10,3 +10,32 @@
 \BOOKMARK [1][-]{section.2.1}{SIMD Prozessor}{chapter.2}% 10
 \BOOKMARK [2][-]{subsection.2.1.1}{VLIW}{section.2.1}% 11
 \BOOKMARK [2][-]{subsection.2.1.2}{Pipelining}{section.2.1}% 12
+\BOOKMARK [1][-]{section.2.2}{Aufbau der Architektur}{chapter.2}% 13
+\BOOKMARK [2][-]{subsection.2.2.1}{MIPS}{section.2.2}% 14
+\BOOKMARK [2][-]{subsection.2.2.2}{Register File Organisation}{section.2.2}% 15
+\BOOKMARK [2][-]{subsection.2.2.3}{Compiler}{section.2.2}% 16
+\BOOKMARK [2][-]{subsection.2.2.4}{Scheduling}{section.2.2}% 17
+\BOOKMARK [2][-]{subsection.2.2.5}{Hamming-Distanze}{section.2.2}% 18
+\BOOKMARK [1][-]{section.2.3}{Register Allokation}{chapter.2}% 19
+\BOOKMARK [2][-]{subsection.2.3.1}{Virtuelle Register}{section.2.3}% 20
+\BOOKMARK [2][-]{subsection.2.3.2}{X2 Betriebsmodus}{section.2.3}% 21
+\BOOKMARK [2][-]{subsection.2.3.3}{MAC Betriebsmodus}{section.2.3}% 22
+\BOOKMARK [1][-]{section.2.4}{Verlustleistung}{chapter.2}% 23
+\BOOKMARK [2][-]{subsection.2.4.1}{Dynamische Verlustleistung}{section.2.4}% 24
+\BOOKMARK [2][-]{subsection.2.4.2}{Statische Verlustleistung}{section.2.4}% 25
+\BOOKMARK [1][-]{section.2.5}{Genetische Algorithmen}{chapter.2}% 26
+\BOOKMARK [2][-]{subsection.2.5.1}{Crossover}{section.2.5}% 27
+\BOOKMARK [2][-]{subsection.2.5.2}{Mutation}{section.2.5}% 28
+\BOOKMARK [2][-]{subsection.2.5.3}{Fitness}{section.2.5}% 29
+\BOOKMARK [0][-]{chapter.3}{Implementierung}{}% 30
+\BOOKMARK [1][-]{section.3.1}{Heuristik}{chapter.3}% 31
+\BOOKMARK [1][-]{section.3.2}{Genetischer Algorithmus}{chapter.3}% 32
+\BOOKMARK [2][-]{subsection.3.2.1}{Fitness-Funktion}{section.3.2}% 33
+\BOOKMARK [2][-]{subsection.3.2.2}{Startpopulation}{section.3.2}% 34
+\BOOKMARK [2][-]{subsection.3.2.3}{dynamische Anpassung}{section.3.2}% 35
+\BOOKMARK [2][-]{subsection.3.2.4}{Algorithmus Modi}{section.3.2}% 36
+\BOOKMARK [0][-]{chapter.4}{Evaluation}{}% 37
+\BOOKMARK [1][-]{section.4.1}{Evaluation}{chapter.4}% 38
+\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 39
+\BOOKMARK [1][-]{section.5.1}{Evaluation}{chapter.5}% 40
+\BOOKMARK [0][-]{appendix.A}{Source Code}{}% 41

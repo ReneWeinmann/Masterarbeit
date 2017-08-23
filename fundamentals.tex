@@ -16,21 +16,31 @@ Wie das Wort Pipelining schon besagt, handelt es sich hierbei um eine Befehlsaba
 \section{Aufbau der Architektur}
 \label{chap:architecture_overview}
 
-\subsection{MIPS Prozessor}
-\subsection{Register File Organisation}
-In dieser Arbeit wird eine Architektur mit 64Byte Register verwendet. Dabei handelt es sich nicht um ein monolithisches Register-File sondern om ein Multishared Register-File. Hierbei wird das Register in zwei oder mehr Teile getrennt, die Anzahl hängt hierbei von den Issue Solts ab. Durch diese Aufteilung koennen Einsparungen in der Logik fuer die Schreib- und Leseports generiert werden. Durch die Trennung ist es jedoch immer noch möglich, dass Instruktionen aus dem Issue-Slot 1 in das Register-File 0 schreiben oder lesen können. Die Aufteilung und die Zuordnung der Schreib- und Leseports können aus der Abbildung XXX und Tabelle TTT entnommen werden.
+\begin{figure}[htbp] 
+	\centering
+	\includesvg[width=1.0\textwidth]{VLIWProzessor}
+	\caption{VLIW-SIMD Prozessor }
+	\label{fig:VLIW_SIMD}
+\end{figure}
 
-\begin{figure}
+\subsection{MIPS}
+MIPS oder auch \glqq Microprocessor without interlocked pipeline stages\grqq{} ist eine Befehlssatzarchitektur, die auf der RISC-Architektur  (Reduced instruction set computer) aufbaut. Hierbei
+\subsection{Register File Organisation}
+Es besteht eine Vielzahl an Regiserorganisationen fuer Signalprozessoren. Im Algemeinen lassen sich diese auf vier Grundorganisationen herunterbrechen: zentralisierte, gruppierte, hierarische und partitionierte Registerorganisation (siehe Abbildung XXX).
+Im folgenden soll nun weiter auf die partitionierte Organisation eingegangen werden. Physikalisch ist der Prozessor mit einem 4kB Register File ausgestattet. Dabei handelt es sich nicht um eine monolithische sondern um ein Multishared Register-File Organisation. Hierbei wird das Register in zwei oder mehr Teile getrennt, die Anzahl hängt hierbei von den Issue Solts ab. Durch diese Aufteilung koennen Einsparungen in der Logik fuer die Schreib- und Leseports generiert werden und die Anzahl der Register-File-Ports wird erhoeht, welches bei VLIW Prozessoren oft ein Bottelneck darstellt. In dieser Arbeit werden zwei Register-Files mit jeweils 32 Registern verwendet. Beide Register weissen zwei Lese und vier Schreibports auf. Dadurch ist es möglich, dass Instruktionen aus dem Issue-Slot 1 in das Register-File 0 schreiben oder lesen können und umgekehrt. Ausserdem wird durch diese Architektur ein Schreiben und Lesen zweier Instruktionen auf das selbe Register-File moeglich gemacht. Desweitern koennen im Falle einer X2-Instruktion beide Ports des Registers verwendet werden. Die Aufteilung und  Zuordnung der Schreib- und Leseports können aus der Abbildung \ref{fig:reg_orga} und \autoref{fig::schreib-port}+\ref{lese-port} entnommen werden.
+
+\begin{figure}[htbp] 
 	\centering
 	\includesvg[width=1.0\textwidth]{register_orga}
+	\caption{Register File Organistaion }
+	\label{fig:reg_orga}
 \end{figure}
 
 
-\begin{table}[]
+\begin{table}[htbp]
 	
 	\begin{minipage}{.4\textwidth}
 		\flushleft
-		\label{schreib-port}
 		\begin{tabular}{cccccc}
 			\multicolumn{2}{l}{Schreib-Instruktion}                 & \multicolumn{4}{|l}{Schreib-Ports}                                                               \\ 
 			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3} \\ 
@@ -38,14 +48,14 @@ In dieser Arbeit wird eine Architektur mit 64Byte Register verwendet. Dabei hand
 			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} \\ 
 			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{} \\ 
 			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{} \\ 
-			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1}                    
+			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{0} &  \multicolumn{1}{c}{1}                   
 		\end{tabular}
-		\caption{Schreib-Port}
+		\caption{\label{fig::schreib-port}Schreib-Port}
 	\end{minipage}
 	\hfill
 	\begin{minipage}{.4\textwidth}
 		\flushleft
-		\label{lese-port}
+		
 		\begin{tabular}{cccccccccccccccccc}
 			\multicolumn{4}{l}{Lese-Inst.}                 & \multicolumn{8}{|l}{Lese-Ports}                                                               \\ 
 			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2}& \multicolumn{1}{c}{3} &
@@ -85,7 +95,7 @@ In dieser Arbeit wird eine Architektur mit 64Byte Register verwendet. Dabei hand
 			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2}& \multicolumn{1}{c}{3} \\
 			
 		\end{tabular}
-		\caption{Lese-Port}
+		\caption{\label{lese-port}Lese-Port}
 	\end{minipage}
 \end{table}
 
@@ -126,21 +136,27 @@ STORE 0x100 VxR0
 Der X2-Betriebsmodus ermöglicht es mehrere Funktionseinheiten zu nutzen ohne dabei die Anzahl der zu decodierenden Anweisungen zu erhöhen. Hierbei wird einem Befehl die doppelte Anzahl an Target und Source Registern übergeben, somit steigt die Zahl der Parameter von drei auf sechs. Beide Instruktionen eines X2-Befehl können auf das selben Schreiberegister zugreifen. Bei den Lese Registern gibt es die Vorgabe, dass die geraden Instruktionen auf gerade Register zugreifen und die ungeraden Instruktionen auf ungerade.% Ausserdem muessen die Instruktionen aus immer in einem gespiegelten Register
 \subsection{MAC Betriebsmodus}\label{macMode}
 
+\subsection{Dummy-Register}\label{dummy}
+Dummy-Register sind Register die im Register-File implementiert sind, jedoch kann der Lese- und Schreibzugriff zur Laufzeit ueber ein so genanntes Dummy-Control-Register gesteuert werden. Mit Hilfe dieser Funktion koennen beispielsweise Hilfsvariblen die nur kurze Zeit existieren nicht an das Register-File zurueck geschrieben werden und somit den Energieverbrauch gesenken. 
+
+\subsection{Address-Isolation}\label{add_iso}
+Eine weitere Komponente des Prozessors ist das Adress-Isolation. Dabei handelt es sich um eine Funktion, welche die Switching-Aktivitaet des Register-Files verringert. Hierbei haelt der Prozessor die Adressen der Schreib- und Leseports solange bis eine neue Adresse angelegt wird (siehe Abbildung XXX).[Analyzin the Trade of Lukas GerlachS]
+
 \section{Verlustleistung}
 \label{sec:verlustleistung}
 Unter Verlustleistung in integrierten Schaltungen versteht man die in den Transistoren umgesetzte Leistung die in Form von Wärme verloren geht.
 Hierbei wird in statische \(P_{stat}\) und dynamische Verlustleistung \(P_{dyn}\) unterschieden. 
 \subsection{Dynamische Verlustleistung}
-Jedes mal wenn eine Kapazität geladen oder entladen werden muss, entsteht eine dynamische Verlustleistung\(P_C\). Die zweiter dynamische Verlustleistung\(P_{SC}\) entsteht beim Schaltevorgang von Transistoren insbesondere von Inverter-Schaltungen. In diesem Fall existiert beim Umschalten eine kurze Zeitspanne in der beide Transistoren durchgeschaltet sind. In diesem Fall besteht ein Kurzschlussstrom \(I_{SC}\)zwischen Versorgungsspannung \(V_{DD}\) und Masse \(V_{SS}\). Die dynamische Verlustleistung ist proportional zur Schaltaktivität\(\alpha\) und somit auch zur Taktfrequenz $f$.
+Jedes mal wenn eine Kapazität geladen oder entladen wird, entsteht eine dynamische Verlustleistung\(P_C\). Die zweiter dynamische Verlustleistung\(P_{SC}\) entsteht beim Schaltevorgang von Transistoren insbesondere von Inverter-Schaltungen. In diesem Fall existiert beim Umschalten eine kurze Zeitspanne in der beide Transistoren eine leitende Verbindung aufweisen. In diesem Fall besteht ein Kurzschlussstrom \(I_{SC}\)zwischen Versorgungsspannung \(V_{DD}\) und Masse \(V_{SS}\). Die dynamische Verlustleistung ist proportional zur Schaltaktivität\(\alpha\) und somit auch zur Taktfrequenz $f$.
 \begin{equation}
 P_{dyn} = \alpha  C_L  V_{dd}^{2}  f
 \label{eq:dynVerlustleistung}
 \end{equation}
 \subsection{Statische Verlustleistung}
-Sobald die Verlustleistung unabhängig von der Taktrate wird, kann diese als statische \(P_{Stat}\) bezeichnet werden. Dies ist der Fall, wenn die Transistoren so konzeptioniert sind, dass ein konstanter Strom zwischen\(V_{DD}\) und\(V_{SS}\)besteht. Dieser Strom ist unabhängig von der angelegten Gatespannung. Der dadurch auftretende Strom wird Leakagestrom genannt. Mit immer kleiner werdenden Strukturen wird dieser Strom deutliche wichtiger. In diesem Fall hängt der Strom von der Gatespannung ab und die statische wird eine dynamische Verlustleistung.
+Sobald die Verlustleistung unabhängig von der Taktrate wird, kann diese als statische \(P_{Stat}\) bezeichnet werden. Dies ist der Fall, wenn die Transistoren so konzeptioniert sind, dass ein konstanter Strom zwischen\(V_{DD}\) und\(V_{SS}\)besteht. Dieser Strom ist unabhängig von der angelegten Gatespannung. Der dadurch auftretende Strom wird Leakagestrom genannt. Mit immer kleiner werdenden Strukturen wird dieser Strom deutliche bedeutender. In diesem Fall hängt der Strom von der Gatespannung ab und die statische wird eine dynamische Verlustleistung.
 
 
-Die gesamte Verlustleistung ist die Summer der drei erwähnten Verlusten.
+Die gesamte Verlustleistung ist die Summer der drei erwähnten Verluste.
 \begin{equation}
 \begin{aligned}
 P &= P_{ C }+P_{ SC }+P_{ Stat}\\
