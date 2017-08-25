@@ -37,8 +37,46 @@ Nachteilig ist hierbei jedoch das durch ungeeignete Parameter der Algorithmus be
 \subsection{dynamische Anpassung}
 \newpage
 \subsection{Algorithmus Modi}
+\begin{itemize}
+	 \setlength{\itemsep}{-6pt}
+	\item-E -> Register Allokations-Modus Heuristik
+			\begin{itemize}
+				\setlength{\itemsep}{-4pt}
+				\item Alt
+				\item Neu
+			\end{itemize}
+	\item-M -> Register Allokations-Modus Genetischer Algorithmus
+		\begin{itemize}
+			\setlength{\itemsep}{-4pt}
+			\item Hamming-Distanz
+			\item Load
+			\item Hamming*Load
+		\end{itemize}
+	\item-R -> Auswahl der Algorithmen
+			\begin{itemize}
+				\setlength{\itemsep}{-4pt}
+				\item Genetischer Algorithmus
+				\item Heuristik
+			\end{itemize}
+	\item-D -> dynamischer Genetischer Algorithmus
+	\item-H -> Heuristik als Startgen
+	\item-U -> Mutation-Modus
+				\begin{itemize}
+					\setlength{\itemsep}{-4pt}
+					\item Mutation auf Crossover-Gen
+					\item Mutation auf Zufalls-Gen
+				\end{itemize}
+	\item-o -> Optimierungsgrad
+			\begin{itemize}
+				\setlength{\itemsep}{-4pt}
+				\item o1 List Scheduling
+				\item o2 Genetisches Scheduling 20 Gene
+				\item o3 Genetisches Scheduling 100 Gene
+				\item o4 Genetisches Scheduling 200 Gene
+			\end{itemize}
+	
+\end{itemize}
 
--M -> Allocation Mode
 
 	%Tabelle mit allen Modis 
 	\begin{table}[htp]
@@ -49,12 +87,12 @@ Nachteilig ist hierbei jedoch das durch ungeeignete Parameter der Algorithmus be
 			\hline
 		\multicolumn{2}{l}{Heuristik alt}  & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{1} \\
 		\multicolumn{2}{l}{Heuristik neu}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{1} \\ 
-		\multicolumn{2}{l}{Genetischer Algo. Hamming-Fitness}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{3} \\
-			\multicolumn{2}{r}{}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{3} \\
-			\multicolumn{2}{r}{Heuristik als Startpop.}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{3} \\
-			\multicolumn{2}{r}{dynamischer Genetischer Algo.}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{3} \\
-		\multicolumn{2}{l}{Genetischer Algo. Load-Fitness}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{3} \\ 
-		\multicolumn{2}{l}{Genetischer Algo. Hamming+Load-Fitness}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{3}                     
+		\multicolumn{2}{l}{Genetischer Algo. Hamming-Fitness}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{2-4} \\
+			\multicolumn{2}{r}{}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{2-4} \\
+			\multicolumn{2}{r}{Heuristik als Startpop.}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{2-4} \\
+			\multicolumn{2}{r}{dynamischer Genetischer Algo.}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{2-4} \\
+		\multicolumn{2}{l}{Genetischer Algo. Load-Fitness}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{2-4} \\ 
+		\multicolumn{2}{l}{Genetischer Algo. Hamming*Load-Fitness}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{2-4}                     
 		\end{tabular}
 		\newline
 		\caption{Algorithmus-Konfiguration}

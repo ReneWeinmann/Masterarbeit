@@ -9,12 +9,18 @@ Bla bla
 \label{sec:VLIW}
 
 \subsection{VLIW}
-VLIW ist eine Eigenschaft von Mikroprozessor-Architekturen. VLIW steht hierbei für Very Long Instruction Word und bedeutet soviel wie sehr langes Instruktions-Wort. Das Ziel dieser Struktur ist eine schnelle Abarbeitung des Befehlsatzes, wobei hierbei einige Befehle parallel ausgeführt werden. Um dies zu ermöglichen sind mehrere Instruktions-Dekoder vonnöten. Der verwendete TUKUTURI-Prozessor besitzt zwei solcher Dekoder auch Issue-Slots genannt und kann somit zwei Befehle parallel ausführen. Eine VLIW-Architekur geht meist mit Pipelining einher. 
+VLIW ist eine Eigenschaft von Mikroprozessor-Architekturen. VLIW steht hierbei für Very Long Instruction Word und bedeutet soviel wie sehr langes Instruktions-Wort. Das Ziel dieser Struktur ist eine schnelle Abarbeitung des Befehlsatzes, wobei hierbei einige Befehle parallel ausgeführt werden. Um dies zu ermöglichen sind mehrere Instruktions-Dekoder vonnöten. Der verwendete KAVUAKA-Prozessor besitzt zwei solcher Dekoder auch Issue-Slots genannt und kann somit zwei Befehle parallel ausführen. Eine VLIW-Architekur geht meist mit Pipelining einher. 
 \subsection{Pipelining}
-Wie das Wort Pipelining schon besagt, handelt es sich hierbei um eine Befehlsabarbeitung am Fließband(Pipeline). Wurde ein Befehl in Phase 1 abgearbeitet kann dieser an die nächste Phase weitergeleitet werden und der nachfolgende Befehl führt die Phase 1 aus. Somit ist eine parallele Verarbeitung mehrerer Befehle möglich. Die Phasen in einem VLIW Prozessor sind: 1. Fetch 2.Decode 3.Load 4.Execute 5.Write.
+Wie das Wort Pipelining schon besagt, handelt es sich hierbei um eine Befehlsabarbeitung am Fließband(Pipeline). Wurde ein Befehl in Phase 1 abgearbeitet kann dieser an die nächste Phase weitergeleitet werden und der nachfolgende Befehl führt die Phase 1 aus. Somit ist eine parallele Verarbeitung mehrerer Befehle möglich. Die Phasen des in dieser Arbeit verwendeten VLIW-Prozessors sind:
+\begin{itemize}
+	\item[1.] Instruction Fetch - Decode(IF - DE) 
+	\item[2.] Register Access (RA)
+	\item[3.] Execute - Write Back (EX - WB)
+\end{itemize}
 
 \section{Aufbau der Architektur}
 \label{chap:architecture_overview}
+
 
 \begin{figure}[htbp] 
 	\centering
