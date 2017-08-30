@@ -1,7 +1,16 @@
 \chapter{Evaluation}
 \label{chap:evaluation}
+Da die Verlustleistung nicht im Code und zur Laufzeit bestimmt werden kann, musste eine Analyse nach der Ausfuerhung des Codes stattfinden. Hierfuer wurde das Tool \"Prime Time Suite\" von Synopsys verwendet. Dieses analysiert alle Schaltaktivitaeten im Prozessor und gibt anschliessend eine detailierte Uebersicht ueber die Leistungsaufnahme des Prozessors.\\
+Um die Annahme zu bestaetigen, dass mit geringerer Schaltaktivitaeten an den Adressleitungen der Registe Files die Verlustleistung gesenkt werden kann, wurde zuerst die Schaltleistung der Register Addressen untersucht.\\
+Desweiteren wurden die Testprogramme zu Beginn manuell geschedueled um die Registerallokation isoliert betrachten zu koennen. Um den Einfluss der Schaltaktivitaeten besser bestimmen und nachvollziehen zu koennen wurden vorrertst ausschliesslich physikalische Register verwendet. \\
+Um den Einfluss der Adressen auf die Schaltleistung weiter aufzuschluesseln wurden die Schreibe- und Lese-Adressen separat voneinander untersucht. Dafuer wurde beispielsweise aus immer der selben Adresse gelesen und die Adresse in die geschrieben werden soll veraendert. Das Schaubild XXX Zeigt hierbei die Untersuchung der Schreibadressen
 
-Implemented techniques/designs/hardware/software need some sort of validation regarding propriety and performance. The way chosen to establish the correct functionality and/or performance have to be described and justified regarding their suitability.
+\begin{figure}
+	\centering
+	\includesvg[width=1.0\textwidth]{targetswitching}
+\end{figure}
+
+Das untenstehende Schaubild XXX zeigt einen Testfall. Hierbei sind die blauen hinterlegen Felder 
 
 \section{Evaluation}
 \label{sec:evalutation_verification}

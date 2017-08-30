@@ -36,7 +36,7 @@
 \contentsline {subsection}{\numberline {3.2.3}dynamische Anpassung}{17}{subsection.3.2.3}
 \contentsline {subsection}{\numberline {3.2.4}Algorithmus Modi}{18}{subsection.3.2.4}
 \contentsline {chapter}{\numberline {4}Evaluation}{20}{chapter.4}
-\contentsline {section}{\numberline {4.1}Evaluation}{20}{section.4.1}
-\contentsline {chapter}{\numberline {5}Conclusion}{21}{chapter.5}
-\contentsline {section}{\numberline {5.1}Evaluation}{21}{section.5.1}
-\contentsline {chapter}{\numberline {A}Source Code}{22}{appendix.A}
+\contentsline {section}{\numberline {4.1}Evaluation}{21}{section.4.1}
+\contentsline {chapter}{\numberline {5}Conclusion}{22}{chapter.5}
+\contentsline {section}{\numberline {5.1}Evaluation}{22}{section.5.1}
+\contentsline {chapter}{\numberline {A}Source Code}{23}{appendix.A}
