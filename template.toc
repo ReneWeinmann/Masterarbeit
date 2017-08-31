@@ -21,8 +21,9 @@
 \contentsline {subsection}{\numberline {2.3.3}MAC Betriebsmodus}{10}{subsection.2.3.3}
 \contentsline {subsection}{\numberline {2.3.4}Dummy-Register}{10}{subsection.2.3.4}
 \contentsline {subsection}{\numberline {2.3.5}Address-Isolation}{10}{subsection.2.3.5}
+\contentsline {subsection}{\numberline {2.3.6}Clock-Gateing}{10}{subsection.2.3.6}
 \contentsline {section}{\numberline {2.4}Verlustleistung}{10}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Dynamische Verlustleistung}{10}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.1}Dynamische Verlustleistung}{11}{subsection.2.4.1}
 \contentsline {subsection}{\numberline {2.4.2}Statische Verlustleistung}{11}{subsection.2.4.2}
 \contentsline {section}{\numberline {2.5}Genetische Algorithmen}{11}{section.2.5}
 \contentsline {subsection}{\numberline {2.5.1}Crossover}{12}{subsection.2.5.1}
@@ -35,6 +36,7 @@
 \contentsline {subsection}{\numberline {3.2.2}Startpopulation}{16}{subsection.3.2.2}
 \contentsline {subsection}{\numberline {3.2.3}dynamische Anpassung}{17}{subsection.3.2.3}
 \contentsline {subsection}{\numberline {3.2.4}Algorithmus Modi}{18}{subsection.3.2.4}
+\contentsline {subsection}{\numberline {3.2.5}Glitches}{18}{subsection.3.2.5}
 \contentsline {chapter}{\numberline {4}Evaluation}{20}{chapter.4}
 \contentsline {section}{\numberline {4.1}Evaluation}{21}{section.4.1}
 \contentsline {chapter}{\numberline {5}Conclusion}{22}{chapter.5}

@@ -35,6 +35,7 @@ Um eine schnellere Konvergenz zu einem globalen Minimum zu gewährleisteten wird
 Nachteilig ist hierbei jedoch das durch ungeeignete Parameter der Algorithmus bei dem bereits sehr starken lokalen Minimum stagniert und keine Verbesserung mehr finden kann. Aus diesem Grund sollte beim Start mit der Heueristik eine höhere Mutationswahrscheinlichkeit eingesetzt werden um dieses Minimum dennoch zu überwinden.
 
 \subsection{dynamische Anpassung}
+Zu Beginn der Suche nach einer geeigneten Register-Alokation findet der Algorithmus
 \newpage
 \subsection{Algorithmus Modi}
 \begin{itemize}
@@ -97,4 +98,9 @@ Nachteilig ist hierbei jedoch das durch ungeeignete Parameter der Algorithmus be
 		\newline
 		\caption{Algorithmus-Konfiguration}
 	\end{table}
+
+\subsection{Glitches}
+Die fuer die Schreib- und Lesezugriffe verwendeten Adressen werden jeweils zwischen den Takten angelegt um so zu gewaehrleisten, dass diese mit der steigenden Taktflanke auch uebernommen werden koennen. Die Auswahl der Ports wird ueber Enablesignale geregelt. Werden beispielwesie zwei Instruktionen verwendet die beide an Register-File 1 schreiben, so werden die Adressen an die jeweiligen Portsangelegt und sobald diese zu verfuegung stehen von den Enable-Signalen freigegeben.\\
+Nun tritt jedoch das Problem auf, dass Adress und Enable Signal nicht zeitgleich umschalten. Dies lieg daran, dass die benoetigten Enable-Signale aufwendig berechnet werden, und dies eine kurze Verzoegerung nachsich zieht. Aus diesem Grund liegt die bereits geaenderte Adresse kurze Zeit an dem falschen Adressport an. Sobald das Enable-Signal berechnet wurde, werden die richtigen Adressen angelegt. Dieses Szenario tritt lediglich auf, wenn ein Wechsel in den Enable-Signalen und sich somit die Herkunft der Adressen aendert. Das Beschriebene Problem verursacht eine Erhoehung der Schaltaktivitaet auf den Adressleitungen und somit auch eine steigende Verlustleistung um XXX \%
+Um diesem Effekt gegenzuwirken wurde eine zweite Pipline-Stufe eingebaut. Durch die Verzoegerung der Signale ist garantiert das die Adressen erst dann an den entsprechenden Ports anliegen wenn diese benoetigt werden. 
 
