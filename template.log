@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.7.20)  17 AUG 2017 17:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.7.20)  25 AUG 2017 22:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1276,7 +1276,11 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 LaTeX Warning: Unused global option(s):
     [germana4paper].
 
-(./template.aux)
+(./template.aux
+
+LaTeX Warning: Label `phyReg' multiply defined.
+
+)
 \openout1 = `template.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 293.
@@ -1450,7 +1454,12 @@ Package microtype Info: Loading generic settings for font family
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-eur.cfg)
 
 Package datetime Warning: No abbreviated month name defined for language 'ngerm
-an', using full version instead on input line 322.
+an', using full version instead on input line 324.
+
+
+Underfull \hbox (badness 1558) in paragraph at lines 324--324
+[]|\T1/lmr/m/n/12 (+20) Hannover, Fr 25 Au-gust,
+ []
 
 
 Overfull \vbox (1.92978pt too high) has occurred while \output is active []
@@ -1463,7 +1472,7 @@ Overfull \vbox (1.92978pt too high) has occurred while \output is active []
 
 ]
 Package tocbasic Info: character protrusion at toc deactivated on input line 33
-4.
+6.
  (./template.toc [5
 
 
@@ -1475,7 +1484,7 @@ Package tocbasic Info: character protrusion at toc deactivated on input line 33
 
  [6]
 Package tocbasic Info: character protrusion at lof deactivated on input line 33
-6.
+8.
  (./template.lof)
 \tf@lof=\write6
 \openout6 = `template.lof'.
@@ -1488,7 +1497,7 @@ Package tocbasic Info: character protrusion at lof deactivated on input line 33
 
 ]
 Package tocbasic Info: character protrusion at lot deactivated on input line 33
-7.
+9.
  (./template.lot)
 \tf@lot=\write7
 \openout7 = `template.lot'.
@@ -1497,8 +1506,8 @@ Package tocbasic Info: character protrusion at lot deactivated on input line 33
 
 
 ]
-Package tocbasic Info: character protrusion at loa deactivated on input line 33
-8.
+Package tocbasic Info: character protrusion at loa deactivated on input line 34
+0.
  (./template.loa)
 \tf@loa=\write8
 \openout8 = `template.loa'.
@@ -1544,42 +1553,198 @@ Overfull \vbox (7.14983pt too high) has occurred while \output is active []
 
 
 
+] <fig/register_orga.pdf, id=277, 538.01pt x 473.77pt>
+File: fig/register_orga.pdf Graphic file (type pdf)
+
+<use fig/register_orga.pdf>
+Package pdftex.def Info: fig/register_orga.pdf used on input line 26.
+(pdftex.def)             Requested size: 426.79141pt x 375.8357pt.
+ (./fig/register_orga.pdf_tex
+<fig/register_orga.pdf, id=278, page=1, 538.01pt x 473.77pt>
+File: fig/register_orga.pdf Graphic file (type pdf)
+
+<use fig/register_orga.pdf, page 1>
+Package pdftex.def Info: fig/register_orga.pdf, page1 used on input line 52.
+(pdftex.def)             Requested size: 426.79141pt x 375.8357pt.
+
+<fig/register_orga.pdf, id=279, page=2, 538.01pt x 473.77pt>
+File: fig/register_orga.pdf Graphic file (type pdf)
+
+<use fig/register_orga.pdf, page 2>
+Package pdftex.def Info: fig/register_orga.pdf, page2 used on input line 63.
+(pdftex.def)             Requested size: 426.79141pt x 375.8357pt.
+)
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 30.
+
+
+Overfull \hbox (21.41162pt too wide) in paragraph at lines 35--44
+[]  
+ []
+
+
+Overfull \hbox (44.18585pt too wide) in paragraph at lines 50--89
+[]  
+ []
+
+
+Overfull \vbox (7.14983pt too high) has occurred while \output is active []
+
+
+[4]
+Overfull \vbox (7.14983pt too high) has occurred while \output is active []
+
+
+[5 <./fig/register_orga.pdf> <./fig/register_orga.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./fig/register_orga.pdf): PDF inclusion
+: multiple pdfs with page group included in a single page
+>]
+Overfull \vbox (7.14983pt too high) has occurred while \output is active []
+
+
+[6]
+Overfull \vbox (7.14983pt too high) has occurred while \output is active []
+
+
+[7]
+Overfull \vbox (7.14983pt too high) has occurred while \output is active []
+
+
+[8]
+Overfull \vbox (7.14983pt too high) has occurred while \output is active []
+
+
+[9]
+Overfull \vbox (7.14983pt too high) has occurred while \output is active []
+
+
+[10])
+Overfull \vbox (7.14983pt too high) has occurred while \output is active []
+
+
+[11]
+Overfull \vbox (7.14983pt too high) has occurred while \output is active []
+
+
+[12] (./Implementierung.tex
+chapter 3.
+
+Overfull \vbox (7.14983pt too high) has occurred while \output is active []
+
+
+[13
+
+
+
 ]
+Underfull \hbox (badness 10000) in paragraph at lines 13--15
 
-! LaTeX Error: File `fig/register_orga' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.25 ...udesvg[width=1.0\textwidth]{register_orga}
-                                                  
-I could not locate the file with any of these extensions:
-.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+ []
 
 
-! LaTeX Error: File `register_orga.pdf_tex' not found.
+LaTeX Warning: Reference `code:heuristik' on page 14 undefined on input line 22
+.
 
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: pdf_tex)
 
-Enter file name: 
-! Emergency stop.
-<read *> 
-         
-l.25 ...udesvg[width=1.0\textwidth]{register_orga}
-                                                  ^^M
-*** (cannot \read from terminal in nonstop modes)
+Overfull \vbox (7.14983pt too high) has occurred while \output is active []
 
- 
+
+[14]
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 36.
+ (/usr/share/texmf/tex/latex/lm/omslmr.fd
+File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 36.
+
+Overfull \vbox (7.14983pt too high) has occurred while \output is active []
+
+
+[15]
+Overfull \vbox (7.14983pt too high) has occurred while \output is active []
+
+
+[16])
+Overfull \vbox (7.14983pt too high) has occurred while \output is active []
+
+
+[17] (./evaluation.tex
+chapter 4.
+)
+Overfull \vbox (7.14983pt too high) has occurred while \output is active []
+
+
+[18
+
+
+
+] (./conclusion.tex
+chapter 5.
+)
+Overfull \vbox (7.14983pt too high) has occurred while \output is active []
+
+
+[19
+
+
+
+] (./appendix.tex
+chapter A.
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 8.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 8.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 8.
+ [20
+
+
+
+]) [21]
+(./template.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 409.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 409.
+ (./template.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 409.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 409.
+Package rerunfilecheck Info: File `template.out' has not changed.
+(rerunfilecheck)             Checksum: D481E2EC789C22BF76571C8A1CE7F1BD;2551.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 17706 strings out of 493029
- 271829 string characters out of 6136234
- 497160 words of memory out of 5000000
- 20688 multiletter control sequences out of 15000+600000
- 66028 words of font info for 73 fonts, out of 8000000 for 9000
+ 18437 strings out of 493029
+ 280350 string characters out of 6136234
+ 552977 words of memory out of 5000000
+ 21211 multiletter control sequences out of 15000+600000
+ 98003 words of font info for 127 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 76i,10n,114p,1249b,488s stack positions out of 5000i,500n,10000p,200000b,80000s
-!  ==> Fatal error occurred, no output PDF file produced!
+ 76i,12n,114p,1249b,2248s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
+ips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share
+/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/share/texmf/fonts/type1/public/lm
+/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texm
+f/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi
+8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts
+/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></u
+sr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/p
+ublic/lm/lmro12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/sh
+are/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/public
+/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb>
+Output written on template.pdf (30 pages, 325653 bytes).
+PDF statistics:
+ 554 PDF objects out of 1000 (max. 8388607)
+ 500 compressed objects within 5 object streams
+ 174 named destinations out of 1000 (max. 500000)
+ 27997 words of extra memory for PDF output out of 29859 (max. 10000000)
+
