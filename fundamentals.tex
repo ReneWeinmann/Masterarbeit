@@ -10,28 +10,44 @@ Bla bla
 Der Begriff SIMD steht für Single Instruction Multiple Data und ist eine Datenverarbeitungseigenschaft von Prozessoren die meist in der Signalverarbeitung zum Einsatz kommt. Hierbei ist der Vorteil einer solchen Implementierung, dass mehrere Instruktionen parallel mit den selben Daten ausgeführt werden können und somit eine Performanz-Steigung einhergeht.
 
 \subsection{VLIW}
-VLIW ist ebenfalls eine Eigenschaft von Mikroprozessor-Architekturen. VLIW steht hierbei für Very Long Instruction Word und bedeutet soviel wie sehr langes Instruktions-Wort. Das Ziel dieser Struktur ist eine schnelle Abarbeitung des Befehlsatzes, wobei hierbei einige Befehle parallel ausgeführt werden. Um dies zu ermöglichen sind mehrere Instruktions-Dekoder vonnöten. Der verwendete TUKUTURI-Prozessor besitzt zwei solcher Dekoder auch Issue-Slots genannt und kann somit zwei Befehle parallel ausführen. Eine VLIW-Architekur geht meist mit Pipelining einher. 
+VLIW ist eine Eigenschaft von Mikroprozessor-Architekturen. VLIW steht hierbei für Very Long Instruction Word und bedeutet soviel wie sehr langes Instruktions-Wort. Das Ziel dieser Struktur ist eine schnelle Abarbeitung des Befehlsatzes, wobei hierbei einige Befehle parallel ausgeführt werden. Um dies zu ermöglichen sind mehrere Instruktions-Dekoder vonnöten. Der verwendete KAVUAKA-Prozessor besitzt zwei solcher Dekoder auch Issue-Slots genannt und kann somit zwei Befehle parallel ausführen. Eine VLIW-Architekur geht meist mit Pipelining einher. 
 \subsection{Pipelining}
-Wie das Wort Pipelining schon besagt, handelt es sich hierbei um eine Befehlsabarbeitung am Fließband(Pipeline). Wurde ein Befehl in Phase 1 abgearbeitet kann dieser an die nächste Phase weitergeleitet werden und der nachfolgende Befehl führt die Phase 1 aus. Somit ist eine parallele Verarbeitung mehrerer Befehle möglich. Die Phasen in einem VLIW Prozessor sind: 1. Fetch 2.Decode 3.Load 4.Execute 5.Write.
+Wie das Wort Pipelining schon besagt, handelt es sich hierbei um eine Befehlsabarbeitung am Fließband(Pipeline). Wurde ein Befehl in Phase 1 abgearbeitet kann dieser an die nächste Phase weitergeleitet werden und der nachfolgende Befehl führt die Phase 1 aus. Somit ist eine parallele Verarbeitung mehrerer Befehle möglich. Die Phasen des in dieser Arbeit verwendeten VLIW-Prozessors sind:
+\begin{itemize}
+	\item[1.] Instruction Fetch - Decode(IF - DE) 
+	\item[2.] Register Access (RA)
+	\item[3.] Execute - Write Back (EX - WB)
+\end{itemize}
 
 \section{Aufbau der Architektur}
 \label{chap:architecture_overview}
 
-\subsection{MIPS Prozessor}
-\subsection{Register File Organisation}
-In dieser Arbeit wird eine Architektur mit 64Byte Register verwendet. Dabei handelt es sich nicht um ein monolithisches Register-File sondern om ein Multishared Register-File. Hierbei wird das Register in zwei oder mehr Teile getrennt, die Anzahl hängt hierbei von den Issue Solts ab. Durch diese Aufteilung koennen Einsparungen in der Logik fuer die Schreib- und Leseports generiert werden. Durch die Trennung ist es jedoch immer noch möglich, dass Instruktionen aus dem Issue-Slot 1 in das Register-File 0 schreiben oder lesen können. Die Aufteilung und die Zuordnung der Schreib- und Leseports können aus der Abbildung XXX und Tabelle TTT entnommen werden.
 
-\begin{figure}
+\begin{figure}[htbp] 
+	\centering
+	\includesvg[width=1.0\textwidth]{VLIWProzessor}
+	\caption{VLIW-SIMD Prozessor }
+	\label{fig:VLIW_SIMD}
+\end{figure}
+
+\subsection{MIPS}
+MIPS oder auch \glqq Microprocessor without interlocked pipeline stages\grqq{} ist eine Befehlssatzarchitektur, die auf der RISC-Architektur  (Reduced instruction set computer) aufbaut. Hierbei
+\subsection{Register File Organisation}
+Es besteht eine Vielzahl an Regiserorganisationen fuer Signalprozessoren. Im Allgemeinen lassen sich diese auf vier Grundorganisationen herunterbrechen: zentralisierte, gruppierte, hierarische und partitionierte Registerorganisation (siehe Abbildung XXX).
+Im folgenden soll nun weiter auf die partitionierte Organisation eingegangen werden. Physikalisch ist der Prozessor mit einem 4kB Register File ausgestattet. Dabei handelt es sich nicht um eine monolithische sondern um ein Multishared Register-File Organisation. Hierbei wird das Register in mehre Teile getrennt, die Anzahl hängt hierbei von den Issue Solts ab. Durch diese Aufteilung koennen Einsparungen in der Logik fuer die Schreib- und Leseports generiert werden und die Anzahl der Register-File-Ports wird erhoeht, welches bei VLIW Prozessoren oft ein Bottelneck darstellt. In dieser Arbeit werden zwei Register-Files mit jeweils 32 Registern verwendet. Beide Register weissen zwei Lese und vier Schreibports auf. Dadurch ist es möglich, dass Instruktionen aus dem Issue-Slot 1 in das Register-File 0 schreiben oder lesen können und umgekehrt. Ausserdem wird durch diese Architektur ein Schreiben und Lesen zweier Instruktionen auf das selbe Register-File moeglich gemacht. Desweitern koennen im Falle einer X2-Instruktion beide Ports des Registers verwendet werden. Die Aufteilung und  Zuordnung der Schreib- und Leseports können aus der Abbildung \ref{fig:reg_orga} und \autoref{fig::schreib-port}+\ref{lese-port} entnommen werden.
+
+\begin{figure}[htbp] 
 	\centering
 	\includesvg[width=1.0\textwidth]{register_orga}
+	\caption{Register File Organistaion }
+	\label{fig:reg_orga}
 \end{figure}
 
 
-\begin{table}[]
+\begin{table}[htbp]
 	
 	\begin{minipage}{.4\textwidth}
 		\flushleft
-		\label{schreib-port}
 		\begin{tabular}{cccccc}
 			\multicolumn{2}{l}{Schreib-Instruktion}                 & \multicolumn{4}{|l}{Schreib-Ports}                                                               \\ 
 			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3} \\ 
@@ -39,14 +55,14 @@ In dieser Arbeit wird eine Architektur mit 64Byte Register verwendet. Dabei hand
 			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} \\ 
 			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{} \\ 
 			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{} \\ 
-			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1}                    
+			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{0} &  \multicolumn{1}{c}{1}                   
 		\end{tabular}
-		\caption{Schreib-Port}
+		\caption{\label{fig::schreib-port}Schreib-Port}
 	\end{minipage}
 	\hfill
 	\begin{minipage}{.4\textwidth}
 		\flushleft
-		\label{lese-port}
+		
 		\begin{tabular}{cccccccccccccccccc}
 			\multicolumn{4}{l}{Lese-Inst.}                 & \multicolumn{8}{|l}{Lese-Ports}                                                               \\ 
 			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2}& \multicolumn{1}{c}{3} &
@@ -86,15 +102,16 @@ In dieser Arbeit wird eine Architektur mit 64Byte Register verwendet. Dabei hand
 			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2}& \multicolumn{1}{c}{3} \\
 			
 		\end{tabular}
-		\caption{Lese-Port}
+		\caption{\label{lese-port}Lese-Port}
 	\end{minipage}
 \end{table}
 
 
 \subsection{Compiler}
-Um von einer Programmiersprache (in diesem Fall Assembler) zu einem von dem Prozessor ausführbaren Programm zu gelangen, ist es nötig die Programmiersprache in Maschinencode zu übersetzten. Dies ist die Aufgabe des Compilers. Der verwendete Compiler stückelt den Code auf in so genannte Micro Instructions (MI). Hierbei ist eine MI eine Anweisung welche der Prozessor in einem Taktzyklus ausführen kann, dabei kann es sich auch um mehrere Micro Operation (MO) handeln. Im Falle der verwendeten MOAI-Architektur handelt es sich um zwei MOs die parallel ausgeführt werden können. Diese MOs werden wiederum gruppiert in sogenannte Straight Line Microcode (SLM). Ein SLM ist hierbei so definiert, dass es nur eine Einsprungstelle und eine Austrittsstelle gibt. Außerdem dürfen sich keine Sprünge und Verzweigungen in einer SLM befinden.
+Damit ein Prozessor eine Programmiersprache (optimal) ausfuehren kann sind eine Schritte notwendig. Diese sind im Compiler zusammengefasst und werden im folgenden kurz erlaeutert.\\
+Der Code wird vorerst in so genannte Micro Instructions (MI) gestueckelt.  Hierbei ist eine MI eine Anweisung welche der Prozessor in einem Taktzyklus ausführen kann. Durch die Verwendung eines VLIW-Prozessors ist es moeglich mehrere Instruktionen parallel auszufuehren. Im Falle des KAUVAKA-Prozessors sind dies zwei Instruktionen. Aus diesem Grund teilt der Compiler nun die MIs in sogenannte Micro Operation (MO) auf. Diese werden anschliessend in so gennante \"Straight Line Microcode\" (SLM) aufgeteilt. Ein SLM ist hierbei so definiert, dass es nur eine Einsprungstelle und eine Austrittsstelle gibt. Außerdem dürfen sich keine Sprünge und Verzweigungen in einer SLM befinden.  Dadadurch entsteht ein Baum aus SLMs, die im Anschluss einzelnd optimiert werden koennen. Dieses Verfahren ist noetig, da eine Optimierung ueber alle Instruktionen eine zu hohe Komplexitaet haette. 
 \subsection{Scheduling}
-Das Scheduling ist zuständig für die Anordnung der MIs bzw. der MOs die sich in einem SLM befinden. Hierbei geht der Algorithmus so vor, dass er die Anordnung sucht die den geringesten Kritischenpfad aufweist. Hierbei gibt es verschiedene Ansatzmöglichkeiten. Die einfachste Methode ist das List-Scheduling. Hierbei wird bei jedem einfügen eines MOs in ein MI unüberprüft, ob die zugehörigen Register allokiert werden können, ist dies nicht der Fall wird mit der nächsten MO begonnen. Im darauffolgenden Schritt wird nun nochmals versucht die MO einzufügen. Dies wird solange wiederholt bis alle MOs einer MI zugeordnet sind.
+Das Scheduling ist zuständig für die Anordnung der MIs bzw. MOs die sich in einem SLM befinden. Hierbei geht der Algorithmus so vor, dass er die Anordnung sucht die den geringesten Kritischenpfad aufweist. Hierbei gibt es verschiedene Ansatzmöglichkeiten. Die einfachste Methode ist das List-Scheduling. Hierbei wird bei jedem einfügen eines MOs überprüft, ob die zugehörigen Register allokiert werden können, ist dies nicht der Fall wird mit der nächsten MO begonnen. Im darauffolgenden Schritt wird nun nochmals versucht die MO einzufügen. Dies wird solange wiederholt bis alle MOs zugeordnet sind.
 Diese Art von Algorithmus findet jedoch nicht immer eine optimale Lösung und ist gerade für große Programme nicht geeignet. Aus diesem Grund wurde zusätzlich ein genetischer Algorithmus eingesetzt der die Länge der SLM reduziert.
 \subsection{Hamming-Distanze}
 Die Hamming-Distanz ist nach dem amerikanischen Mathematiker Richard Wesley Hamming benannt und gibt ein Maß für die Unterschiedlichkeit zweier Zeichenketten an. Hierbei ist die Hamming-Distanz die Anzahl der unterschiedlichen Stellen der beiden Codeworte.
@@ -123,25 +140,33 @@ MV VxR1 0x101
 ADD VxR0 VxR0 VxR1
 STORE 0x100 VxR0
 \end{lstlisting}
-\subsection{X2 Betriebsmodus}\label{x2Mode}
+\subsection{X2 Betriebsmodus}\label{subsec:x2Mode}
 Der X2-Betriebsmodus ermöglicht es mehrere Funktionseinheiten zu nutzen ohne dabei die Anzahl der zu decodierenden Anweisungen zu erhöhen. Hierbei wird einem Befehl die doppelte Anzahl an Target und Source Registern übergeben, somit steigt die Zahl der Parameter von drei auf sechs. Beide Instruktionen eines X2-Befehl können auf das selben Schreiberegister zugreifen. Bei den Lese Registern gibt es die Vorgabe, dass die geraden Instruktionen auf gerade Register zugreifen und die ungeraden Instruktionen auf ungerade.% Ausserdem muessen die Instruktionen aus immer in einem gespiegelten Register
-\subsection{MAC Betriebsmodus}\label{macMode}
+\subsection{MAC Betriebsmodus}\label{subsec:macMode}
+
+\subsection{Dummy-Register}\label{subsec:dummy}
+Dummy-Register sind Register die im Register-File implementiert sind, jedoch kann der Lese- und Schreibzugriff zur Laufzeit ueber ein so genanntes Dummy-Control-Register gesteuert werden. Mit Hilfe dieser Funktion koennen beispielsweise Hilfsvariblen die nur kurze Zeit existieren nicht an das Register-File zurueck geschrieben werden und somit den Energieverbrauch gesenken. 
+
+\subsection{Address-Isolation}\label{subsec:add_iso}
+Eine weitere Komponente des Prozessors ist das Adress-Isolation. Dabei handelt es sich um eine Funktion, welche die Switching-Aktivitaet des Register-Files verringert. Hierbei werden die Adressen der Schreib- und Leseports solange in einem Flipflop gespeichert bis eine neue Adresse angelegt werden (siehe Abbildung XXX).[Analyzin the Trade of Lukas GerlachS]
+
+\subsection{Clock-Gateing}\label{subsec:clock-gate}
 
 \section{Verlustleistung}
 \label{sec:verlustleistung}
 Unter Verlustleistung in integrierten Schaltungen versteht man die in den Transistoren umgesetzte Leistung die in Form von Wärme verloren geht.
 Hierbei wird in statische \(P_{stat}\) und dynamische Verlustleistung \(P_{dyn}\) unterschieden. 
-\subsection{Dynamische Verlustleistung}
-Jedes mal wenn eine Kapazität geladen oder entladen werden muss, entsteht eine dynamische Verlustleistung\(P_C\). Die zweiter dynamische Verlustleistung\(P_{SC}\) entsteht beim Schaltevorgang von Transistoren insbesondere von Inverter-Schaltungen. In diesem Fall existiert beim Umschalten eine kurze Zeitspanne in der beide Transistoren durchgeschaltet sind. In diesem Fall besteht ein Kurzschlussstrom \(I_{SC}\)zwischen Versorgungsspannung \(V_{DD}\) und Masse \(V_{SS}\). Die dynamische Verlustleistung ist proportional zur Schaltaktivität\(\alpha\) und somit auch zur Taktfrequenz $f$.
+\subsection{Dynamische Verlustleistung}\label{subsec:dynVerl}
+Jedes mal wenn eine Kapazität geladen oder entladen wird, entsteht eine dynamische Verlustleistung\(P_C\). Die zweiter dynamische Verlustleistung\(P_{SC}\) entsteht beim Schaltevorgang von Transistoren insbesondere von Inverter-Schaltungen. In diesem Fall existiert beim Umschalten eine kurze Zeitspanne in der beide Transistoren eine leitende Verbindung aufweisen. In diesem Fall besteht ein Kurzschlussstrom \(I_{SC}\)zwischen Versorgungsspannung \(V_{DD}\) und Masse \(V_{SS}\). Die dynamische Verlustleistung ist proportional zur Schaltaktivität\(\alpha\) und somit auch zur Taktfrequenz $f$.
 \begin{equation}
 P_{dyn} = \alpha  C_L  V_{dd}^{2}  f
 \label{eq:dynVerlustleistung}
 \end{equation}
-\subsection{Statische Verlustleistung}
-Sobald die Verlustleistung unabhängig von der Taktrate wird, kann diese als statische \(P_{Stat}\) bezeichnet werden. Dies ist der Fall, wenn die Transistoren so konzeptioniert sind, dass ein konstanter Strom zwischen\(V_{DD}\) und\(V_{SS}\)besteht. Dieser Strom ist unabhängig von der angelegten Gatespannung. Der dadurch auftretende Strom wird Leakagestrom genannt. Mit immer kleiner werdenden Strukturen wird dieser Strom deutliche wichtiger. In diesem Fall hängt der Strom von der Gatespannung ab und die statische wird eine dynamische Verlustleistung.
+\subsection{Statische Verlustleistung}\label{subsec:statVerl}
+Sobald die Verlustleistung unabhängig von der Taktrate wird, kann diese als statische \(P_{Stat}\) bezeichnet werden. Dies ist der Fall, wenn die Transistoren so konzeptioniert sind, dass ein konstanter Strom zwischen\(V_{DD}\) und\(V_{SS}\)besteht. Dieser Strom ist unabhängig von der angelegten Gatespannung. Der dadurch auftretende Strom wird Leakagestrom genannt. Mit immer kleiner werdenden Strukturen wird dieser Strom deutliche bedeutender. In diesem Fall hängt der Strom von der Gatespannung ab und die statische wird eine dynamische Verlustleistung.
 
 
-Die gesamte Verlustleistung ist die Summer der drei erwähnten Verlusten.
+Die gesamte Verlustleistung ist die Summer der drei erwähnten Verluste.
 \begin{equation}
 \begin{aligned}
 P &= P_{ C }+P_{ SC }+P_{ Stat}\\

@@ -20,22 +20,26 @@
 \BOOKMARK [2][-]{subsection.2.3.1}{Virtuelle Register}{section.2.3}% 20
 \BOOKMARK [2][-]{subsection.2.3.2}{X2 Betriebsmodus}{section.2.3}% 21
 \BOOKMARK [2][-]{subsection.2.3.3}{MAC Betriebsmodus}{section.2.3}% 22
-\BOOKMARK [1][-]{section.2.4}{Verlustleistung}{chapter.2}% 23
-\BOOKMARK [2][-]{subsection.2.4.1}{Dynamische Verlustleistung}{section.2.4}% 24
-\BOOKMARK [2][-]{subsection.2.4.2}{Statische Verlustleistung}{section.2.4}% 25
-\BOOKMARK [1][-]{section.2.5}{Genetische Algorithmen}{chapter.2}% 26
-\BOOKMARK [2][-]{subsection.2.5.1}{Crossover}{section.2.5}% 27
-\BOOKMARK [2][-]{subsection.2.5.2}{Mutation}{section.2.5}% 28
-\BOOKMARK [2][-]{subsection.2.5.3}{Fitness}{section.2.5}% 29
-\BOOKMARK [0][-]{chapter.3}{Implementierung}{}% 30
-\BOOKMARK [1][-]{section.3.1}{Heuristik}{chapter.3}% 31
-\BOOKMARK [1][-]{section.3.2}{Genetischer Algorithmus}{chapter.3}% 32
-\BOOKMARK [2][-]{subsection.3.2.1}{Fitness-Funktion}{section.3.2}% 33
-\BOOKMARK [2][-]{subsection.3.2.2}{Startpopulation}{section.3.2}% 34
-\BOOKMARK [2][-]{subsection.3.2.3}{dynamische Anpassung}{section.3.2}% 35
-\BOOKMARK [2][-]{subsection.3.2.4}{Algorithmus Modi}{section.3.2}% 36
-\BOOKMARK [0][-]{chapter.4}{Evaluation}{}% 37
-\BOOKMARK [1][-]{section.4.1}{Evaluation}{chapter.4}% 38
-\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 39
-\BOOKMARK [1][-]{section.5.1}{Evaluation}{chapter.5}% 40
-\BOOKMARK [0][-]{appendix.A}{Source Code}{}% 41
+\BOOKMARK [2][-]{subsection.2.3.4}{Dummy-Register}{section.2.3}% 23
+\BOOKMARK [2][-]{subsection.2.3.5}{Address-Isolation}{section.2.3}% 24
+\BOOKMARK [2][-]{subsection.2.3.6}{Clock-Gateing}{section.2.3}% 25
+\BOOKMARK [1][-]{section.2.4}{Verlustleistung}{chapter.2}% 26
+\BOOKMARK [2][-]{subsection.2.4.1}{Dynamische Verlustleistung}{section.2.4}% 27
+\BOOKMARK [2][-]{subsection.2.4.2}{Statische Verlustleistung}{section.2.4}% 28
+\BOOKMARK [1][-]{section.2.5}{Genetische Algorithmen}{chapter.2}% 29
+\BOOKMARK [2][-]{subsection.2.5.1}{Crossover}{section.2.5}% 30
+\BOOKMARK [2][-]{subsection.2.5.2}{Mutation}{section.2.5}% 31
+\BOOKMARK [2][-]{subsection.2.5.3}{Fitness}{section.2.5}% 32
+\BOOKMARK [0][-]{chapter.3}{Implementierung}{}% 33
+\BOOKMARK [1][-]{section.3.1}{Heuristik}{chapter.3}% 34
+\BOOKMARK [1][-]{section.3.2}{Genetischer Algorithmus}{chapter.3}% 35
+\BOOKMARK [2][-]{subsection.3.2.1}{Fitness-Funktion}{section.3.2}% 36
+\BOOKMARK [2][-]{subsection.3.2.2}{Startpopulation}{section.3.2}% 37
+\BOOKMARK [2][-]{subsection.3.2.3}{dynamische Anpassung}{section.3.2}% 38
+\BOOKMARK [2][-]{subsection.3.2.4}{Algorithmus Modi}{section.3.2}% 39
+\BOOKMARK [2][-]{subsection.3.2.5}{Glitches}{section.3.2}% 40
+\BOOKMARK [0][-]{chapter.4}{Evaluation}{}% 41
+\BOOKMARK [1][-]{section.4.1}{Evaluation}{chapter.4}% 42
+\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 43
+\BOOKMARK [1][-]{section.5.1}{Evaluation}{chapter.5}% 44
+\BOOKMARK [0][-]{appendix.A}{Source Code}{}% 45
