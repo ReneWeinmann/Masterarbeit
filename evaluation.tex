@@ -1,16 +1,16 @@
 \chapter{Evaluation}
 \label{chap:evaluation}
-Da die Verlustleistung nicht im Code und zur Laufzeit bestimmt werden kann, musste eine Analyse nach der Ausfuerhung des Codes stattfinden. Hierfuer wurde das Tool \"Prime Time Suite\" von Synopsys verwendet. Dieses analysiert alle Schaltaktivitaeten im Prozessor und gibt anschliessend eine detailierte Uebersicht ueber die Leistungsaufnahme des Prozessors.\\
-Um die Annahme zu bestaetigen, dass mit geringerer Schaltaktivitaeten an den Adressleitungen der Registe Files die Verlustleistung gesenkt werden kann, wurde zuerst die Schaltleistung der Register Addressen untersucht.\\
-Desweiteren wurden die Testprogramme zu Beginn manuell geschedueled um die Registerallokation isoliert betrachten zu koennen. Hierzu kann vor jeder Instruktion angegeben werden in welchem Issue-SLot diese ausgefuehrt werden soll. Um den Einfluss der Schaltaktivitaeten besser bestimmen und nachvollziehen zu koennen wurden vorrerst ausschliesslich physikalische Register verwendet. \\
-Desweiteren wurden Schreibe- und Lese-Adressen separat voneinander untersucht um den Einfluss der Adressen auf die Schaltleistung weiter aufzuschluesseln. Dafuer wird beispielsweise aus immer der selben Adresse gelesen und in unterschiedliche geschrieben. Das Schaubild XXX Zeigt hierbei die Untersuchung der Schreibadressen.
+Da die Verlustleistung nicht im Code und zur Laufzeit bestimmt werden kann, musste eine Analyse nach der Ausführung des Codes stattfinden. Hierfür wurde das Tool \"Prime Time Suite\" von Synopsys verwendet. Dieses analysiert alle Schaltaktivitäten im Prozessor und gibt anschließend eine detaillierte Übersicht über die Leistungsaufnahme des Prozessors.\\
+Um die Annahme zu bestätigen, dass mit geringerer Schaltaktivitäten an den Adressleitungen der Register Files die Verlustleistung gesenkt werden kann, wurde zuerst die Schaltleistung der Register Adressen untersucht.\\
+Des weiteren wurden die Testprogramme zu Beginn manuell gescheduled um die Registerallokation isoliert betrachten zu können. Hierzu kann vor jeder Instruktion angegeben werden in welchem Issue-SLot diese ausgeführt werden soll. Um den Einfluss der Schaltaktivitäten besser bestimmen und nachvollziehen zu können wurden vorerst ausschließlich physikalische Register verwendet. \\
+Des weiteren wurden Schreibe- und Lese-Adressen separat voneinander untersucht um den Einfluss der Adressen auf die Schaltleistung weiter aufzuschlüsseln. Dafür wird beispielsweise aus immer der selben Adresse gelesen und in unterschiedliche geschrieben. Das Schaubild XXX Zeigt hierbei die Untersuchung der Schreibadressen.
 
-\begin{figure}
-	\centering
-	\includesvg[width=1.25\textwidth]{targetswitching}
-	\caption{Schaltleistung Schreibports}
-\end{figure}
-Anhand des Schaubildes kann schoen erkannt werden, dass mit steigender Hamming-Distanz auch die Schaltleistung steigt. Aufaellig ist hierbei der Sprung bei einer Hamming-Distanz von 64. Dieser laesst sich dadurch erklaeren, dass zwar die Hamming-Distanz identisch ist aber dafuer Adressleitungen verwendet werden die eine groessere Lastkapazitaet aufweisen. Durch die hoehere Lastkapizaet wird automatisch auch einer grossere Leistung benoetigt.
+%\begin{figure}
+%	\centering
+%	\includesvg[width=1.25\textwidth]{targetswitching}
+%	\caption{Schaltleistung Schreibports}
+%\end{figure}
+Anhand des Schaubildes kann schön erkannt werden, dass mit steigender Hamming-Distanz auch die Schaltleistung steigt. Auffällig ist hierbei der Sprung bei einer Hamming-Distanz von 64. Dieser lässt sich dadurch erklären, dass zwar die Hamming-Distanz identisch ist aber dafuer Adressleitungen verwendet werden die eine größere Lastkapazität aufweisen. Durch die höhere Lastkapazität wird automatisch auch einer größere Leistung benötigt.
 Das untenstehende Schaubild XXX zeigt einen Testfall. Hierbei sind die blauen hinterlegen Felder 
 
 \section{Evaluation}
