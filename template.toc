@@ -10,36 +10,36 @@
 \contentsline {section}{\numberline {2.1}SIMD Prozessor}{5}{section.2.1}
 \contentsline {subsection}{\numberline {2.1.1}VLIW}{5}{subsection.2.1.1}
 \contentsline {subsection}{\numberline {2.1.2}Pipelining}{6}{subsection.2.1.2}
-\contentsline {section}{\numberline {2.2}Aufbau der Architektur}{6}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}MIPS}{6}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Register File Organisation}{6}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}Compiler}{8}{subsection.2.2.3}
-\contentsline {subsection}{\numberline {2.2.4}Scheduling}{9}{subsection.2.2.4}
-\contentsline {subsection}{\numberline {2.2.5}Hamming-Distanze}{9}{subsection.2.2.5}
-\contentsline {section}{\numberline {2.3}Register Allokation}{9}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Virtuelle Register}{9}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}X2 Betriebsmodus}{11}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}MAC Betriebsmodus}{11}{subsection.2.3.3}
-\contentsline {subsection}{\numberline {2.3.4}Dummy-Register}{11}{subsection.2.3.4}
-\contentsline {subsection}{\numberline {2.3.5}Address-Isolation}{11}{subsection.2.3.5}
-\contentsline {subsection}{\numberline {2.3.6}Clock-Gateing}{12}{subsection.2.3.6}
-\contentsline {section}{\numberline {2.4}Verlustleistung}{12}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Dynamische Verlustleistung}{12}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Statische Verlustleistung}{12}{subsection.2.4.2}
-\contentsline {section}{\numberline {2.5}Genetische Algorithmen}{13}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}Crossover}{14}{subsection.2.5.1}
-\contentsline {subsection}{\numberline {2.5.2}Mutation}{14}{subsection.2.5.2}
-\contentsline {subsection}{\numberline {2.5.3}Fitness}{15}{subsection.2.5.3}
-\contentsline {chapter}{\numberline {3}Implementierung}{16}{chapter.3}
-\contentsline {section}{\numberline {3.1}Heuristik}{17}{section.3.1}
-\contentsline {section}{\numberline {3.2}Genetischer Algorithmus}{18}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Fitness-Funktion}{18}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Startpopulation}{19}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}dynamische Anpassung}{19}{subsection.3.2.3}
-\contentsline {subsection}{\numberline {3.2.4}Algorithmus Modi}{20}{subsection.3.2.4}
-\contentsline {subsection}{\numberline {3.2.5}Glitches}{20}{subsection.3.2.5}
-\contentsline {chapter}{\numberline {4}Evaluation}{22}{chapter.4}
-\contentsline {section}{\numberline {4.1}Evaluation}{23}{section.4.1}
-\contentsline {chapter}{\numberline {5}Schlussfolgerung}{24}{chapter.5}
-\contentsline {section}{\numberline {5.1}Evaluation}{24}{section.5.1}
-\contentsline {chapter}{\numberline {A}Source Code}{25}{appendix.A}
+\contentsline {section}{\numberline {2.2}Aufbau der Architektur}{7}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}MIPS}{7}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Register File Organisation}{7}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Compiler}{10}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Scheduling}{10}{subsection.2.2.4}
+\contentsline {subsection}{\numberline {2.2.5}Hamming-Distanze}{11}{subsection.2.2.5}
+\contentsline {section}{\numberline {2.3}Register Allokation}{11}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Virtuelle Register}{11}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}X2 Betriebsmodus}{12}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}MAC Betriebsmodus}{12}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.4}Dummy-Register}{12}{subsection.2.3.4}
+\contentsline {subsection}{\numberline {2.3.5}Address-Isolation}{13}{subsection.2.3.5}
+\contentsline {subsection}{\numberline {2.3.6}Clock-Gateing}{13}{subsection.2.3.6}
+\contentsline {section}{\numberline {2.4}Verlustleistung}{13}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Dynamische Verlustleistung}{13}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Statische Verlustleistung}{14}{subsection.2.4.2}
+\contentsline {section}{\numberline {2.5}Genetische Algorithmen}{14}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Crossover}{15}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}Mutation}{16}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}Fitness}{16}{subsection.2.5.3}
+\contentsline {chapter}{\numberline {3}Implementierung}{17}{chapter.3}
+\contentsline {section}{\numberline {3.1}Heuristik}{18}{section.3.1}
+\contentsline {section}{\numberline {3.2}Genetischer Algorithmus}{19}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Fitness-Funktion}{19}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Startpopulation}{20}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}dynamische Anpassung}{20}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}Algorithmus Modi}{21}{subsection.3.2.4}
+\contentsline {subsection}{\numberline {3.2.5}Glitches}{21}{subsection.3.2.5}
+\contentsline {chapter}{\numberline {4}Evaluation}{23}{chapter.4}
+\contentsline {section}{\numberline {4.1}Evaluation}{24}{section.4.1}
+\contentsline {chapter}{\numberline {5}Schlussfolgerung}{25}{chapter.5}
+\contentsline {section}{\numberline {5.1}Evaluation}{25}{section.5.1}
+\contentsline {chapter}{\numberline {A}Source Code}{26}{appendix.A}

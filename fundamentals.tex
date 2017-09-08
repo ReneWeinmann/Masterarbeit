@@ -3,7 +3,8 @@
 \label{chap:grundlagen}
 
 Bla bla
-
+\subsection{MIPS}
+MIPS oder auch \glqq Microprocessor without interlocked pipeline stages\grqq{} ist eine Befehlssatzarchitektur, die auf der RISC-Architektur  (Reduced instruction set computer) aufbaut. Hierbei
 
 \section{SIMD Prozessor}
 \label{sec:VLIW}
@@ -12,29 +13,35 @@ Der Begriff SIMD steht für Single Instruction Multiple Data und ist eine Datenv
 \subsection{VLIW}
 VLIW ist eine Eigenschaft von Mikroprozessor-Architekturen. VLIW steht hierbei für Very Long Instruction Word und bedeutet soviel wie sehr langes Instruktions-Wort. Das Ziel dieser Struktur ist eine schnelle Abarbeitung des Befehlsatzes, wobei hierbei einige Befehle parallel ausgeführt werden. Um dies zu ermöglichen sind mehrere Instruktions-Dekoder vonnöten. Der verwendete KAVUAKA-Prozessor besitzt zwei solcher Dekoder auch Issue-Slots genannt und kann somit zwei Befehle parallel ausführen. Eine VLIW-Architekur geht meist mit Pipelining einher. 
 \subsection{Pipelining}
-Wie das Wort Pipelining schon besagt, handelt es sich hierbei um eine Befehlsabarbeitung am Fließband(Pipeline). Wurde ein Befehl in Phase 1 abgearbeitet kann dieser an die nächste Phase weitergeleitet werden und der nachfolgende Befehl führt die Phase 1 aus. Somit ist eine parallele Verarbeitung mehrerer Befehle möglich. Die Phasen des in dieser Arbeit verwendeten VLIW-Prozessors sind:
+Wie das Wort Pipelining schon besagt, handelt es sich hierbei um eine Befehlsabarbeitung am Fließband(Pipeline). Wurde ein Befehl in Phase 1 abgearbeitet kann dieser an die nächste Phase weitergeleitet werden und der nachfolgende Befehl führt die Phase 1 aus. Somit ist eine parallele Verarbeitung mehrerer Befehle möglich. Die Phasen des in dieser Arbeit verwendeten VLIW-Prozessors sind: 
 \begin{itemize}
 	\item[1.] Instruction Fetch - Decode(IF - DE) 
 	\item[2.] Register Access (RA)
 	\item[3.] Execute - Write Back (EX - WB)
 \end{itemize}
 
+\newpage
+
 \section{Aufbau der Architektur}
 \label{chap:architecture_overview}
+Bei dem verwendeten Prozessor handelt es sich um ein MIPS-Prozessor.
+KAVUAKA
 
 
-%\begin{figure}[htbp] 
-%	\centering
-%	\includesvg[width=1.0\textwidth]{VLIWProzessor}
-%	\caption{VLIW-SIMD Prozessor }
-%	\label{fig:VLIW_SIMD}
-%\end{figure}
+\begin{scriptsize}
+	\begin{figure}[htbp] 
+		\centering
+		\includesvg[width=0.70\textwidth]{kavuaka2pipeline}
+		\caption{KAVUAKA-Prozessor}
+		\label{fig:KAVUAKA}
+	\end{figure}
+\end{scriptsize}
 
-\subsection{MIPS}
-MIPS oder auch \glqq Microprocessor without interlocked pipeline stages\grqq{} ist eine Befehlssatzarchitektur, die auf der RISC-Architektur  (Reduced instruction set computer) aufbaut. Hierbei
+
 \subsection{Register File Organisation}
 Es besteht eine Vielzahl an Registerorganisationen für Signalprozessoren. Im Allgemeinen lassen sich diese auf vier Grundorganisationen herunterbrechen: zentralisierte, gruppierte, hierarische und partitionierte Registerorganisation (siehe Abbildung XXX).
-Im folgenden soll nun weiter auf die partitionierte Organisation eingegangen werden. Physikalisch ist der Prozessor mit einem 4kB Register File ausgestattet. Dabei handelt es sich nicht um eine monolithische sondern um ein Multishared Register-File Organisation. Hierbei wird das Register in mehre Teile getrennt, die Anzahl hängt hierbei von den Issue-Solts ab. Durch diese Aufteilung können Einsparungen in der Logik für die Schreib- und Leseports generiert werden und die Anzahl der Register-File-Ports wird erhöht, welches bei VLIW Prozessoren oft ein Bottelneck darstellt. In dieser Arbeit werden zwei Register-Files mit jeweils 32 Registern verwendet. Beide Register weissen zwei Lese und vier Schreibports auf. Dadurch ist es möglich, dass Instruktionen aus dem Issue-Slot 1 in das Register-File 0 schreiben oder lesen können und umgekehrt. Außerdem wird durch diese Architektur ein Schreiben und Lesen zweier Instruktionen auf das selbe Register-File möglich gemacht. Des weiteren können im Falle einer X2-Instruktion beide Ports des Registers verwendet werden. Die Aufteilung und  Zuordnung der Schreib- und Leseports können aus der Abbildung \ref{fig:reg_orga} und \autoref{fig::schreib-port}+\ref{lese-port} entnommen werden.
+Im folgenden soll nun weiter auf die partitionierte Organisation eingegangen werden. Physikalisch ist der Prozessor mit einem 4kB Register File ausgestattet. Dabei handelt es sich nicht um eine monolithische sondern um ein Multishared Register-File Organisation. Hierbei wird das Register in mehrere Teile getrennt, die Anzahl hängt hierbei von den Issue-Solts ab. Durch diese Aufteilung können Einsparungen in der Logik für die Schreib- und Leseports generiert werden und die Anzahl der Register-File-Ports wird erhöht, dies stellt bei VLIW Prozessoren oft ein Bottelneck dar.\\
+In dieser Arbeit werden zwei Register-Files mit jeweils 32 Registern verwendet. Beide Register weissen zwei Lese und vier Schreibports auf. Dadurch ist es möglich, dass Instruktionen aus dem Issue-Slot 1 in das Register-File 0 schreiben oder lesen können und umgekehrt. Außerdem wird durch diese Architektur ein Schreiben und Lesen zweier Instruktionen auf das selbe Register-File möglich gemacht. Des weiteren können im Falle einer X2-Instruktion beide Ports des Registers verwendet werden. Die Aufteilung und  Zuordnung der Schreib- und Leseports können aus der Abbildung \ref{fig:reg_orga} und \autoref{fig::schreib-port}+\ref{lese-port} entnommen werden.
 
 \begin{figure}[htbp] 
 	\centering
@@ -75,31 +82,31 @@ Im folgenden soll nun weiter auf die partitionierte Organisation eingegangen wer
 			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{3}& \multicolumn{1}{c}{} &
 			\multicolumn{1}{c}{2} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
 			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{2} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+			\multicolumn{1}{c}{3} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
 			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3}& \multicolumn{1}{c}{} &
 			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
 			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+			\multicolumn{1}{c}{3} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
 			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+			\multicolumn{1}{c}{2} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
 			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3}& \multicolumn{1}{c}{} \\
+			\multicolumn{1}{c}{3} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{1}& \multicolumn{1}{c}{} \\
 			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3}& \multicolumn{1}{c}{} &
 			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
 			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+			\multicolumn{1}{c}{3} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
 			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+			\multicolumn{1}{c}{2} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
 			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3}& \multicolumn{1}{c}{} \\
+			\multicolumn{1}{c}{3} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{0}& \multicolumn{1}{c}{} \\
 			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{2} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
 			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{2} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{3}& \multicolumn{1}{c}{} \\
+			\multicolumn{1}{c}{3} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0}& \multicolumn{1}{c}{} \\
 			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{3} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2}& \multicolumn{1}{c}{} \\
+			\multicolumn{1}{c}{2} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0}& \multicolumn{1}{c}{} \\
 			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2}& \multicolumn{1}{c}{3} \\
+			\multicolumn{1}{c}{3} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{1}& \multicolumn{1}{c}{0} \\
 			
 		\end{tabular}
 		\caption{\label{lese-port}Lese-Port}
