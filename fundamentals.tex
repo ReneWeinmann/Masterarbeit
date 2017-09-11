@@ -3,30 +3,32 @@
 \label{chap:grundlagen}
 
 Bla bla
+\subsection{ASIP}
+
+
 \subsection{MIPS}
-MIPS oder auch \glqq Microprocessor without interlocked pipeline stages\grqq{} ist eine Befehlssatzarchitektur, die auf der RISC-Architektur  (Reduced instruction set computer) aufbaut. Hierbei
+MIPS oder auch \glqq Microprocessor without interlocked pipeline stages\grqq{} ist eine Befehlssatzarchitektur, die auf der RISC-Architektur  (Reduced instruction set computer) aufbaut.
 
 \section{SIMD Prozessor}
 \label{sec:VLIW}
 Der Begriff SIMD steht für Single Instruction Multiple Data und ist eine Datenverarbeitungseigenschaft von Prozessoren die meist in der Signalverarbeitung zum Einsatz kommt. Hierbei ist der Vorteil einer solchen Implementierung, dass mehrere Instruktionen parallel mit den selben Daten ausgeführt werden können und somit eine Performanz-Steigung einhergeht.
 
 \subsection{VLIW}
-VLIW ist eine Eigenschaft von Mikroprozessor-Architekturen. VLIW steht hierbei für Very Long Instruction Word und bedeutet soviel wie sehr langes Instruktions-Wort. Das Ziel dieser Struktur ist eine schnelle Abarbeitung des Befehlsatzes, wobei hierbei einige Befehle parallel ausgeführt werden. Um dies zu ermöglichen sind mehrere Instruktions-Dekoder vonnöten. Der verwendete KAVUAKA-Prozessor besitzt zwei solcher Dekoder auch Issue-Slots genannt und kann somit zwei Befehle parallel ausführen. Eine VLIW-Architekur geht meist mit Pipelining einher. 
+VLIW ist eine Eigenschaft von Mikroprozessor-Architekturen. VLIW steht hierbei für Very Long Instruction Word und bedeutet soviel wie sehr langes Instruktions-Wort. Das Ziel dieser Struktur ist eine schnelle Abarbeitung des Befehlsatzes, wobei hierbei einige Befehle parallel ausgeführt werden. Um dies zu ermöglichen sind mehrere Instruktions-Dekoder vonnöten. Eine VLIW-Architekur geht meist mit Pipelining einher. 
 \subsection{Pipelining}
-Wie das Wort Pipelining schon besagt, handelt es sich hierbei um eine Befehlsabarbeitung am Fließband(Pipeline). Wurde ein Befehl in Phase 1 abgearbeitet kann dieser an die nächste Phase weitergeleitet werden und der nachfolgende Befehl führt die Phase 1 aus. Somit ist eine parallele Verarbeitung mehrerer Befehle möglich. Die Phasen des in dieser Arbeit verwendeten VLIW-Prozessors sind: 
-\begin{itemize}
-	\item[1.] Instruction Fetch - Decode(IF - DE) 
-	\item[2.] Register Access (RA)
-	\item[3.] Execute - Write Back (EX - WB)
-\end{itemize}
-
+Wie das Wort Pipelining schon besagt, handelt es sich hierbei um eine Befehlsabarbeitung am Fließband(Pipeline). Wurde ein Befehl in Phase 1 abgearbeitet kann dieser an die nächste Phase weitergeleitet werden und der nachfolgende Befehl führt die Phase 1 aus. Somit ist eine parallele Verarbeitung mehrerer Befehle möglich. 
 \newpage
 
 \section{Aufbau der Architektur}
 \label{chap:architecture_overview}
-Bei dem verwendeten Prozessor handelt es sich um ein MIPS-Prozessor.
-Um dem niedrigen Energieverbrauch bei Hoergereaten zu genuegen wurde der Prozessor stark vereinfacht (siehe Abbildung \ref{fig:KAVUAKA}).
-
+Bei dem verwendeten Prozessor handelt es sich um ein MIPS-Prozessor der Teil des RAPANUI Frameworks.
+Um dem niedrigen Energieverbrauch und Flächenbedarf bei Hörgeräten zu genügen, handelt es sich bei dem Prozessor um eine vereinfacht Implementierung der MOAI-Prozessor-Architektur(siehe Abbildung \ref{fig:KAVUAKA}). Dabei handelt es sich um ein VLIW-SMID ASIP Prozessor der auch KAVUAKA genannt wird. Die Architektur verfügt über zwei Pipeline-Stufen, welche wie folgt aufgeteilt sind: 
+\begin{itemize}
+	\item[1.] Instruction Fetch - Decode - Register Access (IF - DE - RA) 
+	\item[2.] Execute - Write Back (EX - WB)
+\end{itemize}
+Außerdem wurde der Prozessor so erweitert, dass neue Funktionen oder Co-Prozessoren eingefügt werden können. Zudem besteht die Möglichkeit des Forwarding bei der Verwendung von temporären Variablen.
+Der verwendete KAVUAKA-Prozessor besitzt außerdem zwei Instruktion-Dekoder auch Issue-Slots genannt und kann somit zwei Befehle parallel ausführen.
 
 \begin{scriptsize}
 	\begin{figure}[htbp] 
@@ -158,6 +160,7 @@ Dummy-Register sind Register die im Register-File implementiert sind, jedoch kan
 Eine weitere Komponente des Prozessors ist das Adress-Isolation. Dabei handelt es sich um eine Funktion, welche die Switching-Aktivität des Register-Files verringert. Hierbei werden die Adressen der Schreib- und Leseports solange in einem Flipflop gespeichert bis eine neue Adresse angelegt werden (siehe Abbildung XXX).[Analyzin the Trade of Lukas GerlachS]
 
 \subsection{Clock-Gateing}\label{subsec:clock-gate}
+Unter dem Begriff Clock-Gating verbirgt sich eine Abschaltung des Clock-Signals in Teilen des Prozessors die nicht genutzt werden. Dadurch lässt sich die Schaltaktivität in vielen Bereichen des Prozessors deutlich minimieren. Das Resultat spiegelt sich in der Leistungsaufnahme wieder, die dabei deutlich sinkt. In dieser Arbeit wird bis auf weiteres kein Clock-Gating eingesetzt.
 
 \section{Verlustleistung}
 \label{sec:verlustleistung}
