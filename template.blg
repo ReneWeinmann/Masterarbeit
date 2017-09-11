@@ -1,47 +1,51 @@
 This is BibTeX, Version 0.99d (TeX Live 2015)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: template.aux
-I found no \citation commands---while reading file template.aux
-I found no \bibstyle command---while reading file template.aux
-You've used 0 entries,
-            0 wiz_defined-function locations,
-            84 strings with 493 characters,
-and the built_in function-call counts, 0 in all, are:
-= -- 0
-> -- 0
-< -- 0
-+ -- 0
-- -- 0
-* -- 0
-:= -- 0
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
-chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 0
-format.name$ -- 0
-if$ -- 0
-int.to.chr$ -- 0
+The style file: alphadin.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: bib.bib
+You've used 1 entry,
+            4793 wiz_defined-function locations,
+            897 strings with 6465 characters,
+and the built_in function-call counts, 827 in all, are:
+= -- 83
+> -- 25
+< -- 27
++ -- 33
+- -- 9
+* -- 58
+:= -- 146
+add.period$ -- 1
+call.type$ -- 1
+change.case$ -- 6
+chr.to.int$ -- 1
+cite$ -- 1
+duplicate$ -- 20
+empty$ -- 50
+format.name$ -- 16
+if$ -- 152
+int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 0
-newline$ -- 0
-num.names$ -- 0
-pop$ -- 0
-preamble$ -- 0
-purify$ -- 0
+missing$ -- 6
+newline$ -- 15
+num.names$ -- 3
+pop$ -- 8
+preamble$ -- 1
+purify$ -- 8
 quote$ -- 0
-skip$ -- 0
+skip$ -- 46
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
-text.length$ -- 0
+substring$ -- 61
+swap$ -- 6
+text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 0
+type$ -- 10
 warning$ -- 0
-while$ -- 0
-width$ -- 0
-write$ -- 0
-(There were 2 error messages)
+while$ -- 8
+width$ -- 2
+write$ -- 19
