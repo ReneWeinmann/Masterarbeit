@@ -1,5 +1,11 @@
 \chapter{Implementierung}
 \label{chap:Implementierung}
+\subsection{Hamming-Distanze}
+Die Hamming-Distanz ist nach dem amerikanischen Mathematiker Richard Wesley Hamming benannt und gibt ein Maß für die Unterschiedlichkeit zweier Zeichenketten an. Hierbei ist die Hamming-Distanz die Anzahl der unterschiedlichen Stellen der beiden Codeworte.
+\begin{equation}
+00110 \text{ und } 00100 -> \text{Hamming-Distanze}= 1
+\label{eq:hammingdistanze}
+\end{equation}
 
 Nach genauerem betrachten der Formel für die dynamische Verlustleistung \ref{eq:dynVerlustleistung} hängt diese von vier Faktoren ab, Schaltaktivitäten,  Lastkapazität, Versorgungsspannung und der Frequenz. Die statische Verlustleistung wird nicht weiter betrachtet, da diese nur durch eine Veränderung der Hardware verbessert werden könnte. Dies ist jedoch nicht Teil dieser Arbeit. Da ebenfalls die Spannung und Frequenz von der Architektur und anderen nicht beeinflussbaren Faktoren vorgegeben wurde kann auch an diesen Parametern nichts verbessert werden. Im folgenden wird nun erst darauf eingegangen wie, durch Minimierung der Schaltaktivitäten, die Verlustleistung optimiert werden kann. Im Weiteren Verlauf des Textes wird dann ebenfalls der Einfluss der Lastkapazitäten überprüft.\\
 Um in ein Register zu schreiben, muss eine geeignete Adresse an den Adressbus angelegt werden. Da es sich bei der Architektur um 32-bit-Register handelt muss hierfür eine 5-bit Adresse angelegt werden.
