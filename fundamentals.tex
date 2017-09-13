@@ -1,15 +1,13 @@
 % !TeX spellcheck = de_DE
 \chapter{Grundlagen}
 \label{chap:grundlagen}
+In diesem Kapitel wird kurz auf die Grundlagen und Begriffe von Signalprozessoren eingegangen. Im Anschluss wird die Verwendete Architektur erlaeutert und einzelne Bestandteile genauer untersucht. Desweitern wird das Prinzip der Verlustleistunng aufgezeigt und eine grobe Uebersicht ueber Genetische-Algorithmen gegeben.
 
 \section{FPGA}
-Bei einem FPGA (Field Programmable Gate Array) handelt es sich um ein programmierbaren Speicherchip der mithilfe von Wahrheitstabellen sehr effizient Algorithmen abbildet. Um diesen Baustein zu Programmieren ist eine HDL(Hardware Description Language) notwenigt. Vorteil dieser Implementierung ist, dass eine echte Parallelitaet erreicht werden kann.
+Bei einem FPGA (Field Programmable Gate Array) handelt es sich um ein programmierbaren Speicherchip der mithilfe von Wahrheitstabellen sehr effizient Algorithmen abbildet. Um diesen Baustein zu Programmieren ist eine HDL(Hardware Description Language) notwendig. Vorteil dieser Implementierung ist, dass eine echte Parallelitaet erreicht werden kann.
 
 \section{ASIP}
 
-
-
-\section{MIPS}
 MIPS oder auch \glqq Microprocessor without interlocked pipeline stages\grqq{} ist eine Befehlssatzarchitektur, die auf der RISC-Architektur  (Reduced instruction set computer) aufbaut.
 
 \section{SIMD Prozessor}
@@ -17,21 +15,21 @@ MIPS oder auch \glqq Microprocessor without interlocked pipeline stages\grqq{} i
 Der Begriff SIMD steht für Single Instruction Multiple Data und ist eine Datenverarbeitungseigenschaft von Prozessoren die meist in der Signalverarbeitung zum Einsatz kommt. Hierbei ist der Vorteil einer solchen Implementierung, dass mehrere Instruktionen parallel mit den selben Daten ausgeführt werden können und somit eine Performanz-Steigung einhergeht.
 
 \subsection{VLIW}
-VLIW ist eine Eigenschaft von Mikroprozessor-Architekturen. VLIW steht hierbei für Very Long Instruction Word und bedeutet soviel wie sehr langes Instruktions-Wort. Das Ziel dieser Struktur ist eine schnelle Abarbeitung des Befehlsatzes, wobei hierbei einige Befehle parallel ausgeführt werden. Um dies zu ermöglichen sind mehrere Instruktions-Dekoder vonnöten. Eine VLIW-Architekur geht meist mit Pipelining einher. 
+VLIW ist eine Eigenschaft von Mikroprozessor-Architekturen. VLIW steht hierbei für Very Long Instruction Word und bedeutet soviel wie sehr langes Instruktions-Wort. Das Ziel dieser Struktur ist eine schnelle Abarbeitung des Befehlsatzes, wobei hierbei einige Befehle parallel ausgeführt werden koennen. Um dies zu ermöglichen sind mehrere Instruktions-Dekoder vonnöten. Eine VLIW-Architekur geht meist mit Pipelining einher. 
 \subsection{Pipelining}
 Wie das Wort Pipelining schon besagt, handelt es sich hierbei um eine Befehlsabarbeitung am Fließband(Pipeline). Wurde ein Befehl in Phase 1 abgearbeitet kann dieser an die nächste Phase weitergeleitet werden und der nachfolgende Befehl führt die Phase 1 aus. Somit ist eine parallele Verarbeitung mehrerer Befehle möglich. 
-\newpage
 
 \section{Aufbau der Architektur}
 \label{chap:architecture_overview}
-Bei dem verwendeten Prozessor handelt es sich um ein MIPS-Prozessor der Teil des RAPANUI Frameworks.
+Bei dem verwendeten Prozessor handelt es sich um ein MIPS-Prozessor der Teil des RAPANUI Frameworks ist.
 Um dem niedrigen Energieverbrauch und Flächenbedarf bei Hörgeräten zu genügen, handelt es sich bei dem Prozessor um eine vereinfacht Implementierung der MOAI-Prozessor-Architektur(siehe Abbildung \ref{fig:KAVUAKA}). Dabei handelt es sich um ein VLIW-SMID ASIP Prozessor der auch KAVUAKA genannt wird. Die Architektur verfügt über zwei Pipeline-Stufen, welche wie folgt aufgeteilt sind: 
 \begin{itemize}
 	\item[1.] Instruction Fetch - Decode - Register Access (IF - DE - RA) 
 	\item[2.] Execute - Write Back (EX - WB)
 \end{itemize}
-Außerdem wurde der Prozessor so erweitert, dass neue Funktionen oder Co-Prozessoren eingefügt werden können. Zudem besteht die Möglichkeit des Forwarding bei der Verwendung von temporären Variablen.
+Außerdem wurde der Prozessor so erweitert, dass neue Funktionen sowie Co-Prozessoren eingefügt werden können. Zudem besteht die Möglichkeit des Forwarding bei der Verwendung von temporären Variablen.
 Der verwendete KAVUAKA-Prozessor besitzt außerdem zwei Instruktion-Dekoder auch Issue-Slots genannt und kann somit zwei Befehle parallel ausführen.
+Fuer Entwicklung wurde der Prozessor auf einem FPGA implementiert, da dieser eine hohe Felxibiliaet und somit geringere Entwicklungszeiten bietet.
 
 \begin{scriptsize}
 	\begin{figure}[htbp] 
@@ -51,7 +49,7 @@ Es besteht eine Vielzahl an Registerorganisationen für Signalprozessoren. Im Al
 	\caption{Register File Organisation  \cite{paya2010multi}}
 	\label{fig:RegisterOrga}
 \end{figure}
-Im folgenden soll nun weiter auf die partitionierte Organisation eingegangen werden. Physikalisch ist der Prozessor mit einem 4kB Register File ausgestattet. Dabei handelt es sich nicht um eine monolithische sondern um ein Multishared Register-File Organisation. Hierbei wird das Register in mehrere Teile getrennt, die Anzahl hängt hierbei von den Issue-Solts ab. Durch diese Aufteilung können Einsparungen in der Logik für die Schreib- und Leseports generiert werden und die Anzahl der Register-File-Ports wird erhöht, dies stellt bei VLIW Prozessoren oft ein Bottelneck dar.\\
+Im folgenden soll nun weiter auf die partitionierte Organisation eingegangen werden. Physikalisch ist der Prozessor mit einem 4kB Register File ausgestattet. Dabei handelt es sich nicht um eine monolithische sondern um ein Multishared Register-File Organisation. Hierbei wird das Register in mehrere Teile getrennt, die Anzahl hängt hierbei von den Issue-Solts ab. Durch diese Aufteilung können Einsparungen in der Logik für die Schreib- und Leseports generiert werden und die Anzahl der Register-File-Ports wird erhöht.\\
 In dieser Arbeit werden zwei Register-Files mit jeweils 32 Registern verwendet. Beide Register weissen zwei Lese und vier Schreibports auf. Dadurch ist es möglich, dass Instruktionen aus dem Issue-Slot 1 in das Register-File 0 schreiben oder lesen können und umgekehrt. Außerdem wird durch diese Architektur ein Schreiben und Lesen zweier Instruktionen auf das selbe Register-File möglich gemacht. Des weiteren können im Falle einer X2-Instruktion beide Ports des Registers verwendet werden. Die Aufteilung und  Zuordnung der Schreib- und Leseports können aus der Abbildung \ref{fig:reg_orga} und \autoref{fig::schreib-port}+\ref{lese-port} entnommen werden.
 
 \begin{figure}[htbp] 
@@ -126,7 +124,7 @@ In dieser Arbeit werden zwei Register-Files mit jeweils 32 Registern verwendet. 
 
 \subsection{Compiler}
 Damit ein Prozessor eine Programmiersprache (optimal) ausführen kann sind eine Schritte notwendig. Diese sind im Compiler zusammengefasst und werden im folgenden kurz erläutertert.\\
-Der Code wird vorerst in so genannte Micro Instructions (MI) gestückeltt.  Hierbei ist eine MI eine Anweisung welche der Prozessor in einem Taktzyklus ausführen kann. Durch die Verwendung eines VLIW-Prozessors ist es möglich mehrere Instruktionen parallel auszuführen. Im Falle des KAUVAKA-Prozessors sind dies wie erwähnt zwei Instruktionen. Aus diesem Grund teilt der Compiler nun die MIs in sogenannte Micro Operation (MO) auf. Diese werden anschließend in so genannte \"Straight Line Microcode\" (SLM) aufgeteilt. Ein SLM ist hierbei so definiert, dass es nur eine Einsprungstelle und eine Austrittsstelle gibt. Außerdem dürfen sich keine Sprünge und Verzweigungen in einer SLM befinden.  Dadurch entsteht ein Baum aus SLMs, die im Anschluss einzeln optimiert werden können. Dieses Verfahren ist nötig, da eine Optimierung über alle Instruktionen eine zu hohe Komplexität hätte. 
+Der Code wird vorerst in so genannte Micro Instructions (MI) gestückelt.  Hierbei ist eine MI eine Anweisung welche der Prozessor in einem Taktzyklus ausführen kann. Durch die Verwendung eines VLIW-Prozessors ist es möglich mehrere Instruktionen parallel auszuführen. Im Falle des KAUVAKA-Prozessors sind dies wie erwähnt zwei Instruktionen. Aus diesem Grund teilt der Compiler nun die MIs in Micro Operation (MO) auf. Diese werden anschließend in so genannte \"Straight Line Microcode\" (SLM) aufgeteilt. Ein SLM ist hierbei so definiert, dass es nur eine Einsprungstelle und Austrittsstelle gibt. Außerdem dürfen sich keine Sprünge und Verzweigungen innerhalb einer SLM befinden.  Dadurch entsteht ein Baum aus SLMs, die im Anschluss einzeln optimiert werden können. Dieses Verfahren ist nötig, da eine Optimierung über alle Instruktionen eine zu hohe Komplexität hätte. 
 \subsection{Scheduling}
 Das Scheduling ist zuständig für die Anordnung der MIs bzw. MOs die sich in einem SLM befinden. Hierbei geht der Algorithmus so vor, dass er die Anordnung sucht welche den geringesten Kritischenpfad aufweist. Hierbei gibt es verschiedene Ansatzmöglichkeiten. Die einfachste Methode ist das List-Scheduling. Hierbei wird bei jedem einfügen eines MOs überprüft, ob die zugehörigen Register allokiert werden können, ist dies nicht der Fall wird mit der nächsten MO begonnen. Im darauffolgenden Schritt wird nun nochmals versucht die erste MO einzufügen. Dies wird solange wiederholt bis alle MOs zugeordnet sind.
 Diese Art von Algorithmus findet jedoch nicht immer eine optimale Lösung und ist gerade für große Programme nicht geeignet. Aus diesem Grund kann optional zusätzlich ein genetischer Algorithmus eingesetzt werden, der die Länge der SLM reduziert.
@@ -135,7 +133,7 @@ Diese Art von Algorithmus findet jedoch nicht immer eine optimale Lösung und is
 \section{Register Allokation}
 \label{sec:register allok}
 \subsection{Virtuelle Register}
-Bei virtuellen Registern handelt es sich um Register die an beliebiger Stelle im Register-File alokiert werden können, das heißt der Compiler kann selbst entscheiden wo im Registerfile er diese Variable platziert. 
+Bei virtuellen Registern handelt es sich um Register die an beliebiger Stelle im Register-File allokiert werden können, das heißt der Compiler kann selbst entscheiden wo im Registerfile er diese Variable platziert. 
 Die Idee hierbei ist es, dem Compiler die Aufgabe zu übergeben ein geeignetes Register auszuwählen. Das Codebeispiel \ref{phyReg} zeigt anhand einer einfachen Addition diese Funktion. Da der Prozessor nicht mit Registeradressen addieren kann, müssen zwei Hilfsvariablen verwendet werden. In diesem Fall wurden die Register V0R0 und V0R1 gewählt. Mithilfe dieser Register kann der Prozessor nun eine Addition in Zeile drei durchführen.
 \renewcommand{\lstlistingname}{Codebeispiel}
 \begin{lstlisting}[frame=single, caption={physikalische Register},captionpos=b,label=phyReg]
@@ -144,7 +142,7 @@ MV V0R1 0x101
 ADD V0R0 V0R0 V0R1
 STORE 0x100 V0R0
 \end{lstlisting}
-Um nun den Code etwas flexibler zu gestalten, wird  nun dem Compiler überlassen welches Register er benutzt. Die selbe Addition ist in \ref{virtReg} mit virtuellen Registern realisiert. Hierbei wird dem Compiler durch ein  x gekennzeichnet, dass es sich um ein virtuelles Register handelt. Dieser wählt anschließend ein optimales Register aus, so dass sich der Programmierer um diese Aufgabe nicht bemühen muss. Dies hat den Vorteile, dass somit für den Code geeignete/optimale Register ausgewählt werden können. Hierbei wird darauf geachtet, dass beide Register-Files gleich ausgelastete sind und dass es möglich bleibt X2- oder MAC-Befehle (siehe Kapitel \ref{subsec:x2Mode} ff.) allokiert werden können. Außerdem sind die Register in diesem Fall so allokiert, dass die Verlustleistungsaufnahme minimal ist. Wie die Register für eine optimale Verlustleistung ausgewählt werden müssen wird in dieser Arbeit evaluiert und aufgezeigt.
+Um nun den Code etwas flexibler zu gestalten, wird  nun dem Compiler überlassen welches Register er benutzt. Die selbe Addition ist in \ref{virtReg} mit virtuellen Registern realisiert. Hierbei wird dem Compiler durch ein  x gekennzeichnet, dass es sich um ein virtuelles Register handelt. Dieser wählt anschließend ein optimales Register aus, so dass sich der Entwickler um diese Aufgabe nicht bemühen muss. Dies hat den Vorteile, dass somit für den Code geeignete/optimale Register ausgewählt werden können. Hierbei wird darauf geachtet, dass beide Register-Files gleich ausgelastete sind und dass es möglich bleibt X2- oder MAC-Befehle (siehe Kapitel \ref{subsec:x2Mode} ff.) allokiert werden können. Außerdem sind die Register in diesem Fall so allokiert, dass die Verlustleistungsaufnahme minimal ist. Wie die Register für eine optimale Verlustleistung ausgewählt werden müssen wird in dieser Arbeit evaluiert und aufgezeigt.
 
 \begin{lstlisting}[frame=single,caption={virtuelle Register},captionpos=b,label=virtReg]
 MV VxR0 0x100

@@ -75,7 +75,7 @@ Zu Beginn der Suche nach einer geeigneten Register-Alokation findet der Algorith
 			\item Load
 			\item Hamming*Load
 		\end{itemize}
-	\item-R -> Auswahl der Algorithmen
+	\item-G -> Auswahl der Algorithmen
 			\begin{itemize}
 				\setlength{\itemsep}{-4pt}
 				\item Genetischer Algorithmus
@@ -106,7 +106,7 @@ Zu Beginn der Suche nach einer geeigneten Register-Alokation findet der Algorith
 		\centering
 		\begin{tabular}{ccccccccc}
 			\multicolumn{2}{l}{}                 & \multicolumn{7}{|l}{Modi}                                                               \\ 
-			\multicolumn{2}{c}{Algorithmus-Konfig.}  & \multicolumn{1}{|c}{-E} & \multicolumn{1}{c}{-M} & \multicolumn{1}{c}{-R} & \multicolumn{1}{c}{-D} & \multicolumn{1}{c}{-H} & \multicolumn{1}{c}{-U} & \multicolumn{1}{c}{-o} \\ 
+			\multicolumn{2}{c}{Algorithmus-Konfig.}  & \multicolumn{1}{|c}{-E} & \multicolumn{1}{c}{-M} & \multicolumn{1}{c}{-G} & \multicolumn{1}{c}{-D} & \multicolumn{1}{c}{-H} & \multicolumn{1}{c}{-U} & \multicolumn{1}{c}{-o} \\ 
 			\hline
 		\multicolumn{2}{l}{Heuristik alt}  & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{1} \\
 		\multicolumn{2}{l}{Heuristik neu}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{1} \\ 
@@ -122,8 +122,10 @@ Zu Beginn der Suche nach einer geeigneten Register-Alokation findet der Algorith
 	\end{table}
 
 \subsection{Glitches}
-Ein Adress Iso lation
-Die für die Schreib- und Lesezugriffe verwendeten Adressen werden jeweils zwischen den Takten an die benötigten Ports angelegt um so zu gewährleisten, dass diese mit der steigenden Taktflanke auch übernommen werden können. Die Auswahl der Ports wird über Enable-Signale geregelt. Werden beispielsweise zwei Instruktionen verwendet die beide an Register-File 1 schreiben, so werden die Adressen an die jeweiligen Ports angelegt und sobald diese zu Verfügung stehen von den Enable-Signalen freigegeben.\\
-Nun tritt jedoch das Problem auf, dass Adress und Enable Signal nicht zeitgleich umschalten. Dies lieg daran, dass die benoetigten Enable-Signale aufwendig berechnet werden, und dies eine kurze Verzoegerung nachsich zieht. Aus diesem Grund liegt die bereits geaenderte Adresse kurze Zeit an dem falschen Adressport an. Sobald das Enable-Signal berechnet wurde, werden die richtigen Adressen angelegt. Dieses Szenario tritt lediglich auf, wenn ein Wechsel in den Enable-Signalen und sich somit die Herkunft der Adressen aendert. Das Beschriebene Problem verursacht eine Erhoehung der Schaltaktivitaet auf den Adressleitungen und somit auch eine steigende Verlustleistung um XXX \%
-Um diesem Effekt gegenzuwirken wurde eine zweite Pipline-Stufe eingebaut. Durch die Verzoegerung der Signale ist garantiert das die Adressen erst dann an den entsprechenden Ports anliegen wenn diese benoetigt werden. 
+Da der Verwendete Prozessor Adress-Isolation ( siehe Kapitel \ref{subsec:add_iso}) einsetzt, sollten die Adressen so lange an einem Port anliegen bis diese geaendert werden.
+Die für die Schreib- und Lesezugriffe verwendeten Adressen werden jeweils zwischen den Takten an die benötigten Ports angelegt um so zu gewährleisten, dass diese mit der steigenden Taktflanke auch übernommen werden können. Die Auswahl der Ports wird über Enable-Signale geregelt. Werden beispielsweise zwei Instruktionen verwendet die beide an Register-File 1 schreiben, so werden die Adressen an die Ports 0 und 1 angelegt und sobald diese zu Verfügung stehen von den Enable-Signalen freigegeben.\\
+Nun tritt jedoch, dass Adress und Enable Signal nicht synchron arbeiten und somit ein Zeitversatz der beiden Signale entsteht. Dies lieg daran, dass die benoetigten Enable-Signale aufwendig berechnet werden, und dies eine kurze Verzoegerung nachsich zieht. Aus diesem Grund liegt die bereits geaenderte Adresse kurze Zeit an dem falschen Adressport an. Sobald das Enable-Signal berechnet wurde, werden die richtigen Adressen angelegt. Dieses Szenario tritt lediglich auf, wenn ein Wechsel in den Enable-Signalen und sich somit die Herkunft der Adressen aendert. Das Beschriebene Problem verursacht eine Erhoehung der Schaltaktivitaet auf den Adressleitungen und somit auch eine steigende Verlustleistung um XXX \%
+Um diesem Effekt gegenzuwirken wurde eine zweite Pipline-Stufe eingebaut. Durch die Verzoegerung der Adress- und Enable-Signale ist garantiert, dass die Adressen erst dann an den entsprechenden Ports anliegen wenn diese benoetigt werden. Der zusaetzliche Energieverbrauch der Pipeline-Regsiter wird an dieser Stelle nicht weiter untersucht, da der Anstieg der Verlustleistung in den zu vergleichenden Algorithmen identisch ist.
+Es besteht jedoch eine Moeglichkeit, die Pipeline-Stufen zu vermeiden.
+Da der Prozessor fuer ein ASIC entwickelt wird, koennen die Glitches durch den Einsatz von Buffern behoben werden. Hierzu muessen lediglich die betroffenen Signale mittels eines im ASIC implementiereten Buffer verzoegert werden.
 
