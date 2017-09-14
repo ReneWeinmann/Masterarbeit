@@ -1,10 +1,12 @@
 % !TeX spellcheck = de_DE
 \chapter{Grundlagen}
 \label{chap:grundlagen}
-In diesem Kapitel wird kurz auf die Grundlagen und Begriffe von Signalprozessoren eingegangen. Im Anschluss wird die Verwendete Architektur erlaeutert und einzelne Bestandteile genauer untersucht. Desweitern wird das Prinzip der Verlustleistunng aufgezeigt und eine grobe Uebersicht ueber Genetische-Algorithmen gegeben.
+In diesem Kapitel wird kurz auf die Grundlagen und Begriffe von Signalprozessoren eingegangen. Im Anschluss wird die Verwendete Architektur erläutert und einzelne Bestandteile genauer untersucht.Anschließend wird auf das Grundprinzip des Scheduling erklärt. Des weiteren wird das Prinzip der Verlustleistung aufgezeigt und eine grobe Übersicht über Genetische-Algorithmen gegeben.
 
 \section{FPGA}
-Bei einem FPGA (Field Programmable Gate Array) handelt es sich um ein programmierbaren Speicherchip der mithilfe von Wahrheitstabellen sehr effizient Algorithmen abbildet. Um diesen Baustein zu Programmieren ist eine HDL(Hardware Description Language) notwendig. Vorteil dieser Implementierung ist, dass eine echte Parallelitaet erreicht werden kann.
+Bei einem FPGA (Field Programmable Gate Array) handelt es sich um ein frei programmierbaren integrierten Schaltkreis der mithilfe von Look-Up-Tabellen sehr effizient Algorithmen abbildet. Um eine gewünschte Funktion auf dem FPGA zu implementieren ist es notwendig die Look-Up-Tabellen mit Wahrheitstabellen zu füllen. Außerdem müssen diese Blocke mithilfe von Rooting-Switches und Connection-Boxen verbunden werden. Damit diese konfiguriert werden können muss ein Programm mithilfe einer HDL(Hardware Description Language) geschrieben werden.\cite{farooq2012fpga} Vorteil dieser Implementierung ist, dass eine echte Parallelität erreicht werden kann, so dass mehrere Blocke zeitgleich ausführbar sind. In dieser Arbeit wird ein FPGA als Entwicklungsumgebung verwendet, um den zu entwickelnden ASIP bestmöglich abzubilden und dabei möglichst flexibel zu bleiben.
+\nomenclature{ASIC}{Application Specific Integrated Circuit}%
+
 
 \section{ASIP}
 

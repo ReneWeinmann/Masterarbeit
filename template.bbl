@@ -1,8 +1,18 @@
 \begin{thebibliography}{1}
 
+\bibitem{farooq2012fpga}
+Umer Farooq, Zied Marrakchi, and Habib Mehrez.
+\newblock Fpga architectures: An overview.
+\newblock {\em Tree-based Heterogeneous FPGA Architectures}, pages 7--48, 2012.
+
 \bibitem{paya2010multi}
 Guillermo Pay{\'a}-Vay{\'a}, Javier Mart{\'\i}n-Langerwerf, and Peter Pirsch.
 \newblock A multi-shared register file structure for vliw processors.
 \newblock {\em Journal of Signal Processing Systems}, 58(2):215--231, 2010.
+
+\bibitem{statistica}
+VuMA (Arbeitsgemeinschaft~Verbrauchs und Medienanalyse).
+\newblock Anzahl der personen in deutschland, die ein hörgerät tragen, von
+  2013 bis 2016 (in millionen).
 
 \end{thebibliography}

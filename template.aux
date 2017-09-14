@@ -35,6 +35,7 @@
 \newlabel{sec:ziele}{{1.2}{3}{Ziel der Arbeit}{section.1.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.3}Aufbau der Arbeit}{3}{section.1.3}}
 \newlabel{sec:structure}{{1.3}{3}{Aufbau der Arbeit}{section.1.3}{}}
+\citation{farooq2012fpga}
 \@writefile{toc}{\contentsline {chapter}{\numberline {2}Grundlagen}{4}{chapter.2}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -42,109 +43,111 @@
 \@writefile{lol}{\addvspace {10\p@ }}
 \newlabel{chap:grundlagen}{{2}{4}{Grundlagen}{chapter.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.1}FPGA}{4}{section.2.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.2}ASIP}{4}{section.2.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}ASIP}{5}{section.2.2}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}SIMD Prozessor}{5}{section.2.3}}
 \newlabel{sec:VLIW}{{2.3}{5}{SIMD Prozessor}{section.2.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}VLIW}{5}{subsection.2.3.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}Pipelining}{5}{subsection.2.3.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.4}Aufbau der Architektur}{5}{section.2.4}}
-\newlabel{chap:architecture_overview}{{2.4}{5}{Aufbau der Architektur}{section.2.4}{}}
 \citation{paya2010multi}
 \citation{paya2010multi}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces KAVUAKA-Prozessor\relax }}{6}{figure.caption.6}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}Aufbau der Architektur}{6}{section.2.4}}
+\newlabel{chap:architecture_overview}{{2.4}{6}{Aufbau der Architektur}{section.2.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Register File Organisation}{6}{subsection.2.4.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces KAVUAKA-Prozessor\relax }}{7}{figure.caption.6}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:KAVUAKA}{{2.1}{6}{KAVUAKA-Prozessor\relax }{figure.caption.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Register File Organisation}{7}{subsection.2.4.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Register File Organisation \cite  {paya2010multi}\relax }}{7}{figure.caption.7}}
-\newlabel{fig:RegisterOrga}{{2.2}{7}{Register File Organisation \cite {paya2010multi}\relax }{figure.caption.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Register File Organistaion\relax }}{8}{figure.caption.8}}
-\newlabel{fig:reg_orga}{{2.3}{8}{Register File Organistaion\relax }{figure.caption.8}{}}
+\newlabel{fig:KAVUAKA}{{2.1}{7}{KAVUAKA-Prozessor\relax }{figure.caption.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Register File Organisation \cite  {paya2010multi}\relax }}{8}{figure.caption.7}}
+\newlabel{fig:RegisterOrga}{{2.2}{8}{Register File Organisation \cite {paya2010multi}\relax }{figure.caption.7}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}Compiler}{8}{subsection.2.4.2}}
-\@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces Schreib-Port\relax }}{9}{table.caption.9}}
-\newlabel{fig::schreib-port}{{2.1}{9}{Schreib-Port\relax }{table.caption.9}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2.2}{\ignorespaces Lese-Port\relax }}{9}{table.caption.9}}
-\newlabel{lese-port}{{2.2}{9}{Lese-Port\relax }{table.caption.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}Scheduling}{9}{subsection.2.4.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.5}Register Allokation}{10}{section.2.5}}
-\newlabel{sec:register allok}{{2.5}{10}{Register Allokation}{section.2.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Virtuelle Register}{10}{subsection.2.5.1}}
-\newlabel{phyReg}{{2.1}{10}{physikalische Register}{lstlisting.2.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.1}physikalische Register}{10}{lstlisting.2.1}}
-\newlabel{virtReg}{{2.2}{11}{virtuelle Register}{lstlisting.2.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.2}virtuelle Register}{11}{lstlisting.2.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}X2 Betriebsmodus}{11}{subsection.2.5.2}}
-\newlabel{subsec:x2Mode}{{2.5.2}{11}{X2 Betriebsmodus}{subsection.2.5.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.3}MAC Operationen}{11}{subsection.2.5.3}}
-\newlabel{subsec:macMode}{{2.5.3}{11}{MAC Operationen}{subsection.2.5.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.4}Dummy-Register}{12}{subsection.2.5.4}}
-\newlabel{subsec:dummy}{{2.5.4}{12}{Dummy-Register}{subsection.2.5.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.5}Address-Isolation}{12}{subsection.2.5.5}}
-\newlabel{subsec:add_iso}{{2.5.5}{12}{Address-Isolation}{subsection.2.5.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.6}Clock-Gateing}{12}{subsection.2.5.6}}
-\newlabel{subsec:clock-gate}{{2.5.6}{12}{Clock-Gateing}{subsection.2.5.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.6}Verlustleistung}{12}{section.2.6}}
-\newlabel{sec:verlustleistung}{{2.6}{12}{Verlustleistung}{section.2.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.1}Dynamische Verlustleistung}{13}{subsection.2.6.1}}
-\newlabel{subsec:dynVerl}{{2.6.1}{13}{Dynamische Verlustleistung}{subsection.2.6.1}{}}
-\newlabel{eq:dynVerlustleistung}{{2.1}{13}{Dynamische Verlustleistung}{equation.2.6.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.2}Statische Verlustleistung}{13}{subsection.2.6.2}}
-\newlabel{subsec:statVerl}{{2.6.2}{13}{Statische Verlustleistung}{subsection.2.6.2}{}}
-\newlabel{eq:verlustleistung}{{2.2}{13}{Statische Verlustleistung}{equation.2.6.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.7}Genetische Algorithmen}{13}{section.2.7}}
-\newlabel{sec:genetischer_algo}{{2.7}{13}{Genetische Algorithmen}{section.2.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.1}Crossover}{14}{subsection.2.7.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.2}Mutation}{15}{subsection.2.7.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.3}Fitness}{15}{subsection.2.7.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.8}Testprogramme}{16}{section.2.8}}
-\newlabel{sec:testprogamme}{{2.8}{16}{Testprogramme}{section.2.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.8.1}Beamforming}{16}{subsection.2.8.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.8.2}emulated floating Point}{16}{subsection.2.8.2}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}Implementierung}{17}{chapter.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Register File Organistaion\relax }}{9}{figure.caption.8}}
+\newlabel{fig:reg_orga}{{2.3}{9}{Register File Organistaion\relax }{figure.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces Schreib-Port\relax }}{10}{table.caption.9}}
+\newlabel{fig::schreib-port}{{2.1}{10}{Schreib-Port\relax }{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.2}{\ignorespaces Lese-Port\relax }}{10}{table.caption.9}}
+\newlabel{lese-port}{{2.2}{10}{Lese-Port\relax }{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}Scheduling}{10}{subsection.2.4.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}Register Allokation}{11}{section.2.5}}
+\newlabel{sec:register allok}{{2.5}{11}{Register Allokation}{section.2.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Virtuelle Register}{11}{subsection.2.5.1}}
+\newlabel{phyReg}{{2.1}{11}{physikalische Register}{lstlisting.2.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.1}physikalische Register}{11}{lstlisting.2.1}}
+\newlabel{virtReg}{{2.2}{12}{virtuelle Register}{lstlisting.2.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.2}virtuelle Register}{12}{lstlisting.2.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}X2 Betriebsmodus}{12}{subsection.2.5.2}}
+\newlabel{subsec:x2Mode}{{2.5.2}{12}{X2 Betriebsmodus}{subsection.2.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.3}MAC Operationen}{12}{subsection.2.5.3}}
+\newlabel{subsec:macMode}{{2.5.3}{12}{MAC Operationen}{subsection.2.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.4}Dummy-Register}{13}{subsection.2.5.4}}
+\newlabel{subsec:dummy}{{2.5.4}{13}{Dummy-Register}{subsection.2.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.5}Address-Isolation}{13}{subsection.2.5.5}}
+\newlabel{subsec:add_iso}{{2.5.5}{13}{Address-Isolation}{subsection.2.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.6}Clock-Gateing}{13}{subsection.2.5.6}}
+\newlabel{subsec:clock-gate}{{2.5.6}{13}{Clock-Gateing}{subsection.2.5.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.6}Verlustleistung}{13}{section.2.6}}
+\newlabel{sec:verlustleistung}{{2.6}{13}{Verlustleistung}{section.2.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.1}Dynamische Verlustleistung}{14}{subsection.2.6.1}}
+\newlabel{subsec:dynVerl}{{2.6.1}{14}{Dynamische Verlustleistung}{subsection.2.6.1}{}}
+\newlabel{eq:dynVerlustleistung}{{2.1}{14}{Dynamische Verlustleistung}{equation.2.6.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.2}Statische Verlustleistung}{14}{subsection.2.6.2}}
+\newlabel{subsec:statVerl}{{2.6.2}{14}{Statische Verlustleistung}{subsection.2.6.2}{}}
+\newlabel{eq:verlustleistung}{{2.2}{14}{Statische Verlustleistung}{equation.2.6.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.7}Genetische Algorithmen}{14}{section.2.7}}
+\newlabel{sec:genetischer_algo}{{2.7}{14}{Genetische Algorithmen}{section.2.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.1}Crossover}{15}{subsection.2.7.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.2}Mutation}{16}{subsection.2.7.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.3}Fitness}{16}{subsection.2.7.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.8}Testprogramme}{17}{section.2.8}}
+\newlabel{sec:testprogamme}{{2.8}{17}{Testprogramme}{section.2.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.8.1}Beamforming}{17}{subsection.2.8.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.8.2}emulated floating Point}{17}{subsection.2.8.2}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Implementierung}{18}{chapter.3}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
 \@writefile{lol}{\addvspace {10\p@ }}
-\newlabel{chap:Implementierung}{{3}{17}{Implementierung}{chapter.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.0.1}Hamming-Distanze}{17}{subsection.3.0.1}}
-\newlabel{eq:hammingdistanze}{{3.1}{17}{Hamming-Distanze}{equation.3.0.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}Heuristik}{18}{section.3.1}}
-\newlabel{sec:Heuristik}{{3.1}{18}{Heuristik}{section.3.1}{}}
-\newlabel{code:heuristik}{{3.1}{19}{Heuristik Beispiel}{lstlisting.3.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.1}Heuristik Beispiel}{19}{lstlisting.3.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Genetischer Algorithmus}{19}{section.3.2}}
-\newlabel{sec:genetischerAlgorithmus}{{3.2}{19}{Genetischer Algorithmus}{section.3.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Fitness-Funktion}{19}{subsection.3.2.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Startpopulation}{20}{subsection.3.2.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}dynamische Anpassung}{21}{subsection.3.2.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.4}Algorithmus Modi}{22}{subsection.3.2.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.5}Glitches}{22}{subsection.3.2.5}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Algorithmus-Konfiguration\relax }}{23}{table.caption.10}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Evaluation}{25}{chapter.4}}
+\newlabel{chap:Implementierung}{{3}{18}{Implementierung}{chapter.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.0.1}Hamming-Distanze}{18}{subsection.3.0.1}}
+\newlabel{eq:hammingdistanze}{{3.1}{18}{Hamming-Distanze}{equation.3.0.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Heuristik}{19}{section.3.1}}
+\newlabel{sec:Heuristik}{{3.1}{19}{Heuristik}{section.3.1}{}}
+\newlabel{code:heuristik}{{3.1}{20}{Heuristik Beispiel}{lstlisting.3.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.1}Heuristik Beispiel}{20}{lstlisting.3.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Genetischer Algorithmus}{20}{section.3.2}}
+\newlabel{sec:genetischerAlgorithmus}{{3.2}{20}{Genetischer Algorithmus}{section.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Fitness-Funktion}{20}{subsection.3.2.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Startpopulation}{21}{subsection.3.2.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}dynamische Anpassung}{22}{subsection.3.2.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.4}Algorithmus Modi}{23}{subsection.3.2.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.5}Glitches}{23}{subsection.3.2.5}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Algorithmus-Konfiguration\relax }}{24}{table.caption.10}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Evaluation}{26}{chapter.4}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
 \@writefile{lol}{\addvspace {10\p@ }}
-\newlabel{chap:evaluation}{{4}{25}{Evaluation}{chapter.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Evaluation}{26}{section.4.1}}
-\newlabel{sec:evalutation_verification}{{4.1}{26}{Evaluation}{section.4.1}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Schlussfolgerung}{27}{chapter.5}}
+\newlabel{chap:evaluation}{{4}{26}{Evaluation}{chapter.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Evaluation}{27}{section.4.1}}
+\newlabel{sec:evalutation_verification}{{4.1}{27}{Evaluation}{section.4.1}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Schlussfolgerung}{28}{chapter.5}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
 \@writefile{lol}{\addvspace {10\p@ }}
-\newlabel{chap:schlussfolgerung}{{5}{27}{Schlussfolgerung}{chapter.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Evaluation}{27}{section.5.1}}
-\newlabel{sec:conclusion_evaluation}{{5.1}{27}{Evaluation}{section.5.1}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}Source Code}{28}{appendix.A}}
+\newlabel{chap:schlussfolgerung}{{5}{28}{Schlussfolgerung}{chapter.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Evaluation}{28}{section.5.1}}
+\newlabel{sec:conclusion_evaluation}{{5.1}{28}{Evaluation}{section.5.1}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}Source Code}{29}{appendix.A}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
 \@writefile{lol}{\addvspace {10\p@ }}
-\newlabel{chap:sourcecode}{{A}{28}{Source Code}{appendix.A}{}}
+\newlabel{chap:sourcecode}{{A}{29}{Source Code}{appendix.A}{}}
 \bibdata{bib}
-\bibcite{paya2010multi}{1}
+\bibcite{farooq2012fpga}{1}
+\bibcite{paya2010multi}{2}
+\bibcite{statistica}{3}
 \bibstyle{plain}
-\@writefile{toc}{\contentsline {chapter}{\nonumberline Literaturverzeichnis}{29}{chapter*.11}}
+\@writefile{toc}{\contentsline {chapter}{\nonumberline Literaturverzeichnis}{30}{chapter*.11}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
