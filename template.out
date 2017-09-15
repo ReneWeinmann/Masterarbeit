@@ -9,7 +9,7 @@
 \BOOKMARK [0][-]{chapter.2}{Grundlagen}{}% 9
 \BOOKMARK [1][-]{section.2.1}{FPGA}{chapter.2}% 10
 \BOOKMARK [1][-]{section.2.2}{ASIP}{chapter.2}% 11
-\BOOKMARK [1][-]{section.2.3}{SIMD Prozessor}{chapter.2}% 12
+\BOOKMARK [1][-]{section.2.3}{SIMD}{chapter.2}% 12
 \BOOKMARK [2][-]{subsection.2.3.1}{VLIW}{section.2.3}% 13
 \BOOKMARK [2][-]{subsection.2.3.2}{Pipelining}{section.2.3}% 14
 \BOOKMARK [1][-]{section.2.4}{Aufbau der Architektur}{chapter.2}% 15
@@ -47,4 +47,4 @@
 \BOOKMARK [0][-]{chapter.5}{Schlussfolgerung}{}% 47
 \BOOKMARK [1][-]{section.5.1}{Evaluation}{chapter.5}% 48
 \BOOKMARK [0][-]{appendix.A}{Source Code}{}% 49
-\BOOKMARK [0][-]{chapter*.11}{Literaturverzeichnis}{}% 50
+\BOOKMARK [0][-]{chapter*.12}{Literaturverzeichnis}{}% 50

@@ -5,6 +5,11 @@ Umer Farooq, Zied Marrakchi, and Habib Mehrez.
 \newblock Fpga architectures: An overview.
 \newblock {\em Tree-based Heterogeneous FPGA Architectures}, pages 7--48, 2012.
 
+\bibitem{flynn2007low}
+David Flynn, Rob Aitken, Alan Gibbons, and Kaijian Shi.
+\newblock {\em Low power methodology manual: for system-on-chip design}.
+\newblock Springer Science \& Business Media, 2007.
+
 \bibitem{paya2010multi}
 Guillermo Pay{\'a}-Vay{\'a}, Javier Mart{\'\i}n-Langerwerf, and Peter Pirsch.
 \newblock A multi-shared register file structure for vliw processors.

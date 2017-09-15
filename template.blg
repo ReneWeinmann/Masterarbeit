@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2015)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: template.aux
 The style file: plain.bst
@@ -10,45 +10,45 @@ I was expecting a `,' or a `}'---line 21 of file bib.bib
 I'm skipping whatever remains of this entry
 Warning--entry type for "statistica" isn't style-file defined
 --line 21 of file bib.bib
-You've used 3 entries,
+You've used 4 entries,
             2118 wiz_defined-function locations,
-            515 strings with 4527 characters,
-and the built_in function-call counts, 967 in all, are:
-= -- 93
-> -- 43
+            520 strings with 4695 characters,
+and the built_in function-call counts, 1280 in all, are:
+= -- 119
+> -- 66
 < -- 1
-+ -- 18
-- -- 14
-* -- 63
-:= -- 163
-add.period$ -- 8
-call.type$ -- 3
-change.case$ -- 16
++ -- 27
+- -- 22
+* -- 84
+:= -- 219
+add.period$ -- 11
+call.type$ -- 4
+change.case$ -- 22
 chr.to.int$ -- 0
-cite$ -- 3
-duplicate$ -- 34
-empty$ -- 77
-format.name$ -- 14
-if$ -- 200
+cite$ -- 4
+duplicate$ -- 46
+empty$ -- 99
+format.name$ -- 22
+if$ -- 263
 int.to.chr$ -- 0
-int.to.str$ -- 3
-missing$ -- 2
-newline$ -- 17
-num.names$ -- 6
-pop$ -- 18
+int.to.str$ -- 4
+missing$ -- 4
+newline$ -- 22
+num.names$ -- 8
+pop$ -- 29
 preamble$ -- 1
-purify$ -- 13
+purify$ -- 19
 quote$ -- 0
-skip$ -- 30
+skip$ -- 36
 stack$ -- 0
-substring$ -- 60
-swap$ -- 8
+substring$ -- 65
+swap$ -- 9
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 12
+type$ -- 14
 warning$ -- 0
-while$ -- 11
-width$ -- 4
-write$ -- 31
+while$ -- 13
+width$ -- 5
+write$ -- 41
 (There was 1 error message)

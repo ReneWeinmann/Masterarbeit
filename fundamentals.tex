@@ -1,25 +1,33 @@
 % !TeX spellcheck = de_DE
 \chapter{Grundlagen}
 \label{chap:grundlagen}
-In diesem Kapitel wird kurz auf die Grundlagen und Begriffe von Signalprozessoren eingegangen. Im Anschluss wird die Verwendete Architektur erläutert und einzelne Bestandteile genauer untersucht.Anschließend wird auf das Grundprinzip des Scheduling erklärt. Des weiteren wird das Prinzip der Verlustleistung aufgezeigt und eine grobe Übersicht über Genetische-Algorithmen gegeben.
+In diesem Kapitel wird kurz auf die Grundlagen und Begriffe von Signalprozessoren eingegangen. Im Anschluss wird die Verwendete Architektur erläutert und einzelne Bestandteile genauer untersucht. Anschließend wird die Funktion des Scheduling erklärt und das Prinzip der Verlustleistung aufgezeigt. Das Ende des Kapitels soll eine grobe Übersicht über Genetische-Algorithmen gegeben.
 
 \section{FPGA}
-Bei einem FPGA (Field Programmable Gate Array) handelt es sich um ein frei programmierbaren integrierten Schaltkreis der mithilfe von Look-Up-Tabellen sehr effizient Algorithmen abbildet. Um eine gewünschte Funktion auf dem FPGA zu implementieren ist es notwendig die Look-Up-Tabellen mit Wahrheitstabellen zu füllen. Außerdem müssen diese Blocke mithilfe von Rooting-Switches und Connection-Boxen verbunden werden. Damit diese konfiguriert werden können muss ein Programm mithilfe einer HDL(Hardware Description Language) geschrieben werden.\cite{farooq2012fpga} Vorteil dieser Implementierung ist, dass eine echte Parallelität erreicht werden kann, so dass mehrere Blocke zeitgleich ausführbar sind. In dieser Arbeit wird ein FPGA als Entwicklungsumgebung verwendet, um den zu entwickelnden ASIP bestmöglich abzubilden und dabei möglichst flexibel zu bleiben.
-\nomenclature{ASIC}{Application Specific Integrated Circuit}%
+Bei einem FPGA (Field Programmable Gate Array) handelt es sich um ein frei programmierbaren integrierten Schaltkreis, welcher mithilfe von Look-Up-Tabellen sehr effizient Algorithmen abbildet. Um eine gewünschte Funktion auf dem FPGA zu implementieren ist es notwendig die Look-Up-Tabellen mit einer Wahrheitstabellen zu befüllen, welche diese Funktion abbildet. Dadurch kann in einem FPGA jeglich erdenkliche Aufgabe erfuellen. Die beschriebnen Blocke muessen ausserdem mithilfe von Rooting-Switches und Connection-Boxen verbunden werden, um eine Verbindung zu den IO-Ports sicherzustellen. Damit der Baustein konfiguriert werden kann, muss die Funktion mithilfe einer HDL(Hardware Description Language) beschrieben werden.\cite{farooq2012fpga} Vorteil dieser Implementierung ist, dass eine echte Parallelität erreicht werden kann, so dass mehrere Blocke zeitgleich ausführbar sind. In dieser Arbeit wird ein FPGA als Entwicklungsumgebung verwendet, um den zu entwickelnden ASIP bestmöglich abzubilden und dabei möglichst flexibel zu bleiben.
 
 
 \section{ASIP}
+ASIP bedeutet so viel wie Application Specific Instruction Set Processor, dabei handelt es sich wie der Name schon sagt um einen anwendungsspezifischen Prozessor. Hierbei ist der ASIP auf eine gewisse Funktion optimiert und fuehrt diese optimal aus. Durch den Einsatz auf ein spezielles Gebiet, koennen Einsparungen hinsichtlich Siliciumflaeche und Energieverbrauch gegenueber herkoemmlichen Prozessoren verzeichnet werden. Der in dieser Arbeit verwendete ASIP ist eine vereinfachte Variante eines MIPS-Prozessors. MIPS oder auch \glqq Microprocessor without interlocked pipeline stages\grqq{} ist eine Befehlssatzarchitektur bei der der Entwickler/Compiler sich um Datenabhaengigkeiten der Befehle kuemmern muss und gegebenen falls Leerbefehle (NOPs) in den Code einfuegen muss.
 
-MIPS oder auch \glqq Microprocessor without interlocked pipeline stages\grqq{} ist eine Befehlssatzarchitektur, die auf der RISC-Architektur  (Reduced instruction set computer) aufbaut.
-
-\section{SIMD Prozessor}
-\label{sec:VLIW}
-Der Begriff SIMD steht für Single Instruction Multiple Data und ist eine Datenverarbeitungseigenschaft von Prozessoren die meist in der Signalverarbeitung zum Einsatz kommt. Hierbei ist der Vorteil einer solchen Implementierung, dass mehrere Instruktionen parallel mit den selben Daten ausgeführt werden können und somit eine Performanz-Steigung einhergeht.
+\section{SIMD}
+\label{sec:SIMD}
+Der Begriff SIMD steht für Single Instruction Multiple Data und ist eine Datenverarbeitungseigenschaft von Prozessoren die meist in der Signalverarbeitung zum Einsatz kommt. Hierbei ist der Vorteil einer solchen Implementierung, dass mehrere Instruktionen parallel mit den selben Daten ausgeführt werden können und somit eine Performanz-Steigerung einhergeht.
 
 \subsection{VLIW}
+\label{sec:VLIW}
 VLIW ist eine Eigenschaft von Mikroprozessor-Architekturen. VLIW steht hierbei für Very Long Instruction Word und bedeutet soviel wie sehr langes Instruktions-Wort. Das Ziel dieser Struktur ist eine schnelle Abarbeitung des Befehlsatzes, wobei hierbei einige Befehle parallel ausgeführt werden koennen. Um dies zu ermöglichen sind mehrere Instruktions-Dekoder vonnöten. Eine VLIW-Architekur geht meist mit Pipelining einher. 
+
 \subsection{Pipelining}
-Wie das Wort Pipelining schon besagt, handelt es sich hierbei um eine Befehlsabarbeitung am Fließband(Pipeline). Wurde ein Befehl in Phase 1 abgearbeitet kann dieser an die nächste Phase weitergeleitet werden und der nachfolgende Befehl führt die Phase 1 aus. Somit ist eine parallele Verarbeitung mehrerer Befehle möglich. 
+Wie das Wort Pipelining schon besagt, handelt es sich hierbei um eine Befehlsabarbeitung am Fließband(Pipeline). Wurde ein Befehl in der ersten Piplinestufe abgearbeitet kann dieser an die nächste Stufe weitergeleitet werden und der nachfolgende Befehl führt die erste Phase aus. Nachdem die Anzahl so viel Befehle wie Pipline Stufen dem System uebergeben wurden, liegen ab diesem Zeitpunkt alle Daten Parallel am Ausgang an.(siehe Abbildung \ref{fig:pipline})  Somit ist eine parallele Verarbeitung mehrerer unterschiedler Befehle möglich. Dabei ist darauf zu achten, dass die Taktung der Piplinestufen sich an dem Befehel orientiert welcher die laengste Ausfuehrungsdauert hat.
+\begin{scriptsize}
+	\begin{figure}[htbp] 
+		\centering
+		\includesvg[width=0.70\textwidth]{pipeline}
+		\caption{Pipeline-Prinzip}
+		\label{fig:pipline}
+	\end{figure}
+\end{scriptsize}
 
 \section{Aufbau der Architektur}
 \label{chap:architecture_overview}
@@ -171,15 +179,15 @@ Unter dem Begriff Clock-Gating verbirgt sich eine Abschaltung des Clock-Signals 
 \section{Verlustleistung}
 \label{sec:verlustleistung}
 Unter Verlustleistung in integrierten Schaltungen versteht man die in den Transistoren umgesetzte Leistung die in Form von Wärme verloren geht.
-Hierbei wird in statische \(P_{stat}\) und dynamische Verlustleistung \(P_{dyn}\) unterschieden. 
+Hierbei wird in statische \(P_{stat}\) und dynamische Verlustleistung \(P_{dyn}\) unterschieden. \cite[Seite 4 ff.]{flynn2007low}
 \subsection{Dynamische Verlustleistung}\label{subsec:dynVerl}
-Jedes mal wenn eine Kapazität geladen oder entladen wird, entsteht eine dynamische Verlustleistung\(P_C\). Die zweiter dynamische Verlustleistung\(P_{SC}\) entsteht beim Schaltevorgang von Transistoren insbesondere von Inverter-Schaltungen. In diesem Fall existiert beim Umschalten eine kurze Zeitspanne in der beide Transistoren eine leitende Verbindung aufweisen. In diesem Fall besteht ein Kurzschlussstrom \(I_{SC}\)zwischen Versorgungsspannung \(V_{DD}\) und Masse \(V_{SS}\). Die dynamische Verlustleistung ist proportional zur Schaltaktivität\(\alpha\) und somit auch zur Taktfrequenz $f$.
+Jedes mal wenn eine Kapazität geladen oder entladen wird, entsteht eine dynamische Verlustleistung\(P_C\). Die zweiter dynamische Verlustleistung\(P_{SC}\) entsteht beim Schaltevorgang von Transistoren insbesondere von Inverter-Schaltungen. In diesem Fall existiert beim Umschalten eine kurze Zeitspanne in der beide Transistoren eine leitende Verbindung aufweisen. In diesem Fall besteht ein Kurzschlussstrom \(I_{SC}\)zwischen Versorgungsspannung \(V_{DD}\) und Masse \(V_{SS}\). Die dynamische Verlustleistung ist proportional zur Schaltaktivität\(\alpha\) und somit auch zur Taktfrequenz $f$.\cite[Seite 4 ff.]{flynn2007low}
 \begin{equation}
 P_{dyn} = \alpha  C_L  V_{dd}^{2}  f
 \label{eq:dynVerlustleistung}
 \end{equation}
 \subsection{Statische Verlustleistung}\label{subsec:statVerl}
-Sobald die Verlustleistung unabhängig von der Taktrate wird, kann diese als statische \(P_{Stat}\) bezeichnet werden. Dies ist der Fall, wenn die Transistoren so konzeptioniert sind, dass ein konstanter Strom zwischen\(V_{DD}\) und\(V_{SS}\)besteht. Dieser Strom ist unabhängig von der angelegten Gatespannung. Der dadurch auftretende Strom wird Leakagestrom genannt. Mit immer kleiner werdenden Strukturen wird dieser Strom deutliche bedeutender. In diesem Fall hängt der Strom von der Gatespannung ab und die statische wird eine dynamische Verlustleistung.
+Sobald die Verlustleistung unabhängig von der Taktrate wird, kann diese als statische \(P_{Stat}\) bezeichnet werden. Dies ist der Fall, wenn die Transistoren so konzeptioniert sind, dass ein konstanter Strom zwischen\(V_{DD}\) und\(V_{SS}\)besteht. Dieser Strom ist unabhängig von der angelegten Gatespannung. Der dadurch auftretende Strom wird Leakagestrom genannt. Mit immer kleiner werdenden Strukturen wird dieser Strom deutliche bedeutender. In diesem Fall hängt der Strom von der Gatespannung ab und die statische wird eine dynamische Verlustleistung.\cite[Seite 8]{flynn2007low}
 
 
 Die gesamte Verlustleistung ist die Summer der drei erwähnten Verluste.
