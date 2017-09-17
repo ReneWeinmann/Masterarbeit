@@ -1,5 +1,14 @@
 \chapter{Evaluation}
 \label{chap:evaluation}
+\section{Testprogramme}
+\label{sec:testprogamme}
+Um den implementierten Code zu testen und eine reele Einsparung der Verlustleistungsreduktion zu ermitteln wurden die folgenden Assembler-Programme verwendet. Dabei handelt es sich um Programme die eine häufig Anwendung in Hörgerät-Prozessoren finden.
+\subsection{Beamforming}
+Der Beamforming-Algorithmus wird eingesetzt um eine Positionsbestimmung von Schallwellen im Raum durchzuführen und somit eine Ein- bzw Ausblendung von verschiedenen Geräuschen zu gewährleisten und so das Hörerlebnis zu steigern. 
+
+\subsection{emulated floating Point}
+Da der verwendete Prozessor keine floating Point Variablen unterstützt, besteht ein Algorithmus der diese emuliert. 
+
 Da die Verlustleistung nicht im Code und zur Laufzeit bestimmt werden kann, musste eine Analyse nach der Ausführung des Codes stattfinden. Hierfür wurde das Tool \"Prime Time Suite\" von Synopsys verwendet. Dieses analysiert alle Schaltaktivitäten im Prozessor und gibt anschließend eine detaillierte Übersicht über die Leistungsaufnahme des Prozessors.\\
 Um die Annahme zu bestätigen, dass mit geringerer Schaltaktivitäten an den Adressleitungen der Register Files die Verlustleistung gesenkt werden kann, wurde zuerst die Schaltleistung der Register Adressen untersucht.\\
 Des weiteren wurden die Testprogramme zu Beginn manuell gescheduled um die Registerallokation isoliert betrachten zu können. Hierzu kann vor jeder Instruktion angegeben werden in welchem Issue-SLot diese ausgeführt werden soll. Um den Einfluss der Schaltaktivitäten besser bestimmen und nachvollziehen zu können wurden vorerst ausschließlich physikalische Register verwendet. \\

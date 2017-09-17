@@ -1,5 +1,10 @@
 \begin{thebibliography}{1}
 
+\bibitem{davis1991handbook}
+Lawrence Davis.
+\newblock Handbook of genetic algorithms.
+\newblock 1991.
+
 \bibitem{farooq2012fpga}
 Umer Farooq, Zied Marrakchi, and Habib Mehrez.
 \newblock Fpga architectures: An overview.

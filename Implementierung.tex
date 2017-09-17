@@ -1,46 +1,80 @@
 \chapter{Implementierung}
 \label{chap:Implementierung}
-\subsection{Hamming-Distanze}
-Die Hamming-Distanz ist nach dem amerikanischen Mathematiker Richard Wesley Hamming benannt und gibt ein Maß für die Unterschiedlichkeit zweier Zeichenketten an. Hierbei ist die Hamming-Distanz die Anzahl der unterschiedlichen Stellen der beiden Codeworte.
-\begin{equation}
-00110 \text{ und } 00100 -> \text{Hamming-Distanze}= 1
-\label{eq:hammingdistanze}
-\end{equation}
+Nachdem die nötigen Grundlagen erläutert wurden soll in diesem Kapitel aufgezeigt werden wie der Compiler aufgebaut ist und wie das gesetzte Ziel implementiert wurde. Hierzu wird kurz auf den Ausgangsstatus des Codes und dessen Bestandteile eingegangen um das komplette System besser verstehen zu können. Anschließend wird veranschaulicht wie die Verlustleistung gesenkt werden soll und wie dies mit einer Heuristik implementiert wurde. Im Anschluss wird diese Implementierung durch den Einsatz eines genetischen Algorithmus noch verbessert und die einzelnen Komponenten erläutert.
+\section{Ausgangsstatus}
+Um die Register Allokation in den Code einzuordnen zeigt das unten stehende Schaubild (siehe Abbildung XXX) den Aufbau des Codes.
 
+\subsection{Precompiler}
+Da der Assembler-Code auch Bestandteile aufweisen kann die nicht in eigentlichen Assemblersprache enthalten sind, ist es nötig diese aufzulösen. Hierzu dient der Precompiler oder Preprozessor der diese Konstrukte in einen vom Prozessor ausführbaren Code bzw. Anweisungen umwandelt. Ein Beispiel für ein solches Konstrukt ist das An- und Ausschalten des Schedulings für bestimmte Bereiche des Codes. Hierbei kann dem Compiler, im Assembler-Programm durch Angabe des 'scheduling-off'-Befehls, mitgeteilt werden welche SLMs vom Scheduling unberührt bleiben. 
+\subsection{Scheduling}
+
+\section{Ansatz}
 Nach genauerem betrachten der Formel für die dynamische Verlustleistung \ref{eq:dynVerlustleistung} hängt diese von vier Faktoren ab, Schaltaktivitäten,  Lastkapazität, Versorgungsspannung und der Frequenz. Die statische Verlustleistung wird nicht weiter betrachtet, da diese nur durch eine Veränderung der Hardware verbessert werden könnte. Dies ist jedoch nicht Teil dieser Arbeit. Da ebenfalls die Spannung und Frequenz von der Architektur und anderen nicht beeinflussbaren Faktoren vorgegeben wurde kann auch an diesen Parametern nichts verbessert werden. Im folgenden wird nun erst darauf eingegangen wie, durch Minimierung der Schaltaktivitäten, die Verlustleistung optimiert werden kann. Im Weiteren Verlauf des Textes wird dann ebenfalls der Einfluss der Lastkapazitäten überprüft.\\
 Um in ein Register zu schreiben, muss eine geeignete Adresse an den Adressbus angelegt werden. Da es sich bei der Architektur um 32-bit-Register handelt muss hierfür eine 5-bit Adresse angelegt werden.
-Da der Prozessor über zwei Issue-Slots verfügt, müssen pro Slot zwei Target und zwei Source Register adressiert werden. Hierbei können die Instruktionen auf Register-File 0 oder 1 schreiben bzw. lesen. Aus diesem Grund besitzt jedes der Register-Files vier Lese- und zwei Schreibports. Die Zuordnung der Issues auf die Register können sie aus den Tabellen TTT entnehmen. Schreibt nun beispielsweise eine Instruktion an die Adresse Null und die nachfolgende Instruktion an die Adresse 31 des selben Ports, so wäre dies der Worst-Case, da in diesem Fall alle 5-Bit umgeladen werden müssten.
+Da der Prozessor über zwei Issue-Slots verfügt, müssen pro Slot ein Target und zwei Source Register adressiert werden. Hierbei können die Instruktionen auf Register-File 0 oder 1 schreiben bzw. lesen. Aus diesem Grund besitzt jedes der Register-Files vier Lese- und zwei Schreibports. Die Zuordnung der Issues auf die Register können sie aus den Tabellen TTT entnehmen. Schreibt nun beispielsweise eine Instruktion an die Adresse Null und die nachfolgende Instruktion an die Adresse 31 des selben Ports, so wäre dies der Worst-Case, da in diesem Fall alle 5-Bit umgeladen werden müssten.
 Durch den Einsatz von virtuelle Register können Instruktionen an beliebiger Adressen und Register-Files schreiben bzw. lesen. Durch diese Änderung kann die Schaltaktivitäten des Adressbus verringert werden.\\
 In der bestehenden Implementierung wurde diese Zuweisung so geregelt, dass die Adressen der Register immer von einer Seite aus aufgefüllt wurden. Die Auswahl des Register-Files wurde hierbei über die Anzahl der freien Register-Adressen ermittelt. Außerdem wurde bei der Zuweisung darauf geachtet, dass es weiterhin möglich ist X2-Befehle zu bedienen.\\
 Um nun diese Mapping auf die Schaltaktivität und somit auch auf die Verlustleistung zu optimieren wurde eine neue Heuristik implementiert.
-Diese optimiert die Anzahl der Schaltzyklen anhand der Hamming-Distanz. 
+Diese optimiert die Anzahl der Schaltzyklen anhand der Hamming-Distanz.
+\subsection{Hamming-Distanze}
+Die Hamming-Distanz ist nach dem amerikanischen Mathematiker Richard Wesley Hamming benannt und gibt ein Maß für die Unterschiedlichkeit zweier Zeichenketten an. Hierbei ist die Hamming-Distanz die Anzahl der unterschiedlichen Stellen der beiden Codeworte.
+\begin{equation}
+00100 \text{ und } 00001 -> \text{Hamming-Distanze}= 2
+\label{eq:hammingdistanze}
+\end{equation}
+ 
 \section{Heuristik}
 \label{sec:Heuristik}
+
 Um die Hamming-Distanz zu berechnen werden die Adressen der letzten Instruktionen gespeichert. Da die Architektur  wie bereits erwähnt zwei Issue-Slots aufweist und diese auf beide Register-Files zugreifen können muss es dementsprechend vier Target- und acht Source-Adressleitungen geben(siehe Abbildung XXX).\\
-Da eine Architektur mit Adresse Isolation eingesetzt wird bleiben die eingestellten Adressen an den Register-File Ports angelegt. Um die Schaltaktivität zu minimieren wird nun bei jedem virtuellen Register die Hamming-Distanz zu der zuletzt angelegten Adresse des jeweiligen Ports berechnet. Hierbei wird die virtuelle auf das Register gemappt welches die geringste Hamming-Distanz aufweist.\\
+Da eine Architektur mit Adresse Isolation eingesetzt wird bleiben die eingestellten Adressen an den Register-File Ports angelegt. Um die Schaltaktivität zu minimieren wird nun bei jedem virtuellen und physikalischem Register die Hamming-Distanz zu der zuletzt angelegten Adresse des jeweiligen Ports berechnet. Hierbei wird die virtuelle auf das Register gemappt welches die geringste Hamming-Distanz aufweist.\\
 \begin{lstlisting}[frame=single, caption={Heuristik Beispiel},captionpos=b,label=code:heuristik]
 :0 ADD V0R0 V0R0 V0R0 :1 OR V1R0 V0R0 V0R0
 :0 ADD V0R2 V0R0 V0R0 :1 OR V1R2 V0R0 V0R0
 :0 ADD V0R4 V0R0 V0R0 :1 OR V1R4 V0R0 V0R0
 :0 ADD VxR0 V0R0 V0R0 :1 OR VxR1 V0R0 V0R0
-:0 ADD VxR2 V0R0 V0R0 :1 OR VxR3 V0R0 V0R0
+:0 ADD VxR2 VxR0 VxR1 :1 OR VxR3 VxR0 VxR1
 \end{lstlisting}
-Anhand des Codebeispiels \ref{code:heuristik} und der Abbildung mit den bereits allokierten Register soll nun das Mapping der Virtuellen Register verdeutlicht werden.  
+Anhand des Codebeispiels \ref{code:heuristik} und der Abbildung mit den bereits allokierten Register soll nun das Mapping der virtuellen Register verdeutlicht werden.
+Der Code Zeigt hierbei einen bereist geschedueleten Assembler-Code, wobei das Scheduling in diesem Fall, durch die angebe des Issue-Slots vor dem eigentlichen Befehl, vorgegeben wurde. Außerdem werden in diesem Beispiel nur die Target-Register betrachtet.
+Vorerst werden in beiden Register-Files drei Adressen mittels physikalischer Register belegt(Abbildung XXX blau hinterlegte Felder). Im Anschluss beginnt die Zuweisung der virtuellen Register.
+Dabei wird mit dem ersten Issue-Slot begonnen. Der Algorithmus überprüft nun in welchem der Register-Files mehr freie Register zu Verfügung stehen um eine gleiche Auslastung zu gewährleisten. Hierbei wird das File mit der höheren Anzahl an freien Registern ausgewählt. Sind die Zahlen identisch, so wird das Register ausgewählt welches zuletzt zugewiesen wurde. In diesem Fall haben beide Register-Blöcke noch 29 freie Register, deshalb ist das ausgewählte Register-File 0, da zuletzt das Source-Register V0R0 an den Adress-Port geschrieben wurde.
+Aus diesem Grund beginnt die Suche eines geeigneten Registers in genau dieser Datei. Gestartet wird in der neuen Heuristik mit der ersten Adresse, dabei wird überprüft ob diese von einem anderen Register bereits blockiert wurde. Da in der ersten Zeile des Codes diese Adresse V0R0 beschrieben wurde, kann diese nicht als mapping für das virtuelle Register VxR0 dienen. Deshalb sucht der Algorithmus weiter nach einer geeigneten Zuweisung. Mit der zweiten Adresse ist eine Zuweisung möglich. Anhand dieser wird nun die Hamming-Distanz zur letzten zugewiesenen Target-Adresse auf dem selben Port berechnet. Dabei wird anhand der Tabelle TTT die letzte Adresse ermittelt. Für dieses Beispiel ist dies trivial denn Issue-SLot 0 schreibt immer an Register-File 0 und Issue Slot 1 an die benachbarte Datei. Deshalb wird die Hamming-Distanz aus den beiden Adressen vier und eins ermittelt(\ref{eq:hammingdistanze}).Das Ergebnis sowie die Adresse werden gespeichert, falls es bis zu diesem Zeitpunkt noch keine bessere Lösung gab , anschließend wird die Suche fortgeführt. Dieser Vorgang wird für alle Positionen der Datei durchgeführt, es sei denn es wird eine Lösung gefunden bei der die Hamming-Distanz null beträgt. Dieser Fall tritt auf, wenn virtuelle Register zu einer Adresse zugewiesen wurden und die Lebensdauer dieser Variable erlischt. Dadurch wird diese Adresse freigegeben und kann erneut zugewiesen werden. Im Codebeispiel \ref{code:heuristik} würde der Code die Adresse 20 zuweisen (Abbildung XXX rot hinterleges Feld), da diese eine Hamming-Distanz von eins aufweist.
+Die nachfolgende Instruktion wird auf Grund des Gleichgewichts an die selbe Adresse des Register-Files 1 zugewiesen. Dieser Vorgang wird für alle virtuellen Register vorgenommen. Ist ein bei der Suche keine geeignete Stelle im zuerst gewählten Register-File zu finden, wird das jeweilig Andere durchsucht. Ist weiterhin keine Zuweisung möglich, schlägt der Algorithmus fehl. Dieser Fall kann aber nur auftreten wenn zu viele Register im Assembler-Code verwendet werden. Gelöst werden kann dieses Problem nur durch eine Anpassung des Programms.
+In der alten Version der Heuristik wurden die Registerblöcke von einer Seite aufgefüllt. Hierbei wurde ebenfalls überprüft ob es sich um eine freie Adresse handelt. Dabei wurde jedoch vernachlässigt wie viele Adressleitungen toggeln. 
+
+Adressen mittels Gray code ??? 
 % Wollen beide Instruktionen an das selbe Register-File schreiben, so werden entweder die alle zehn Adressleitungen für die Adressierung verwendet. Verwenden beiden Instruktionen unterschiedliche Register werden jeweils die unteren fünf Adressleitungen des jeweiligen Registers verwendet.
 
+%\begin{figure}[htbp] 
+%	\includesvg[width=1.0\textwidth]{Heuristik}
+%	\caption{Heuristik-Beispiel}
+%	\label{fig:heuristik_bsp}
+%\end{figure}
 
 \section{Genetischer Algorithmus}
 \label{sec:genetischerAlgorithmus}
-Die Gene des implementierten genetischen Algorithmus wurden so gewählt, dass diese die zu allokierenden Register repräsentieren. Die Anzahl der Gene hängt hierbei jeweils von der Menge der virtuellen Registern ab. Jedes Gen entspricht einem Mapping von virtuellen zu physikalischen Registern.
-Die Populationsgröße wurde aus der Literatur [LLL] entnommen. Im Kapitel XXX wird der Einfluss der Population auf die Ergebnisse genauer untersucht. 
+Da nur die Target-Adressen mit Hilfe von virtuellen Registern frei gewählt werden können, kann die Heuristik nur diese Optimieren, dennoch haben die Target-Register Einfluss auf die Source/Lese-Addressen und somit auf die Schaltaktivität. Es kann jedoch keine Vorhersage beim allokieren der Register getroffen werden, ob und wie weiter dieses verwendet werden. Aus diesem Grund wird ein genetischer Algorithmus ausgewählt, welcher auch das Toggelen in den Source-Adressen minimieren kann.
 
+\subsection{Gene}
+Die Gene des implementierten genetischen Algorithmus wurden so gewählt, dass diese die zu allokierenden Register repräsentieren. Die Anzahl der Gene hängt hierbei jeweils von der Menge der virtuellen Registern ab. Jedes Gen entspricht einem Mapping von virtuellen zu physikalischen Registern.
+
+\subsection{Aufbau}
+\label{chap:aufbau}
+Zu Beginn des genetischen Algorithmus, muss eine Startpopulation festgelegt werden. Eine Population ist hierbei ein Satz an zufällig gewählter Register-Allokationen auch Chromosom genannt. Die Populationsgröße wurde aus der Literatur [LLL] und Erfahrungswerte aus dem genetischen Scheduling [fabian thesis]entnommen. Im Kapitel XXX wird der Einfluss der Population auf die Ergebnisse  des Algorithmus genauer untersucht.
+Für jedes Chromosom muss eine Fitness-Funktion \ref{chap:Fitness-Funktion} ermittelt werden. Mithilfe dieses Merkmales wird die Population anschließend sortiert. 
+Mit diesen Register-Allokations-Ansätzen beginnt nun der eigentliche Algorithmus. In einer Schleife werden zuerst die beiden besten Chromosomen der letzten Generation in eine Neue abgespeichert. Anschließend werden die restlichen Mitglieder der Population durch Crossover und Mutation aufgefüllt. Zum Ende der Schleife wird die neu errungenen Chromosomen anhand der Fitness sortiert. Diese geschieht so lange, bis eine maximale Anzahl an Durchlaufen erreicht wurde. Sobald ein durch die Fortpflanzung und Veränderung der Chromosom eine Verbesserung gefunden wurde, beginnt die Schleife von Neuem.
+Wie bereits im Grundlagenteil \ref{chap:grundlagen_cossover} skizziert handelt es sich beim Crossover um das Fortpflanzen der Chromosomen. Dies wird auf die komplette Population ausgeführt. Nach dem dadurch, ein neues Chromosom, mit den Genen aus zweier Eltern der alten Generation entstanden ist, wird dieses zusätzlich mutiert. Dabei wird jedes Gen eines Chromosoms mit einer Wahrscheinlichkeit 1\% verändert. Bei dem neuen Wert handelt es sich wieder um einen rein zufälligen Wert.
+Nach dem beenden der Schleife wird die beste Population herausgesucht und das Mapping von virtuellen zu physikalischen Registern verwendet.
 
 \subsection{Fitness-Funktion}
-Da die Registerallokation dem Scheduling untergeordnet ist und von diesem aufgerufen wird, muss die Fitnessfunktion an die des Scheduling angepasst werden. Aus diesem Grund wurde zum einfacheren Vorgehen zwei Verschiedene Fitness-Funktionen implementiert. Zum einen der Wert der an die übergeordnete Funktion weitergegeben wird und zum Andern eine interne Fitness um die Ergebnisse zu evaluieren.
-Der Übergabewert besteht lediglich aus der Anzahl der Register die nicht im Register-File allokiert werden konnten. Bei der internen Fitness-Funktion wurden mehrere Ansätze evaluiert.
+\label{chap:Fitness-Funktion}
+Da die Registerallokation dem Scheduling untergeordnet ist und von diesem aufgerufen wird, muss die Fitnessfunktion an die des Scheduling angepasst werden. Aus diesem Grund wurde zum einfacheren Vorgehen zwei Verschiedene Fitness-Funktionen implementiert. Zum einen der Wert der an die übergeordnete Funktion (das Scheduling) weitergegeben wird und zum Andern eine interne Fitness um die Ergebnisse zu evaluieren.
+Der Übergabewert besteht lediglich aus der Anzahl der Register die nicht im Register-File allokiert werden konnten. Das sortieren der Population wird mit beiden Fitness-Funktionen realisiert. Da die Register-Allokation nur dann erfolgreich war wenn alle Register allokiert werden konnten, ist dies der erste Wert nach dem die Population sortiert wird. Als zweiter Sortierschlüssel wird die interne Fitness-Funktion verwendet. Bei dieser wurden mehrere Ansätze evaluiert.
+Besteht der Fall, dass ein Register mit dem zufällig gewählten Adressen nicht zugewiesen werden kann, so wird der Zähler für nicht allokierbare Register erhöht. Zusätzlich wird die Fitness berechnet und mit einem Offset versehen. Somit können Chromosomen mit der selben Anzahl an nicht allokierbaren Registern untereinander verglichen werden. Außerdem ist durch den Einsatz eines großen Offsets eine Abgrenzung zu den geglückten Zuweisungen möglich. Der Offset wurde hierfür  so gewählt, dass selbst bei dem Worst-Case-Szenario, wenn die Hamming-Distanz in jedem Schritt maximal wäre, eine klare Separierung möglich ist. Dazu wurde die Anzahl der virtuellen Registern in einer SLM mit 1000 multipliziert.
 \begin{itemize}
 	\item Hamming-Distanz\\
-		Als erste Variante wurde die Summe der Hamming-Distanzen als Fitness-Funktion verwendet. Hierzu wurden die Hammingdistanzen der Target- sowie Source-Register ermittelt. Wie im Falle der Heueristik mussten die verschiedenen Issue-Slots berücksichtigt werden. Da jeden Adress-Dekoder zwei Source-Adressen aufweist, gibt es in diesem Fall vier Möglichkeiten der Allokation.
+		Als erste Variante wurde die Summe der Hamming-Distanzen als Fitnesswert verwendet. Hierzu wurden die Hammingdistanzen der Target- sowie Source-Register ermittelt. Wie im Falle der Heueristik mussten die verschiedenen Issue-Slots berücksichtigt werden. Da jeden Adress-Dekoder zwei Source-Adressen aufweist, gibt es in diesem Fall vier Möglichkeiten der Allokation.
 	\item gewichtete Hamming-Distanz\\
 		blabla
 	\item Lastkapazitaet\\
@@ -51,8 +85,10 @@ Der Übergabewert besteht lediglich aus der Anzahl der Register die nicht im Reg
 		blabla
 \end{itemize}
  
+\subsection{Parameter}
+ 
 \subsection{Startpopulation}
-Die Startpopulation besteht im Normalfall aus zufällig gewählten Genen. Hierbei werden nur Register verwendet die nicht bereits von physikalische Registern blockiert sind.
+Die Startpopulation besteht im Normalfall wie in Kapitel \ref{chap:aufbau} aus zufällig gewählten Genen. Hierbei werden nur Register verwendet die nicht bereits von physikalische Registern blockiert sind.
 Um eine schnellere Konvergenz zu einem globalen Minimum zu gewährleisteten wird ein Gene der Startpopulation durch ein Heuristik-Algorithmus bestimmt. Dadurch wird bereits an einem lokalen Minimum gestartet und der genetische Algorithmus muss dies nicht selbst finden. 
 Nachteilig ist hierbei jedoch das durch ungeeignete Parameter der Algorithmus bei dem bereits sehr starken lokalen Minimum stagniert und keine Verbesserung mehr finden kann. Aus diesem Grund sollte beim Start mit der Heueristik eine höhere Mutationswahrscheinlichkeit eingesetzt werden um dieses Minimum dennoch zu überwinden.
 
@@ -126,6 +162,6 @@ Da der Verwendete Prozessor Adress-Isolation ( siehe Kapitel \ref{subsec:add_iso
 Die für die Schreib- und Lesezugriffe verwendeten Adressen werden jeweils zwischen den Takten an die benötigten Ports angelegt um so zu gewährleisten, dass diese mit der steigenden Taktflanke auch übernommen werden können. Die Auswahl der Ports wird über Enable-Signale geregelt. Werden beispielsweise zwei Instruktionen verwendet die beide an Register-File 1 schreiben, so werden die Adressen an die Ports 0 und 1 angelegt und sobald diese zu Verfügung stehen von den Enable-Signalen freigegeben.\\
 Nun tritt jedoch, dass Adress und Enable Signal nicht synchron arbeiten und somit ein Zeitversatz der beiden Signale entsteht. Dies lieg daran, dass die benoetigten Enable-Signale aufwendig berechnet werden, und dies eine kurze Verzoegerung nachsich zieht. Aus diesem Grund liegt die bereits geaenderte Adresse kurze Zeit an dem falschen Adressport an. Sobald das Enable-Signal berechnet wurde, werden die richtigen Adressen angelegt. Dieses Szenario tritt lediglich auf, wenn ein Wechsel in den Enable-Signalen und sich somit die Herkunft der Adressen aendert. Das Beschriebene Problem verursacht eine Erhoehung der Schaltaktivitaet auf den Adressleitungen und somit auch eine steigende Verlustleistung um XXX \%
 Um diesem Effekt gegenzuwirken wurde eine zweite Pipline-Stufe eingebaut. Durch die Verzoegerung der Adress- und Enable-Signale ist garantiert, dass die Adressen erst dann an den entsprechenden Ports anliegen wenn diese benoetigt werden. Der zusaetzliche Energieverbrauch der Pipeline-Regsiter wird an dieser Stelle nicht weiter untersucht, da der Anstieg der Verlustleistung in den zu vergleichenden Algorithmen identisch ist.
-Es besteht jedoch eine Moeglichkeit, die Pipeline-Stufen zu vermeiden.
-Da der Prozessor fuer ein ASIC entwickelt wird, koennen die Glitches durch den Einsatz von Buffern behoben werden. Hierzu muessen lediglich die betroffenen Signale mittels eines im ASIC implementiereten Buffer verzoegert werden.
+Es besteht jedoch eine Möglichkeit, die Pipeline-Stufen zu vermeiden.
+Da der Prozessor für ein ASIP entwickelt wird, können die Glitches durch den Einsatz von Buffern behoben werden. Hierzu müssen lediglich die betroffenen Signale mittels eines im ASIP implementiereten Buffer verzögert werden. Dieser könnte beispielsweise durch das Einbauen zwei hintereinander geschalteter Inverter realisiert werden. Dabei würde sich die Verzögerung aus der Summe der Gatterlaufzeiten ergeben. Die Anzahl der Inverter-Gatter müsste dann an den Versatz von Adress- und Enablesignal angepasst werden. 
 
