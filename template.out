@@ -39,20 +39,18 @@
 \BOOKMARK [1][-]{section.3.4}{Genetischer Algorithmus}{chapter.3}% 39
 \BOOKMARK [2][-]{subsection.3.4.1}{Gene}{section.3.4}% 40
 \BOOKMARK [2][-]{subsection.3.4.2}{Aufbau}{section.3.4}% 41
-\BOOKMARK [2][-]{subsection.3.4.3}{Crossover}{section.3.4}% 42
-\BOOKMARK [2][-]{subsection.3.4.4}{Mutation}{section.3.4}% 43
-\BOOKMARK [2][-]{subsection.3.4.5}{Fitness-Funktion}{section.3.4}% 44
-\BOOKMARK [2][-]{subsection.3.4.6}{Parameter}{section.3.4}% 45
-\BOOKMARK [2][-]{subsection.3.4.7}{Startpopulation}{section.3.4}% 46
-\BOOKMARK [2][-]{subsection.3.4.8}{dynamische Anpassung}{section.3.4}% 47
-\BOOKMARK [2][-]{subsection.3.4.9}{Algorithmus Modi}{section.3.4}% 48
-\BOOKMARK [2][-]{subsection.3.4.10}{Glitches}{section.3.4}% 49
-\BOOKMARK [0][-]{chapter.4}{Evaluation}{}% 50
-\BOOKMARK [1][-]{section.4.1}{Testprogramme}{chapter.4}% 51
-\BOOKMARK [2][-]{subsection.4.1.1}{Beamforming}{section.4.1}% 52
-\BOOKMARK [2][-]{subsection.4.1.2}{emulated floating Point}{section.4.1}% 53
-\BOOKMARK [1][-]{section.4.2}{Evaluation}{chapter.4}% 54
-\BOOKMARK [0][-]{chapter.5}{Schlussfolgerung}{}% 55
-\BOOKMARK [1][-]{section.5.1}{Evaluation}{chapter.5}% 56
-\BOOKMARK [0][-]{appendix.A}{Source Code}{}% 57
-\BOOKMARK [0][-]{chapter*.10}{Literaturverzeichnis}{}% 58
+\BOOKMARK [2][-]{subsection.3.4.3}{Fitness-Funktion}{section.3.4}% 42
+\BOOKMARK [2][-]{subsection.3.4.4}{Parameter}{section.3.4}% 43
+\BOOKMARK [2][-]{subsection.3.4.5}{Startpopulation}{section.3.4}% 44
+\BOOKMARK [2][-]{subsection.3.4.6}{dynamische Anpassung}{section.3.4}% 45
+\BOOKMARK [2][-]{subsection.3.4.7}{Algorithmus Modi}{section.3.4}% 46
+\BOOKMARK [2][-]{subsection.3.4.8}{Glitches}{section.3.4}% 47
+\BOOKMARK [0][-]{chapter.4}{Evaluation}{}% 48
+\BOOKMARK [1][-]{section.4.1}{Testprogramme}{chapter.4}% 49
+\BOOKMARK [2][-]{subsection.4.1.1}{Beamforming}{section.4.1}% 50
+\BOOKMARK [2][-]{subsection.4.1.2}{emulated floating Point}{section.4.1}% 51
+\BOOKMARK [1][-]{section.4.2}{Evaluation}{chapter.4}% 52
+\BOOKMARK [0][-]{chapter.5}{Schlussfolgerung}{}% 53
+\BOOKMARK [1][-]{section.5.1}{Evaluation}{chapter.5}% 54
+\BOOKMARK [0][-]{appendix.A}{Source Code}{}% 55
+\BOOKMARK [0][-]{chapter*.12}{Literaturverzeichnis}{}% 56

@@ -20,18 +20,18 @@ VLIW ist eine Eigenschaft von Mikroprozessor-Architekturen. VLIW steht hierbei f
 
 \subsection{Pipelining}
 Wie das Wort Pipelining schon besagt, handelt es sich hierbei um eine Befehlsabarbeitung am Fließband(Pipeline). Wurde ein Befehl in der ersten Pipelinestufe abgearbeitet kann dieser an die nächste Stufe weitergeleitet werden und der nachfolgende Befehl führt die erste Phase aus. Nachdem die Anzahl der Pipelinestufen an Befehlen dem System übergeben wurden, liegen die Daten Parallel am Ausgang an.(siehe Abbildung \ref{fig:pipeline})  Somit ist eine parallele Verarbeitung mehrerer unterschiedlicher Befehle möglich. Dabei ist darauf zu achten, dass die Taktung der Pipelinestufen sich an dem Befehle orientiert, welcher die längste Ausführungsdauer aufweist.
-%\begin{scriptsize}
-%	\begin{figure}[htbp] 
-%		\centering
-%		\includesvg[width=0.70\textwidth]{pipeline}
-%		\caption{Pipeline-Prinzip}
-%		\label{fig:pipeline}
-%	\end{figure}
-%\end{scriptsize}
+\begin{scriptsize}
+	\begin{figure}[htbp] 
+		\centering
+		\includesvg[width=0.70\textwidth]{pipeline}
+		\caption{Pipeline-Prinzip}
+		\label{fig:pipeline}
+	\end{figure}
+\end{scriptsize}
 
 \section{Aufbau der Architektur}
 \label{chap:architecture_overview}
-Bei dem verwendeten Prozessor handelt es sich um ein MIPS-Prozessor der Teil des RAPANUI Entwicklungsumgebung ist.
+Bei dem verwendeten Prozessor handelt es sich um ein MIPS-Prozessor der Teil des RAPANUI Projektes ist.
 Um dem niedrigen Energieverbrauch und Flächenbedarf bei Hörgeräten zu genügen, handelt es sich bei dem Prozessor um eine vereinfacht Implementierung der MOAI-Prozessor-Architektur(siehe Abbildung \ref{fig:KAVUAKA}). Dieser wird auch KAVUAKA genannt und ist ein VLIW-SMID ASIP Prozessor. Die Architektur verfügt über zwei Pipeline-Stufen, welche wie folgt aufgeteilt sind: 
 \begin{itemize}
 	\item[1.] Instruction Fetch - Decode - Register Access (IF - DE - RA) 
@@ -60,21 +60,21 @@ Es besteht eine Vielzahl an Registerorganisationen für Signalprozessoren. Im Al
 	\label{fig:RegisterOrga}
 \end{figure}
 Im folgenden soll nun weiter auf die partitionierte Organisation eingegangen werden. Physikalisch ist der Prozessor mit einem 4kB Register File ausgestattet. Dabei handelt es sich nicht um eine monolithische sondern um ein Multishared Register-File Organisation. Hierbei wird das Register in mehrere Teile getrennt, die Anzahl hängt hierbei von den Issue-Solts ab. Durch diese Aufteilung können Einsparungen in der Logik für die Schreib- und Leseports generiert werden und die Anzahl der Register-File-Ports wird erhöht.\\
-Der verwendete Prozessor besitzt zwei Register-Files mit jeweils 32 Registern. Beide Register weißen zwei Lese und vier Schreibports auf. Dadurch ist es möglich, dass Instruktionen aus dem Issue-Slot 1 in das Register-File 0 schreiben oder lesen und umgekehrt. Außerdem wird durch diese Architektur ein Schreiben und Lesen zweier Instruktionen auf das selbe Register-File möglich gemacht. Des weiteren können im Falle einer X2-Instruktion beide Ports des Registers verwendet werden. Die Aufteilung und  Zuordnung der Schreib- und Leseports können aus der Abbildung \ref{fig:reg_orga} und \autoref{fig::schreib-port}+\ref{lese-port} entnommen werden.
+Der verwendete Prozessor besitzt zwei Register-Files mit jeweils 32 64bit-Registern. Beide Register weißen zwei Lese und vier Schreibports auf. Dadurch ist es möglich, dass Instruktionen aus dem Issue-Slot 1 in das Register-File 0 schreiben oder lesen und umgekehrt. Außerdem wird durch diese Architektur ein Schreiben und Lesen zweier Instruktionen auf das selbe Register-File möglich gemacht. Des weiteren können im Falle einer X2-Instruktion beide Ports des Registers verwendet werden. Die Aufteilung und  Zuordnung der Schreib- und Leseports können aus der Abbildung \ref{fig:reg_orga} und \ref{fig::schreib-port}+\ref{lese-port} entnommen werden.
 
-%\begin{figure}[htbp] 
-%	\centering
-%	\includesvg[width=1.0\textwidth]{registerfile}
-%	\caption{Register File Organistaion}
-%	\label{fig:reg_orga}
-%\end{figure}
+\begin{figure}[htbp] 
+		\centering
+		\includesvg[width=0.7\textwidth]{registerfile_new}
+		\caption{Register File Organistaion}
+		\label{fig:reg_orga}
+\end{figure}
 
 \begin{table}[htbp]
 	
-	\begin{minipage}{.4\textwidth}
+	\begin{minipage}{.5\textwidth}
 		\flushleft
 		\begin{tabular}{cccccc}
-			\multicolumn{2}{l}{Schreib-Instruktion}                 & \multicolumn{4}{|l}{Schreib-Ports}                                                               \\ 
+			\multicolumn{2}{l}{Write-Ports}                 & \multicolumn{4}{|l}{Register-Ports}                                                               \\ 
 			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3} \\ 
 			\hline
 			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} \\ 
@@ -85,11 +85,11 @@ Der verwendete Prozessor besitzt zwei Register-Files mit jeweils 32 Registern. B
 		\caption{\label{fig::schreib-port}Schreib-Port}
 	\end{minipage}
 	\hfill
-	\begin{minipage}{.4\textwidth}
+	\begin{minipage}{.5\textwidth}
 		\flushleft
 		
 		\begin{tabular}{cccccccccccccccccc}
-			\multicolumn{4}{l}{Lese-Inst.}                 & \multicolumn{8}{|l}{Lese-Ports}                                                               \\ 
+			\multicolumn{4}{l}{Read-Ports.}                 & \multicolumn{8}{|l}{Register-Ports}                                                               \\ 
 			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2}& \multicolumn{1}{c}{3} &
 			\multicolumn{1}{c}{4} & \multicolumn{1}{c}{5} & \multicolumn{1}{c}{6}& \multicolumn{1}{c}{7} \\
 			\hline
@@ -134,9 +134,9 @@ Der verwendete Prozessor besitzt zwei Register-Files mit jeweils 32 Registern. B
 
 \subsection{Compiler}
 Damit ein Prozessor eine Programmiersprache (optimal) ausführen kann sind eine Schritte notwendig. Diese sind im Compiler zusammengefasst und werden im folgenden kurz erläutertert.\\
-Der Code wird vorerst in so genannte Micro Instructions (MI) gestückelt.  Hierbei ist eine MI eine Anweisung welche der Prozessor in einem Taktzyklus ausführen kann. Durch die Verwendung eines VLIW-Prozessors ist es möglich mehrere Instruktionen parallel auszuführen. Im Falle des KAUVAKA-Prozessors sind dies wie erwähnt zwei Instruktionen. Aus diesem Grund teilt der Compiler nun die MIs in Micro Operation (MO) auf. Diese werden anschließend in so genannte \"Straight Line Microcode\" (SLM) aufgeteilt. Ein SLM ist hierbei so definiert, dass es nur eine Einsprungstelle und Austrittsstelle gibt. Außerdem dürfen sich keine Sprünge und Verzweigungen innerhalb einer SLM befinden.  Dadurch entsteht ein Baum aus SLMs, die im Anschluss einzeln optimiert werden können. Dieses Verfahren ist nötig, da eine Optimierung über alle Instruktionen eine zu hohe Komplexität aufweisen würde. 
+Der Code wird vorerst in so genannte Micro Instructions (MI) gestückelt.  Hierbei ist eine MI eine Anweisung welche der Prozessor in einem Taktzyklus ausführen kann. Durch die Verwendung eines VLIW-Prozessors ist es möglich mehrere Instruktionen parallel auszuführen. Im Falle des KAUVAKA-Prozessors sind dies wie erwähnt zwei Instruktionen. Aus diesem Grund teilt der Compiler nun die MIs in Micro Operation (MO) auf. Diese werden anschließend in so genannte \"Straight Line Microcode\" (SLM) aufgeteilt. Ein SLM ist hierbei so definiert, dass es nur eine Einsprungstelle und Austrittsstelle gibt. Außerdem dürfen sich keine Sprünge und Verzweigungen innerhalb einer SLM befinden.  Dadurch entsteht ein Baum aus SLMs, die im Anschluss einzeln optimiert werden können. Dieses Verfahren ist nötig, da eine Optimierung über alle Instruktionen eine zu hohe Komplexität aufweisen würde. \cite{landskov1980local}
 \subsection{Scheduling}
-Das Scheduling ist zuständig für die Anordnung der MIs bzw. MOs die sich in einem SLM befinden. Hierbei geht der Algorithmus so vor, dass er die Anordnung sucht welche den geringsten kritischen Pfad aufweist. Hierbei gibt es verschiedene Ansatzmöglichkeiten. Die einfachste Methode ist das List-Scheduling. Bei diesem Verfahren wird bei jedem einfügen eines MOs überprüft, ob eine valide Register-Allokation möglich ist. Können die Register nicht zugeordnet werden, beginnt der Scheduler mit der nächsten MO. Im darauffolgenden Schritt wird nun nochmals versucht die erste MO einzufügen. Dies wird solange wiederholt bis alle MOs zugeordnet sind.
+Das Scheduling ist zuständig für die Anordnung der MIs bzw. MOs die sich in einem SLM befinden. Hierbei geht der Algorithmus so vor, dass er die Anordnung sucht welche den geringsten kritischen Pfad aufweist. Hierbei gibt es verschiedene Ansatzmöglichkeiten. Die einfachste Methode ist das List-Scheduling. Bei diesem Verfahren wird bei jedem einfügen eines MOs überprüft, ob eine valide Register-Allokation möglich ist. Können die Register nicht zugeordnet werden, beginnt der Scheduler mit der nächsten MO. Im darauffolgenden Schritt wird nun nochmals versucht die erste MO einzufügen. Dies wird solange wiederholt bis alle MOs zugeordnet sind.\cite{landskov1980local}
 Diese Art von Algorithmus findet jedoch nicht immer eine optimale Lösung und ist gerade für große Programme nicht geeignet. Aus diesem Grund kann optional ein genetischer Algorithmus eingesetzt werden, der die Länge des kritischen Pfades einer SLM reduziert.
 
 
@@ -161,7 +161,7 @@ ADD VxR0 VxR0 VxR1
 STORE 0x100 VxR0
 \end{lstlisting}
 \subsection{X2 Betriebsmodus}\label{subsec:x2Mode}
-Der X2-Betriebsmodus ermöglicht es mehrere Funktionseinheiten zu nutzen ohne dabei die Anzahl der zu decodierenden Anweisungen zu erhöhen. Hierbei wird einem Befehl die doppelte Anzahl an Schreib- und Lese-Registern übergeben, somit steigt die Zahl der Parameter von drei auf sechs. Beide Instruktionen eines X2-Befehl können auf das selben Schreibe-Register zugreifen. Bei den Lese-Registern gibt es die Vorgabe, dass die geraden Instruktionen auf gerade Register zugreifen und die ungeraden Instruktionen auf ungerade.% Ausserdem muessen die Instruktionen aus immer in einem gespiegelten Register
+Der X2-Betriebsmodus ermöglicht es mehrere Funktionseinheiten zu nutzen ohne dabei die Anzahl der zu decodierenden Anweisungen zu erhöhen. Hierbei wird einem Befehl die doppelte Anzahl an Schreib- und Lese-Registern übergeben, somit steigt die Zahl der Parameter von drei auf sechs. Beide Instruktionen eines X2-Befehl können auf das selben Schreibe-Register zugreifen.\cite{hartig2014customizing} Bei den Lese-Registern gibt es die Vorgabe, dass die geraden Instruktionen auf gerade Register zugreifen und die ungeraden Instruktionen auf ungerade.% Ausserdem muessen die Instruktionen aus immer in einem gespiegelten Register
 \subsection{MAC Operationen}\label{subsec:macMode}
 Die MAC(Multiply and Accumulate)-Operation führt eine Multiplikation zweier Werte aus und Akkumuliert diese im Anschluss. Werden bei einer n-bit Implementierungen zwei Werte multipliziert, so kann das Resultat eine Bitbreite von 2n aufweisen. Wird nun eine Architektur mit 64-bit Registern verwendet, müssen zwei Register zur Abspeicherung des Ergebnisses herangezogen werden. Dabei sollte es sich um zwei konsekutive Register handeln, hierbei können diese im selben oder in einem benachbarten Register-File stammen. 
 %Eine weitere Besonderheit der MAC-Operation ist, dass der erste Operand in eine geraden Registe-Adresse oder Register-File aufweisen muss. 
