@@ -4,22 +4,22 @@
 In diesem Kapitel wird kurz auf die Grundlagen und Begriffe von Signalprozessoren eingegangen. Im Anschluss wird die Verwendete Architektur erläutert und einzelne Bestandteile genauer untersucht. Anschließend wird die Funktion des Scheduling skizziert und das Prinzip der Verlustleistung aufgezeigt. Das Ende des Kapitels soll eine grobe Übersicht über Genetische-Algorithmen gegeben.
 
 \section{FPGA}
-Bei einem FPGA (Field Programmable Gate Array) handelt es sich um ein frei programmierbaren integrierten Schaltkreis, welcher mithilfe von Look-Up-Tabellen sehr effizient Algorithmen abbildet. Um eine gewünschte Funktion auf dem FPGA zu implementieren ist es notwendig die Look-Up-Tabellen mit einer Wahrheitstabellen zu befüllen, welche diese Funktion abbildet. Dadurch kann in ein FPGA jegliche erdenkliche Aufgabe erfüllen. Um die beschriebenen Blöcke mit dem IO-Ports des Chips zu verbinden ist es notwendig eine Verbindung mithilfe von Rooting-Switches und Connection-Boxen zu erstellen. Damit der Chip konfiguriert werden kann, muss die Funktion mithilfe einer HDL(Hardware Description Language) beschrieben werden.\cite{farooq2012fpga} Vorteil dieser Implementierung ist, dass eine echte Parallelität erreicht werden kann, so dass mehrere Blocke zeitgleich ausführbar sind. In dieser Arbeit wird ein FPGA als Entwicklungsumgebung verwendet, um den zu entwickelnden ASIP bestmöglich abzubilden und dabei möglichst flexibel zu bleiben.
+Bei einem FPGA (Field Programmable Gate Array) handelt es sich um ein frei programmierbaren integrierten Schaltkreis, welcher mithilfe von Look-Up-Tabellen sehr effizient Algorithmen abbildet. Um eine gewünschte Funktion auf dem FPGA zu implementieren ist es notwendig die Look-Up-Tabellen mit einer Wahrheitstabellen zu befüllen, welche diese Funktion abbildet. Dadurch kann ein FPGA jegliche erdenkliche Aufgabe erfüllen. Um die beschriebenen Blöcke mit dem IO-Ports des Chips zu verbinden ist es notwendig eine Verbindung mithilfe von Rooting-Switches und Connection-Boxen zu erstellen. Damit der Chip konfiguriert werden kann, muss die Funktion mithilfe einer HDL(Hardware Description Language) beschrieben werden.\cite{farooq2012fpga} Vorteil dieser Implementierung ist, dass eine echte Parallelität erreicht werden kann, so dass mehrere Blöcke zeitgleich ausführbar sind. In dieser Arbeit wird ein FPGA als Entwicklungsumgebung verwendet, um den zu entwickelnden ASIP bestmöglich abzubilden und dabei möglichst flexibel zu bleiben.
 
 
 \section{ASIP}
-ASIP bedeutet so viel wie Application Specific Instruction Set Processor, dabei handelt es sich wie der Name schon sagt um einen anwendungsspezifischen Prozessor. Hierbei ist der ASIP auf eine gewisse Funktion optimiert. Durch diese Spezialisierung, ist es möglich Einsparungen hinsichtlich Siliziumfläche und Energieverbrauch gegenüber herkömmlichen Prozessoren verzeichnen zu können. Der in dieser Arbeit verwendete ASIP ist eine vereinfachte Variante eines MIPS-Prozessors. MIPS oder auch \glqq Microprocessor without interlocked pipeline stages\grqq{} ist eine Befehlssatzarchitektur bei der der Entwickler/Compiler, Datenabhängigkeiten der Befehle erkennen und auflösen muss.
+ASIP bedeutet so viel wie Application Specific Instruction Set Processor, dabei handelt es sich wie der Name schon sagt um einen anwendungsspezifischen Prozessor. Hierbei sind ASIPs meist auf eine gewisse Funktion optimiert. Durch diese Spezialisierung, ist es möglich Einsparungen hinsichtlich Siliziumfläche und Energieverbrauch gegenüber herkömmlichen Prozessoren zu verzeichnen. Der in dieser Arbeit verwendete ASIP ist eine vereinfachte Variante eines MIPS-Prozessors. MIPS oder auch \glqq Microprocessor without interlocked pipeline stages\grqq{} ist eine Befehlssatzarchitektur bei der der Entwickler/Compiler, Datenabhängigkeiten der Befehle erkennen und auflösen muss.
 
 \section{SIMD}
 \label{sec:SIMD}
-Der Begriff SIMD steht für Single Instruction Multiple Data und ist eine Datenverarbeitungseigenschaft von Prozessoren die meist in der Signalverarbeitung zum Einsatz kommt. Hierbei ist der Vorteil einer solchen Implementierung, dass mehrere Instruktionen parallel mit den selben Daten ausgeführt werden können und somit eine Performanz-Steigerung einhergeht.
+Der Begriff SIMD steht für Single Instruction Multiple Data und ist eine Datenverarbeitungseigenschaft von Prozessoren die meist in der Signalverarbeitung zum Einsatz kommt. Hierbei ist der Vorteil einer solchen Implementierung ist, dass eine Instruktion in mehreren ALUs parallel, mit unterschiedlichen Daten ausgeführt werden kann. Somit ist nur eine Instruktion für die Berechnung vieler Operationen nötig, somit ist eine erhebliche Performanz-Steigerung erreichbar.\cite[Seite 249]{wust2010mikroprozessortechnik}
 
 \subsection{VLIW}
 \label{sec:VLIW}
 VLIW ist eine Eigenschaft von Mikroprozessor-Architekturen. VLIW steht hierbei für Very Long Instruction Word und bedeutet soviel wie sehr langes Instruktions-Wort. Das Ziel dieser Struktur ist eine schnelle Abarbeitung des Befehlsatzes, wobei hierbei einige Befehle parallel ausgeführt werden können. Um dies zu ermöglichen sind mehrere Instruktions-Dekoder vonnöten. Eine VLIW-Architekur geht meist mit Pipelining einher. 
 
 \subsection{Pipelining}
-Wie das Wort Pipelining schon besagt, handelt es sich hierbei um eine Befehlsabarbeitung am Fließband(Pipeline). Wurde ein Befehl in der ersten Pipelinestufe abgearbeitet kann dieser an die nächste Stufe weitergeleitet werden und der nachfolgende Befehl führt die erste Phase aus. Nachdem die Anzahl der Pipelinestufen an Befehlen dem System übergeben wurden, liegen die Daten Parallel am Ausgang an.(siehe Abbildung \ref{fig:pipeline})  Somit ist eine parallele Verarbeitung mehrerer unterschiedlicher Befehle möglich. Dabei ist darauf zu achten, dass die Taktung der Pipelinestufen sich an dem Befehle orientiert, welcher die längste Ausführungsdauer aufweist.
+Wie das Wort Pipelining schon besagt, handelt es sich hierbei um eine Befehlsabarbeitung am Fließband(Pipeline). Wurde ein Befehl in der ersten Pipelinestufe abgearbeitet kann dieser an die nächste Stufe weitergeleitet werden und der nachfolgende Befehl führt die erste Phase aus. Nachdem die Anzahl der Pipelinestufen an Befehlen dem System übergeben wurden, liegen die Daten Parallel am Ausgang an.(siehe Abbildung \ref{fig:pipeline})  Somit ist eine parallele Verarbeitung mehrerer unterschiedlicher Befehle möglich. Dabei ist darauf zu achten, dass die Taktung der Pipelinestufen sich an dem Befehle orientiert, welcher die längste Ausführungsdauer aufweist. \cite[Seite 204]{wust2010mikroprozessortechnik}
 \begin{scriptsize}
 	\begin{figure}[htbp] 
 		\centering
@@ -39,13 +39,13 @@ Um dem niedrigen Energieverbrauch und Flächenbedarf bei Hörgeräten zu genüge
 \end{itemize}
 Außerdem wurde der Prozessor so erweitert, dass neue Funktionen sowie Co-Prozessoren eingefügt werden können. Zudem besteht die Möglichkeit des Forwarding bei der Verwendung von temporären Variablen.
 Der verwendete KAVUAKA-Prozessor besitzt außerdem zwei Instruktion-Dekoder auch Issue-Slots genannt und kann somit zwei Befehle parallel ausführen.
-Für die Entwicklung wurde der Prozessor auf einem FPGA implementiert, da dieser eine hohe Flexibilität und somit geringere Entwicklungszeiten bietet.
+Für die Entwicklung wurde der Prozessor auf einem FPGA implementiert, da dieser eine hohe Flexibilität und somit geringere Entwicklungszeiten bietet.\cite{lukasglitches2017}
 
 \begin{scriptsize}
 	\begin{figure}[htbp] 
 		\centering
 		\includesvg[width=0.70\textwidth]{kavuaka2pipeline}
-		\caption{KAVUAKA-Prozessor}
+		\caption{KAVUAKA-Prozessor \cite{lukasglitches2017}}
 		\label{fig:KAVUAKA}
 	\end{figure}
 \end{scriptsize}
@@ -59,14 +59,16 @@ Es besteht eine Vielzahl an Registerorganisationen für Signalprozessoren. Im Al
 	\caption{Register File Organisation –\\ a)zentralisierte Organisation b)gruppierte Organisation c)hierarchische Organisation d)partitionierte Organisation  \cite{paya2010multi}}
 	\label{fig:RegisterOrga}
 \end{figure}
+\newline
 Im folgenden soll nun weiter auf die partitionierte Organisation eingegangen werden. Physikalisch ist der Prozessor mit einem 4kB Register File ausgestattet. Dabei handelt es sich nicht um eine monolithische sondern um ein Multishared Register-File Organisation. Hierbei wird das Register in mehrere Teile getrennt, die Anzahl hängt hierbei von den Issue-Solts ab. Durch diese Aufteilung können Einsparungen in der Logik für die Schreib- und Leseports generiert werden und die Anzahl der Register-File-Ports wird erhöht.\\
 Der verwendete Prozessor besitzt zwei Register-Files mit jeweils 32 64bit-Registern. Beide Register weißen zwei Lese und vier Schreibports auf. Dadurch ist es möglich, dass Instruktionen aus dem Issue-Slot 1 in das Register-File 0 schreiben oder lesen und umgekehrt. Außerdem wird durch diese Architektur ein Schreiben und Lesen zweier Instruktionen auf das selbe Register-File möglich gemacht. Des weiteren können im Falle einer X2-Instruktion beide Ports des Registers verwendet werden. Die Aufteilung und  Zuordnung der Schreib- und Leseports können aus der Abbildung \ref{fig:reg_orga} und \ref{fig::schreib-port}+\ref{lese-port} entnommen werden.
 
+
 \begin{figure}[htbp] 
-		\centering
-		\includesvg[width=0.7\textwidth]{registerfile_new}
-		\caption{Register File Organistaion}
-		\label{fig:reg_orga}
+	\centering
+	\includesvg[width=0.7\textwidth]{registerfile_new}
+	\caption{Register File Organistaion}
+	\label{fig:reg_orga}
 \end{figure}
 
 \begin{table}[htbp]
@@ -132,10 +134,12 @@ Der verwendete Prozessor besitzt zwei Register-Files mit jeweils 32 64bit-Regist
 \end{table}
 
 
+\newpage
 \subsection{Compiler}
 Damit ein Prozessor eine Programmiersprache (optimal) ausführen kann sind eine Schritte notwendig. Diese sind im Compiler zusammengefasst und werden im folgenden kurz erläutertert.\\
-Der Code wird vorerst in so genannte Micro Instructions (MI) gestückelt.  Hierbei ist eine MI eine Anweisung welche der Prozessor in einem Taktzyklus ausführen kann. Durch die Verwendung eines VLIW-Prozessors ist es möglich mehrere Instruktionen parallel auszuführen. Im Falle des KAUVAKA-Prozessors sind dies wie erwähnt zwei Instruktionen. Aus diesem Grund teilt der Compiler nun die MIs in Micro Operation (MO) auf. Diese werden anschließend in so genannte \"Straight Line Microcode\" (SLM) aufgeteilt. Ein SLM ist hierbei so definiert, dass es nur eine Einsprungstelle und Austrittsstelle gibt. Außerdem dürfen sich keine Sprünge und Verzweigungen innerhalb einer SLM befinden.  Dadurch entsteht ein Baum aus SLMs, die im Anschluss einzeln optimiert werden können. Dieses Verfahren ist nötig, da eine Optimierung über alle Instruktionen eine zu hohe Komplexität aufweisen würde. \cite{landskov1980local}
+Der Code wird vorerst in so genannte Micro Instructions (MI) gestückelt.  Hierbei ist eine MI eine Anweisung welche der Prozessor in einem Taktzyklus ausführen kann. Durch die Verwendung eines VLIW-Prozessors ist es möglich mehrere Instruktionen parallel auszuführen. Im Falle des KAUVAKA-Prozessors sind dies wie erwähnt zwei Instruktionen. Aus diesem Grund teilt der Compiler nun die MIs in Micro Operation (MO) auf. Diese werden anschließend in so genannte \glqq Straight Line Microcode\grqq{} (SLM) aufgeteilt. Ein SLM ist hierbei so definiert, dass es nur eine Einsprungstelle und Austrittsstelle gibt. Außerdem dürfen sich keine Sprünge und Verzweigungen innerhalb einer SLM befinden.  Dadurch entsteht ein Baum aus SLMs, die im Anschluss einzeln optimiert werden können. Dieses Verfahren ist nötig, da eine Optimierung über alle Instruktionen eine zu hohe Komplexität aufweisen würde. \cite{landskov1980local}
 \subsection{Scheduling}
+\label{sec:scheduling}
 Das Scheduling ist zuständig für die Anordnung der MIs bzw. MOs die sich in einem SLM befinden. Hierbei geht der Algorithmus so vor, dass er die Anordnung sucht welche den geringsten kritischen Pfad aufweist. Hierbei gibt es verschiedene Ansatzmöglichkeiten. Die einfachste Methode ist das List-Scheduling. Bei diesem Verfahren wird bei jedem einfügen eines MOs überprüft, ob eine valide Register-Allokation möglich ist. Können die Register nicht zugeordnet werden, beginnt der Scheduler mit der nächsten MO. Im darauffolgenden Schritt wird nun nochmals versucht die erste MO einzufügen. Dies wird solange wiederholt bis alle MOs zugeordnet sind.\cite{landskov1980local}
 Diese Art von Algorithmus findet jedoch nicht immer eine optimale Lösung und ist gerade für große Programme nicht geeignet. Aus diesem Grund kann optional ein genetischer Algorithmus eingesetzt werden, der die Länge des kritischen Pfades einer SLM reduziert.
 
@@ -145,6 +149,7 @@ Diese Art von Algorithmus findet jedoch nicht immer eine optimale Lösung und is
 \subsection{Virtuelle Register}
 Bei virtuellen Registern handelt es sich um Register die an beliebiger Stelle im Register-File allokiert werden können, das heißt der Compiler kann selbst entscheiden wo im Registerfile er diese Variable platziert. 
 Die Idee hierbei ist es, dem Compiler die Aufgabe zu übergeben ein geeignetes Register auszuwählen. Das Codebeispiel \ref{phyReg} zeigt anhand einer einfachen Addition diese Funktion. Da der Prozessor nicht mit Registeradressen addieren kann, müssen zwei Hilfsvariablen verwendet werden. In diesem Fall wurden die Register V0R0 und V0R1 gewählt. Mithilfe dieser Register kann der Prozessor nun eine Addition in Zeile drei durchführen.
+\newpage
 \renewcommand{\lstlistingname}{Codebeispiel}
 \begin{lstlisting}[frame=single, caption={physikalische Register},captionpos=b,label=phyReg]
 MV V0R0 0x100
@@ -161,20 +166,19 @@ ADD VxR0 VxR0 VxR1
 STORE 0x100 VxR0
 \end{lstlisting}
 \subsection{X2 Betriebsmodus}\label{subsec:x2Mode}
-Der X2-Betriebsmodus ermöglicht es mehrere Funktionseinheiten zu nutzen ohne dabei die Anzahl der zu decodierenden Anweisungen zu erhöhen. Hierbei wird einem Befehl die doppelte Anzahl an Schreib- und Lese-Registern übergeben, somit steigt die Zahl der Parameter von drei auf sechs. Beide Instruktionen eines X2-Befehl können auf das selben Schreibe-Register zugreifen.\cite{hartig2014customizing} Bei den Lese-Registern gibt es die Vorgabe, dass die geraden Instruktionen auf gerade Register zugreifen und die ungeraden Instruktionen auf ungerade.% Ausserdem muessen die Instruktionen aus immer in einem gespiegelten Register
+Der X2-Betriebsmodus ermöglicht es identischen Instruktionen mit dem selben Opcode den Registerzugriff zusammenzufuehren, wobei sich die Adresse nur im letzten Bit unterscheidet. Dadurch wurde virtuell die Anzahl der Issue-Slots erhoeht, ohne dabei die Anzahl der zu decodierenden Anweisungen zu erhöhen. Hierbei wird einem Befehl die doppelte Anzahl an Schreib- und Lese-Registern übergeben, somit steigt die Zahl der Parameter von drei auf sechs. Bei der Auswahl der Registern gibt es die Vorgabe, dass die erste Instruktionen auf gerade Register-Adressen und die zweite auf ungerade Adressen des zugreift. \cite{paya2009instruction}
 \subsection{MAC Operationen}\label{subsec:macMode}
-Die MAC(Multiply and Accumulate)-Operation führt eine Multiplikation zweier Werte aus und Akkumuliert diese im Anschluss. Werden bei einer n-bit Implementierungen zwei Werte multipliziert, so kann das Resultat eine Bitbreite von 2n aufweisen. Wird nun eine Architektur mit 64-bit Registern verwendet, müssen zwei Register zur Abspeicherung des Ergebnisses herangezogen werden. Dabei sollte es sich um zwei konsekutive Register handeln, hierbei können diese im selben oder in einem benachbarten Register-File stammen. 
-%Eine weitere Besonderheit der MAC-Operation ist, dass der erste Operand in eine geraden Registe-Adresse oder Register-File aufweisen muss. 
+Die MAC(Multiply and Accumulate)-Operation führt eine Multiplikation zweier Werte aus und Akkumuliert diese im Anschluss. Werden bei einer n-bit Implementierungen zwei Werte multipliziert, so kann das Resultat eine Bitbreite von 2n aufweisen. Wird nun eine Architektur mit 64-bit Registern verwendet, müssen zwei Register zur Abspeicherung des Ergebnisses herangezogen werden. Dabei sollte es sich um zwei aufeinderfolgende Register handeln, hierbei können diese im selben oder in einem benachbarten Register-File stammen. Eine weitere Besonderheit der MAC-Operation ist, dass der erste Operand in eine geraden Registe-Adresse liegen muss. Ein Beispiel für eine valide MAC-Allocation stellen die folgenden Register-Paare V0R0 und V1R0 oder V0R0 und V0R1 dar.
   
 
 \subsection{Dummy-Register}\label{subsec:dummy}
 Dummy-Register sind Register die im Register-File implementiert sind, jedoch kann der Lese- und Schreibzugriff zur Laufzeit über ein so genanntes Dummy-Control-Register gesteuert werden. Mit Hilfe dieser Funktion können beispielsweise Hilfsvariablen die nur kurze Zeit existieren nicht an das Register-File zurück geschrieben werden und somit den Energieverbrauch senkt. 
 
 \subsection{Address-Isolation}\label{subsec:add_iso}
-Eine weitere Komponente des Prozessors ist die Adress-Isolation. Dabei handelt es sich um eine Funktion, welche die Switching-Aktivität des Register-Files verringert. Hierbei werden die Adressen der Schreib- und Leseports solange in einem Flipflop gespeichert bis eine neue Adresse angelegt wird (siehe Abbildung XXX).[Analyzin the Trade of Lukas GerlachS]
+Eine weitere Komponente des Prozessors ist die Adress-Isolation. Dabei handelt es sich um eine Funktion, welche die Switching-Aktivität des Register-Files verringert. Hierbei werden die Adressen der Schreib- und Leseports solange in einem Flipflop gespeichert bis eine neue Adresse angelegt wird.\cite{lukasglitches2017}
 
-\subsection{Clock-Gateing}\label{subsec:clock-gate}
-Unter dem Begriff Clock-Gating verbirgt sich eine Abschaltung des Clock-Signals in Teilen des Prozessors die nicht genutzt werden. Dadurch lässt sich die Schaltaktivität in vielen Bereichen des Prozessors deutlich minimieren. Das Resultat spiegelt sich in der Leistungsaufnahme wieder, die dabei deutlich sinkt. In dieser Arbeit wird bis auf weiteres kein Clock-Gating eingesetzt.
+\subsection{Clock-Gating}\label{subsec:clock-gate}
+Das Taktnetz ist bei Prozessoren in der Regel sehr groß, muss eine hohe Last treiben und hat sehr viele Schaltvorgänge, dadurch nimmt dieses meist über 40\% der Gesamtleistung auf. Aus diesem Grund wurde das Clock-Gating entwickelt. Hinter dem Begriff verbirgt sich eine Abschaltung des Clock-Signals in Teilen des Prozessors der nicht genutzt werden. Dadurch lässt sich die Schaltaktivität in vielen Bereichen des Prozessors deutlich minimieren. Das Resultat spiegelt sich in der Leistungsaufnahme wieder, die dabei deutlich sinkt.\cite{donno2003clock} In dieser Arbeit wird bis auf weiteres kein Clock-Gating eingesetzt.
 
 \section{Verlustleistung}
 \label{sec:verlustleistung}

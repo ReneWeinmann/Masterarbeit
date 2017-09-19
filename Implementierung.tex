@@ -2,11 +2,28 @@
 \label{chap:Implementierung}
 Nachdem die nötigen Grundlagen erläutert wurden soll in diesem Kapitel aufgezeigt werden wie der Compiler aufgebaut ist und wie das gesetzte Ziel implementiert wurde. Hierzu wird kurz auf den Ausgangsstatus des Codes und dessen Bestandteile eingegangen um das komplette System besser verstehen zu können. Anschließend wird veranschaulicht wie die Verlustleistung gesenkt werden soll und wie dies mit einer Heuristik implementiert wurde. Im Anschluss wird diese Implementierung durch den Einsatz eines genetischen Algorithmus noch verbessert und die einzelnen Komponenten erläutert.
 \section{Ausgangsstatus}
-Um die Register Allokation in den Code einzuordnen zeigt das unten stehende Schaubild (siehe Abbildung XXX) den Aufbau des Codes.
+Um die Register Allokation in den Code einzuordnen zeigt das unten stehende Schaubild (siehe Abbildung \ref{fig:flow_compiler}) den Aufbau des Codes.
 
-\subsection{Precompiler}
-Da der Assembler-Code auch Bestandteile aufweisen kann die nicht in eigentlichen Assemblersprache enthalten sind, ist es nötig diese aufzulösen. Hierzu dient der Precompiler oder Preprozessor der diese Konstrukte in einen vom Prozessor ausführbaren Code bzw. Anweisungen umwandelt. Ein Beispiel für ein solches Konstrukt ist das An- und Ausschalten des Schedulings für bestimmte Bereiche des Codes. Hierbei kann dem Compiler, im Assembler-Programm durch Angabe des 'scheduling-off'-Befehls, mitgeteilt werden welche SLMs vom Scheduling unberührt bleiben. 
-\subsection{Scheduling}
+\begin{figure}[htbp] 
+	\centering
+	\includesvg[width=0.7\textwidth]{flowchart}
+	\caption{Flowchart Compiler}
+	\label{fig:flow_compiler}
+\end{figure}
+
+\begin{itemize}
+	\item Precompiler\\
+		Da der Assembler-Code auch Bestandteile aufweisen kann die nicht in eigentlichen Assemblersprache enthalten sind, ist es nötig diese aufzulösen. Hierzu dient der Precompiler oder Preprozessor der diese Konstrukte in einen vom Prozessor ausführbaren Code bzw. Anweisungen umwandelt. Ein Beispiel für ein solches Konstrukt ist das An- und Ausschalten des Schedulings für bestimmte Bereiche des Codes. Hierbei kann dem Compiler, im Assembler-Programm durch Angabe des 'scheduling-off'-Befehls, mitgeteilt werden welche SLMs vom Scheduling unberührt bleiben.
+	\item Virtual Renaming\\
+		Im Teil des virtuellen Renaming(Umbenennen) werden die im Assembler-Code vorhandenden virtuellen Register umbenannt, um eine konsistente Allokation und bessere Nachfollzierbarkeit zugewaehrleisten. Ausserdem wird in diesem Teil des Compilers ueberprueft ob ein virtuelles Register verwendet wurde bevor es zugewiesen ist.
+	\item Register Initalisierung\\
+		Bei der Register Initalisierung wird ueber alle Operationen itteriert. Dabei werden die Adressen des Register-Files blockiert, welche bereits von physikalischen Registern verwendet werden. Dadurch wird verhindert, dass diese Positionen fuer das virtuelle Register-Mapping verwendet werden koennen.
+	\item Scheduling\\
+		Wie in den Grundlagen beschrieben \ref{sec:scheduling} ist das Scheduling zustaendig fuer die Anordnung der Operationen im Prozessor. Dabei wird jenach gewaehltem Optimierungsgrad ein Scheduling gewaehlt. Hierbei Kann zwischen einem Genetischen Instruktions-Scheduling und einem Heuristischem-Ansatz entscheiden werden. Beide Algorithmen rufen intern die Register-Allokation auf. Wird der genetische Algorithmus verwendet wird der Fitness-Wert der Register-Zuweisung mit der Bewertungsfunktion des Instruktion-Schedulings verrechnet.
+	\item Register Allokation\\
+		Bei der Regsiter-Allokation bestehen ebenfalls zwei Arten der Zuweisung. Zum Einen eine Heuristik (siehe Kapitel \ref{sec:Heuristik}) zum Andern ein Genetischer Algorithmus (siehe Kapitel \ref{sec:genetischerAlgorithmus}). Beide Alogithmen werden im folgenden nun naeher beleuchtet.
+\end{itemize}
+
 
 \section{Ansatz}
 Nach genauerem betrachten der Formel für die dynamische Verlustleistung \ref{eq:dynVerlustleistung} hängt diese von vier Faktoren ab, Schaltaktivitäten,  Lastkapazität, Versorgungsspannung und der Frequenz. Die statische Verlustleistung wird nicht weiter betrachtet, da diese nur durch eine Veränderung der Hardware verbessert werden könnte. Dies ist jedoch nicht Teil dieser Arbeit. Da ebenfalls die Spannung und Frequenz von der Architektur und anderen nicht beeinflussbaren Faktoren vorgegeben wurde kann auch an diesen Parametern nichts verbessert werden. Im folgenden wird nun erst darauf eingegangen wie, durch Minimierung der Schaltaktivitäten, die Verlustleistung optimiert werden kann. Im Weiteren Verlauf des Textes wird dann ebenfalls der Einfluss der Lastkapazitäten überprüft.\\

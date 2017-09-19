@@ -21,7 +21,7 @@
 \BOOKMARK [2][-]{subsection.2.5.3}{MAC Operationen}{section.2.5}% 21
 \BOOKMARK [2][-]{subsection.2.5.4}{Dummy-Register}{section.2.5}% 22
 \BOOKMARK [2][-]{subsection.2.5.5}{Address-Isolation}{section.2.5}% 23
-\BOOKMARK [2][-]{subsection.2.5.6}{Clock-Gateing}{section.2.5}% 24
+\BOOKMARK [2][-]{subsection.2.5.6}{Clock-Gating}{section.2.5}% 24
 \BOOKMARK [1][-]{section.2.6}{Verlustleistung}{chapter.2}% 25
 \BOOKMARK [2][-]{subsection.2.6.1}{Dynamische Verlustleistung}{section.2.6}% 26
 \BOOKMARK [2][-]{subsection.2.6.2}{Statische Verlustleistung}{section.2.6}% 27
@@ -29,28 +29,3 @@
 \BOOKMARK [2][-]{subsection.2.7.1}{Crossover}{section.2.7}% 29
 \BOOKMARK [2][-]{subsection.2.7.2}{Mutation}{section.2.7}% 30
 \BOOKMARK [2][-]{subsection.2.7.3}{Fitness}{section.2.7}% 31
-\BOOKMARK [0][-]{chapter.3}{Implementierung}{}% 32
-\BOOKMARK [1][-]{section.3.1}{Ausgangsstatus}{chapter.3}% 33
-\BOOKMARK [2][-]{subsection.3.1.1}{Precompiler}{section.3.1}% 34
-\BOOKMARK [2][-]{subsection.3.1.2}{Scheduling}{section.3.1}% 35
-\BOOKMARK [1][-]{section.3.2}{Ansatz}{chapter.3}% 36
-\BOOKMARK [2][-]{subsection.3.2.1}{Hamming-Distanze}{section.3.2}% 37
-\BOOKMARK [1][-]{section.3.3}{Heuristik}{chapter.3}% 38
-\BOOKMARK [1][-]{section.3.4}{Genetischer Algorithmus}{chapter.3}% 39
-\BOOKMARK [2][-]{subsection.3.4.1}{Gene}{section.3.4}% 40
-\BOOKMARK [2][-]{subsection.3.4.2}{Aufbau}{section.3.4}% 41
-\BOOKMARK [2][-]{subsection.3.4.3}{Fitness-Funktion}{section.3.4}% 42
-\BOOKMARK [2][-]{subsection.3.4.4}{Parameter}{section.3.4}% 43
-\BOOKMARK [2][-]{subsection.3.4.5}{Startpopulation}{section.3.4}% 44
-\BOOKMARK [2][-]{subsection.3.4.6}{dynamische Anpassung}{section.3.4}% 45
-\BOOKMARK [2][-]{subsection.3.4.7}{Algorithmus Modi}{section.3.4}% 46
-\BOOKMARK [2][-]{subsection.3.4.8}{Glitches}{section.3.4}% 47
-\BOOKMARK [0][-]{chapter.4}{Evaluation}{}% 48
-\BOOKMARK [1][-]{section.4.1}{Testprogramme}{chapter.4}% 49
-\BOOKMARK [2][-]{subsection.4.1.1}{Beamforming}{section.4.1}% 50
-\BOOKMARK [2][-]{subsection.4.1.2}{emulated floating Point}{section.4.1}% 51
-\BOOKMARK [1][-]{section.4.2}{Evaluation}{chapter.4}% 52
-\BOOKMARK [0][-]{chapter.5}{Schlussfolgerung}{}% 53
-\BOOKMARK [1][-]{section.5.1}{Evaluation}{chapter.5}% 54
-\BOOKMARK [0][-]{appendix.A}{Source Code}{}% 55
-\BOOKMARK [0][-]{chapter*.12}{Literaturverzeichnis}{}% 56
