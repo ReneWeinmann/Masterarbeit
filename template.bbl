@@ -1,0 +1,61 @@
+\begin{thebibliography}{10}
+
+\bibitem{statistica}
+Anzahl der personen in deutschland, die ein hörgerät tragen, von 2013 bis
+  2016 (in millionen).
+\newblock
+  \url{https://de.statista.com/statistik/daten/studie/252153/umfrage/anzahl-der-hoergeraetetraeger-in-deutschland}.
+\newblock Zugegriffen: 01.09.2017- 10:38Uhr.
+
+\bibitem{davis1991handbook}
+Lawrence Davis.
+\newblock Handbook of genetic algorithms.
+\newblock 1991.
+
+\bibitem{donno2003clock}
+Monica Donno, Alessandro Ivaldi, Luca Benini, and Enrico Macii.
+\newblock Clock-tree power optimization based on rtl clock-gating.
+\newblock In {\em Proceedings of the 40th annual Design Automation Conference},
+  pages 622--627. ACM, 2003.
+
+\bibitem{farooq2012fpga}
+Umer Farooq, Zied Marrakchi, and Habib Mehrez.
+\newblock Fpga architectures: An overview.
+\newblock {\em Tree-based Heterogeneous FPGA Architectures}, pages 7--48, 2012.
+
+\bibitem{flynn2007low}
+David Flynn, Rob Aitken, Alan Gibbons, and Kaijian Shi.
+\newblock {\em Low power methodology manual: for system-on-chip design}.
+\newblock Springer Science \& Business Media, 2007.
+
+\bibitem{landskov1980local}
+David Landskov, Scott Davidson, Bruce Shriver, and Patrick~W Mallett.
+\newblock Local microcode compaction techniques.
+\newblock {\em ACM Computing Surveys (CSUR)}, 12(3):261--294, 1980.
+
+\bibitem{lukasglitches2017}
+Gerlach Lukas, Pay{\'a}~Vay{\'a} Guillermo, Liu Shuango, Wei{\ss}brich Moritz,
+  and Blume Holger.
+\newblock Analyzing the trade-off between power consumption and beamforming
+  algorithm performance using a hearing aid asip.
+\newblock 2017.
+
+\bibitem{paya2009instruction}
+Guillermo Pay{\'a}-Vay{\'a}, Javier Mart{\'\i}n-Langerwerf, Florian Giesemann,
+  Holger Blume, and Peter Pirsch.
+\newblock Instruction merging to increase parallelism in vliw architectures.
+\newblock In {\em System-on-Chip, 2009. SOC 2009. International Symposium on},
+  pages 143--146. IEEE, 2009.
+
+\bibitem{paya2010multi}
+Guillermo Pay{\'a}-Vay{\'a}, Javier Mart{\'\i}n-Langerwerf, and Peter Pirsch.
+\newblock A multi-shared register file structure for vliw processors.
+\newblock {\em Journal of Signal Processing Systems}, 58(2):215--231, 2010.
+
+\bibitem{wust2010mikroprozessortechnik}
+Klaus W{\"u}st.
+\newblock {\em Mikroprozessortechnik: Grundlagen, Architekturen,
+  Schaltungstechnik und Betrieb von Mikroprozessoren und Mikrocontrollern}.
+\newblock Springer-Verlag, 2010.
+
+\end{thebibliography}

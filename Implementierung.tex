@@ -2,18 +2,21 @@
 \label{chap:Implementierung}
 Nachdem die nötigen Grundlagen erläutert wurden soll in diesem Kapitel aufgezeigt werden wie der Compiler aufgebaut ist und wie das gesetzte Ziel implementiert wurde. Hierzu wird kurz auf den Ausgangsstatus des Codes und dessen Bestandteile eingegangen um das komplette System besser verstehen zu können. Anschließend wird veranschaulicht wie die Verlustleistung gesenkt werden soll und wie dies mit einer Heuristik implementiert wurde. Im Anschluss wird diese Implementierung durch den Einsatz eines genetischen Algorithmus noch verbessert und die einzelnen Komponenten erläutert.
 \section{Ausgangsstatus}
-Um die Register Allokation in den Code einzuordnen zeigt das unten stehende Schaubild (siehe Abbildung \ref{fig:flow_compiler}) den Aufbau des Codes.
+Um die Register Allokation in den Code einzuordnen zeigt das unten stehende Schaubild (siehe Abbildung \ref{fig:flow_compiler}) den Aufbau des Codes. Gestartet wird mit einem Assembler-Programm das in einer ASM-Datei vorliegt und dem Code uebergeben wird.
 
-\begin{figure}[htbp] 
-	\centering
-	\includesvg[width=0.7\textwidth]{flowchart}
-	\caption{Flowchart Compiler}
-	\label{fig:flow_compiler}
-\end{figure}
+
+\begin{scriptsize}
+	\begin{figure}[htbp] 
+		\centering
+		\includesvg[width=0.70\textwidth]{flowchart}
+		\caption{Flowchart Compiler}
+		\label{fig:flow_compiler}
+	\end{figure}
+\end{scriptsize}
 
 \begin{itemize}
 	\item Precompiler\\
-		Da der Assembler-Code auch Bestandteile aufweisen kann die nicht in eigentlichen Assemblersprache enthalten sind, ist es nötig diese aufzulösen. Hierzu dient der Precompiler oder Preprozessor der diese Konstrukte in einen vom Prozessor ausführbaren Code bzw. Anweisungen umwandelt. Ein Beispiel für ein solches Konstrukt ist das An- und Ausschalten des Schedulings für bestimmte Bereiche des Codes. Hierbei kann dem Compiler, im Assembler-Programm durch Angabe des 'scheduling-off'-Befehls, mitgeteilt werden welche SLMs vom Scheduling unberührt bleiben.
+		Da der Assembler-Code auch Kommentare oder Bestandteile aufweisen kann die nicht in der eigentlichen Assemblersprache enthalten sind, ist es nötig diese aufzulösen. Hierzu dient der Precompiler oder Preprozessor der diese Konstrukte in einen vom Prozessor ausführbaren Code bzw. Anweisungen umwandelt. Ein Beispiel für ein solches Konstrukt ist das An- und Ausschalten des Schedulings für bestimmte Bereiche des Codes. Hierbei kann dem Compiler, im Assembler-Programm durch Angabe des 'scheduling-off'-Befehls, mitgeteilt werden welche SLMs vom Scheduling unberührt bleiben soll.
 	\item Virtual Renaming\\
 		Im Teil des virtuellen Renaming(Umbenennen) werden die im Assembler-Code vorhandenden virtuellen Register umbenannt, um eine konsistente Allokation und bessere Nachfollzierbarkeit zugewaehrleisten. Ausserdem wird in diesem Teil des Compilers ueberprueft ob ein virtuelles Register verwendet wurde bevor es zugewiesen ist.
 	\item Register Initalisierung\\
@@ -43,7 +46,7 @@ Die Hamming-Distanz ist nach dem amerikanischen Mathematiker Richard Wesley Hamm
 \section{Heuristik}
 \label{sec:Heuristik}
 
-Um die Hamming-Distanz zu berechnen werden die Adressen der letzten Instruktionen gespeichert. Da die Architektur  wie bereits erwähnt zwei Issue-Slots aufweist und diese auf beide Register-Files zugreifen können muss es dementsprechend vier Target- und acht Source-Adressleitungen geben(siehe Abbildung XXX).\\
+Um die Hamming-Distanz zu berechnen werden die Adressen der letzten Instruktionen gespeichert. Da die Architektur  wie bereits erwähnt zwei Issue-Slots aufweist und diese auf beide Register-Files zugreifen können muss es dementsprechend vier Target- und acht Source-Adressleitungen geben(siehe Abbildung \ref{fig:reg_orga}).\\
 Da eine Architektur mit Adresse Isolation eingesetzt wird bleiben die eingestellten Adressen an den Register-File Ports angelegt. Um die Schaltaktivität zu minimieren wird nun bei jedem virtuellen und physikalischem Register die Hamming-Distanz zu der zuletzt angelegten Adresse des jeweiligen Ports berechnet. Hierbei wird die virtuelle auf das Register gemappt welches die geringste Hamming-Distanz aufweist.\\
 \begin{lstlisting}[frame=single, caption={Heuristik Beispiel},captionpos=b,label=code:heuristik]
 :0 ADD V0R0 V0R0 V0R0 :1 OR V1R0 V0R0 V0R0
@@ -52,6 +55,14 @@ Da eine Architektur mit Adresse Isolation eingesetzt wird bleiben die eingestell
 :0 ADD VxR0 V0R0 V0R0 :1 OR VxR1 V0R0 V0R0
 :0 ADD VxR2 VxR0 VxR1 :1 OR VxR3 VxR0 VxR1
 \end{lstlisting}
+
+\begin{figure}[htbp] 
+	\centering
+	\includesvg[width=\textwidth]{heuristik}
+	\caption{Heuristik Beispiel}
+	\label{fig:heuristik}
+\end{figure}
+
 Anhand des Codebeispiels \ref{code:heuristik} und der Abbildung mit den bereits allokierten Register soll nun das Mapping der virtuellen Register verdeutlicht werden.
 Der Code Zeigt hierbei einen bereist geschedueleten Assembler-Code, wobei das Scheduling in diesem Fall, durch die angebe des Issue-Slots vor dem eigentlichen Befehl, vorgegeben wurde. Außerdem werden in diesem Beispiel nur die Target-Register betrachtet.
 Vorerst werden in beiden Register-Files drei Adressen mittels physikalischer Register belegt(Abbildung XXX blau hinterlegte Felder). Im Anschluss beginnt die Zuweisung der virtuellen Register.
