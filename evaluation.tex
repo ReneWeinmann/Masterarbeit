@@ -1,5 +1,22 @@
 \chapter{Evaluation}
 \label{chap:evaluation}
+Um die Leistungsaufnahme des Prozessors ermitteln zu können sind einige Schritte notwendig. Die Vorgehensweise ist in Schaubild XXX abgebildet. 
+Vorerst wird das gewünschte Assembler Programm zusammen mit der Prozessor-Konfiguration in den im Implementierung Kapitel beschriebenen Compiler geladen. Hierbei muss unter Anderem angegeben werden mit welchen Takten und ob.. Außerdem muss dem Compiler die Variante der zu verwendenden Register allocation Tabelle tttt übergeben werden. Nach erfolgreichem compilieren des Codes steht die Binary Datei und der geschedulte Code zu Verfügung. Im Anschluss an diesen Prozess wird die Leistungsanalyse durchgeführt. Hierzu wird die Netzliste des Prozessors und die Binary Datei benötigt. Daraus wird mit Tool Primetime der Firma Synopsys die Verlustleistung ermittelt. Hierbei geht das Tool so vor, dass alle Schaltvorgänge der Transistoren der Architektur aufsummiert werden und mit den hinterlegten Konfigurationen die jeweilige Leistungsaufnahme ermittelt. AUSFÜHRLICHER . Hieraus entsteht ein ausführlicher Power Report. 
+Mithilfe dieses Evalutionsablaufes sind die folgenden Ergebnisse entstanden.
+Um den Einfluss der Register-Adressen besser verstehen zu können wurden Assemblerprogramme entwickelt welche den Einfluss von Target-, Source1 und Source2-Register untersuchen. Vorerst wurden die einzelnen Register getrennt voneinander untersucht. Hierbei werden alle Möglichkeiten der Allokation durchlaufen um zum einen den Code zu testen und zum andern alle Einflüsse der Adressierung zu ermitteln. Hierbei bestehen für die Target-Register 4 und für die Source-Register 16 Möglichkeiten. Um die einzelnen Ergebnisse vergleichen zu können wurden die Programme so entworfen, dass die Hamming-Distanzen für alle Testfälle identisch sind. 
+
+Durch diese Untersuchung war zu erkennen, dass sich die Hamming-Distanzen zu der Toggleleistung nahe zu linear verhält. Dazu wurden die Leistungen der einzelnen Adress-Ports aufsummiert. Der Verlauf der Gesamtleistung des Prozessors ist auf dieser Ebene nur schwer nachzuvollziehen, jedoch ist auch hier eine Verbesserung zu verzeichnen. 
+Bei der Evaluationen war auffällig, dass die Leistung bei gleicher Hamming-Distanz aber Verwendung unterschiedlicher Adressen eine Abweichung in der Leistung zu verzeichnen war. Dies hat den Ursprung bei den Lastkapazitäten der Adressleitungen. Da die Adressleitungen unterschiedliche belastet werden und bei der Verwendung unterschiedlicher Adressen auch andere Adressleitungen verwenden verändert sich nach der Formel \ref{eq:dynVerlustleistung} auch die Leistungsaufnahme linear mit der Lastkapazität. 
+Die Schaubilder zeigen die Schaltleistung der einzelnen Register. Hierbei wurden die Ports einzeln untersucht. 
+
+Vorerst wurde die Heuristik untersucht.
+Um die Register allocation besser nachvollziehen zu können, würden Testprogramme entworfen, welche alle Möglichkeiten der Register Zuweisungen testet. Das Testprogramm führt vorerst Addition und Orbefehle mittels physikalischer Register aus. Hierbei wird dem ersten issue Slot die Addition und dem zweiten issue Slot eine Or-operation zugewiesen. Durch das addieren und verodern und anschließende Abspeicherung in physikalische Register, wird eine gewisse Anzahl an Registern fest blockiert und kann nicht für virtuelle Register verwendet werden. Siehe Abbildung xxx
+Nach dem die Register Files vorbelegt wurden werden die Instruktionen mit virtuellen Registern begonnen.
+
+Damit es keine Einflüsse durch Scheduling und Daten gibt, wurden vorerst folgende Veränderung im den Testprogrammen getätigt. Die Instruktionen werden manuell geschedult und den einzelnen issue Slots zugewiesen. Somit ist die Anordnung der Assemblerbefehlen für jeden Testfall identisch und der Einfluss ist somit entkoppelt. Im Falle der Datenabhängigkeiten wurden alle Register mit einer Null initialisiert und im Anschluss nicht verändert. Dadurch werden alle Instruktionen mit den selben Daten ausgeführt und somit besteht auch keine Abhängigkeit der Daten mehr. 
+
+
+
 \section{Testprogramme}
 \label{sec:testprogamme}
 Um den implementierten Code zu testen und eine reele Einsparung der Verlustleistungsreduktion zu ermitteln wurden die folgenden Assembler-Programme verwendet. Dabei handelt es sich um Programme die eine häufig Anwendung in Hörgerät-Prozessoren finden. Ausschlaggebend fuer die Wahl waren die Anzahl der verwendeten virtuellen Registern da mit einer hohen Zahl an virtuellen Registern das Verbesserungspotential steigt.

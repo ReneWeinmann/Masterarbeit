@@ -5,50 +5,45 @@
 \BOOKMARK [0][-]{chapter.1}{Einleitung}{}% 5
 \BOOKMARK [1][-]{section.1.1}{Motivation}{chapter.1}% 6
 \BOOKMARK [1][-]{section.1.2}{Ziel der Arbeit}{chapter.1}% 7
-\BOOKMARK [0][-]{chapter.2}{Grundlagen}{}% 8
-\BOOKMARK [1][-]{section.2.1}{FPGA}{chapter.2}% 9
-\BOOKMARK [1][-]{section.2.2}{ASIP}{chapter.2}% 10
-\BOOKMARK [1][-]{section.2.3}{SIMD}{chapter.2}% 11
-\BOOKMARK [2][-]{subsection.2.3.1}{VLIW}{section.2.3}% 12
-\BOOKMARK [2][-]{subsection.2.3.2}{Pipelining}{section.2.3}% 13
-\BOOKMARK [1][-]{section.2.4}{Aufbau der Architektur}{chapter.2}% 14
-\BOOKMARK [2][-]{subsection.2.4.1}{Register File Organisation}{section.2.4}% 15
-\BOOKMARK [2][-]{subsection.2.4.2}{Compiler}{section.2.4}% 16
-\BOOKMARK [2][-]{subsection.2.4.3}{Scheduling}{section.2.4}% 17
-\BOOKMARK [1][-]{section.2.5}{Register Allokation}{chapter.2}% 18
-\BOOKMARK [2][-]{subsection.2.5.1}{Virtuelle Register}{section.2.5}% 19
-\BOOKMARK [2][-]{subsection.2.5.2}{X2 Betriebsmodus}{section.2.5}% 20
-\BOOKMARK [2][-]{subsection.2.5.3}{MAC Operationen}{section.2.5}% 21
-\BOOKMARK [2][-]{subsection.2.5.4}{Dummy-Register}{section.2.5}% 22
-\BOOKMARK [2][-]{subsection.2.5.5}{Address-Isolation}{section.2.5}% 23
-\BOOKMARK [2][-]{subsection.2.5.6}{Clock-Gating}{section.2.5}% 24
-\BOOKMARK [1][-]{section.2.6}{Verlustleistung}{chapter.2}% 25
-\BOOKMARK [2][-]{subsection.2.6.1}{Dynamische Verlustleistung}{section.2.6}% 26
-\BOOKMARK [2][-]{subsection.2.6.2}{Statische Verlustleistung}{section.2.6}% 27
-\BOOKMARK [1][-]{section.2.7}{Genetische Algorithmen}{chapter.2}% 28
-\BOOKMARK [2][-]{subsection.2.7.1}{Crossover}{section.2.7}% 29
-\BOOKMARK [2][-]{subsection.2.7.2}{Mutation}{section.2.7}% 30
-\BOOKMARK [2][-]{subsection.2.7.3}{Fitness}{section.2.7}% 31
-\BOOKMARK [0][-]{chapter.3}{Implementierung}{}% 32
-\BOOKMARK [1][-]{section.3.1}{Ausgangsstatus}{chapter.3}% 33
-\BOOKMARK [1][-]{section.3.2}{Ansatz}{chapter.3}% 34
-\BOOKMARK [2][-]{subsection.3.2.1}{Hamming-Distanze}{section.3.2}% 35
-\BOOKMARK [1][-]{section.3.3}{Heuristik}{chapter.3}% 36
-\BOOKMARK [1][-]{section.3.4}{Genetischer Algorithmus}{chapter.3}% 37
-\BOOKMARK [2][-]{subsection.3.4.1}{Gene}{section.3.4}% 38
-\BOOKMARK [2][-]{subsection.3.4.2}{Aufbau}{section.3.4}% 39
-\BOOKMARK [2][-]{subsection.3.4.3}{Fitness-Funktion}{section.3.4}% 40
-\BOOKMARK [2][-]{subsection.3.4.4}{Parameter}{section.3.4}% 41
-\BOOKMARK [2][-]{subsection.3.4.5}{Startpopulation}{section.3.4}% 42
-\BOOKMARK [2][-]{subsection.3.4.6}{dynamische Anpassung}{section.3.4}% 43
-\BOOKMARK [2][-]{subsection.3.4.7}{Algorithmus Modi}{section.3.4}% 44
-\BOOKMARK [2][-]{subsection.3.4.8}{Glitches}{section.3.4}% 45
-\BOOKMARK [0][-]{chapter.4}{Evaluation}{}% 46
-\BOOKMARK [1][-]{section.4.1}{Testprogramme}{chapter.4}% 47
-\BOOKMARK [2][-]{subsection.4.1.1}{Beamforming}{section.4.1}% 48
-\BOOKMARK [2][-]{subsection.4.1.2}{emulated floating Point}{section.4.1}% 49
-\BOOKMARK [1][-]{section.4.2}{Evaluation}{chapter.4}% 50
-\BOOKMARK [0][-]{chapter.5}{Schlussfolgerung}{}% 51
-\BOOKMARK [1][-]{section.5.1}{Evaluation}{chapter.5}% 52
-\BOOKMARK [0][-]{appendix.A}{Source Code}{}% 53
-\BOOKMARK [0][-]{chapter*.14}{Literaturverzeichnis}{}% 54
+\BOOKMARK [0][-]{chapter.2}{Grundlagen digitaler Signalverarbeitung in H\366rger\344ten}{}% 8
+\BOOKMARK [1][-]{section.2.1}{Aufbau der Architektur}{chapter.2}% 9
+\BOOKMARK [2][-]{subsection.2.1.1}{Register File Organisation}{section.2.1}% 10
+\BOOKMARK [2][-]{subsection.2.1.2}{Optimierungsziel}{section.2.1}% 11
+\BOOKMARK [2][-]{subsection.2.1.3}{Compiler}{section.2.1}% 12
+\BOOKMARK [2][-]{subsection.2.1.4}{Scheduling}{section.2.1}% 13
+\BOOKMARK [1][-]{section.2.2}{Register Allokation}{chapter.2}% 14
+\BOOKMARK [2][-]{subsection.2.2.1}{Virtuelle Register}{section.2.2}% 15
+\BOOKMARK [2][-]{subsection.2.2.2}{MAC Operationen}{section.2.2}% 16
+\BOOKMARK [2][-]{subsection.2.2.3}{Dummy-Register}{section.2.2}% 17
+\BOOKMARK [2][-]{subsection.2.2.4}{Address-Isolation}{section.2.2}% 18
+\BOOKMARK [2][-]{subsection.2.2.5}{Clock-Gating}{section.2.2}% 19
+\BOOKMARK [1][-]{section.2.3}{Verlustleistung}{chapter.2}% 20
+\BOOKMARK [2][-]{subsection.2.3.1}{Dynamische Verlustleistung}{section.2.3}% 21
+\BOOKMARK [2][-]{subsection.2.3.2}{Statische Verlustleistung}{section.2.3}% 22
+\BOOKMARK [1][-]{section.2.4}{Genetische Algorithmen}{chapter.2}% 23
+\BOOKMARK [2][-]{subsection.2.4.1}{Fitness}{section.2.4}% 24
+\BOOKMARK [2][-]{subsection.2.4.2}{Crossover}{section.2.4}% 25
+\BOOKMARK [2][-]{subsection.2.4.3}{Mutation}{section.2.4}% 26
+\BOOKMARK [0][-]{chapter.3}{Implementierung}{}% 27
+\BOOKMARK [1][-]{section.3.1}{Ausgangsstatus}{chapter.3}% 28
+\BOOKMARK [1][-]{section.3.2}{Ansatz}{chapter.3}% 29
+\BOOKMARK [2][-]{subsection.3.2.1}{Hamming-Distanze}{section.3.2}% 30
+\BOOKMARK [1][-]{section.3.3}{Heuristik}{chapter.3}% 31
+\BOOKMARK [1][-]{section.3.4}{Genetischer Algorithmus}{chapter.3}% 32
+\BOOKMARK [2][-]{subsection.3.4.1}{Gene}{section.3.4}% 33
+\BOOKMARK [2][-]{subsection.3.4.2}{Aufbau}{section.3.4}% 34
+\BOOKMARK [2][-]{subsection.3.4.3}{Fitness-Funktion}{section.3.4}% 35
+\BOOKMARK [2][-]{subsection.3.4.4}{Parameter}{section.3.4}% 36
+\BOOKMARK [2][-]{subsection.3.4.5}{Startpopulation}{section.3.4}% 37
+\BOOKMARK [2][-]{subsection.3.4.6}{dynamische Anpassung}{section.3.4}% 38
+\BOOKMARK [2][-]{subsection.3.4.7}{Algorithmus Modi}{section.3.4}% 39
+\BOOKMARK [2][-]{subsection.3.4.8}{Glitches}{section.3.4}% 40
+\BOOKMARK [0][-]{chapter.4}{Evaluation}{}% 41
+\BOOKMARK [1][-]{section.4.1}{Testprogramme}{chapter.4}% 42
+\BOOKMARK [2][-]{subsection.4.1.1}{Beamforming}{section.4.1}% 43
+\BOOKMARK [2][-]{subsection.4.1.2}{emulated floating Point}{section.4.1}% 44
+\BOOKMARK [1][-]{section.4.2}{Evaluation}{chapter.4}% 45
+\BOOKMARK [0][-]{chapter.5}{Schlussfolgerung}{}% 46
+\BOOKMARK [1][-]{section.5.1}{Evaluation}{chapter.5}% 47
+\BOOKMARK [0][-]{appendix.A}{Source Code}{}% 48
+\BOOKMARK [0][-]{chapter*.13}{Literaturverzeichnis}{}% 49

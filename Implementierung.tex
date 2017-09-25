@@ -2,7 +2,7 @@
 \label{chap:Implementierung}
 Nachdem die nötigen Grundlagen erläutert wurden soll in diesem Kapitel aufgezeigt werden wie der Compiler aufgebaut ist und wie das gesetzte Ziel implementiert wurde. Hierzu wird kurz auf den Ausgangsstatus des Codes und dessen Bestandteile eingegangen um das komplette System besser verstehen zu können. Anschließend wird veranschaulicht wie die Verlustleistung gesenkt werden soll und wie dies mit einer Heuristik implementiert wurde. Im Anschluss wird diese Implementierung durch den Einsatz eines genetischen Algorithmus noch verbessert und die einzelnen Komponenten erläutert.
 \section{Ausgangsstatus}
-Um die Register Allokation in den Code einzuordnen zeigt das unten stehende Schaubild (siehe Abbildung \ref{fig:flow_compiler}) den Aufbau des Codes. Gestartet wird mit einem Assembler-Programm das in einer ASM-Datei vorliegt und dem Code uebergeben wird.
+Um die Register Allokation in den Code einzuordnen zeigt das unten stehende Schaubild (siehe Abbildung \ref{fig:flow_compiler}) den Aufbau des Codes. Gestartet wird mit einem Assembler-Programm das in einer ASM-Datei vorliegt und dem Code übergeben wird.
 
 
 \begin{scriptsize}
@@ -18,13 +18,13 @@ Um die Register Allokation in den Code einzuordnen zeigt das unten stehende Scha
 	\item Precompiler\\
 		Da der Assembler-Code auch Kommentare oder Bestandteile aufweisen kann die nicht in der eigentlichen Assemblersprache enthalten sind, ist es nötig diese aufzulösen. Hierzu dient der Precompiler oder Preprozessor der diese Konstrukte in einen vom Prozessor ausführbaren Code bzw. Anweisungen umwandelt. Ein Beispiel für ein solches Konstrukt ist das An- und Ausschalten des Schedulings für bestimmte Bereiche des Codes. Hierbei kann dem Compiler, im Assembler-Programm durch Angabe des 'scheduling-off'-Befehls, mitgeteilt werden welche SLMs vom Scheduling unberührt bleiben soll.
 	\item Virtual Renaming\\
-		Im Teil des virtuellen Renaming(Umbenennen) werden die im Assembler-Code vorhandenden virtuellen Register umbenannt, um eine konsistente Allokation und bessere Nachfollzierbarkeit zugewaehrleisten. Ausserdem wird in diesem Teil des Compilers ueberprueft ob ein virtuelles Register verwendet wurde bevor es zugewiesen ist.
+		Im Teil des virtuellen Renaming(Umbenennen) werden die im Assembler-Code vorhandenen virtuellen Register umbenannt, um eine konsistente Allokation und bessere Nachvollziehbarkeit gewährleisteten. Außerdem wird in diesem Teil des Compilers unüberprüft ob ein virtuelles Register verwendet wurde bevor es zugewiesen ist.
 	\item Register Initalisierung\\
-		Bei der Register Initalisierung wird ueber alle Operationen itteriert. Dabei werden die Adressen des Register-Files blockiert, welche bereits von physikalischen Registern verwendet werden. Dadurch wird verhindert, dass diese Positionen fuer das virtuelle Register-Mapping verwendet werden koennen.
+		Bei der Register Initalisierung wird über alle Operationen iteriert. Dabei werden die Adressen des Register-Files blockiert, welche bereits von physikalischen Registern verwendet werden. Dadurch wird verhindert, dass diese Positionen für das virtuelle Register-Mapping verwendet werden können.
 	\item Scheduling\\
-		Wie in den Grundlagen beschrieben \ref{sec:scheduling} ist das Scheduling zustaendig fuer die Anordnung der Operationen im Prozessor. Dabei wird jenach gewaehltem Optimierungsgrad ein Scheduling gewaehlt. Hierbei Kann zwischen einem Genetischen Instruktions-Scheduling und einem Heuristischem-Ansatz entscheiden werden. Beide Algorithmen rufen intern die Register-Allokation auf. Wird der genetische Algorithmus verwendet wird der Fitness-Wert der Register-Zuweisung mit der Bewertungsfunktion des Instruktion-Schedulings verrechnet.
+		Wie in den Grundlagen beschrieben \ref{sec:scheduling} ist das Scheduling zuständig für die Anordnung der Operationen im Prozessor. Dabei wird je nach gewähltem Optimierungsgrad ein Scheduling gewählt. Hierbei Kann zwischen einem Genetischen Instruktions-Scheduling und einem Heuristischem-Ansatz entscheiden werden. Beide Algorithmen rufen intern die Register-Allokation auf. Wird der genetische Algorithmus verwendet wird der Fitness-Wert der Register-Zuweisung mit der Bewertungsfunktion des Instruktion-Schedulings verrechnet.
 	\item Register Allokation\\
-		Bei der Regsiter-Allokation bestehen ebenfalls zwei Arten der Zuweisung. Zum Einen eine Heuristik (siehe Kapitel \ref{sec:Heuristik}) zum Andern ein Genetischer Algorithmus (siehe Kapitel \ref{sec:genetischerAlgorithmus}). Beide Alogithmen werden im folgenden nun naeher beleuchtet.
+		Bei der Regsiter-Allokation bestehen ebenfalls zwei Arten der Zuweisung. Zum Einen eine Heuristik (siehe Kapitel \ref{sec:Heuristik}) zum Andern ein Genetischer Algorithmus (siehe Kapitel \ref{sec:genetischerAlgorithmus}). Beide Alogithmen werden im folgenden nun näher beleuchtet.
 \end{itemize}
 
 
@@ -32,8 +32,9 @@ Um die Register Allokation in den Code einzuordnen zeigt das unten stehende Scha
 Nach genauerem betrachten der Formel für die dynamische Verlustleistung \ref{eq:dynVerlustleistung} hängt diese von vier Faktoren ab, Schaltaktivitäten,  Lastkapazität, Versorgungsspannung und der Frequenz. Die statische Verlustleistung wird nicht weiter betrachtet, da diese nur durch eine Veränderung der Hardware verbessert werden könnte. Dies ist jedoch nicht Teil dieser Arbeit. Da ebenfalls die Spannung und Frequenz von der Architektur und anderen nicht beeinflussbaren Faktoren vorgegeben wurde kann auch an diesen Parametern nichts verbessert werden. Im folgenden wird nun erst darauf eingegangen wie, durch Minimierung der Schaltaktivitäten, die Verlustleistung optimiert werden kann. Im Weiteren Verlauf des Textes wird dann ebenfalls der Einfluss der Lastkapazitäten überprüft.\\
 Um in ein Register zu schreiben, muss eine geeignete Adresse an den Adressbus angelegt werden. Da es sich bei der Architektur um 32-bit-Register handelt muss hierfür eine 5-bit Adresse angelegt werden.
 Da der Prozessor über zwei Issue-Slots verfügt, müssen pro Slot ein Target und zwei Source Register adressiert werden. Hierbei können die Instruktionen auf Register-File 0 oder 1 schreiben bzw. lesen. Aus diesem Grund besitzt jedes der Register-Files vier Lese- und zwei Schreibports. Die Zuordnung der Issues auf die Register können sie aus den Tabellen TTT entnehmen. Schreibt nun beispielsweise eine Instruktion an die Adresse Null und die nachfolgende Instruktion an die Adresse 31 des selben Ports, so wäre dies der Worst-Case, da in diesem Fall alle 5-Bit umgeladen werden müssten.
-Durch den Einsatz von virtuelle Register können Instruktionen an beliebiger Adressen und Register-Files schreiben bzw. lesen. Durch diese Änderung kann die Schaltaktivitäten des Adressbus verringert werden.\\
-In der bestehenden Implementierung wurde diese Zuweisung so geregelt, dass die Adressen der Register immer von einer Seite aus aufgefüllt wurden. Die Auswahl des Register-Files wurde hierbei über die Anzahl der freien Register-Adressen ermittelt. Außerdem wurde bei der Zuweisung darauf geachtet, dass es weiterhin möglich ist X2-Befehle zu bedienen.\\
+
+Durch den Einsatz von virtuelle Register \ref{sub:virtuelleR} können Instruktionen an beliebiger Adressen und Register-Files schreiben bzw. lesen. Durch diese Änderung kann die Schaltaktivitäten des Adressbus verringert werden.\\
+In der bestehenden Implementierung wurde diese Zuweisung so geregelt, dass die Adressen der Register immer von einer Seite aus aufgefüllt wurden. Die Auswahl des Register-Files wurde hierbei über die Anzahl der freien Register-Adressen ermittelt. Außerdem wurde bei der Zuweisung darauf geachtet, dass es weiterhin möglich ist X2-Befehle und MAC-Operationen zu bedienen.\\
 Um nun diese Mapping auf die Schaltaktivität und somit auch auf die Verlustleistung zu optimieren wurde eine neue Heuristik implementiert.
 Diese optimiert die Anzahl der Schaltzyklen anhand der Hamming-Distanz.
 \subsection{Hamming-Distanze}
@@ -82,18 +83,23 @@ Adressen mittels Gray code ???
 
 \section{Genetischer Algorithmus}
 \label{sec:genetischerAlgorithmus}
-Da nur die Target-Adressen mit Hilfe von virtuellen Registern frei gewählt werden können, kann die Heuristik nur diese Optimieren, dennoch haben die Target-Register Einfluss auf die Source/Lese-Addressen und somit auf die Schaltaktivität. Es kann jedoch keine Vorhersage beim allokieren der Register getroffen werden, ob und wie weiter dieses verwendet werden. Aus diesem Grund wird ein genetischer Algorithmus ausgewählt, welcher auch das Toggelen in den Source-Adressen minimieren kann.
+Da nur die Target-Adressen mit Hilfe von virtuellen Registern frei gewählt werden können, kann die Heuristik nur diese Optimieren, dennoch haben die Target-Register Einfluss auf die Source/Lese-Addressen und somit auf die Schaltaktivität. Es kann jedoch keine Vorhersage beim allokieren der Register getroffen werden, ob und wie weiter dieses verwendet werden. Aus diesem Grund wird ein genetischer Algorithmus ausgewählt, welcher das Toggeln auch in den Source-Adressen minimieren kann.
 
 \subsection{Gene}
-Die Gene des implementierten genetischen Algorithmus wurden so gewählt, dass diese die zu allokierenden Register repräsentieren. Die Anzahl der Gene hängt hierbei jeweils von der Menge der virtuellen Registern ab. Jedes Gen entspricht einem Mapping von virtuellen zu physikalischen Registern.
-
+Die Gene des implementierten genetischen Algorithmus wurden so gewählt, dass diese die zu allokierenden Register repräsentieren. Hierbei wird für jedes Gen ein Structs implementiert, welche m Register-Zuweisungen aufweist. m ist hierbei die Anzahl der virtuellen Registern innerhalb einer SLM. Dabei handelt es sich um zwei intiger Werte i und j. Hierbei ist i das Register-File welches sich in dem Bereich von 0..1 bewegt, da es sich um eine Architektur mit zwei Issue-Slots handelt. J weißt Werte zwischen 0..31 auf und repräsentiert die Register-Adresse. Außerdem befindet sich dort die Adresse des virtuellen Registers abgespeichert.
+ 
 \subsection{Aufbau}
 \label{chap:aufbau}
-Zu Beginn des genetischen Algorithmus, muss eine Startpopulation festgelegt werden. Eine Population ist hierbei ein Satz an zufällig gewählter Register-Allokationen auch Chromosom genannt. Die Populationsgröße wurde aus der Literatur [LLL] und Erfahrungswerte aus dem genetischen Scheduling [fabian thesis]entnommen. Im Kapitel XXX wird der Einfluss der Population auf die Ergebnisse  des Algorithmus genauer untersucht.
-Für jedes Chromosom muss eine Fitness-Funktion \ref{chap:Fitness-Funktion} ermittelt werden. Mithilfe dieses Merkmales wird die Population anschließend sortiert. 
-Mit diesen Register-Allokations-Ansätzen beginnt nun der eigentliche Algorithmus. In einer Schleife werden zuerst die beiden besten Chromosomen der letzten Generation in eine Neue abgespeichert. Anschließend werden die restlichen Mitglieder der Population durch Crossover und Mutation aufgefüllt. Zum Ende der Schleife wird die neu errungenen Chromosomen anhand der Fitness sortiert. Diese geschieht so lange, bis eine maximale Anzahl an Durchlaufen erreicht wurde. Sobald ein durch die Fortpflanzung und Veränderung der Chromosom eine Verbesserung gefunden wurde, beginnt die Schleife von Neuem.
-Wie bereits im Grundlagenteil \ref{chap:grundlagen_cossover} skizziert handelt es sich beim Crossover um das Fortpflanzen der Chromosomen. Dies wird auf die komplette Population ausgeführt. Nach dem dadurch, ein neues Chromosom, mit den Genen aus zweier Eltern der alten Generation entstanden ist, wird dieses zusätzlich mutiert. Dabei wird jedes Gen eines Chromosoms mit einer Wahrscheinlichkeit 1\% verändert. Bei dem neuen Wert handelt es sich wieder um einen rein zufälligen Wert.
-Nach dem beenden der Schleife wird die beste Population herausgesucht und das Mapping von virtuellen zu physikalischen Registern verwendet.
+Zu Beginn des genetischen Algorithmus, muss eine Startpopulation festgelegt werden. Eine Population ist hierbei ein Satz an zufällig gewählter Register-Allokationen auch Chromosom genannt. Die Populationsgröße wurde aus der Literatur [LLL] und Erfahrungswerte aus dem genetischen Instruktion-Scheduling entnommen. Im Kapitel XXX wird der Einfluss der Population auf die Ergebnisse  des Algorithmus genauer untersucht.
+Für jedes Chromosom muss eine Fitness-Funktion \ref{chap:Fitness-Funktion} ermittelt werden. Mithilfe dieses Merkmales wird die Population im Anschluss sortiert. 
+Mit den generierten Register-Allokations-Ansätzen beginnt nun der eigentliche Algorithmus. In einer Schleife werden zuerst die beiden besten Chromosomen der letzten Generation in eine Neue abgespeichert. Anschließend werden die restlichen Mitglieder der Population durch Crossover und Mutation aufgefüllt. Zum Ende der Schleife wird die neu errungenen Chromosomen anhand der Fitness sortiert. Diese geschieht so lange, bis eine maximale Anzahl an Durchlaufen erreicht wurde. Sobald eine Verbesserung durch die Fortpflanzung und Veränderung der Chromosom gefunden wurde, beginnt die Schleife von Neuem. Der Algorithmus terminiert dementsprechend immer wenn nach einer gewissen Anzahl an Durchlaufen keine Verbesserung in der Fitness mehr gefunden werden kann. Nach dem Beenden der Schleife wird die beste Population herausgesucht und das Mapping von virtuellen zu physikalischen Registern verwendet.
+
+\subsection{Fortpflanzung der Chromosomen}
+Wie bereits im Grundlagenteil \ref{chap:grundlagen_cossover} skizziert handelt es sich beim Crossover um das Fortpflanzen der Chromosomen. Dies wird mit der kompletten alten Population ausgeführt und wird dabei so oft wiederholt, bis die neue Population mit neuen Chromosomen befüllt wurde.
+Das Fortpflanzungspaar wird hierbei mittels dem bereits erwähnten Roulette Wheel Selection ausgewählt.
+Daraufhin wird an einer zufällig gewählten stelle die Beiden Chromosomen getrennt und die entstandenen Teile zusammengeführt.
+Nach dem dadurch, ein neues Chromosom, mit den Genen aus zweier Eltern der alten Generation entstanden ist, wird dieses zusätzlich mutiert. Dabei wird jedes Gen eines Chromosoms mit einer Wahrscheinlichkeit 1\% verändert. Bei dem neuen Wert handelt es sich wieder um einen rein zufälligen Wert.
+
 
 \subsection{Fitness-Funktion}
 \label{chap:Fitness-Funktion}
@@ -114,6 +120,7 @@ Besteht der Fall, dass ein Register mit dem zufällig gewählten Adressen nicht 
 \end{itemize}
  
 \subsection{Parameter}
+Es bestehen eine Vielzahl an Parametern und Einstellungsmöglichkeiten bei der Verwendung eines genetischen Algorithmus, dabei haben einige einen erheblichen Einfluss auf die Funktion und das Ergebnis. Im Folgenden sollen die Parameter und deren Funktion sowie Einfluss auf das Ergebnis erläutert werden.
  
 \subsection{Startpopulation}
 Die Startpopulation besteht im Normalfall wie in Kapitel \ref{chap:aufbau} aus zufällig gewählten Genen. Hierbei werden nur Register verwendet die nicht bereits von physikalische Registern blockiert sind.

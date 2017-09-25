@@ -1,25 +1,43 @@
 % !TeX spellcheck = de_DE
 \chapter{Grundlagen digitaler Signalverarbeitung in Hörgeräten}
 \label{chap:grundlagen}
-In diesem Kapitel wird kurz auf die Grundlagen und Begriffe von Signalprozessoren eingegangen. Im Anschluss wird die Verwendete Architektur erläutert und einzelne fuer diese Arbeit relevante Bestandteile genauer beschrieben. Anschließend wird die Funktion des Scheduling skizziert und das Prinzip der Verlustleistung aufgezeigt. Das Ende des Kapitels soll eine grobe Übersicht über Genetische-Algorithmen gegeben.
+In diesem Kapitel wird kurz auf die Grundlagen und Begriffe von Signalprozessoren anhand der zugrundeliegenden Architektur eingegangen. Im Anschluss werden einzelne für diese Arbeit relevante Bestandteile genauer beschrieben. Darauf hin soll ein kurzer Einblick in verwandte Ansätze gegeben werden um im weiteren Verlauf die Funktion des Scheduling und das Prinzip der Verlustleistung zu beschreiben. Das Ende des Kapitels gibt eine grobe Übersicht über Genetische-Algorithmen gegeben.
 
-\section{FPGA}
-Bei einem FPGA (Field Programmable Gate Array) handelt es sich um ein frei programmierbaren integrierten Schaltkreis, welcher mithilfe von Look-Up-Tabellen sehr effizient Algorithmen abbildet. Um eine gewünschte Funktion auf dem FPGA zu implementieren ist es notwendig die Look-Up-Tabellen mit einer Wahrheitstabellen zu befüllen, welche diese Funktion abbildet. Dadurch kann ein FPGA jegliche erdenkliche Aufgabe erfüllen. Um die beschriebenen Blöcke mit dem IO-Ports des Chips zu verbinden ist es notwendig eine Verbindung mithilfe von Rooting-Switches und Connection-Boxen zu erstellen. Damit der Chip konfiguriert werden kann, muss die Funktion mithilfe einer HDL(Hardware Description Language) beschrieben werden.\cite{farooq2012fpga} Vorteil dieser Implementierung ist, dass eine echte Parallelität erreicht werden kann, so dass mehrere Blöcke zeitgleich ausführbar sind. In dieser Arbeit wird ein FPGA als Entwicklungsumgebung verwendet, um den zu entwickelnden ASIP bestmöglich abzubilden und dabei möglichst flexibel zu bleiben.
+%\section{FPGA}
+%Bei einem FPGA (Field Programmable Gate Array) handelt es sich um ein frei programmierbaren integrierten Schaltkreis, welcher mithilfe von Look-Up-Tabellen sehr effizient Algorithmen abbildet. Um eine gewünschte Funktion auf dem FPGA zu implementieren ist es notwendig die Look-Up-Tabellen mit einer Wahrheitstabellen zu befüllen, welche diese Funktion abbildet. Dadurch kann ein FPGA jegliche erdenkliche Aufgabe erfüllen. Um die beschriebenen Blöcke mit dem IO-Ports des Chips zu verbinden ist es notwendig eine Verbindung mithilfe von Rooting-Switches und Connection-Boxen zu erstellen. Damit der Chip konfiguriert werden kann, muss die Funktion mithilfe einer HDL(Hardware Description Language) beschrieben werden.\cite{farooq2012fpga} Vorteil dieser Implementierung ist, dass eine echte Parallelität erreicht werden kann, so dass mehrere Blöcke zeitgleich ausführbar sind. In dieser Arbeit wird ein FPGA als Entwicklungsumgebung verwendet, um den zu entwickelnden ASIP bestmöglich abzubilden und dabei möglichst flexibel zu bleiben.
 
 
-\section{ASIP}
-ASIP ist die Abkuerzung fuer Application Specific Instruction Set Processor. Die Architektur dieses Prozessors ist anwendungsspezifisch optimiert. Hierbei sind ASIPs meist auf eine gewisse Funktion optimiert. Durch diese Spezialisierung, ist es möglich Einsparungen hinsichtlich Siliziumfläche und Energieverbrauch gegenüber herkömmlichen Prozessoren zu erreichen. Der in dieser Arbeit verwendete ASIP ist eine vereinfachte Variante eines MIPS-Prozessors. MIPS oder auch \glqq Microprocessor without interlocked pipeline stages\grqq{} ist eine Befehlssatzarchitektur bei der der Entwickler/Compiler, Datenabhängigkeiten der Befehle erkennen und auflösen muss.
+%\section{ASIP}
+%ASIP ist die Abkürzung für Application Specific Instruction Set Processor. Die Architektur dieses Prozessors ist anwendungsspezifisch optimiert. Hierbei sind ASIPs meist auf eine gewisse Funktion optimiert. Durch diese Spezialisierung, ist es möglich Einsparungen hinsichtlich Siliziumfläche und Energieverbrauch gegenüber herkömmlichen Prozessoren zu erreichen. Der in dieser Arbeit verwendete ASIP ist eine vereinfachte Variante eines MIPS-Prozessors. MIPS oder auch \glqq Microprocessor without interlocked pipeline stages\grqq{} ist eine Befehlssatzarchitektur bei der der Entwickler/Compiler, Datenabhängigkeiten der Befehle erkennen und auflösen muss.
 
-\section{SIMD}
-\label{sec:SIMD}
-Der Begriff SIMD steht für Single Instruction Multiple Data und ist eine Datenverarbeitungseigenschaft von Prozessoren, die meist in der Signalverarbeitung zum Einsatz kommt. Der Vorteil einer solchen Implementierung ist, dass eine Instruktion in mehreren ALUs parallel, mit unterschiedlichen Daten ausgeführt werden kann. Somit ist nur eine Instruktion für die Berechnung vieler Operationen nötig, dadurch ist eine erhebliche Performanz-Steigerung erreichbar.\cite[Seite 249]{wust2010mikroprozessortechnik}
+%\section{SIMD}
+%\label{sec:SIMD}
+%Der Begriff SIMD steht für Single Instruction Multiple Data und ist eine Datenverarbeitungseigenschaft von Prozessoren, die meist in der Signalverarbeitung zum Einsatz kommt. Der Vorteil einer solchen Implementierung ist, dass eine Instruktion in mehreren ALUs parallel, mit unterschiedlichen Daten ausgeführt werden kann. Somit ist nur eine Instruktion für die Berechnung vieler Operationen nötig, dadurch ist eine erhebliche Performanz-Steigerung erreichbar.\cite[Seite 249]{wust2010mikroprozessortechnik}
 
-\subsection{VLIW}
-\label{sec:VLIW}
-VLIW ist eine Eigenschaft von Mikroprozessor-Architekturen. VLIW steht hierbei für Very Long Instruction Word und bedeutet soviel wie sehr langes Instruktions-Wort. Das Ziel dieser Struktur ist eine schnelle Abarbeitung des Befehlsatzes, wobei hierbei einige Befehle parallel ausgeführt werden können. Um dies zu ermöglichen sind mehrere Instruktions-Dekoder vonnöten. Eine VLIW-Architekur geht meist mit Pipelining einher. 
+%\subsection{VLIW}
+%\label{sec:VLIW}
+%VLIW ist eine Eigenschaft von Mikroprozessor-Architekturen. VLIW steht hierbei für Very Long Instruction Word und bedeutet soviel wie sehr langes Instruktions-Wort. Das Ziel dieser Struktur ist eine schnelle Abarbeitung des Befehlsatzes, wobei hierbei einige Befehle parallel ausgeführt werden können. Um dies zu ermöglichen sind mehrere Instruktions-Dekoder vonnöten. Eine VLIW-Architekur geht meist mit Pipelining einher. 
 
-\subsection{Pipelining}
-Wie das Wort Pipelining schon besagt, handelt es sich hierbei um eine Befehlsabarbeitung am Fließband(Pipeline). Wurde ein Befehl in der ersten Pipelinestufe abgearbeitet kann dieser an die nächste Stufe weitergeleitet werden und der nachfolgende Befehl führt die erste Stufe aus. Die Zeit bis ein Befehl alle Piplinestufen passiert hat nennt man Latenzzeit und dauert genau so viele Takte wie die Pipeline Stufen hat.(siehe Abbildung \ref{fig:pipeline}) Diese Verzoegerung macht ist jedoch nur beim Beffuellen der Pipeline bemerktbar, im Idealfall kann im Anschluss mit jedem Takt ein Befehl beendet werden. Somit ist eine parallele Verarbeitung mehrerer unterschiedlicher Befehle möglich. Dabei ist darauf zu achten, dass die Taktung der Pipelinestufen sich an der Stufe orientiert, welcher die längste Ausführungsdauer aufweist. \cite[Seite 204]{wust2010mikroprozessortechnik}
+%\subsection{Pipelining}
+%Wie das Wort Pipelining schon besagt, handelt es sich hierbei um eine Befehlsabarbeitung am Fließband(Pipeline). Wurde ein Befehl in der ersten Pipelinestufe abgearbeitet kann dieser an die nächste Stufe weitergeleitet werden und der nachfolgende Befehl führt die erste Stufe aus. Die Zeit bis ein Befehl alle Piplinestufen passiert hat nennt man Latenzzeit und dauert genau so viele Takte wie die Pipeline Stufen hat.(siehe Abbildung \ref{fig:pipeline}) Diese Verzoegerung macht ist jedoch nur beim Befüllen der Pipeline bemerktbar, im Idealfall kann im Anschluss mit jedem Takt ein Befehl beendet werden. Somit ist eine parallele Verarbeitung mehrerer unterschiedlicher Befehle möglich. Dabei ist darauf zu achten, dass die Taktung der Pipelinestufen sich an der Stufe orientiert, welcher die längste Ausführungsdauer aufweist. \cite[Seite 204]{wust2010mikroprozessortechnik}
+%\begin{scriptsize}
+%	\begin{figure}[htbp] 
+%		\centering
+%		\includesvg[width=0.70\textwidth]{pipeline}
+%		\caption{Pipeline-Prinzip}
+%		\label{fig:pipeline}
+%	\end{figure}
+%\end{scriptsize}
+
+\section{Aufbau der Architektur}
+\label{chap:architecture_overview}
+Bei dem verwendeten Prozessor handelt es sich um ein MIPS-Prozessor der Teil des RAPANUI Projektes ist. Es handelt sich hierbei um ein ASIP-Prozessor. ASIP ist die Abkürzung für Application Specific Instruction Set Processor. Die Architektur dieses Prozessors ist anwendungsspezifisch optimiert. Hierbei sind ASIPs meist auf eine gewisse Funktion optimiert. Durch diese Spezialisierung, ist es möglich Einsparungen hinsichtlich Siliziumfläche und Energieverbrauch gegenüber herkömmlichen Prozessoren zu erreichen. MIPS oder auch \glqq Microprocessor without interlocked pipeline stages\grqq{} ist eine Befehlssatzarchitektur bei der der Entwickler/Compiler, Datenabhängigkeiten der Befehle erkennen und auflösen muss.
+Um dem niedrigen Energieverbrauch und Flächenbedarf bei Hörgeräten zu genügen, handelt es sich bei dem Prozessor zusätzlich um eine vereinfacht Implementierung der MOAI-Prozessor-Architektur(siehe Abbildung \ref{fig:KAVUAKA}). Dieser wird auch KAVUAKA genannt und ist ein VLIW-SIMD ASIP Prozessor.\\
+Bei VLIW  handelt es sich hierbei um eine Eigenschaft von Mikroprozessor-Architekturen. VLIW steht für Very Long Instruction Word und bedeutet soviel wie sehr langes Instruktions-Wort. Das Ziel dieser Struktur ist eine schnelle Abarbeitung des Befehlsatzes, wobei hierbei einige Befehle parallel ausgeführt werden können. Um dies zu ermöglichen sind mehrere Instruktions-Dekoder vonnöten. Eine VLIW-Architekur geht meist mit Pipelining einher.\\
+Der Begriff SIMD steht für Single Instruction Multiple Data und ist eine Datenverarbeitungseigenschaft von Prozessoren, die meist in der Signalverarbeitung zum Einsatz kommt. Der Vorteil einer solchen Implementierung ist, dass eine Instruktion in mehreren ALUs parallel, mit unterschiedlichen Daten ausgeführt werden kann. Somit ist nur eine Instruktion für die Berechnung vieler Operationen nötig, dadurch ist eine erhebliche Performanz-Steigerung erreichbar.\cite[Seite 249]{wust2010mikroprozessortechnik}\\
+Außerdem verfügt die Architektur des verwendeten Prozessors über zwei Pipeline-Stufen.
+Wie das Wort Pipelining schon besagt, handelt es sich hierbei um eine Befehlsabarbeitung am Fließband(Pipeline). Wurde ein Befehl in der ersten Pipelinestufe abgearbeitet kann dieser an die nächste Stufe weitergeleitet werden und der nachfolgende Befehl führt die erste Stufe aus. Die Zeit bis ein Befehl alle Piplinestufen passiert hat nennt man Latenzzeit und dauert genau so viele Takte wie die Pipeline Stufen hat.(siehe Abbildung \ref{fig:pipeline}) Diese Verzögerung mach sich jedoch nur beim Befüllen der Pipeline bemerkbar, im Idealfall kann im Anschluss mit jedem Takt ein Befehl beendet werden. Somit ist eine parallele Verarbeitung mehrerer unterschiedlicher Befehle möglich. Dabei ist darauf zu achten, dass die Taktung der Pipelinestufen sich an der Stufe orientiert, welcher die längste Ausführungsdauer aufweist. \cite[Seite 204]{wust2010mikroprozessortechnik}
+\newpage
 \begin{scriptsize}
 	\begin{figure}[htbp] 
 		\centering
@@ -29,17 +47,16 @@ Wie das Wort Pipelining schon besagt, handelt es sich hierbei um eine Befehlsaba
 	\end{figure}
 \end{scriptsize}
 
-\section{Aufbau der Architektur}
-\label{chap:architecture_overview}
-Bei dem verwendeten Prozessor handelt es sich um ein MIPS-Prozessor der Teil des RAPANUI Projektes ist.
-Um dem niedrigen Energieverbrauch und Flächenbedarf bei Hörgeräten zu genügen, handelt es sich bei dem Prozessor um eine vereinfacht Implementierung der MOAI-Prozessor-Architektur(siehe Abbildung \ref{fig:KAVUAKA}). Dieser wird auch KAVUAKA genannt und ist ein VLIW-SMID ASIP Prozessor. Die Architektur verfügt über zwei Pipeline-Stufen, welche wie folgt aufgeteilt sind: 
+Die beiden Pipelinestufen des verwendeten KUAVAKA-Prozessors sind wie folgt aufgeteilt:
 \begin{itemize}
 	\item[1.] Instruction Fetch - Decode - Register Access (IF - DE - RA) 
 	\item[2.] Execute - Write Back (EX - WB)
 \end{itemize}
-Außerdem wurde der Prozessor so erweitert, dass neue Funktionen sowie Co-Prozessoren eingefügt werden können. Zudem besteht die Möglichkeit des Forwarding bei der Verwendung von temporären Variablen.
+
+Des weiteren wurde der Prozessor so erweitert, dass neue Funktionen sowie Co-Prozessoren eingefügt werden können. Zudem besteht die Möglichkeit des Forwarding bei der Verwendung von temporären Variablen.
 Der verwendete KAVUAKA-Prozessor besitzt außerdem zwei Instruktion-Dekoder auch Issue-Slots genannt und kann somit zwei Befehle parallel ausführen.
- Der Prozessor wird fuer die Implementierung auf einem ASIC entwickelt und wird zur Verifikation auf einem FPGA getestet, da dieser eine hohe Flexibilität und somit geringere Entwicklungszeiten bietet.\cite{lukasglitches2017}
+Der Prozessor wird für die Implementierung auf einem ASIC entwickelt und wird zur Verifikation auf einem FPGA getestet, da dieser eine hohe Flexibilität, sowie geringere Entwicklungszeiten bietet und die spätere Hardware eins zu eins Abgebildet werden kann.\cite{lukasglitches2017}
+Bei ASICs handelt sich sich um anwendungsspezifische Schaltungen, hierbei ist die komplette Funktion in Hardware gefertigt und ist somit äußerst performant und gleichzeitig energie-effizient.  
 
 \begin{scriptsize}
 	\begin{figure}[htbp] 
@@ -64,12 +81,12 @@ Im folgenden soll nun weiter auf die partitionierte Organisation eingegangen wer
 Der verwendete Prozessor besitzt zwei Register-Files mit jeweils 32 64bit-Registern. Beide Register weisen zwei Lese und vier Schreibports auf. Dadurch ist es möglich, dass Instruktionen aus dem Issue-Slot 1 in das Register-File 0 schreiben oder lesen und umgekehrt. Außerdem wird durch diese Architektur ein Schreiben und Lesen zweier Instruktionen auf das selbe Register-File möglich gemacht. Des weiteren können im Falle einer X2-Instruktion beide Ports des Registers verwendet werden. Die Aufteilung und  Zuordnung der Schreib- und Leseports können aus der Abbildung \ref{fig:reg_orga} und \ref{fig::schreib-port}+\ref{lese-port} entnommen werden.
 
 
-\begin{figure}[htbp] 
-	\centering
-	\includesvg[width=0.7\textwidth]{registerfile_new}
-	\caption{Register File Organistaion}
-	\label{fig:reg_orga}
-\end{figure}
+%\begin{figure}[htbp] 
+%	\centering
+%	\includesvg[width=0.7\textwidth]{registerfile_new}
+%	\caption{Register File Organistaion}
+%	\label{fig:reg_orga}
+%\end{figure}
 
 \begin{table}[htbp]
 	
@@ -135,7 +152,12 @@ Der verwendete Prozessor besitzt zwei Register-Files mit jeweils 32 64bit-Regist
 
 
 \newpage
+\subsection{Optimierungsziel}
+In den meisten Prozessoren nimmt das Register-File deutlich mehr als 40\% der gesamten Chipfläche ein. 
+Betrachtet man die prozentuale Verteilung der Verlustleistungen, sticht die der Register deutlich hervor. Dadurch ergibt sich ein sehr hohes Optimierungspotential. In dieser Arbeit wird dieses Potential durch einen geeigneten Compiler ausgenutzt. Dabei liegt der Fokus auf der Verlustleistungsoptimierung der Register-Files. Der Vorteil einer Optimierung zur Compilezeit liegt darin, dass keinerlei neue Hardware benötigt wird. Dies macht das es äußerst lukrative. Dabei handelt es sich um kein neuem Ansatz denn bereits...  Haben sich mit diesem Problem befasst und Lösungen gefunden. Die meisten Literaturen befassen sich bei der Optimierung jedoch auf das Scheduling und die Ausführungszeit der Codes. Die Besonderheit bei dem Ansatz in dieser Arbeit liegt bei der Optimierung der Verlustleistung durch den Compiler. Die Hauptkomponenten des Compilers sind das Scheduling und die Register allocation. Im folgenden soll kurz auf die Funktionen des Compilers eingegangen werden. 
 \subsection{Compiler}
+%Überleitung zu Tradeoff von Flache und Register File allokation.
+
 Damit ein Prozessor eine Programmiersprache (optimal) ausführen kann sind einige Schritte notwendig. Diese sind im Compiler zusammengefasst und werden im folgenden kurz erläutertert.\\
 Der Code wird vorerst in so genannte Micro Instructions (MI) gestückelt.  Hierbei ist eine MI eine Anweisung welche der Prozessor in einem Taktzyklus ausführen kann. Durch die Verwendung eines VLIW-Prozessors ist es möglich mehrere Instruktionen parallel auszuführen. Im Falle des KAUVAKA-Prozessors sind dies wie erwähnt zwei Instruktionen. Aus diesem Grund teilt der Compiler nun die MIs in Micro Operation (MO) auf. Diese werden anschließend in so genannte \glqq Straight Line Microcode\grqq{} (SLM) aufgeteilt. Ein SLM ist hierbei so definiert, dass es nur eine Einsprungstelle und Austrittsstelle gibt. Außerdem dürfen sich keine Sprünge und Verzweigungen innerhalb einer SLM befinden.  Dadurch entsteht ein Baum aus SLMs, die im Anschluss einzeln optimiert werden können. Dieses Verfahren ist nötig, da eine Optimierung über alle Instruktionen eine zu hohe Komplexität aufweisen würde. \cite{landskov1980local}
 \subsection{Scheduling}
@@ -147,8 +169,9 @@ Diese Art von Algorithmus findet jedoch nicht immer eine optimale Lösung und is
 \section{Register Allokation}
 \label{sec:register allok}
 \subsection{Virtuelle Register}
+\label{sub:virtuelleR}
 Bei virtuellen Registern handelt es sich um Register die an beliebiger Stelle im Register-File allokiert werden können, das heißt der Compiler kann selbst entscheiden wo im Registerfile er diese Variable platziert. 
-Die Idee hierbei ist es, dem Compiler die Aufgabe zu übergeben ein geeignetes Register auszuwählen. Das Codebeispiel \ref{phyReg} zeigt anhand einer einfachen Addition diese Funktion. Da der Prozessor nicht mit Immediates addieren kann, müssen zwei Hilfsvariablen verwendet werden. In diesem Fall wurden die Register V0R0 und V0R1 gewählt. Mithilfe dieser Register kann der Prozessor nun eine Addition in Zeile drei durchführen. Anschliessend wird der Code in den Speicher zurueck geschrieben.
+Die Idee hierbei ist es, dem Compiler die Aufgabe zu übergeben ein geeignetes Register auszuwählen. Das Codebeispiel \ref{phyReg} zeigt anhand einer einfachen Addition diese Funktion. Da der Prozessor nicht mit Immediates addieren kann, müssen zwei Hilfsvariablen verwendet werden. In diesem Fall wurden die Register V0R0 und V0R1 gewählt. Mithilfe dieser Register kann der Prozessor nun eine Addition in Zeile drei durchführen. Anschließend wird der Code in den Speicher zurück geschrieben.
 \newpage
 \renewcommand{\lstlistingname}{Codebeispiel}
 \begin{lstlisting}[frame=single, caption={physikalische Register},captionpos=b,label=phyReg]
@@ -165,10 +188,10 @@ MV VxR1 0x101
 ADD VxR0 VxR0 VxR1
 STORE 0x100 VxR0
 \end{lstlisting}
-\subsection{X2 Betriebsmodus}\label{subsec:x2Mode}
-Der X2-Betriebsmodus ermöglicht es identischen Instruktionen mit dem selben Opcode den Registerzugriff zusammenzufuehren, wobei sich die Adresse nur im letzten Bit unterscheidet. Dadurch wurde virtuell die Anzahl der Issue-Slots erhoeht, ohne dabei die Anzahl der zu decodierenden Anweisungen zu erhöhen. Hierbei wird einem Befehl die doppelte Anzahl an Schreib- und Lese-Registern übergeben, somit steigt die Zahl der Parameter von drei auf sechs. Bei der Auswahl der Registern gibt es die Vorgabe, dass die erste Instruktionen auf gerade Register-Adressen und die zweite auf ungerade Adressen des zugreift. \cite{paya2009instruction}
+%\subsection{X2 Betriebsmodus}\label{subsec:x2Mode}
+%Der X2-Betriebsmodus ermöglicht es identischen Instruktionen mit dem selben Opcode den Registerzugriff zusammenzuführen, wobei sich die Adresse nur im letzten Bit unterscheidet. Dadurch wurde virtuell die Anzahl der Issue-Slots erhöht, ohne dabei die Anzahl der zu decodierenden Anweisungen zu erhöhen. Hierbei wird einem Befehl die doppelte Anzahl an Schreib- und Lese-Registern übergeben, somit steigt die Zahl der Parameter von drei auf sechs. Bei der Auswahl der Registern gibt es die Vorgabe, dass die erste Instruktionen auf gerade Register-Adressen und die zweite auf ungerade Adressen des zugreift. \cite{paya2009instruction}
 \subsection{MAC Operationen}\label{subsec:macMode}
-Die MAC(Multiply and Accumulate)-Operation führt eine Multiplikation zweier Werte aus und Akkumuliert diese im Anschluss. Werden bei einer n-bit Implementierungen zwei Werte multipliziert, so kann das Resultat eine Bitbreite von 2n aufweisen. Wird nun eine Architektur mit 64-bit Registern verwendet, müssen zwei Register zur Abspeicherung des Ergebnisses herangezogen werden. Dabei sollte es sich um zwei aufeinderfolgende Register handeln, hierbei können diese im selben oder in einem benachbarten Register-File stammen. Eine weitere Besonderheit der MAC-Operation ist, dass der erste Operand in eine geraden Registe-Adresse liegen muss. Ein Beispiel für eine valide MAC-Allocation stellt das folgende Register-Paar V0R0 und V1R0 dar.
+Die MAC(Multiply and Accumulate)-Operation führt eine Multiplikation zweier Werte aus und Akkumuliert diese im Anschluss. Werden bei einer n-bit Implementierungen zwei Werte multipliziert, so kann das Resultat eine Bitbreite von 2n aufweisen. Wird nun eine Architektur mit 64-bit Registern verwendet, müssen zwei Register zur Abspeicherung des Ergebnisses herangezogen werden. Dabei sollte es sich um zwei aufeinanderfolgende Register handeln, hierbei können diese im selben oder in einem benachbarten Register-File stammen. Eine weitere Besonderheit der MAC-Operation ist, dass der erste Operand in eine geraden Registe-Adresse liegen muss. Ein Beispiel für eine valide MAC-Allocation stellt das folgende Register-Paar V0R0 und V1R0 dar.
   
 
 \subsection{Dummy-Register}\label{subsec:dummy}
