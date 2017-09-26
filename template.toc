@@ -31,18 +31,19 @@
 \contentsline {section}{\numberline {3.4}Genetischer Algorithmus}{25}{section.3.4}
 \contentsline {subsection}{\numberline {3.4.1}Gene}{26}{subsection.3.4.1}
 \contentsline {subsection}{\numberline {3.4.2}Aufbau}{26}{subsection.3.4.2}
-\contentsline {subsection}{\numberline {3.4.3}Fitness-Funktion}{27}{subsection.3.4.3}
-\contentsline {subsection}{\numberline {3.4.4}Parameter}{28}{subsection.3.4.4}
-\contentsline {subsection}{\numberline {3.4.5}Startpopulation}{28}{subsection.3.4.5}
-\contentsline {subsection}{\numberline {3.4.6}dynamische Anpassung}{28}{subsection.3.4.6}
-\contentsline {subsection}{\numberline {3.4.7}Algorithmus Modi}{29}{subsection.3.4.7}
-\contentsline {subsection}{\numberline {3.4.8}Glitches}{29}{subsection.3.4.8}
-\contentsline {chapter}{\numberline {4}Evaluation}{32}{chapter.4}
-\contentsline {section}{\numberline {4.1}Testprogramme}{34}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Beamforming}{34}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}emulated floating Point}{34}{subsection.4.1.2}
-\contentsline {section}{\numberline {4.2}Evaluation}{35}{section.4.2}
-\contentsline {chapter}{\numberline {5}Schlussfolgerung}{36}{chapter.5}
-\contentsline {section}{\numberline {5.1}Evaluation}{36}{section.5.1}
-\contentsline {chapter}{\numberline {A}Source Code}{37}{appendix.A}
-\contentsline {chapter}{\nonumberline Literaturverzeichnis}{38}{chapter*.13}
+\contentsline {subsection}{\numberline {3.4.3}Fortpflanzung der Chromosomen}{27}{subsection.3.4.3}
+\contentsline {subsection}{\numberline {3.4.4}Fitness-Funktion}{27}{subsection.3.4.4}
+\contentsline {subsection}{\numberline {3.4.5}Parameter}{29}{subsection.3.4.5}
+\contentsline {subsection}{\numberline {3.4.6}Startpopulation}{29}{subsection.3.4.6}
+\contentsline {subsection}{\numberline {3.4.7}dynamische Anpassung}{29}{subsection.3.4.7}
+\contentsline {subsection}{\numberline {3.4.8}Algorithmus Modi}{30}{subsection.3.4.8}
+\contentsline {subsection}{\numberline {3.4.9}Glitches}{30}{subsection.3.4.9}
+\contentsline {chapter}{\numberline {4}Evaluation}{33}{chapter.4}
+\contentsline {section}{\numberline {4.1}Testprogramme}{35}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Beamforming}{35}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}emulated floating Point}{35}{subsection.4.1.2}
+\contentsline {section}{\numberline {4.2}Evaluation}{36}{section.4.2}
+\contentsline {chapter}{\numberline {5}Schlussfolgerung}{37}{chapter.5}
+\contentsline {section}{\numberline {5.1}Evaluation}{37}{section.5.1}
+\contentsline {chapter}{\numberline {A}Source Code}{38}{appendix.A}
+\contentsline {chapter}{\nonumberline Literaturverzeichnis}{39}{chapter*.13}

@@ -7,7 +7,7 @@ Um den Einfluss der Register-Adressen besser verstehen zu können wurden Assembl
 
 Durch diese Untersuchung war zu erkennen, dass sich die Hamming-Distanzen zu der Toggleleistung nahe zu linear verhält. Dazu wurden die Leistungen der einzelnen Adress-Ports aufsummiert. Der Verlauf der Gesamtleistung des Prozessors ist auf dieser Ebene nur schwer nachzuvollziehen, jedoch ist auch hier eine Verbesserung zu verzeichnen. 
 Bei der Evaluationen war auffällig, dass die Leistung bei gleicher Hamming-Distanz aber Verwendung unterschiedlicher Adressen eine Abweichung in der Leistung zu verzeichnen war. Dies hat den Ursprung bei den Lastkapazitäten der Adressleitungen. Da die Adressleitungen unterschiedliche belastet werden und bei der Verwendung unterschiedlicher Adressen auch andere Adressleitungen verwenden verändert sich nach der Formel \ref{eq:dynVerlustleistung} auch die Leistungsaufnahme linear mit der Lastkapazität. 
-Die Schaubilder zeigen die Schaltleistung der einzelnen Register. Hierbei wurden die Ports einzeln untersucht. 
+Die Schaubilder zeigen die Schaltleistung der einzelnen Register. Hierbei wurden jeder Port einzelend untersucht. 
 
 Vorerst wurde die Heuristik untersucht.
 Um die Register allocation besser nachvollziehen zu können, würden Testprogramme entworfen, welche alle Möglichkeiten der Register Zuweisungen testet. Das Testprogramm führt vorerst Addition und Orbefehle mittels physikalischer Register aus. Hierbei wird dem ersten issue Slot die Addition und dem zweiten issue Slot eine Or-operation zugewiesen. Durch das addieren und verodern und anschließende Abspeicherung in physikalische Register, wird eine gewisse Anzahl an Registern fest blockiert und kann nicht für virtuelle Register verwendet werden. Siehe Abbildung xxx
