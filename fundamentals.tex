@@ -55,14 +55,14 @@ Die beiden Pipelinestufen des verwendeten KUAVAKA-Prozessors sind wie folgt aufg
 
 Des weiteren wurde der Prozessor so erweitert, dass neue Funktionen sowie Co-Prozessoren eingefügt werden können. Zudem besteht die Möglichkeit des Forwarding bei der Verwendung von temporären Variablen.
 Der verwendete KAVUAKA-Prozessor besitzt außerdem zwei Instruktion-Dekoder auch Issue-Slots genannt und kann somit zwei Befehle parallel ausführen.
-Der Prozessor wird für die Implementierung auf einem ASIC entwickelt und wird zur Verifikation auf einem FPGA getestet, da dieser eine hohe Flexibilität, sowie geringere Entwicklungszeiten bietet und die spätere Hardware eins zu eins Abgebildet werden kann.\cite{lukasglitches2017}
-Bei ASICs handelt sich sich um anwendungsspezifische Schaltungen, hierbei ist die komplette Funktion in Hardware gefertigt und ist somit äußerst performant und gleichzeitig energie-effizient.  
+Fuer die Implementierung wird der Prozessor auf einem ASIC entwickelt und zur Verifikation auf einem FPGA getestet, da dieser eine hohe Flexibilität, sowie geringere Entwicklungszeiten bietet und die spätere Hardware eins zu eins Abgebildet werden kann.\cite{lukasglitches2017}
+Bei ASICs handelt sich um anwendungsspezifische Schaltungen die in einer Integrierten Schaltung zusammengefuegt werden, hierbei ist die komplette Funktion in Hardware abgebildet und ist somit äußerst klein in der Bauweise, performant und gleichzeitig energie-effizient. 
 
 \begin{scriptsize}
 	\begin{figure}[htbp] 
 		\centering
 		\includesvg[width=0.70\textwidth]{kavuaka2pipeline}
-		\caption{KAVUAKA-Prozessor \cite{lukasglitches2017}}
+		\caption[KAVUAKA-Prozessor]{KAVUAKA-Prozessor \cite{lukasglitches2017}}
 		\label{fig:KAVUAKA}
 	\end{figure}
 \end{scriptsize}
@@ -73,7 +73,7 @@ Es besteht eine Vielzahl an Registerorganisationen für Signalprozessoren. Im Al
 \begin{figure}[htbp] 
 	\centering
 	\includegraphics[width=\textwidth]{fig/Register_orga.png}
-	\caption{Register File Organisation –\\ a)zentralisierte Organisation b)gruppierte Organisation c)hierarchische Organisation d)partitionierte Organisation  \cite{paya2010multi}}
+	\caption[Register File Organisation]{Register File Organisation –\\ a)zentralisierte Organisation b)gruppierte Organisation c)hierarchische Organisation d)partitionierte Organisation  \cite{paya2010multi}}
 	\label{fig:RegisterOrga}
 \end{figure}
 \newline

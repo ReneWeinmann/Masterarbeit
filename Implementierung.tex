@@ -31,10 +31,10 @@ Um die Register Allokation in den Code einzuordnen zeigt das unten stehende Scha
 \section{Ansatz}
 Nach genauerem betrachten der Formel für die dynamische Verlustleistung \ref{eq:dynVerlustleistung} hängt diese von vier Faktoren ab, Schaltaktivitäten,  Lastkapazität, Versorgungsspannung und der Frequenz. Die statische Verlustleistung wird nicht weiter betrachtet, da diese nur durch eine Veränderung der Hardware verbessert werden könnte. Dies ist jedoch nicht Teil dieser Arbeit. Da ebenfalls die Spannung und Frequenz von der Architektur und anderen nicht beeinflussbaren Faktoren vorgegeben wirds kann auch an diesen Parametern in Software nichts verbessert werden. Im folgenden wird nun erst darauf eingegangen wie, durch Minimierung der Schaltaktivitäten, die Verlustleistung optimiert werden kann. Im Weiteren Verlauf des Textes wird dann ebenfalls der Einfluss der Lastkapazitäten überprüft.\\
 Um in ein Register zu schreiben, muss eine geeignete Adresse an den Adressbus angelegt werden. Da es sich bei der Architektur um 32-bit-Register handelt muss hierfür eine 5-bit Adresse angelegt werden.
-Da der Prozessor über zwei Issue-Slots verfügt, müssen pro Slot ein Target und zwei Source Register adressiert werden. Hierbei können die Instruktionen auf Register-File 0 oder 1 schreiben bzw. lesen. Aus diesem Grund besitzt jedes der Register-Files vier Lese- und zwei Schreibports. Die Zuordnung der Issues auf die Register können sie aus den Tabellen TTT entnehmen. Schreibt nun beispielsweise eine Instruktion an die Adresse Null und die nachfolgende Instruktion an die Adresse 31 des selben Ports, so wäre dies der Worst-Case, da in diesem Fall alle 5-Bit umgeladen werden müssten.
+Da der Prozessor über zwei Issue-Slots verfügt, müssen pro Slot ein Target und zwei Source Register adressiert werden. Hierbei können die Instruktionen auf Register-File 0 oder 1 schreiben bzw. lesen. Aus diesem Grund besitzt jedes der Register-Files vier Lese- und zwei Schreibports. Die Zuordnung der Issues auf die Register können sie aus den Tabellen TTT entnehmen. Schreibt nun beispielsweise eine Instruktion an die Adresse Null und die nachfolgende Instruktion an die Adresse 31 des selben Ports, so wäre dies der ungünstigste Adresswechsel, da in diesem Fall alle 5-Bit umgeladen werden müssten.
 
-Durch den Einsatz von virtuelle Register \ref{sub:virtuelleR} können Instruktionen an beliebiger Adressen und Register-Files schreiben bzw. lesen. Durch diese Änderung kann die Schaltaktivitäten des Adressbus verringert werden.\\
-In der bestehenden Implementierung wurde diese Zuweisung so geregelt, dass die Adressen der Register immer von einer Seite aus befüllt wurden. Die Auswahl des Register-Files wurde hierbei über die Anzahl der freien Register-Adressen ermittelt. Außerdem wurde bei der Zuweisung darauf geachtet, dass es weiterhin möglich ist X2-Befehle und MAC-Operationen zu bedienen.\\
+Durch den Einsatz von virtuelle Register \ref{sub:virtuelleR} können Instruktionen an beliebiger Adressen und Register-Files schreiben bzw. lesen. Durch diese Änderung ist es moeglich die Schaltaktivitäten des Adressbus zu verringeren.\\
+In der bestehenden Implementierung wurde diese Zuweisung der Register so geregelt, dass die Regiser-Files immer von einer Seite aus befüllt wurden. Die Auswahl des Register-Files wurde hierbei über die Anzahl der freien Register-Adressen ermittelt, und dasjenige File mit der hoeheren Anzahl an freien Adressen verwendet. Außerdem wurde bei der Zuweisung darauf geachtet, dass es weiterhin möglich ist X2-Befehle und MAC-Operationen zu bedienen.\\
 Um nun dieses Mapping auf die Schaltaktivität und somit auch auf die Verlustleistung zu optimieren wurde eine neue Heuristik implementiert.
 Diese optimiert die Anzahl der Schaltzyklen anhand der Hamming-Distanz.
 Die Hamming-Distanz ist nach dem amerikanischen Mathematiker Richard Wesley Hamming benannt und gibt ein Maß für die Unterschiedlichkeit zweier Zeichenketten an. Hierbei ist die Hamming-Distanz die Anzahl der unterschiedlichen Stellen beider Codeworter.
@@ -46,8 +46,8 @@ Die Hamming-Distanz ist nach dem amerikanischen Mathematiker Richard Wesley Hamm
 \section{Heuristik}
 \label{sec:Heuristik}
 
-Um die Hamming-Distanz zu berechnen werden die Adressen der letzten Instruktionen gespeichert. Da die Architektur  wie bereits erwähnt zwei Issue-Slots aufweist und diese auf beide Register-Files zugreifen können muss es dementsprechend vier Target- und acht Source-Adressleitungen geben(siehe Abbildung \ref{fig:reg_orga}).\\
-Da eine Architektur mit Adresse Isolation eingesetzt wird bleiben die eingestellten Adressen an den Register-File Ports angelegt. Um die Schaltaktivität zu minimieren wird nun bei jedem virtuellen und physikalischem Register die Hamming-Distanz zu der zuletzt angelegten Adresse des jeweiligen Ports berechnet. Hierbei wird die virtuelle auf das Register gemappt welches die geringste Hamming-Distanz aufweist.\\
+Um die Hamming-Distanz berechnen zu koennen, werden die Adressen der letzten Instruktionen gespeichert. Da die Architektur wie bereits erwähnt zwei Issue-Slots aufweist und diese auf beide Register-Files zugreifen können muessen dementsprechend vier Target- und acht Source-Adressen abgespeichert werden(siehe Abbildung \ref{fig:reg_orga}).\\
+Da eine Architektur mit Adresse-Isolation \ref{subsec:add_iso} eingesetzt wird bleiben die zuvor verwendeten Adressen an den Register-File Ports angelegt. Um die Schaltaktivität zu minimieren, wird nun bei jedem virtuellen und physikalischem Register die Hamming-Distanz zu der zuletzt angelegten Adresse des jeweiligen Ports berechnet. Hierbei wird die virtuelle auf das Register gemappt welches die geringste Hamming-Distanz aufweist.\\
 \begin{lstlisting}[frame=single, caption={Heuristik Beispiel},captionpos=b,label=code:heuristik]
 :0 ADD V0R0 V0R0 V0R0 :1 OR V1R0 V0R0 V0R0
 :0 ADD V0R2 V0R0 V0R0 :1 OR V1R2 V0R0 V0R0
@@ -93,6 +93,30 @@ Zu Beginn des genetischen Algorithmus, muss eine Startpopulation festgelegt werd
 Für jedes Chromosom muss eine Fitness-Funktion \ref{chap:Fitness-Funktion} ermittelt werden. Mithilfe dieses Merkmales wird die Population im Anschluss sortiert. 
 Mit den generierten Register-Allokations-Ansätzen beginnt nun der eigentliche Algorithmus. In einer Schleife werden zuerst die beiden besten Chromosomen der letzten Generation in eine Neue abgespeichert. Anschließend werden die restlichen Mitglieder der Population durch Crossover und Mutation aufgefüllt. Zum Ende der Schleife wird die neu errungenen Chromosomen anhand der Fitness sortiert. Diese geschieht so lange, bis eine maximale Anzahl an Durchlaufen erreicht wurde. Sobald eine Verbesserung durch die Fortpflanzung und Veränderung der Chromosom gefunden wurde, beginnt die Schleife von Neuem. Der Algorithmus terminiert dementsprechend immer wenn nach einer gewissen Anzahl an Durchlaufen keine Verbesserung in der Fitness mehr gefunden werden kann. Nach dem Beenden der Schleife wird die beste Population herausgesucht und das Mapping von virtuellen zu physikalischen Registern verwendet.
 
+\begin{algorithm}[H]
+	\begin{algorithmic}[1]
+	\STATE {Startpopulation \(P_{S}\) ermitteln}
+	\STATE {Population \(P_{S}\) sortieren}
+	\WHILE{Anzahl der Durchlaeufe > 0}
+		\STATE {neue Population \(P_{N}\) erstellen}
+		\STATE {zwei Besten Chromosomen der alten Population \(P_{S}\)  in die neue  Population \(P_{N}\) uebernehmen}
+%		
+		\FOR{Populationsgroesse - 2} \STATE{
+			\textbf {Auswahl:} Auswahl der Elternpaare \(C_{1}\)+\(C_{2}\) }
+			\STATE{ mit Roulette-Wheel-Selection aus \(P_{N}\)}
+		 	\STATE{\textbf {Crossover:} Fortpflanzung der Eltern \(C_{1}\)+\(C_{2}\) = \(C_{3}\)}
+		 	\STATE{\textbf {Mutation:} Mutieren des neuen Chromosoms \(C_{3}\)}
+		 	\STATE{\textbf {Einfuegen:} Einfuegen von \(C_{3}\) in die Population \(P_{N}\)}
+		\ENDFOR
+			\STATE {Population \(P_{N}\) sortieren}
+		\IF{Verbessung zu \(P_{S}\) gefunden}
+			\STATE {Durchlaeufe zuruecksetzten}
+		\ENDIF
+	\ENDWHILE
+	\caption{Pseudocode genetischer Algorithmus}
+\end{algorithmic}
+\end{algorithm}
+
 \subsection{Fortpflanzung der Chromosomen}
 Wie bereits im Grundlagenteil \ref{chap:grundlagen_cossover} skizziert handelt es sich beim Crossover um das Fortpflanzen der Chromosomen.
 Das Fortpflanzungspaar wird hierbei mittels dem bereits erwähnten Roulette Wheel Selection ausgewählt. Die Auswahl wird mit der alten Population durchgefuehrt.
@@ -105,7 +129,8 @@ Das so entstandene neue Chromosom wird nun zur neuen Population hinzugefuegt. De
 \subsection{Fitness-Funktion}
 \label{chap:Fitness-Funktion}
 Da die Registerallokation dem Scheduling untergeordnet ist und von diesem aufgerufen wird, muss die Fitnessfunktion an die des Scheduling angepasst werden. Aus diesem Grund wurde zum einfacheren Vorgehen zwei Verschiedene Fitness-Funktionen implementiert. Zum einen der Wert der an die übergeordnete Funktion (das Scheduling) weitergegeben wird und zum Andern eine interne Fitness um die Ergebnisse zu evaluieren.
-Der Übergabewert besteht aus der Anzahl der Register die nicht im Register-File allokiert werden konnten. Das sortieren der Population wird mit beiden Fitness-Funktionen realisiert. Da die Register-Allokation nur dann erfolgreich war wenn alle Register allokiert werden konnten, ist dies der erste Schluessel nach dem die Population sortiert wird. Als zweiter Sortierschlüssel wird die interne Fitness-Funktion verwendet. Bei dieser wurden mehrere Ansätze untersucht.
+Der Übergabewert besteht aus der Anzahl der Register die nicht im Register-File allokiert werden konnten.\\
+Das sortieren der Population wird mit beiden Fitness-Funktionen realisiert. Da die Register-Allokation nur dann erfolgreich war wenn alle Register allokiert werden konnten, ist dies der erste Schluessel nach dem die Population sortiert wird. Als zweiter Sortierschlüssel wird die interne Fitness-Funktion verwendet. Bei dieser wurden mehrere Ansätze untersucht.
 Besteht der Fall, dass ein Register mit dem zufällig gewählten Adressen nicht zugewiesen werden kann, so wird der Zähler für nicht allokierbare Register erhöht. Zusätzlich wird die Fitness berechnet und mit einem Offset versehen. Somit können Chromosomen mit der selben Anzahl an nicht allokierbaren Registern untereinander verglichen werden. Dies ist noetig da sonst das Crossover zu keinen Verbesserung der Chromosomen kommen kann. Außerdem ist durch den Einsatz eines großen Offsets eine Abgrenzung zu den geglückten Zuweisungen möglich. Der Offset wurde hierfür  so gewählt, dass selbst bei dem Worst-Case-Szenario, wenn die Hamming-Distanz in jedem Schritt maximal wäre, eine klare Separierung möglich ist. Dazu wurde die Anzahl der virtuellen Registern in einer SLM mit 1000 multipliziert.
 Im Folgenden wird jetzt auf die einzelnen Ansaetze zur Fitness-Funktion eingeganen.
 \begin{itemize}
@@ -123,6 +148,22 @@ Im Folgenden wird jetzt auf die einzelnen Ansaetze zur Fitness-Funktion eingegan
  
 \subsection{Parameter}
 Es bestehen eine Vielzahl an Parametern und Einstellungsmöglichkeiten bei der Verwendung eines genetischen Algorithmus, dabei haben einige einen erheblichen Einfluss auf die Funktion und das Ergebnis. Im Folgenden sollen die Parameter und deren Funktion sowie Einfluss auf das Ergebnis erläutert werden.
+\begin{itemize}
+	\item Anzahl der Durchlaeufe\\
+	
+	\item Mutations-Wahrscheinlichkeit\\
+	blabla
+	\item Auswahl-Verfahren\\
+	blabla
+	\item Crossover-Wahrscheinlichkeit/Verfahren\\
+	blabla
+	\item Groesse der Population\\
+	blabla
+	\item Startwerte\\
+	blabla
+	\item Fitnessfunktion\\
+	blabla
+\end{itemize}
  
 \subsection{Startpopulation}
 Die Startpopulation besteht im Normalfall wie in Kapitel \ref{chap:aufbau} aus zufällig gewählten Genen. Hierbei werden nur Register verwendet die nicht bereits von physikalische Registern blockiert sind.
