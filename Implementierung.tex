@@ -2,14 +2,14 @@
 \label{chap:Implementierung}
 Nachdem die nötigen Grundlagen erläutert wurden soll in diesem Kapitel aufgezeigt werden wie der Compiler aufgebaut ist und wie das gesetzte Ziel implementiert wurde. Hierzu wird kurz auf den Ausgangsstatus des Codes und dessen Bestandteile eingegangen um das komplette System besser verstehen zu können. Anschließend wird veranschaulicht wie die Verlustleistung gesenkt werden soll und wie dies mit einer Heuristik implementiert wurde. Im Anschluss wird diese Implementierung durch den Einsatz eines genetischen Algorithmus noch verbessert und die einzelnen Komponenten erläutert.
 \section{Ausgangsstatus}
-Um die Register Allokation in den Code einzuordnen zeigt das unten stehende Schaubild (siehe Abbildung \ref{fig:flow_compiler}) den Aufbau des Codes. Gestartet wird mit einem Assembler-Programm das in einer ASM-Datei vorliegt und dem Code übergeben wird.
+ Das unten stehende Schaubild (siehe Abbildung \ref{fig:flow_compiler}) den Aufbau des Codes um die Register Allokation besser in den Code einzuordnen. Gestartet wird mit einem Assembler-Programm das in einer ASM-Datei vorliegt und dem Code übergeben wird.
 
 
 \begin{scriptsize}
 	\begin{figure}[htbp] 
 		\centering
 		\includesvg[width=0.70\textwidth]{flowchart}
-		\caption{Flowchart Compiler}
+		\caption{Compiler Ablaufdiagramm}
 		\label{fig:flow_compiler}
 	\end{figure}
 \end{scriptsize}
@@ -18,27 +18,26 @@ Um die Register Allokation in den Code einzuordnen zeigt das unten stehende Scha
 	\item Precompiler\\
 		Da der Assembler-Code auch Kommentare oder Bestandteile aufweisen kann die nicht in der eigentlichen Assemblersprache enthalten sind, ist es nötig diese aufzulösen. Hierzu dient der Precompiler oder Preprozessor der diese Konstrukte in einen vom Prozessor ausführbaren Code bzw. Anweisungen umwandelt. Ein Beispiel für ein solches Konstrukt ist das An- und Ausschalten des Schedulings für bestimmte Bereiche des Codes. Hierbei kann dem Compiler, im Assembler-Programm durch Angabe des 'scheduling-off'-Befehls, mitgeteilt werden welche SLMs vom Scheduling unberührt bleiben soll.
 	\item Virtual Renaming\\
-		Im Teil des virtuellen Renaming(Umbenennen) werden die im Assembler-Code vorhandenen virtuellen Register umbenannt, um eine konsistente Allokation und bessere Nachvollziehbarkeit gewährleisteten. Außerdem wird in diesem Teil des Compilers unüberprüft ob ein virtuelles Register verwendet wurde bevor es zugewiesen ist.
+		Im Teil des virtuellen Renaming(Umbenennen) werden die im Assembler-Code vorhandenen virtuellen Register umbenannt, um eine konsistente Allokation und bessere Nachvollziehbarkeit gewährleisteten. Außerdem wird in diesem Teil des Compilers überprüft ob ein virtuelles Register verwendet wurde bevor es zugewiesen ist.
 	\item Register Initalisierung\\
 		Bei der Register Initalisierung wird über alle Operationen iteriert. Dabei werden die Adressen des Register-Files blockiert, welche bereits von physikalischen Registern verwendet werden. Dadurch wird verhindert, dass diese Positionen für das virtuelle Register-Mapping verwendet werden können.
 	\item Scheduling\\
-		Wie in den Grundlagen beschrieben \ref{sec:scheduling} ist das Scheduling zuständig für die Anordnung der Operationen im Prozessor. Dabei wird je nach gewähltem Optimierungsgrad ein Scheduling gewählt. Hierbei Kann zwischen einem Genetischen Instruktions-Scheduling und einem Heuristischem-Ansatz entscheiden werden. Beide Algorithmen rufen intern die Register-Allokation auf. Wird der genetische Algorithmus verwendet wird der Fitness-Wert der Register-Zuweisung mit der Bewertungsfunktion des Instruktion-Schedulings verrechnet.
+		Wie in den Grundlagen \ref{sec:scheduling} beschrieben  ist das Scheduling zuständig für die Anordnung der Operationen im Prozessor. Dabei wird je nach gewähltem Optimierungsgrad ein Scheduling gewählt. Hierbei Kann zwischen einem Genetischen Instruktions-Scheduling und einem Heuristischem-Ansatz entscheiden werden. Beide Algorithmen rufen intern die Register-Allokation auf. Wird der genetische Algorithmus verwendet wird der Fitness-Wert der Register-Zuweisung mit der Bewertungsfunktion des Instruktion-Schedulings verrechnet.
 	\item Register Allokation\\
+		Die Register-Allokation ist dafür zuständig,dass alle Register sowohl physikalisch als auch virtuelle im Register-File abgespeichert werden können. Dazu wird diese nach jedem Scheduling einer SLM aufgerufen und durchläuft hierbei alle Instruktionen sowie die darin verwendeten Register. Bei Verwendung eines physikalischen Registers überprüft die Allokation, ob die vom Programmierer gewählte Register-Adresse und Register-File bereits blockiert oder nicht zuweisbar ist. Handelt es sich um ein virtuelles Register wird zuerst eine geeignete Adresse zugewiesen. Hierbei wird ebenfalls darauf geachtet das diese nicht blockiert oder nicht möglich ist.
 		Bei der Regsiter-Allokation bestehen ebenfalls zwei Arten der Zuweisung. Zum Einen eine Heuristik (siehe Kapitel \ref{sec:Heuristik}) zum Andern ein Genetischer Algorithmus (siehe Kapitel \ref{sec:genetischerAlgorithmus}). Beide Alogithmen werden im folgenden nun näher beleuchtet.
 \end{itemize}
 
 
 \section{Ansatz}
-Die Register-Allokation ist dafür zuständig,dass alle Register sowohl physikalisch als auch virtuelle im Register-File abgespeichert werden können. Dazu wird diese nach jedem Scheduling einer SLM aufgerufen und geht hierbei alle Instruktionen und die darin verwendeten Register durch . Bei Verwendung eines physikalischen Registers überprüft die Allokation, ob die vom Programmierer gewählte Register-Adresse und Register-File bereits blockiert oder nicht möglich. Handelt es sich um ein virtuelles Register wird zuerst eine geeignete Adresse zugewiesen. Hierbei wird ebenfalls darauf geachtet das diese zugewiesen wird welche nicht blockiert oder nicht möglich ist.
 Nach genauerem betrachten der Formel für die dynamische Verlustleistung \ref{eq:dynVerlustleistung} hängt diese von vier Faktoren ab, Schaltaktivitäten,  Lastkapazität, Versorgungsspannung und der Frequenz. Die statische Verlustleistung wird nicht weiter betrachtet, da diese nur durch eine Veränderung der Hardware verbessert werden könnte. Dies ist jedoch nicht Teil dieser Arbeit. Da ebenfalls die Spannung und Frequenz von der Architektur und anderen nicht beeinflussbaren Faktoren vorgegeben wurde kann auch an diesen Parametern nichts verbessert werden. Im folgenden wird nun erst darauf eingegangen wie, durch Minimierung der Schaltaktivitäten, die Verlustleistung optimiert werden kann. Im Weiteren Verlauf des Textes wird dann ebenfalls der Einfluss der Lastkapazitäten überprüft.\\
 Um in ein Register zu schreiben, muss eine geeignete Adresse an den Adressbus angelegt werden. Da es sich bei der Architektur um 32-bit-Register handelt muss hierfür eine 5-bit Adresse angelegt werden.
-Da der Prozessor über zwei Issue-Slots verfügt, müssen pro Slot ein Target und zwei Source Register adressiert werden. Hierbei können die Instruktionen auf Register-File 0 oder 1 schreiben bzw. lesen. Aus diesem Grund besitzt jedes der Register-Files vier Lese- und zwei Schreibports. Die Zuordnung der Issues auf die Register können sie aus den Tabellen TTT entnehmen. Schreibt nun beispielsweise eine Instruktion an die Adresse Null und die nachfolgende Instruktion an die Adresse 31 des selben Ports, so wäre dies der Worst-Case, da in diesem Fall alle 5-Bit umgeladen werden müssten.
-
-Durch den Einsatz von virtuelle Register \ref{sub:virtuelleR} können Instruktionen an beliebiger Adressen und Register-Files schreiben bzw. lesen. Durch diese Änderung ist es moeglich die Schaltaktivitäten des Adressbus zu verringeren.\\
-In der bestehenden Implementierung wurde diese Zuweisung der Register so geregelt, dass die Regiser-Files immer von einer Seite aus befüllt wurden. Die Auswahl des Register-Files wurde hierbei über die Anzahl der freien Register-Adressen ermittelt, und dasjenige File mit der hoeheren Anzahl an freien Adressen verwendet. Außerdem wurde bei der Zuweisung darauf geachtet, dass es weiterhin möglich ist X2-Befehle und MAC-Operationen zu bedienen.\\
+Da der Prozessor über zwei Issue-Slots verfügt, müssen pro Slot ein Target- und zwei Source-Register adressiert werden. Hierbei können die Instruktionen auf Register-File 0 oder 1 schreiben bzw. lesen. Aus diesem Grund besitzt jedes der Register-Files vier Lese- und zwei Schreibports. Die Zuordnung der Issues auf die Register können sie aus den Tabellen TTT entnehmen. Schreibt nun beispielsweise eine Instruktion an die Adresse Null und die nachfolgende Instruktion an die Adresse 31 des selben Ports, so wäre dies der Worst-Case, da in diesem Fall alle 5-Bit umgeladen werden müssten.
+Durch den Einsatz von virtuelle Register \ref{sub:virtuelleR} können Instruktionen an beliebiger Adressen und Register-Files schreiben bzw. lesen. Durch diese Änderung ist es möglich die Schaltaktivitäten des Adressbus zu verringern.\\
+In der bestehenden Implementierung wurde diese Zuweisung der Register so geregelt, dass die Register-Files immer von einer Seite aus befüllt wurden. Die Auswahl des Register-Files wurde hierbei über die Anzahl der freien Register-Adressen ermittelt, und dasjenige File mit der höheren Anzahl an freien Adressen verwendet. Außerdem wurde bei der Zuweisung darauf geachtet, dass es weiterhin möglich ist X2-Befehle und MAC-Operationen zu bedienen.\\
 Um nun dieses Mapping auf die Schaltaktivität und somit auch auf die Verlustleistung zu optimieren wurde eine neue Heuristik implementiert.
 Diese optimiert die Anzahl der Schaltzyklen anhand der Hamming-Distanz.
-Die Hamming-Distanz ist nach dem amerikanischen Mathematiker Richard Wesley Hamming benannt und gibt ein Maß für die Unterschiedlichkeit zweier Zeichenketten an. Hierbei ist die Hamming-Distanz die Anzahl der unterschiedlichen Stellen beider Codeworter.
+Die Hamming-Distanz ist nach dem amerikanischen Mathematiker Richard Wesley Hamming benannt und gibt ein Maß für die Unterschiedlichkeit zweier Zeichenketten an. Hierbei ist die Hamming-Distanz die Anzahl der unterschiedlichen Stellen beider Codewörter.
 \begin{equation}
 00100 \text{ und } 00001 -> \text{Hamming-Distanze}= 2
 \label{eq:hammingdistanze}
@@ -47,9 +46,8 @@ Die Hamming-Distanz ist nach dem amerikanischen Mathematiker Richard Wesley Hamm
 \section{Heuristik}
 \label{sec:Heuristik}
 
-Um die Hamming-Distanz berechnen zu koennen, werden die Adressen der letzten Instruktionen gespeichert. Da die Architektur wie bereits erwähnt zwei Issue-Slots aufweist und diese auf beide Register-Files zugreifen können muessen dementsprechend vier Target- und acht Source-Adressen abgespeichert werden(siehe Abbildung \ref{fig:reg_orga}).\\
-Hierbei werden nur die Adressen in einem SLM optimiert. Denkbar waere auch eine Version bei der die Adressen ueber SLM hinweg abgespeichert werden und so ein globales Optimum erreicht werden kann.
-%In diesem Fall kann auch eine SLM uebergreifende Adressbetrachtung erfolgen. Somit wird nicht nur die Schaltaktivitaet innherhalb einer SLM minimiert werden, sondern auch SLM uebergreiftend. 
+Um die Hamming-Distanz berechnen zu können, werden die Adressen der letzten Instruktionen gespeichert. Da die Architektur wie bereits erwähnt zwei Issue-Slots aufweist und diese auf beide Register-Files zugreifen können, müssen dementsprechend vier Target- und acht Source-Adressen abgespeichert werden(siehe Abbildung \ref{fig:reg_orga}).\\
+Hierbei können lediglich die Adressen innerhalb einer SLM optimiert werden, da das Scheduling über die Anordnung der SLM entscheidet und die Register-Allokation diesem untergeordnet ist. Außerdem ist eine Optimierung bei mehrfacher Ausführung von SLMs, wie es beispielsweise bei Schleifen vorkommt nicht möglich. Da SLMs meist sehr groß ausfallen, fallen die nicht optimalen Adress-Toggel nicht sehr stark ins Gewicht.
 Da eine Architektur mit Adresse-Isolation \ref{subsec:add_iso} eingesetzt wird bleiben die zuvor verwendeten Adressen an den Register-File Ports angelegt. Um die Schaltaktivität zu minimieren, wird nun bei jedem virtuellen und physikalischem Register die Hamming-Distanz zu der zuletzt angelegten Adresse des jeweiligen Ports berechnet. Hierbei wird die Adresse auf das Register gemappt welches die geringste Hamming-Distanz zur zuletzt verwendeten Adresse aufweist.\\
 
 \begin{algorithm}[H]
@@ -82,19 +80,33 @@ Anhand des Codebeispiels \ref{code:heuristik} und der Abbildung \ref{fig:heurist
 Der Code Zeigt hierbei einen bereist geschedueleten Assembler-Code, wobei das Scheduling in diesem Fall, durch die Angabe des Issue-Slots vor der eigentlichen Instruktion, vorgegeben wurde. Außerdem werden in diesem Beispiel fuer ein besseres Verstaendis nur Target-Register betrachtet.
 Vorerst werden in beiden Register-Files drei Adressen mittels physikalischer Register belegt/blockiert(Abbildung \ref{fig:heuristik} blau hinterlegte Felder). Im Anschluss beginnt die Zuweisung der virtuellen Register(Zeile4).
 Dabei wird mit dem ersten Issue-Slot, der ADD-Operation begonnen. Hierbei  überprüft Algorithmus nun in welchem der Register-Files mehr freie Register zu Verfügung stehen, um eine gleiche Auslastung zu gewährleisten. Fuer die Zuweisung wird das Register-File mit der höheren Anzahl an freien Registern verwendet. Sind die Zahlen identisch, so wird das Register ausgewählt welches zuletzt zugewiesen wurde. In diesem Fall haben beide Register-Blöcke noch 29 freie Register, deshalb ist das ausgewählte Register-File 0, da zuletzt das Source-Register V0R0 an den Adress-Port geschrieben wurde.
-Aus diesem Grund beginnt die Suche eines geeigneten Registers in genau diesem Register-File. Gestartet wird in der neuen Heuristik mit der ersten Adresse, dabei wird überprüft ob diese von einem anderen Register bereits blockiert wurde. Da in der ersten Zeile des Codes diese Adresse V0R0 beschrieben wurde, kann diese nicht als Mapping für das virtuelle Register VxR0 dienen. Deshalb sucht der Algorithmus weiter nach einer geeigneten Zuweisung. Mit der zweiten Adresse ist dies möglich. Anhand dieser wird nun die Hamming-Distanz zur letzten zugewiesenen Target-Adresse auf dem selben Port berechnet. Dabei wird anhand der Tabelle TTT die letzte Adresse ermittelt. Für dieses Beispiel ist dies trivial denn Issue-SLot 0 schreibt immer an Register-File 0 und Issue Slot 1 an das benachbarte Register-File. Deshalb wird die Hamming-Distanz aus den beiden Adressen vier und eins ermittelt(\ref{eq:hammingdistanze}).Das Ergebnis sowie die Adresse werden gespeichert, falls es bis zu diesem Zeitpunkt noch keine bessere Lösung gab , anschließend wird die Suche fortgeführt. Dieser Vorgang wird für alle Adressen des Register-Files durchgeführt, es sei denn es wird eine Lösung gefunden bei der die Hamming-Distanz null beträgt. Dieser Fall tritt auf, wenn virtuelle Register zu einer Adresse zugewiesen wurden und die Lebensdauer dieser Variable erlischt. Dadurch wird diese Adresse freigegeben und kann erneut zugewiesen werden. Im Codebeispiel \ref{code:heuristik} würde der Code die Adresse 6 zuweisen (Abbildung \ref{fig:heuristik} rot hinterleges Feld), da diese eine Hamming-Distanz von eins aufweist. Werden mehrere Loesungen fuer eine allokation gefunden verwendet der Algorithmus die zuerst gefundene Adresse.
-Die nachfolgende Instruktion wird auf Grund des Gleichgewichts an die selbe Adresse des Register-Files 1 zugewiesen. Dieser Vorgang wird für alle virtuellen Register vorgenommen. Ist ein bei der Suche keine geeignete Stelle im zuerst gewählten Register-File zu finden, wird das jeweilig Andere Register-File durchsucht. Ist weiterhin keine Zuweisung möglich, schlägt der Algorithmus fehl. Dieser Fall kann jedoch nur auftreten wenn zu viele Variablen im Assembler-Code verwendet wurden und diese nicht freigegeben werden koebbeb. Gelöst werden kann dieses Problem nur durch eine Anpassung des Programms.
-In der alten Version der Heuristik wurden die Registerblöcke von einer Seite aufgefüllt. Hierbei wurde ebenfalls überprüft ob es sich um eine freie Adresse handelt. Dabei wurde jedoch vernachlässigt wie viele Adressleitungen toggeln. Dementsprechend wurden die Adresse 31 und 30 des jeweiligen Register-Files als mapping fuer die vier virtuellen Register verwendet.
-Fuer den Fall der alten Implementierung ergibt sich eine Hamming-Distanz von 
+Aus diesem Grund beginnt die Suche eines geeigneten Registers in genau diesem Register-File. Gestartet wird in der neuen Heuristik mit der ersten Adresse, dabei wird überprüft ob diese von einem anderen Register bereits blockiert wurde. Da in der ersten Zeile des Codes diese Adresse V0R0 beschrieben wurde, kann diese nicht als Mapping für das virtuelle Register VxR0 dienen. Deshalb sucht der Algorithmus weiter nach einer geeigneten Zuweisung. Mit der zweiten Adresse ist dies möglich. Anhand dieser wird nun die Hamming-Distanz zur letzten zugewiesenen Target-Adresse auf dem selben Port berechnet. Dabei wird anhand der Tabelle TTT die letzte Adresse ermittelt. Für dieses Beispiel ist dies trivial denn Issue-SLot 0 schreibt immer an Register-File 0 und Issue Slot 1 an das benachbarte Register-File. Deshalb wird die Hamming-Distanz aus den beiden Adressen vier und eins ermittelt(\ref{eq:hammingdistanze}).Das Ergebnis sowie die Adresse werden gespeichert, falls es bis zu diesem Zeitpunkt noch keine bessere Lösung gab , anschließend wird die Suche fortgeführt. Dieser Vorgang wird für alle Adressen des Register-Files durchgeführt, es sei denn es wird eine Lösung gefunden bei der die Hamming-Distanz null beträgt. Dieser Fall tritt auf, wenn virtuelle Register zu einer Adresse zugewiesen wurden und die Lebensdauer dieser Variable erlischt. Dadurch wird diese Adresse freigegeben und kann erneut zugewiesen werden. Im Codebeispiel \ref{code:heuristik} würde der Code die Adresse 5 zuweisen (Abbildung \ref{fig:heuristik} rot hinterlege Felder), da diese eine Hamming-Distanz von eins aufweist. Werden mehrere Lösungen für eine Allokation gefunden verwendet der Algorithmus die zuerst gefundene Adresse.
+Die nachfolgende Instruktion wird auf Grund des Gleichgewichts an die selbe Adresse des Register-Files 1 zugewiesen. Dieser Vorgang wird für alle virtuellen Register vorgenommen. Ist ein bei der Suche keine geeignete Stelle im zuerst gewählten Register-File zu finden, wird das jeweilig Andere Register-File durchsucht. Ist weiterhin keine Zuweisung möglich, schlägt der Algorithmus fehl. Dieser Fall kann jedoch nur auftreten wenn zu viele Variablen im Assembler-Code verwendet wurden und diese nicht freigegeben werden können. Gelöst werden kann dieses Problem nur durch eine Anpassung des Assembler-Programms.
+In der alten Heuristik-Version wurden die Registerblöcke von einer Seite aus aufgefüllt. Hierbei wurde ebenfalls überprüft ob es sich um eine freie Adresse handelt. Dabei wurde jedoch vernachlässigt wie viele Adressleitungen toggeln. Dementsprechend wurden die Adresse 31 und 30 des jeweiligen Register-Files als mapping für die vier virtuellen Register verwendet.
+Die Berechnung der Hamming-Distanzen und die daraus ergebene Schaltaktivitätsminimierung kann in \ref{tab::hamming_distanz} nachvollzogen werden.
+Für den Fall der alten Implementierung ergibt sich eine Hamming-Distanz von vier. 
 
-Adressen mittels Gray code ??? 
+\begin{table}
+	\centering
+	$ \begin{array}{|c|c|}
+	\hline
+	alte Version & neue Version \\
+	\hline
+\text{V0R0 -->V0R0: } 00000 \text{ und } 00000 -> H= 0 &\text{V0R0-->V0R0: } 00000 \text{ und } 00000 -> H= 0\\
+\text{V0R0 -->V0R2: } 00000 \text{ und } 00010 -> H= 1 &\text{V0R0-->V0R2: } 00000 \text{ und } 00010 -> H= 1 \\
+\text{V0R2 -->V0R4: } 00010 \text{ und } 00100 -> H= 2 &\text{V0R2-->V0R4: } 00010 \text{ und } 00100 -> H= 2 \\
+\text{V0R4-->V0R31: } 00100 \text{ und } 11111 -> H= 4 &\text{V0R0-->V0R5: } 00100 \text{ und } 00101 -> H= 1 \\
+\text{V0R31-->V0R30: } 11111 \text{ und } 11110 -> H= 1 &\text{V0R5-->V0R1: } 00101 \text{ und } 00001 -> H= 1 \\
+	\sum H=8 &\sum H=5 \\
+	\hline
+	\end{array} $
+	\caption{Hamming-Distanz-Berechnung}
+	\label{tab::hamming_distanz}
+\end{table}
+
+Adressen mittels Gray code ???
 % Wollen beide Instruktionen an das selbe Register-File schreiben, so werden entweder die alle zehn Adressleitungen für die Adressierung verwendet. Verwenden beiden Instruktionen unterschiedliche Register werden jeweils die unteren fünf Adressleitungen des jeweiligen Registers verwendet.
 
-%\begin{figure}[htbp] 
-%	\includesvg[width=1.0\textwidth]{Heuristik}
-%	\caption{Heuristik-Beispiel}
-%	\label{fig:heuristik_bsp}
-%\end{figure}
 
 \section{Genetischer Algorithmus}
 \label{sec:genetischerAlgorithmus}

@@ -1,6 +1,16 @@
 \chapter{Evaluation}
 \label{chap:evaluation}
-Um die Leistungsaufnahme des Prozessors ermitteln zu können sind einige Schritte notwendig. Die Vorgehensweise ist in Schaubild XXX abgebildet. 
+Um die Leistungsaufnahme des Prozessors ermitteln zu können sind einige Schritte notwendig. Die Vorgehensweise ist in Schaubild \ref{fig:flow_power_analyse} abgebildet.
+
+\begin{scriptsize}
+	\begin{figure}[htbp] 
+		\centering
+		\includesvg[width=0.50\textwidth]{evalution_flow}
+		\caption{Power Analyse Ablaufdiagramm}
+		\label{fig:flow_power_analyse}
+	\end{figure}
+\end{scriptsize}
+
 Vorerst wird das gewünschte Assembler Programm zusammen mit der Prozessor-Konfiguration in den im Implementierung Kapitel beschriebenen Compiler geladen. Hierbei muss unter Anderem angegeben werden mit welchen Takten der Prozessor taktet und wie gross die Register fuer diesen Fall sind. Außerdem muss dem Compiler die Variante der zu verwendenden Register-Allocation (Tabelle tttt) übergeben werden. Nach erfolgreichem compilieren des Codes steht die Binary Datei und der geschedulte Code zu Verfügung. Im Anschluss an diesen Prozess wird die Leistungsanalyse durchgeführt. Hierzu wird die Netzliste des Prozessors und die Binary Datei benötigt. Daraus wird mit Tool Primetime PX der Firma Synopsys die Verlustleistung ermittelt. Hierbei geht das Tool so vor, dass alle Schaltvorgänge der Transistoren der Architektur aufsummiert werden und mit den hinterlegten Konfigurationen die jeweilige Leistungsaufnahme ermittelt. AUSFÜHRLICHER . Hieraus entsteht ein ausführlicher Power Report. 
 Mithilfe dieses Evalutionsablaufes sind die folgenden Ergebnisse entstanden.
 Um den Einfluss der Register-Adressen besser verstehen zu können wurden Assemblerprogramme entwickelt welche den Einfluss von Target-, Source1 und Source2-Register untersuchen. Vorerst wurden die einzelnen Register getrennt voneinander untersucht. Hierbei werden alle Möglichkeiten der Allokation durchlaufen um zum einen den Code zu testen und zum andern alle Einflüsse der Adressierung zu ermitteln. Hierbei bestehen für die Target-Register 4 und für die Source-Register 16 Möglichkeiten. Um die einzelnen Ergebnisse vergleichen zu können wurden die Programme so entworfen, dass die Hamming-Distanzen für alle Testfälle identisch sind. 
