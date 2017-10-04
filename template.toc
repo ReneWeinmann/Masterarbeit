@@ -28,21 +28,21 @@
 \contentsline {section}{\numberline {3.2}Ansatz}{22}{section.3.2}
 \contentsline {section}{\numberline {3.3}Heuristik}{23}{section.3.3}
 \contentsline {section}{\numberline {3.4}Genetischer Algorithmus}{26}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Gene}{27}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.1}Gene und Chromosomen}{27}{subsection.3.4.1}
 \contentsline {subsection}{\numberline {3.4.2}Aufbau}{27}{subsection.3.4.2}
-\contentsline {subsection}{\numberline {3.4.3}Fortpflanzung der Chromosomen}{28}{subsection.3.4.3}
+\contentsline {subsection}{\numberline {3.4.3}Fortpflanzung der Chromosomen}{29}{subsection.3.4.3}
 \contentsline {subsection}{\numberline {3.4.4}Fitness-Funktion}{29}{subsection.3.4.4}
-\contentsline {subsection}{\numberline {3.4.5}Parameter}{30}{subsection.3.4.5}
-\contentsline {subsection}{\numberline {3.4.6}Startpopulation}{31}{subsection.3.4.6}
-\contentsline {subsection}{\numberline {3.4.7}dynamische Anpassung}{31}{subsection.3.4.7}
-\contentsline {subsection}{\numberline {3.4.8}Algorithmus Modi}{32}{subsection.3.4.8}
-\contentsline {subsection}{\numberline {3.4.9}Glitches}{32}{subsection.3.4.9}
-\contentsline {chapter}{\numberline {4}Evaluation}{35}{chapter.4}
-\contentsline {section}{\numberline {4.1}Testprogramme}{37}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Beamforming}{37}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}emulated floating Point}{38}{subsection.4.1.2}
-\contentsline {section}{\numberline {4.2}Evaluation}{39}{section.4.2}
-\contentsline {chapter}{\numberline {5}Schlussfolgerung}{40}{chapter.5}
-\contentsline {section}{\numberline {5.1}Evaluation}{40}{section.5.1}
-\contentsline {chapter}{\numberline {A}Source Code}{41}{appendix.A}
-\contentsline {chapter}{\nonumberline Literaturverzeichnis}{42}{chapter*.15}
+\contentsline {subsection}{\numberline {3.4.5}Parameter}{31}{subsection.3.4.5}
+\contentsline {subsection}{\numberline {3.4.6}Startpopulation}{32}{subsection.3.4.6}
+\contentsline {subsection}{\numberline {3.4.7}dynamische Anpassung}{32}{subsection.3.4.7}
+\contentsline {subsection}{\numberline {3.4.8}Algorithmus Modi}{33}{subsection.3.4.8}
+\contentsline {subsection}{\numberline {3.4.9}Glitches}{33}{subsection.3.4.9}
+\contentsline {chapter}{\numberline {4}Evaluation}{36}{chapter.4}
+\contentsline {section}{\numberline {4.1}Testprogramme}{38}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Beamforming}{38}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}emulated floating Point}{39}{subsection.4.1.2}
+\contentsline {section}{\numberline {4.2}Evaluation}{40}{section.4.2}
+\contentsline {chapter}{\numberline {5}Schlussfolgerung}{41}{chapter.5}
+\contentsline {section}{\numberline {5.1}Evaluation}{41}{section.5.1}
+\contentsline {chapter}{\numberline {A}Source Code}{42}{appendix.A}
+\contentsline {chapter}{\nonumberline Literaturverzeichnis}{43}{chapter*.15}
