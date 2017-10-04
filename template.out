@@ -31,19 +31,20 @@
 \BOOKMARK [1][-]{section.3.4}{Genetischer Algorithmus}{chapter.3}% 31
 \BOOKMARK [2][-]{subsection.3.4.1}{Gene und Chromosomen}{section.3.4}% 32
 \BOOKMARK [2][-]{subsection.3.4.2}{Aufbau}{section.3.4}% 33
-\BOOKMARK [2][-]{subsection.3.4.3}{Fortpflanzung der Chromosomen}{section.3.4}% 34
-\BOOKMARK [2][-]{subsection.3.4.4}{Fitness-Funktion}{section.3.4}% 35
-\BOOKMARK [2][-]{subsection.3.4.5}{Parameter}{section.3.4}% 36
-\BOOKMARK [2][-]{subsection.3.4.6}{Startpopulation}{section.3.4}% 37
-\BOOKMARK [2][-]{subsection.3.4.7}{dynamische Anpassung}{section.3.4}% 38
-\BOOKMARK [2][-]{subsection.3.4.8}{Algorithmus Modi}{section.3.4}% 39
-\BOOKMARK [2][-]{subsection.3.4.9}{Glitches}{section.3.4}% 40
-\BOOKMARK [0][-]{chapter.4}{Evaluation}{}% 41
-\BOOKMARK [1][-]{section.4.1}{Testprogramme}{chapter.4}% 42
-\BOOKMARK [2][-]{subsection.4.1.1}{Beamforming}{section.4.1}% 43
-\BOOKMARK [2][-]{subsection.4.1.2}{emulated floating Point}{section.4.1}% 44
-\BOOKMARK [1][-]{section.4.2}{Evaluation}{chapter.4}% 45
-\BOOKMARK [0][-]{chapter.5}{Schlussfolgerung}{}% 46
-\BOOKMARK [1][-]{section.5.1}{Evaluation}{chapter.5}% 47
-\BOOKMARK [0][-]{appendix.A}{Source Code}{}% 48
-\BOOKMARK [0][-]{chapter*.15}{Literaturverzeichnis}{}% 49
+\BOOKMARK [2][-]{subsection.3.4.3}{Auswahl der Elternpaare}{section.3.4}% 34
+\BOOKMARK [2][-]{subsection.3.4.4}{Fortpflanzung der Chromosomen}{section.3.4}% 35
+\BOOKMARK [2][-]{subsection.3.4.5}{Fitness-Funktion}{section.3.4}% 36
+\BOOKMARK [2][-]{subsection.3.4.6}{Parameter}{section.3.4}% 37
+\BOOKMARK [2][-]{subsection.3.4.7}{Startpopulation}{section.3.4}% 38
+\BOOKMARK [2][-]{subsection.3.4.8}{dynamische Anpassung}{section.3.4}% 39
+\BOOKMARK [2][-]{subsection.3.4.9}{Algorithmus Modi}{section.3.4}% 40
+\BOOKMARK [2][-]{subsection.3.4.10}{Glitches}{section.3.4}% 41
+\BOOKMARK [0][-]{chapter.4}{Evaluation}{}% 42
+\BOOKMARK [1][-]{section.4.1}{Testprogramme}{chapter.4}% 43
+\BOOKMARK [2][-]{subsection.4.1.1}{Beamforming}{section.4.1}% 44
+\BOOKMARK [2][-]{subsection.4.1.2}{emulated floating Point}{section.4.1}% 45
+\BOOKMARK [1][-]{section.4.2}{Evaluation}{chapter.4}% 46
+\BOOKMARK [0][-]{chapter.5}{Schlussfolgerung}{}% 47
+\BOOKMARK [1][-]{section.5.1}{Evaluation}{chapter.5}% 48
+\BOOKMARK [0][-]{appendix.A}{Source Code}{}% 49
+\BOOKMARK [0][-]{chapter*.15}{Literaturverzeichnis}{}% 50
