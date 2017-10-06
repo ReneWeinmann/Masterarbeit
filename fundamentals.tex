@@ -152,9 +152,12 @@ Der verwendete Prozessor besitzt zwei Register-Files mit jeweils 32 64bit-Regist
 
 
 \newpage
-\subsection{Optimierungsziel}
-In den meisten Prozessoren nimmt das Register-File deutlich mehr als 40\% der gesamten Chipfläche ein. 
-Betrachtet man die prozentuale Verteilung der Verlustleistungen, sticht die der Register deutlich hervor. Dadurch ergibt sich ein sehr hohes Optimierungspotential. In dieser Arbeit wird dieses Potential durch einen geeigneten Compiler ausgenutzt. Dabei liegt der Fokus auf der Verlustleistungsoptimierung der Register-Files. Der Vorteil einer Optimierung zur Compilezeit liegt darin, dass keinerlei neue Hardware benötigt wird. Dies macht das es äußerst lukrative. Dabei handelt es sich um kein neuem Ansatz denn bereits...  Haben sich mit diesem Problem befasst und Lösungen gefunden. Die meisten Literaturen befassen sich bei der Optimierung jedoch auf das Scheduling und die Ausführungszeit der Codes. Die Besonderheit bei dem Ansatz in dieser Arbeit liegt bei der Optimierung der Verlustleistung durch den Compiler. Die Hauptkomponenten des Compilers sind das Scheduling und die Register allocation. Im folgenden soll kurz auf die Funktionen des Compilers eingegangen werden. 
+\subsection{Related Work}
+
+Es bestehen bereits eine Vielzahl an Ansätzen zur Verlustleistungsoptimierung von Prozessoren. Diese sind in zwei Kategorien eingeteilt, Optimierung durch Hardware-Anpassungen\cite{wu2000clock, horowitz1994low, hajj1998architectural}, oder Software \cite{gebotys1997low, asanovic2000energy, toburen1998instruction, su1995cache }. Hierbei werden in Hardware verschiedene Ansätze verfolgt, wie das dynamische Anpassen der Spannung \cite{horowitz1994low} oder Clock-Gating \cite{wu2000clock}. In \cite{asanovic2000energy} wurde neue Instruktionen eingeführt um den Energieverbrauch im Register-File zu senken. Ein weiterer Ansatz über das Scheduling die Verlustleistung zu senken wurde von \cite{toburen1998instruction} untersucht. Hierbei ist das Ziel so viele Instruktionen wie möglich in einem Takt unterzubringen.
+Ein weiterer Ansatz um die Verlustleistung im Register wurde von \cite{su1995cache} veröffentlicht. Dabei wird mit Hilfe einer Gray-Codierung die Schaltaktivität der Adressen minimiert. Dieser Ansatz ist jedoch nur hilfreich, wenn Daten hintereinander im Register liegen. Mit dem in dieser Arbeit vorgestellten Verfahren, wird auch in diesem Fall die Schaltaktivität minimiert.
+
+Der Vorteil einer Optimierung zur Compilezeit liegt darin, dass keinerlei neue Hardware benötigt wird. Dies macht das es äußerst lukrative, da kein Abtausch zwischen Chipfläche und Leistung stattfinden muss. Die meisten Literaturen beschränken sich bei der Optimierung auf das Scheduling und die Ausführungszeit der Codes. Die Besonderheit des Ansatzes in dieser Arbeit liegt bei der Optimierung der Verlustleistung durch den Compiler und das leistungsoptimierte zuweisen von Registern. Die Hauptkomponenten des Compilers sind das Scheduling und die Register Allokation. Im folgenden soll kurz auf die Funktionen des Compilers eingegangen werden. 
 \subsection{Compiler}
 %Überleitung zu Tradeoff von Flache und Register File allokation.
 
@@ -206,7 +209,7 @@ Das Taktnetz ist bei Prozessoren in der Regel sehr groß, muss eine hohe Last tr
 \section{Verlustleistung}
 \label{sec:verlustleistung}
 Unter Verlustleistung in integrierten Schaltungen versteht man die in den Transistoren umgesetzte Leistung die in Form von Wärme verloren geht.
-Hierbei wird in statische \(P_{stat}\) und dynamische Verlustleistung \(P_{dyn}\) unterschieden. \cite[Seite 4 ff.]{flynn2007low}
+Hierbei wird in statische \(P_{stat}\) und dynamische Verlustleistung \(P_{dyn}\) unterschieden. \cite[Seite 4 ff.]{flynn2007low} Hierbei soll wird die Verlustleistung von CMOS Transistoren untersucht.
 \subsection{Dynamische Verlustleistung}\label{subsec:dynVerl}
 Jedes mal wenn eine Kapazität geladen oder entladen wird, entsteht eine dynamische Verlustleistung\(P_C\). Eine weitere dynamische Verlustleistung\(P_{SC}\) tritt bei den Schaltevorgang von CMOS-Transistoren auf. Diese soll anhand eines CMOS-Inverters nun verdeutlicht werden. Beim Umschalten der Pegel, entsteht eine kurze Zeitspanne in der beide Transistoren eine leitende Verbindung aufweisen. In diesem Fall besteht ein Kurzschlussstrom \(I_{SC}\)zwischen Versorgungsspannung \(V_{DD}\) und Masse \(V_{SS}\). Die dynamische Verlustleistung ist proportional zur Schaltaktivität\(\alpha\) und somit auch zur Taktfrequenz $f$.\cite[Seite 4 ff.]{flynn2007low}
 \begin{equation}
@@ -238,8 +241,14 @@ Die Fitness einer Generation gibt an wie gut sich das Chromosom an das gegebene 
 
 \subsection{Crossover}
 \label{chap:grundlagen_cossover}
-Bei dem Crossover-Prozess, handelt es sich um die Fortpflanzung von Generationen. Hierbei ist ausschlaggebend welche Generationen miteinander gepaart werden. Auf den ersten Blick scheint es einleuchtend immer die Generation mit der besten Fitness zu paaren. Dies ist jedoch nicht immer sinnvoll, da so schnell ein lokales Minimum erreicht wird. Aus diesem Grund gibt es verschiedene Ansätze um geeignete Eltern für die neue Generation zu finden.\cite{davis1991handbook} Die am weitesten verbreitete Methode ist die Roulette Wheel Selection. Hierbei wird zufällig ein Elternpaar gewählt, wobei die Chance einer jeden Generation ausgewählt zu werden proportional zur Fitness ist. Dieses Verfahren trägt ihren Namen daher, dass es einem Roulette-Rad gleicht, wobei das Rad in Stücke unterteilt ist, welche die Größe proportional zur Fitness haben. Die Auswahl kann nun einem Drehen an einem Rad gleichgesetzt werden. Hierbei ist es wahrscheinlicher, dass die Generationen mit höher Fitness ausgewählt werden. Es ist jedoch auch möglich, dass Populationsmitglieder mit niedriger Fitness gepaart werden.
+Bei dem Crossover-Prozess, handelt es sich um die Fortpflanzung von Generationen. Hierbei ist ausschlaggebend welche Generationen miteinander gepaart werden. Auf den ersten Blick scheint es einleuchtend immer die Generation mit der besten Fitness zu paaren. Dies ist jedoch nicht immer sinnvoll, da so schnell ein lokales Minimum erreicht wird. Aus diesem Grund gibt es verschiedene Ansätze um geeignete Eltern für die neue Generation zu finden.\cite{davis1991handbook}
+Die in der Literatur am weitesten verbreiteten Methoden ist das Roulette-Wheele-Selection und das Tournament-Selection.\cite{zhong2005comparison} Bei beiden Verfahren, besteht die Möglichkeit, dass Populationsmitglieder mit einer niedrigen Fitness selektiert und somit gepaart werden.
+% wird zufällig ein Elternpaar gewählt, wobei die Chance einer jeden Generation ausgewählt zu werden proportional zur Fitness ist. Dieses Verfahren trägt ihren Namen daher, dass es einem Roulette-Rad gleicht, wobei das Rad in Stücke unterteilt ist, welche die Größe proportional zur Fitness haben. Die Auswahl kann nun einem Drehen an einem Rad gleichgesetzt werden. Hierbei ist es wahrscheinlicher, dass die Generationen mit höher Fitness ausgewählt werden. Es ist jedoch auch möglich, dass Populationsmitglieder mit niedriger Fitness gepaart werden.
 
 \subsection{Mutation}
 Auch der Prozess der Mutation stammt aus der Natur. Hierbei besteht eine geringe Chance, dass Chromosomen verändert werden und Eigenschaften aufweisen die in keinem der Elternteile aufzufinden sind. Hierzu werden in dem durch Crossover erzeugtem Chromosom einzelne Gene durch Zufall verändert. Die Wahrscheinlichkeit einer zufälligen Veränderung ist hierbei wie in der Natur sehr gering.\cite{davis1991handbook}
+
+Clockgating
+Loop unrolling 
+Grey Code \cite{su1995cache}
 

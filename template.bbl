@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{statistica}
 Anzahl der personen in deutschland, die ein hörgerät tragen, von 2013 bis
@@ -6,6 +6,11 @@ Anzahl der personen in deutschland, die ein hörgerät tragen, von 2013 bis
 \newblock
   \url{https://de.statista.com/statistik/daten/studie/252153/umfrage/anzahl-der-hoergeraetetraeger-in-deutschland}.
 \newblock Zugegriffen: 01.09.2017- 10:38Uhr.
+
+\bibitem{asanovic2000energy}
+Krste Asanovic.
+\newblock Energy-exposed instruction set architectures.
+\newblock {\em Work in Progress Session, HPCA}, 6, 2000.
 
 \bibitem{davis1991handbook}
 Lawrence Davis.
@@ -22,6 +27,31 @@ Monica Donno, Alessandro Ivaldi, Luca Benini, and Enrico Macii.
 David Flynn, Rob Aitken, Alan Gibbons, and Kaijian Shi.
 \newblock {\em Low power methodology manual: for system-on-chip design}.
 \newblock Springer Science \& Business Media, 2007.
+
+\bibitem{gebotys1997low}
+Catherine~H Gebotys.
+\newblock Low energy memory and register allocation using network flow.
+\newblock In {\em Proceedings of the 34th annual Design Automation Conference},
+  pages 435--440. ACM, 1997.
+
+\bibitem{grefenstette1986optimization}
+John~J Grefenstette.
+\newblock Optimization of control parameters for genetic algorithms.
+\newblock {\em IEEE Transactions on systems, man, and cybernetics},
+  16(1):122--128, 1986.
+
+\bibitem{hajj1998architectural}
+NBM Hajj, C~Polyckronopoulos, and George Stamoulist.
+\newblock Architectural and compiler support for energy reduction in the memory
+  hierarchy of high performance microprocessors.
+\newblock In {\em Low Power Electronics and Design, 1998. Proceedings. 1998
+  International Symposium on}, pages 70--75. IEEE, 1998.
+
+\bibitem{horowitz1994low}
+Mark Horowitz, Thomas Indermaur, and Ricardo Gonzalez.
+\newblock Low-power digital design.
+\newblock In {\em Low Power Electronics, 1994. Digest of Technical Papers.,
+  IEEE Symposium}, pages 8--11. IEEE, 1994.
 
 \bibitem{landskov1980local}
 David Landskov, Scott Davidson, Bruce Shriver, and Patrick~W Mallett.
@@ -40,10 +70,44 @@ Guillermo Pay{\'a}-Vay{\'a}, Javier Mart{\'\i}n-Langerwerf, and Peter Pirsch.
 \newblock A multi-shared register file structure for vliw processors.
 \newblock {\em Journal of Signal Processing Systems}, 58(2):215--231, 2010.
 
+\bibitem{reeves2003genetic}
+Colin Reeves.
+\newblock Genetic algorithms.
+\newblock {\em Handbook of metaheuristics}, pages 55--82, 2003.
+
+\bibitem{su1995cache}
+Ching-Long Su and Alvin~M Despain.
+\newblock Cache designs for energy efficiency.
+\newblock In {\em System Sciences, 1995. Proceedings of the Twenty-Eighth
+  Hawaii International Conference on}, volume~1, pages 306--315. IEEE, 1995.
+
+\bibitem{toburen1998instruction}
+Mark~C Toburen, Thomas~M Conte, and Matt Reilly.
+\newblock Instruction scheduling for low power dissipation in high performance
+  microprocessors.
+\newblock In {\em Proceedings of the 1998 Power Driven Microarchitecture
+  Workshop}, pages 14--19, 1998.
+
+\bibitem{wu2000clock}
+Qing Wu, Massound Pedram, and Xunwei Wu.
+\newblock Clock-gating and its application to low power design of sequential
+  circuits.
+\newblock {\em IEEE Transactions on Circuits and Systems I: Fundamental Theory
+  and Applications}, 47(3):415--420, 2000.
+
 \bibitem{wust2010mikroprozessortechnik}
 Klaus W{\"u}st.
 \newblock {\em Mikroprozessortechnik: Grundlagen, Architekturen,
   Schaltungstechnik und Betrieb von Mikroprozessoren und Mikrocontrollern}.
 \newblock Springer-Verlag, 2010.
+
+\bibitem{zhong2005comparison}
+Jinghui Zhong, Xiaomin Hu, Jun Zhang, and Min Gu.
+\newblock Comparison of performance between different selection strategies on
+  simple genetic algorithms.
+\newblock In {\em Computational Intelligence for Modelling, Control and
+  Automation, 2005 and International Conference on Intelligent Agents, Web
+  Technologies and Internet Commerce, International Conference on}, volume~2,
+  pages 1115--1121. IEEE, 2005.
 
 \end{thebibliography}

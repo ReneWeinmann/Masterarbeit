@@ -1,5 +1,28 @@
+\chapter{Hardware-Anpassungen}
+
+\section{Piplinestufe für Adressports}
+Da der Verwendete Prozessor Adress-Isolation ( siehe Kapitel \ref{subsec:add_iso}) einsetzt, sollten die Adressen so lange an einem Port anliegen bis diese geändert werden.
+Die für die Schreib- und Lesezugriffe verwendeten Adressen werden jeweils zwischen den Takten an die benötigten Ports angelegt um so zu gewährleisten, dass diese mit der steigenden Taktflanke auch übernommen werden können. Die Auswahl der Ports wird über Enable-Signale geregelt. Werden beispielsweise zwei Instruktionen verwendet die beide an Register-File 1 schreiben, so werden die entsprechenden Adressen an die Ports 0 und 1 angelegt. Sobald diese zu Verfügung stehen, werden diese von den Enable-Signalen freigegeben.\\
+Im Fall dieser Architektur tritt nun jedoch Problem auf, denn Adress- und Enable-Signal sind nicht synchron und somit weisen diese ein Zeitversatz, zwischen den beiden Signalen, auf. Dies liegt daran, dass die benötigten Enable-Signale aufwendig berechnet werden müssen und dies eine kurze Verzögerung nach sich zieht. Aus diesem Grund liegt die bereits geänderte Adresse kurze Zeit an dem falschen Adressport an. Sobald das Enable-Signal berechnet wurde, werden die richtigen Adressen angelegt. Dieses Szenario tritt lediglich auf, wenn ein Wechsel in den Enable-Signalen und sich somit die Herkunft der Adressen ändert. Das Beschriebene Problem verursacht eine Erhöhung der Schaltaktivität auf den Adressleitungen und somit auch eine steigende Verlustleistung. %um XXX \%
+Um diesem Effekt entgegenzuwirken wurde eine zweite Pipline-Stufe eingebaut. Durch die Verzögerung der Adress- und Enable-Signale ist garantiert, dass die Adressen erst dann an den entsprechenden Ports anliegen, wenn diese benötigt werden. Der zusätzliche Energieverbrauch der Pipeline-Register wird an dieser Stelle nicht weiter untersucht, da der Anstieg der Verlustleistung in den zu vergleichenden Algorithmen identisch ist.
+
+Schaubild Pipelinestufe
+
+Es besteht jedoch eine Möglichkeit, die Pipeline-Stufen zu vermeiden.
+Da der Prozessor für ein ASIC entwickelt wird, können die Glitches durch den Einsatz von Buffer behoben werden. Hierzu müssten lediglich die betroffenen Signale mittels eines im ASIC implementierten Buffer verzögert werden. Dieser könnte beispielsweise durch das Einbauen zwei hintereinander geschalteter Inverter realisiert werden. Dabei würde sich die Verzögerung aus der Summe der Gatterlaufzeiten ergeben. Die Anzahl der Inverter-Gatter müsste dann an den Versatz von Adress- und Enable-Signal angepasst werden. 
+
+\section{Neuberechnung der Immediat-Adresse}
+Die im Implementierungsteil erläuterten Änderungen sollten keinen Einfluss auf die Daten der auszuführenden Algorithmen haben, jedoch ist beim Vergleich der Implementierungen, eine Abhängigkeit der Daten aufgetaucht.
+Diese wurde von Glitches an den Daten-Leitungen verursacht. Diese Veränderung der Daten sind nicht erwünscht und wurden aus diesem Grund mittels Anpassung der Hardware entfernt.
+Die Exekution-Stage verwendet für jede Instruktion die Dekodierten Adressen aus der Decoding-Stage, hierbei wurde die Source-Adresse für kurze Zeit als Immediat-Adresse interpretiert. Dies führt dazu, dass kurzzeitig Daten aus dem falschen Register gelesen werden. Dies hat zur Folge, dass die falschen Daten an den Register-Ports angelegt werden. Dadurch entstehen Schaltaktivitäten die zu einer höheren dynamischen Verlustleistung an den Daten-Leitungen führen. Um dieses Phänomen zu beheben,  wird eine Neuberechnung der Immediat-Adresse nur dann vorgenommen, wenn auch eine Immediat-Instruktion vorliegt. Hierzu wurde im Decode-Modul des Prozessors verändert. 
+Mittels dieser Veränderung, ist die Verlustleistung nun nicht mehr von den Daten abhängig.
+
+\section{Offset-Berechnung für Immediat-Adressen}
+
+
 \chapter{Evaluation}
-\label{chap:evaluation}
+\label{chap:evaluation} 
+
 Um die Leistungsaufnahme des Prozessors ermitteln zu können sind einige Schritte notwendig. Die Vorgehensweise ist in Schaubild \ref{fig:flow_power_analyse} abgebildet.
 
 \begin{scriptsize}
@@ -26,7 +49,6 @@ Nach dem die Register Files vorbelegt wurden werden die Instruktionen mit virtue
 Damit es keine Einflüsse durch Scheduling und Daten gibt, wurden vorerst folgende Veränderung im den Testprogrammen getätigt. Die Instruktionen werden manuell geschedult und den einzelnen issue Slots zugewiesen. Somit ist die Anordnung der Assemblerbefehlen für jeden Testfall identisch und der Einfluss ist somit entkoppelt. Im Falle der Datenabhängigkeiten wurden alle Register mit einer Null initialisiert und im Anschluss nicht verändert. Dadurch werden alle Instruktionen mit den selben Daten ausgeführt und somit besteht auch keine Abhängigkeit der Daten mehr. 
 
 
-
 \section{Testprogramme}
 \label{sec:testprogamme}
 Um den implementierten Code zu testen und eine reele Einsparung der Verlustleistungsreduktion zu ermitteln wurden die folgenden Assembler-Programme verwendet. Dabei handelt es sich um Programme die eine häufig Anwendung in Hörgerät-Prozessoren finden. Ausschlaggebend fuer die Wahl waren die Anzahl der verwendeten virtuellen Registern da mit einer hohen Zahl an virtuellen Registern das Verbesserungspotential steigt.
@@ -49,7 +71,20 @@ Des weiteren wurden Schreibe- und Lese-Adressen separat voneinander untersucht u
 Anhand des Schaubildes kann schön erkannt werden, dass mit steigender Hamming-Distanz auch die Schaltleistung steigt. Auffällig ist hierbei der Sprung bei einer Hamming-Distanz von 64. Dieser lässt sich dadurch erklären, dass zwar die Hamming-Distanz identisch ist aber dafuer Adressleitungen verwendet werden die eine größere Lastkapazität aufweisen. Durch die höhere Lastkapazität wird automatisch auch einer größere Leistung benötigt.
 Das untenstehende Schaubild XXX zeigt einen Testfall. Hierbei sind die blauen hinterlegen Felder 
 
+\subsection{Einfluss der Lastkapazität}
+Durch 
+\begin{scriptsize}
+	\begin{figure}[htbp] 
+		\centering
+		\includesvg[width=\textwidth]{Read-Port-Mux}
+		\caption{Read-Port Multiplexer}
+		\label{fig:read_port_mux}
+	\end{figure}
+\end{scriptsize}
+
 \section{Evaluation}
 \label{sec:evalutation_verification}
+
+
 
 Parameter sind auf spezielle Algorithmen und koennen nicht pauschalisiert werden.

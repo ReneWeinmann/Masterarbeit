@@ -2,7 +2,7 @@
 \label{chap:Implementierung}
 Nachdem die nötigen Grundlagen erläutert wurden soll in diesem Kapitel aufgezeigt werden wie der Compiler aufgebaut ist und wie das gesetzte Ziel implementiert wurde. Hierzu wird kurz auf den Ausgangsstatus des Codes und dessen Bestandteile eingegangen um das komplette System besser verstehen zu können. Anschließend wird veranschaulicht wie die Verlustleistung gesenkt werden soll und wie dies mit einer Heuristik implementiert wurde. Im Anschluss wird diese Implementierung durch den Einsatz eines genetischen Algorithmus noch verbessert und die einzelnen Komponenten erläutert.
 \section{Ausgangsstatus}
- Das unten stehende Schaubild (siehe Abbildung \ref{fig:flow_compiler}) den Aufbau des Codes um die Register Allokation besser in den Code einzuordnen. Gestartet wird mit einem Assembler-Programm das in einer ASM-Datei vorliegt und dem Code übergeben wird.
+ Das unten stehende Schaubild (siehe Abbildung \ref{fig:flow_compiler}) zeigt den Aufbau des Codes um die Register Allokation besser in den Code einzuordnen. Gestartet wird mit einem Assembler-Programm das in einer ASM-Datei vorliegt und dem Code übergeben wird.
 
 
 \begin{scriptsize}
@@ -30,6 +30,7 @@ Nachdem die nötigen Grundlagen erläutert wurden soll in diesem Kapitel aufgeze
 
 
 \section{Ansatz}
+\label{chap:ansatz}
 Nach genauerem betrachten der Formel für die dynamische Verlustleistung \ref{eq:dynVerlustleistung} hängt diese von vier Faktoren ab, Schaltaktivitäten,  Lastkapazität, Versorgungsspannung und der Frequenz. Die statische Verlustleistung wird nicht weiter betrachtet, da diese nur durch eine Veränderung der Hardware verbessert werden könnte. Dies ist jedoch nicht Teil dieser Arbeit. Da ebenfalls die Spannung und Frequenz von der Architektur und anderen nicht beeinflussbaren Faktoren vorgegeben wurde kann auch an diesen Parametern nichts verbessert werden. Im folgenden wird nun erst darauf eingegangen wie, durch Minimierung der Schaltaktivitäten, die Verlustleistung optimiert werden kann. Im Weiteren Verlauf des Textes wird dann ebenfalls der Einfluss der Lastkapazitäten überprüft.\\
 Um in ein Register zu schreiben, muss eine geeignete Adresse an den Adressbus angelegt werden. Da es sich bei der Architektur um 32-bit-Register handelt muss hierfür eine 5-bit Adresse angelegt werden.
 Da der Prozessor über zwei Issue-Slots verfügt, müssen pro Slot ein Target- und zwei Source-Register adressiert werden. Hierbei können die Instruktionen auf Register-File 0 oder 1 schreiben bzw. lesen. Aus diesem Grund besitzt jedes der Register-Files vier Lese- und zwei Schreibports. Die Zuordnung der Issues auf die Register können sie aus den Tabellen TTT entnehmen. Schreibt nun beispielsweise eine Instruktion an die Adresse Null und die nachfolgende Instruktion an die Adresse 31 des selben Ports, so wäre dies der Worst-Case, da in diesem Fall alle 5-Bit umgeladen werden müssten.\\
@@ -46,8 +47,8 @@ Die Hamming-Distanz ist nach dem amerikanischen Mathematiker Richard Wesley Hamm
 \section{Heuristik}
 \label{sec:Heuristik}
 Um die Hamming-Distanz berechnen zu können, werden die Adressen der letzten Instruktionen gespeichert. Da die Architektur wie bereits erwähnt zwei Issue-Slots aufweist und diese auf beide Register-Files zugreifen können, müssen dementsprechend vier Target- und acht Source-Adressen abgespeichert werden(siehe Abbildung \ref{fig:reg_orga}).\\
-Hierbei können lediglich die Adressen innerhalb einer SLM optimiert werden, da das Scheduling über die Anordnung der SLM entscheidet und die Register-Allokation diesem untergeordnet ist. Außerdem ist eine Optimierung bei mehrfacher Ausführung von SLMs, wie es beispielsweise bei Schleifen zustande kommt nicht möglich. Da SLMs meist sehr groß ausfallen, fällt die nicht optimalen Adress-Toggel nicht stark ins Gewicht.
-Da eine Architektur mit Adresse-Isolation \ref{subsec:add_iso} eingesetzt wird, bleiben die zuvor verwendeten Adressen an den Register-File Ports angelegt. Um die Schaltaktivität zu minimieren, wird nun bei jedem virtuellen und physikalischem Register die Hamming-Distanz zu der zuletzt angelegten Adresse des jeweiligen Ports berechnet. Hierbei wird die Adresse auf das Register gemappt welches die geringste Hamming-Distanz zur zuletzt verwendeten Adresse des selbingen Ports aufweist.\\
+Hierbei können lediglich die Adressen innerhalb einer SLM optimiert werden, da das Scheduling über die Anordnung der SLM entscheidet und die Register-Allokation diesem untergeordnet ist. Außerdem ist eine Optimierung bei mehrfacher Ausführung von SLMs, wie es beispielsweise bei Schleifen zustande kommt, nicht möglich. Da SLMs meist sehr groß ausfallen, fällt die nicht optimalen Adress-Toggel nicht stark ins Gewicht. 
+Durch den Einsatz einer Architektur mit Adresse-Isolation \ref{subsec:add_iso}, bleiben die zuvor verwendeten Adressen an den Register-File Ports angelegt. Um die Schaltaktivität zu minimieren, wird nun bei jedem virtuellen und physikalischem Register die Hamming-Distanz zu der zuletzt angelegten Adresse des jeweiligen Ports berechnet. Hierbei wird die Adresse auf das Register gemappt welches die geringste Hamming-Distanz zur zuletzt verwendeten Adresse des selbingen Ports aufweist.\\
 
 \begin{algorithm}[H]
 	\begin{algorithmic}[1]
@@ -96,8 +97,6 @@ Aus dem Minimalbeispiel ergibt sich ein unterschied der Hamming-Distanzen von se
 	\label{tab::hamming_distanz}
 \end{table}
 
-Adressen mittels Gray code ???
-
 virtuelle Ports fuer X2 MOde
 
 
@@ -118,7 +117,7 @@ Alle $m$ Gene befinden sich in einem Chromosom zusammengefasst, $m$ ist hierbei 
  
 \subsection{Aufbau}
 \label{chap:aufbau}
-Zu Beginn des genetischen Algorithmus, muss eine Startpopulation festgelegt werden. Eine Population ist hierbei ein Satz an zufällig gewählter Register-Allokationen auch Chromosom genannt. 
+Zu Beginn des genetischen Algorithmus, muss eine Startpopulation festgelegt werden. Eine Population ist hierbei ein Satz an zufällig gewählter Register-Allokationen auch Chromosom genannt. Dabei wird darauf geachtet, dass keine Adressen zugewiesen werden die bereits von physikalischen Registern blockiert sind.
 Um die einzelnen Mitglieder einer Population unterscheiden zu können, muss für jedes Chromosom ein Fitness-Wert \ref{chap:Fitness-Funktion} ermittelt werden. Mithilfe dieses Merkmales wird die Population im Anschluss sortiert. 
 Mit den generierten Register-Allokations-Ansätzen beginnt nun Fortpflanzen der Population. In einer Schleife werden zuerst die beiden besten Chromosomen der letzten Generation in eine Neue abgespeichert. Anschließend werden die restlichen Mitglieder der Population durch Crossover, Mutation und neu erzeugte Chromsomen aufgefüllt. Zum Ende der Schleife wird die neu errungenen Chromosomen anhand des Fitness-Werts sortiert. Diese geschieht so lange, bis eine maximale Anzahl an Durchlaufen erreicht wurde. Sobald eine Verbesserung durch die Fortpflanzung und Veränderung der Chromosom gefunden wurde, beginnt die Schleife von Neuem. Der Algorithmus terminiert dementsprechend immer wenn nach einer gewissen Anzahl an Durchlaufen keine Verbesserung des Fitness-Werts gefunden werden kann. Nach dem Beenden der Schleife wird die beste Population ermittelt und für das Mapping von virtuellen zu physikalischen Registern verwendet.
 
@@ -154,26 +153,31 @@ Mit den generierten Register-Allokations-Ansätzen beginnt nun Fortpflanzen der 
 \end{algorithm}
 
 \subsection{Auswahl der Elternpaare}
+
 Wie bereits im Grundlagenteil \ref{chap:grundlagen_cossover} skizziert handelt es sich beim Crossover um das Fortpflanzen der Chromosomen.
-Das Fortpflanzungspaar wird hierbei mittels dem bereits erwähnten Tournament Selection \ref{chap:grundlagen_cossover} ausgewählt. Diese wählt aus der Population $P_S$, $n$ zufällige Chromosomen aus. Diese treten in einem \"Tunier(Tournament)\" gegeneinander an. Dabei werden die einzelnen Chromosom mithilfe des Fitness-Wertes verglichen und das Chromosom welches die besten Fitness aufweist ausgewählt. Mit Hilfe dieses Verfahren werden zwei individuelle Chromosomen aus der alten Population $P_S$ ausgewählt.
+Das Fortpflanzungspaar wird hierbei mittels dem bereits erwähnten Tournament Selection \ref{chap:grundlagen_cossover} ausgewählt. Die Literatur \cite{zhong2005comparison} hat gezeigt, dass das Tournament-Selection-Verfahren sehr viel schneller gegen einen Wert konvergiert als das Roulette-Wheele-Selection-Verfahren. Aus diesem Grund wird für die Selektion der Elternpaare das Tournament-Select-Verfahren verwendet. Dieses wählt aus der Population $P_S$, $n$ zufällige Chromosomen aus. Die so gewählten Chromosomen treten in einem \"Tunier(Tournament)\" gegeneinander an. Dabei werden die einzelnen Chromosom mithilfe des Fitness-Wertes verglichen und das Chromosom welches die besten Fitness aufweist ausgewählt. Mit Hilfe dieses Verfahren werden zwei individuelle Chromosomen aus der alten Population $P_S$ ausgewählt.
  
 \subsection{Fortpflanzung der Chromosomen}
-Dieses Paar wird daraufhin an einer zufällig gewählten Stelle getrennt und die entstandenen Teile zusammengeführt. Daraus entsteht ein neues Kind-Chromosom. Ein Beispiel einer Fortpflanzung ist in Abbildung XXX dartgestellt.
-Nehmen wir an $m$ ist die Anzahl an Genen in einem Chromosom und $r \in \mathbb{N}$ ist eine Zufallszahl, so berechnet sich die Stellen $x$ an der ein Wechsel der Eltern-Gene auftritt mit: $x= min(x+r mod(m+1),m)$. Nun werden $x$ des ersten Elternpaars $E_1$ in die des Kind-Chromosoms $C$ kopiert. Die berechnete Stelle wird auch Crosspoint genannt. Im Anschluss an das erste Crossover wird die Berechnung des Crosspoints $x$ wiederholt und die entsprechenden Gene aus $E_2$ kopiert. Dieses Verfahren wird so lange wiederholt, bis $C$ mit Genen aus $E_1$ und $E_2$ befüllt ist. Durch dieses Vorgehen, kann es zu mehr als einem Crosspoint kommen, welches laut Literatur ein besseres Ergebnis liefert.LLL \\
-
+Dieses Paar wird daraufhin an einer zufällig gewählten Stelle getrennt und die entstandenen Teile zusammengeführt. Daraus entsteht ein neues Kind-Chromosom. Ein Beispiel einer Fortpflanzung ist in Abbildung \ref{fig:crossover} dargestellt.
+\begin{figure}[htbp] 
+	\centering
+	\includesvg[width=\textwidth]{Crossover}
+	\caption{Fortpflanzung mittels Crossover}
+	\label{fig:crossover}
+\end{figure}
+Nehmen wir an $m$ ist die Anzahl an Genen in einem Chromosom und $r \in \mathbb{N}$ ist eine Zufallszahl, so berechnet sich die Stellen $x$ an der ein Wechsel der Eltern-Gene auftritt mit: $x= min(x+r mod(m+1),m)$. Nun werden $x$ des ersten Elternpaars $E_1$ in die des Kind-Chromosoms $C$ kopiert. Die berechnete Stelle wird auch Crosspoint genannt. Im Anschluss an das erste Crossover wird die Berechnung des Crosspoints $x$ wiederholt und die entsprechenden Gene aus $E_2$ kopiert. Dieses Verfahren wird so lange wiederholt, bis $C$ mit Genen aus $E_1$ und $E_2$ befüllt ist. Durch dieses Vorgehen, kann es zu mehr als einem Crosspoint kommen, welches laut Literatur ein besseres Ergebnis liefert.\cite{reeves2003genetic} \\
 Nach dem durch das Crossover, ein neues Chromosom $C$, mit den Genen aus zweier Eltern $E_1$ und $E_2$ der alten Generation entstanden ist, wird dieses zusätzlich mutiert. Dabei wird jedes Gen in $C$ mit einer Wahrscheinlichkeit von 1\% modifiziert. Die Änderung bezieht sich hierbei auf das Register-File und die Register-Adresse.Dabei werden die Werte zufällig zugewiesen, die Register-Adresse kann hierbei in einem Bereich von 0..31 und das Register-File zwischen 0..1 liegen.\\
-
-Das so entstandene neue Chromosom $C$ wird nun zur neuen Population $P_N$ hinzugefügt. Der Fortpflanzungsprozess aus Crossover und Mutation wird so lange durchgeführt bis die neue Population $P_N$ mit der vorbestimmten Anzahl an Chromosomen aus der Fortpflanzung sowie mutierten befüllt wurde.
-
-Erstellung neuer Chromosomen 
+Das so entstandene neue Chromosom $C$ wird nun zur neuen Population $P_N$ hinzugefügt. Der Fortpflanzungsprozess aus Crossover und Mutation wird so lange durchgeführt bis die neue Population $P_N$ mit der vorbestimmten Anzahl an Chromosomen aus der Fortpflanzung sowie mutierten befüllt wurde.\\
+Im Anschluss werden neue Chromosomen erstellt und er Population hinzugefügt. Dies stellt zusätzlich zur Mutation sicher, dass der Algorithmus nicht an einem lokalen Minimum gefangen bleibt. 
 
 \subsection{Fitness-Funktion}
 \label{chap:Fitness-Funktion}
-Da die Registerallokation dem Scheduling untergeordnet ist und von diesem aufgerufen wird, muss die Fitnessfunktion an die des Scheduling angepasst werden. Aus diesem Grund wurde zum einfacheren Vorgehen zwei Verschiedene Fitness-Funktionen implementiert. Zum einen der Wert der an die übergeordnete Funktion (das Scheduling) weitergegeben wird und zum Andern eine interne Fitness um die Ergebnisse zu evaluieren.
-Der Übergabewert besteht aus der Anzahl der Register die nicht im Register-File allokiert werden konnten.\\
-Das sortieren der Population wird mit beiden Fitness-Funktionen realisiert. Da die Register-Allokation nur dann erfolgreich war wenn alle Register allokiert werden konnten, ist dies der erste Schluessel nach dem die Population sortiert wird. Als zweiter Sortierschlüssel wird die interne Fitness-Funktion verwendet. Bei dieser wurden mehrere Ansätze untersucht.
-Besteht der Fall, dass ein Register mit dem zufällig gewählten Adressen nicht zugewiesen werden kann, so wird der Zähler für nicht allokierbare Register erhöht. Zusätzlich wird die Fitness berechnet und mit einem Offset versehen. Somit können Chromosomen mit der selben Anzahl an nicht allokierbaren Registern untereinander verglichen werden. Dies ist noetig da sonst das Crossover zu keinen Verbesserung der Chromosomen kommen kann. Außerdem ist durch den Einsatz eines großen Offsets eine Abgrenzung zu den geglückten Zuweisungen möglich. Der Offset wurde hierfür  so gewählt, dass selbst bei dem Worst-Case-Szenario, wenn die Hamming-Distanz in jedem Schritt maximal wäre, eine klare Separierung möglich ist. Dazu wurde die Anzahl der virtuellen Registern in einer SLM mit 1000 multipliziert.
-Im Folgenden wird jetzt auf die einzelnen Ansaetze zur Fitness-Funktion eingeganen.
+Der ideal Fall für die Fitness-Funktion wäre eine Einbindung eines Power-Analyse-Tools in den Algorithmus. Dies würde bedeuten, dass für jede Berechnung der Fitness das Tool ausgeführt werden müsste und die Verlustleistung berechnet. Dadurch wäre eine exakte Aussage über die Leistung möglich und der genetische Algorithmus würde diese minimieren. Da das Analyse-Tool jedoch sehr lange Ausführungszeiten aufweist ist dies nicht möglich. Aus diesem Grund muss eine Konvergenz zur Power gefunden werden.\\
+Wie in Kapitel \ref{chap:ansatz} bereits beschrieben wurde die Hamming-Distanz als Annäherungsparameter verwendet. Da die Registerallokation dem Scheduling untergeordnet ist und von diesem aufgerufen wird, muss die Fitnessfunktion an die des Scheduling angepasst werden. Aus diesem Grund wurde zum einfacheren Vorgehen zwei Verschiedene Fitness-Funktionen implementiert. Zum einen der Wert der an die übergeordnete Funktion (das Scheduling) weitergegeben wird und zum Andern eine interne Fitness um die Ergebnisse zu evaluieren.
+Der Übergabewert besteht aus der Anzahl der Register die nicht im Register-File allokiert werden konnten. Bei der internen Fitness-Funktion bestehen mehrere Ansatzmöglichkeiten.\\
+Das sortieren der Population wird mit beiden Fitness-Funktionen realisiert. Da die Register-Allokation nur dann erfolgreich war, wenn alle Register allokiert werden konnten, ist dies der erste Schlüssel nach dem die Population sortiert wird. Als zweiter Sortierschlüssel wird die interne Fitness-Funktion verwendet.
+Besteht der Fall, dass ein Register mit dem zufällig gewählten Adressen nicht zugewiesen werden kann, so wird der Zähler für nicht allokierbare Register erhöht. Zusätzlich wird die Fitness berechnet und mit einem Offset versehen. Somit können Chromosomen mit der selben Anzahl an nicht allokierbaren Registern untereinander verglichen werden. Dies ist nötig da sonst das Crossover zu keinen Verbesserung der Chromosomen kommen kann. Außerdem ist durch den Einsatz eines großen Offsets eine Abgrenzung zu den geglückten Zuweisungen möglich. Der Offset wurde hierfür  so gewählt, dass selbst bei dem Worst-Case-Szenario, wenn die Hamming-Distanz in jedem Schritt maximal wäre, eine klare Separierung möglich ist. Dazu wurde die Anzahl der virtuellen Registern in einer SLM mit 1000 multipliziert.
+Im Folgenden wird auf die einzelnen Ansätze der Fitness-Funktion eingegangen:
 
 \begin{itemize}
 	\item Hamming-Distanz\\
@@ -182,49 +186,47 @@ Im Folgenden wird jetzt auf die einzelnen Ansaetze zur Fitness-Funktion eingegan
 		blabla
 	\item Lastkapazitaet\\
 		blabla
-	\item Hamming-Distanz und Lastkapazitaet\\
+	\item Hamming-Distanz und Lastkapazität\\
 		blabla
-	\item Adresssumme\\
-		blabla
+%	\item Adresssumme\\
+		%blabla
 \end{itemize}
+
+Schaubild Fitness-Funktion -> Power
  
 \subsection{Parameter}
-Es bestehen eine Vielzahl an Parametern und Einstellungsmöglichkeiten bei der Verwendung eines genetischen Algorithmus, dabei haben einige einen erheblichen Einfluss auf die Funktion und das Ergebnis. Da die Parameter sehr von der Problemstellung abhaengen, ist kann nur begrenzt auf Literatur zurueck gegriffen werden. Jedoch wurden die Groessenordnung und erste Richtwerte aus der Literatur und dem genetischen SCheduling entnommen. Im Folgenden sollen die Parameter und deren Funktion sowie Einfluss auf das Ergebnis erläutert werden.
-
-Analysis 
-of  the 
-Behavior 
-of 
-a  Class 
-of 
-Genetic 
-Adaptive 
-Systems
+\label{cap:parameter}
+Es bestehen eine Vielzahl an Parametern und Einstellungsmöglichkeiten bei der Verwendung eines genetischen Algorithmus, dabei haben einige einen erheblichen Einfluss auf die Funktion und das Ergebnis. Da die Parameter sehr von der Problemstellung abhängen, kann nur begrenzt auf Literatur zurück gegriffen werden. Jedoch wurden eine Größenordnung und erste Richtwerte aus der Literatur \cite{grefenstette1986optimization} und dem genetischen Scheduling entnommen. Im Folgenden sollen die Parameter und deren Funktion sowie Einfluss auf das Ergebnis erläutert werden.
 
 \begin{itemize}
-	\item Anzahl der Durchlaeufe\\
+	\item Anzahl der Durchläufe\\
+		Die Anzahl der Durchläufe wurde experimentell ermittelt und ist für jede Problemstellung unterschiedliche. Hierfür wurde der beste Fitness-Wert über der Anzahl an Durchläufen in einem Diagramm aufgetragen. An der Stelle an der der Algorithmus keine signifikanten Verbesserungen findet wurde der Abstand zwischen den zuletzt aufgetretenen Optimierungen ermittelt. Dieser wurde im Anschluss als maximale Durchlaufzahl verwendet.
+		
+		Schaubild Fitness über Durchläufe 
+	\item Größe der Population $N$\\
+		Die Populationsgröße $N = 40$ wurde aus der Literatur \cite{grefenstette1986optimization} und Erfahrungswerte aus dem genetischen Instruktion-Scheduling entnommen.  
 	
-	\item Mutations-Wahrscheinlichkeit\\
-	blabla
-	\item Auswahl-Verfahren\\
-	blabla
-	\item Crossover-Wahrscheinlichkeit/Verfahren\\
-	blabla
-	\item Groesse der Population\\
-	Die Populationsgröße wurde aus der Literatur [LLL] und Erfahrungswerte aus dem genetischen Instruktion-Scheduling entnommen.
+	\item Mutations-Wahrscheinlichkeit $w_M$\\
+		Die Mutation ist dem Crossover untergeordnet und hebt die Flexibilität des Algorithmus. Dabei sind sehr kleine Werte zu wählen. Die Wahl fiel hierbei auf eine Wahrscheinlichkeit $w_M$ von einem Prozent. Dies bedeutet das $w_M * N * n$ Gene pro Population mutiert werden. Hierbei ist $n$ die Anzahl der Gene in einem Chromosom. Ist $w_M$ zu hoch gewählt, handelt es sich um eine Zufallssuche.
+		
 	\item Startwerte\\
-	blabla
+		Die Startwerte haben einen erheblichen Einfluss auf die Laufzeit und Konvergenz des genetischen Algorithmus. Da die Gene zufallsgesteuert sind kann auf diesen Parameter nur bedingt Einfluss genommen werden. Durch das Vorschalten der Heuristik und damit der Berechnung einer gültigen Register-Allokation, kann der Algorithmus bereits an einem besseren Ausgangsposition starten.(siehe Kapitel \ref{sub:startpop})
 	\item Fitnessfunktion\\
-	blabla
+		Den größten Einfluss auf die Funktion des Algorithmus hat jedoch die Fitness-Funktion. Diese ist ausschlaggebend für die Anpassung an das gegebene Problem und den Endwert des Algorithmus. Wird die Fitness-Funktion falsch gewählt, ist das Ergebnis des genetischen Algorithmus nicht aussagekräftig. 
 \end{itemize}
  
 \subsection{Startpopulation}
+\label{sub:startpop}
 Die Startpopulation besteht im Normalfall wie in Kapitel \ref{chap:aufbau} aus zufällig gewählten Genen. Hierbei werden nur Register verwendet die nicht bereits von physikalische Registern blockiert sind.
-Um eine schnellere Konvergenz zu einem globalen Minimum zu gewährleisteten wird ein Gene der Startpopulation durch ein Heuristik-Algorithmus bestimmt. Dadurch wird bereits an einem lokalen Minimum gestartet und der genetische Algorithmus muss dies nicht selbst finden. 
-Nachteilig ist hierbei jedoch das durch ungeeignete Parameter der Algorithmus bei dem bereits sehr starken lokalen Minimum stagniert und keine Verbesserung mehr finden kann. Aus diesem Grund sollte beim Start mit der Heueristik eine höhere Mutationswahrscheinlichkeit eingesetzt werden um dieses Minimum dennoch zu überwinden.
+Um eine schnellere Konvergenz zu einem globalen Minimum zu gewährleisteten wird ein Chromosom der Startpopulation durch ein Heuristik-Algorithmus bestimmt. Dadurch wird bereits an einem lokalen Minimum gestartet und der genetische Algorithmus muss dieses nicht selbst finden. 
+Nachteilig ist hierbei jedoch das durch ungeeignete Parameter der Algorithmus bei dem bereits sehr starken lokalen Minimum stagniert und keine Verbesserung mehr finden kann. Aus diesem Grund sollte beim Start mit der Heuristik eine höhere Mutations-Wahrscheinlichkeit eingesetzt werden um dieses Minimum dennoch zu überwinden.
 
 \subsection{dynamische Anpassung}
-Zu Beginn der Suche nach einer geeigneten Register-Alokation findet der Algorithmus
+Um eine schnellere Konvergenz gegen ein globales Minimum zu erreichen, wurde eine dynamische Anpassung der Parameter implementiert. Dies ist sinnvoll, da zu beginn die Suche auf einen großen Bereich ausgelegt werden muss, jedoch im weiteren Verlauf diese Parameter eventuell nicht mehr die schnellste Option darstellen. Aus diesem Grund wurde die Mutationsrate während der Berechnung angepasst. Zu beginn des Algorithmus werden viele bessere Lösungen als die der Startpopulation gefunden. AUs diesem Grund wird mit einer sehr kleinen Mutationsrate gestartet. Sobald für eine gewisse Anzahl an Durchläufen keine Verbesserung gefunden wurde, sprich der Algorithmus gegen ein lokales Minimum tendiert, wird die Mutations-Wahrscheinlichkeit erhöht. Dies hat zur folge, dass die Suche nach geeigneten Genen breiter wird bzw. mehr Gene mutiert werden. Dadurch steigt die Wahrscheinlichkeit ein lokales Minimum zu überwinden an. Wird eine Verbesserung gefunden, wird die Mutationsrate auf den Startwert zurückgesetzt. Anderenfalls wird die Wahrscheinlichkeit weiter minimiert. Damit wird aus einer gezielten Suche wie in Abschnitt \ref{cap:parameter} erläutert eine Zufallssuche.
+Das untenstehende Schaubild zeigt die Optimierung, die durch diese Verfahren erreicht wurde. Hierbei wurden beide genetischen Algorithmen mit dem selben Seed/Startwert ausgeführt um die Versionen vergleichen zu können.
+
+Schaubild Dynamisch->statischer GA
+ 
 \newpage
 \subsection{Algorithmus Modi}
 \begin{itemize}
@@ -278,7 +280,6 @@ Zu Beginn der Suche nach einer geeigneten Register-Alokation findet der Algorith
 		\multicolumn{2}{l}{Heuristik alt}  & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{1} \\
 		\multicolumn{2}{l}{Heuristik neu}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{1} \\ 
 		\multicolumn{2}{l}{Genetischer Algo. Hamming-Fitness}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{2-4} \\
-			\multicolumn{2}{r}{}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{2-4} \\
 			\multicolumn{2}{r}{Heuristik als Startpop.}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{2-4} \\
 			\multicolumn{2}{r}{dynamischer Genetischer Algo.}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{2-4} \\
 		\multicolumn{2}{l}{Genetischer Algo. Load-Fitness}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{2-4} \\ 
@@ -287,12 +288,4 @@ Zu Beginn der Suche nach einer geeigneten Register-Alokation findet der Algorith
 		\newline
 		\caption{Algorithmus-Konfiguration}
 	\end{table}
-
-\subsection{Glitches}
-Da der Verwendete Prozessor Adress-Isolation ( siehe Kapitel \ref{subsec:add_iso}) einsetzt, sollten die Adressen so lange an einem Port anliegen bis diese geaendert werden.
-Die für die Schreib- und Lesezugriffe verwendeten Adressen werden jeweils zwischen den Takten an die benötigten Ports angelegt um so zu gewährleisten, dass diese mit der steigenden Taktflanke auch übernommen werden können. Die Auswahl der Ports wird über Enable-Signale geregelt. Werden beispielsweise zwei Instruktionen verwendet die beide an Register-File 1 schreiben, so werden die Adressen an die Ports 0 und 1 angelegt und sobald diese zu Verfügung stehen von den Enable-Signalen freigegeben.\\
-Nun tritt jedoch, dass Adress und Enable Signal nicht synchron arbeiten und somit ein Zeitversatz der beiden Signale entsteht. Dies lieg daran, dass die benoetigten Enable-Signale aufwendig berechnet werden, und dies eine kurze Verzoegerung nachsich zieht. Aus diesem Grund liegt die bereits geaenderte Adresse kurze Zeit an dem falschen Adressport an. Sobald das Enable-Signal berechnet wurde, werden die richtigen Adressen angelegt. Dieses Szenario tritt lediglich auf, wenn ein Wechsel in den Enable-Signalen und sich somit die Herkunft der Adressen aendert. Das Beschriebene Problem verursacht eine Erhoehung der Schaltaktivitaet auf den Adressleitungen und somit auch eine steigende Verlustleistung um XXX \%
-Um diesem Effekt gegenzuwirken wurde eine zweite Pipline-Stufe eingebaut. Durch die Verzoegerung der Adress- und Enable-Signale ist garantiert, dass die Adressen erst dann an den entsprechenden Ports anliegen wenn diese benoetigt werden. Der zusaetzliche Energieverbrauch der Pipeline-Regsiter wird an dieser Stelle nicht weiter untersucht, da der Anstieg der Verlustleistung in den zu vergleichenden Algorithmen identisch ist.
-Es besteht jedoch eine Möglichkeit, die Pipeline-Stufen zu vermeiden.
-Da der Prozessor für ein ASIP entwickelt wird, können die Glitches durch den Einsatz von Buffern behoben werden. Hierzu müssen lediglich die betroffenen Signale mittels eines im ASIP implementiereten Buffer verzögert werden. Dieser könnte beispielsweise durch das Einbauen zwei hintereinander geschalteter Inverter realisiert werden. Dabei würde sich die Verzögerung aus der Summe der Gatterlaufzeiten ergeben. Die Anzahl der Inverter-Gatter müsste dann an den Versatz von Adress- und Enablesignal angepasst werden. 
 
