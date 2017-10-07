@@ -22,8 +22,7 @@ Mittels dieser Veränderung, ist die Verlustleistung nun nicht mehr von den Date
 
 \chapter{Evaluation}
 \label{chap:evaluation} 
-
-Um die Leistungsaufnahme des Prozessors ermitteln zu können sind einige Schritte notwendig. Die Vorgehensweise ist in Schaubild \ref{fig:flow_power_analyse} abgebildet.
+Da die Verlustleistung nicht im Code und zur Laufzeit bestimmt werden kann, musste eine Analyse nach der Ausführung des Codes stattfinden. Die Vorgehensweise ist in Schaubild \ref{fig:flow_power_analyse} abgebildet.
 
 \begin{scriptsize}
 	\begin{figure}[htbp] 
@@ -34,45 +33,71 @@ Um die Leistungsaufnahme des Prozessors ermitteln zu können sind einige Schritt
 	\end{figure}
 \end{scriptsize}
 
-Vorerst wird das gewünschte Assembler Programm zusammen mit der Prozessor-Konfiguration in den im Implementierung Kapitel beschriebenen Compiler geladen. Hierbei muss unter Anderem angegeben werden mit welchen Takten der Prozessor taktet und wie gross die Register fuer diesen Fall sind. Außerdem muss dem Compiler die Variante der zu verwendenden Register-Allocation (Tabelle tttt) übergeben werden. Nach erfolgreichem compilieren des Codes steht die Binary Datei und der geschedulte Code zu Verfügung. Im Anschluss an diesen Prozess wird die Leistungsanalyse durchgeführt. Hierzu wird die Netzliste des Prozessors und die Binary Datei benötigt. Daraus wird mit Tool Primetime PX der Firma Synopsys die Verlustleistung ermittelt. Hierbei geht das Tool so vor, dass alle Schaltvorgänge der Transistoren der Architektur aufsummiert werden und mit den hinterlegten Konfigurationen die jeweilige Leistungsaufnahme ermittelt. AUSFÜHRLICHER . Hieraus entsteht ein ausführlicher Power Report. 
-Mithilfe dieses Evalutionsablaufes sind die folgenden Ergebnisse entstanden.
-Um den Einfluss der Register-Adressen besser verstehen zu können wurden Assemblerprogramme entwickelt welche den Einfluss von Target-, Source1 und Source2-Register untersuchen. Vorerst wurden die einzelnen Register getrennt voneinander untersucht. Hierbei werden alle Möglichkeiten der Allokation durchlaufen um zum einen den Code zu testen und zum andern alle Einflüsse der Adressierung zu ermitteln. Hierbei bestehen für die Target-Register 4 und für die Source-Register 16 Möglichkeiten. Um die einzelnen Ergebnisse vergleichen zu können wurden die Programme so entworfen, dass die Hamming-Distanzen für alle Testfälle identisch sind. 
-
-Durch diese Untersuchung war zu erkennen, dass sich die Hamming-Distanzen zu der Toggleleistung nahe zu linear verhält. Dazu wurden die Leistungen der einzelnen Adress-Ports aufsummiert. Der Verlauf der Gesamtleistung des Prozessors ist auf dieser Ebene nur schwer nachzuvollziehen, jedoch ist auch hier eine Verbesserung zu verzeichnen. 
-Bei der Evaluationen war auffällig, dass die Leistung bei gleicher Hamming-Distanz aber Verwendung unterschiedlicher Adressen eine Abweichung in der Leistung zu verzeichnen war. Dies hat den Ursprung bei den Lastkapazitäten der Adressleitungen. Da die Adressleitungen unterschiedliche belastet werden und bei der Verwendung unterschiedlicher Adressen auch andere Adressleitungen verwenden verändert sich nach der Formel \ref{eq:dynVerlustleistung} auch die Leistungsaufnahme linear mit der Lastkapazität. 
-Die Schaubilder zeigen die Schaltleistung der einzelnen Register. Hierbei wurden jeder Port einzelend untersucht. 
-
-Vorerst wurde die Heuristik untersucht.
-Um die Register allocation besser nachvollziehen zu können, würden Testprogramme entworfen, welche alle Möglichkeiten der Register Zuweisungen testet. Das Testprogramm führt vorerst Addition und Orbefehle mittels physikalischer Register aus. Hierbei wird dem ersten issue Slot die Addition und dem zweiten issue Slot eine Or-operation zugewiesen. Durch das addieren und verodern und anschließende Abspeicherung in physikalische Register, wird eine gewisse Anzahl an Registern fest blockiert und kann nicht für virtuelle Register verwendet werden. Siehe Abbildung xxx
-Nach dem die Register Files vorbelegt wurden werden die Instruktionen mit virtuellen Registern begonnen.
-
-Damit es keine Einflüsse durch Scheduling und Daten gibt, wurden vorerst folgende Veränderung im den Testprogrammen getätigt. Die Instruktionen werden manuell geschedult und den einzelnen issue Slots zugewiesen. Somit ist die Anordnung der Assemblerbefehlen für jeden Testfall identisch und der Einfluss ist somit entkoppelt. Im Falle der Datenabhängigkeiten wurden alle Register mit einer Null initialisiert und im Anschluss nicht verändert. Dadurch werden alle Instruktionen mit den selben Daten ausgeführt und somit besteht auch keine Abhängigkeit der Daten mehr. 
-
-
+Vorerst wird das gewünschte Assembler Programm zusammen mit der Prozessor-Konfiguration in den im Implementierung Kapitel beschriebenen Compiler geladen. Hierbei muss unter Anderem angegeben werden mit welchen Takten der Prozessor taktet und wie gross die Register fuer diesen Fall sind. Außerdem muss dem Compiler die Variante der zu verwendenden Register-Allocation (Tabelle tttt) übergeben werden. Nach erfolgreichem compilieren des Codes steht die Binary Datei und der geschedulte Code zu Verfügung. Im Anschluss an diesen Prozess wird die Leistungsanalyse durchgeführt. Hierzu wird die Netzliste des Prozessors und die Binary Datei benötigt. Das Tool \"Prime Time Suite\" von Synopsys analysiert hierbei alle Schaltaktivitäten im Prozessor und gibt anschließend eine detaillierte Übersicht über die Leistungsaufnahme des Prozessors aus. AUSFÜHRLICHER .\\ 
+Mithilfe dieses Evalutionsablaufes sind die in diesem Kapitel evaluierten Ergebnisse entstanden.
 \section{Testprogramme}
-\label{sec:testprogamme}
-Um den implementierten Code zu testen und eine reele Einsparung der Verlustleistungsreduktion zu ermitteln wurden die folgenden Assembler-Programme verwendet. Dabei handelt es sich um Programme die eine häufig Anwendung in Hörgerät-Prozessoren finden. Ausschlaggebend fuer die Wahl waren die Anzahl der verwendeten virtuellen Registern da mit einer hohen Zahl an virtuellen Registern das Verbesserungspotential steigt.
-\subsection{Beamforming}
-Der Beamforming-Algorithmus wird eingesetzt um eine Positionsbestimmung von Schallwellen im Raum durchzuführen und somit eine Ein- bzw Ausblendung von verschiedenen Geräuschen zu gewährleisten und so das Hörerlebnis zu steigern. 
+Um den Einfluss der Register-Adressen besser verstehen zu können wurden Assemblerprogramme entwickelt welche den Einfluss von Target-, Source1 und Source2-Register untersuchen.Hierbei sind diese in der Komplexität gestaffelt. In den folgenden Kapiteln wird nun auf die Ergebnisse der einzelnen Programme und deren Erkenntnisse eingegangen.
+\subsection{Empirische Tests}
+\label{cap:empirischeTests}
+Um die aufgestellte Annahme, dass sich die Verlustleistung proportional zur Hamming-Distanz verhält, zu bestätigen, wurden zu Beginn Assemblerprogramme entworfen, die nur mit physikalischen Registern arbeiten. Hierbei  wurden vorerst die einzelnen Register getrennt voneinander untersucht. Das Programm durchläuft dabei alle Möglichkeiten der Allokation, um zum einen die Register-Allokation und die damit verbundene Hamming-Distanz-Berechnung zu testen. Zum andern alle Einflüsse der Register-Adressierung zu ermitteln. Hierbei bestehen für die Target-Register vier und für die Source-Register 16 Möglichkeiten. Um die einzelnen Ergebnisse vergleichen zu können wurden die Programme so entworfen, dass die Hamming-Distanzen für alle Testfälle identisch ausfallen. Ein Beispiel für ein solches Testprogramm, welches den Einfluss der Target-Register testet finden sie im Codebeispiel CCC.
 
-\subsection{emulated floating Point}
-Da der verwendete Prozessor keine floating Point Variablen unterstützt, besteht ein Algorithmus der diese emuliert. 
+Codebeispiel Target-Register physikalisch
 
-Da die Verlustleistung nicht im Code und zur Laufzeit bestimmt werden kann, musste eine Analyse nach der Ausführung des Codes stattfinden. Hierfür wurde das Tool \"Prime Time Suite\" von Synopsys verwendet. Dieses analysiert alle Schaltaktivitäten im Prozessor und gibt anschließend eine detaillierte Übersicht über die Leistungsaufnahme des Prozessors.\\
-Um die Annahme zu bestätigen, dass mit geringerer Schaltaktivitäten an den Adressleitungen der Register Files die Verlustleistung gesenkt werden kann, wurde zuerst die Schaltleistung der Register Adressen untersucht.\\
-Des weiteren wurden die Testprogramme zu Beginn manuell gescheduled um die Registerallokation isoliert betrachten zu können. Hierzu kann vor jeder Instruktion angegeben werden in welchem Issue-SLot diese ausgeführt werden soll. Um den Einfluss der Schaltaktivitäten besser bestimmen und nachvollziehen zu können wurden vorerst ausschließlich physikalische Register verwendet. \\
-Des weiteren wurden Schreibe- und Lese-Adressen separat voneinander untersucht um den Einfluss der Adressen auf die Schaltleistung weiter aufzuschlüsseln. Dafür wird beispielsweise aus immer der selben Adresse gelesen und in unterschiedliche geschrieben. Das Schaubild XXX Zeigt hierbei die Untersuchung der Schreibadressen.
+Damit keine Einflüsse durch Scheduling oder Daten entstehen, wurden folgende Veränderung im den Testprogrammen getätigt. Die Instruktionen werden manuell geschedult und den einzelnen Issue-Slots zugewiesen. Somit ist die Anordnung der Assemblerbefehlen für jeden Testfall identisch und der Einfluss ist somit entkoppelt. Im Falle der Datenabhängigkeiten wurden alle Register mit einer Null initialisiert und im Anschluss nicht verändert. Dadurch werden alle Instruktionen mit den selben Daten ausgeführt und somit besteht keine Abhängigkeit der Daten mehr.
+Das Programm hat keinerlei Funktion und besteht der Übersichtlichkeit nur aus zwei Instruktionen.
+Um den Einfluss der Adressierung zu ermitteln wurden im Codebeispiel CCC, die Adressen des Target-Registers, von Test zu Test variiert. Um die Source-Register vom Test zu entkoppeln, wurden die Adressen der Register, die nicht untersucht werden sollten nicht verändert. Dadurch entsteht keinerlei Schaltaktivität in den Adressleitungen.
 
 %\begin{figure}
 %	\centering
 %	\includesvg[width=1.25\textwidth]{targetswitching}
 %	\caption{Schaltleistung Schreibports}
 %\end{figure}
-Anhand des Schaubildes kann schön erkannt werden, dass mit steigender Hamming-Distanz auch die Schaltleistung steigt. Auffällig ist hierbei der Sprung bei einer Hamming-Distanz von 64. Dieser lässt sich dadurch erklären, dass zwar die Hamming-Distanz identisch ist aber dafuer Adressleitungen verwendet werden die eine größere Lastkapazität aufweisen. Durch die höhere Lastkapazität wird automatisch auch einer größere Leistung benötigt.
-Das untenstehende Schaubild XXX zeigt einen Testfall. Hierbei sind die blauen hinterlegen Felder 
 
-\subsection{Einfluss der Lastkapazität}
-Durch 
+Um die aufgestellte These zu bestätigen, wurden vorerst zusätzlich nur die Leistung der Adress-Leitungen untersucht. Außerdem wurde der Fokus auf die Untersuchung der Schaltleistung gelegt. Der Test zeigt hierbei, dass bei steigender Hamming-Distanzen die Schaltleistungen der Adress-Leitungen linear zunimmt(siehe Abbildung XXX). Dies bestätigt die Annahme, dass sich die Leistung proportional zur Hamming-Distanz verhält und entspricht somit Formel \ref{eq:dynVerlustleistung} der dynamischen Verlustleistung. Außerdem ist erkennbar, dass keine Schaltleistungen durch Source-Adressen verursacht wurden.
+Auffällig ist zudem der Sprung bei einer Hamming-Distanz von 64. Dieser lässt sich dadurch erklären, dass zwar die Hamming-Distanzen identisch sind, aber unterschiedliche Adressleitungen verwendet werden, welche eine größere Lastkapazität aufweisen. Durch die höhere Lastkapazität wird automatisch auch einer größere Leistung benötigt. Dieses Phänomen wird in Kapitel \ref{cap:lastkapa} näher untersucht und erläutert.\\
+Abbildung XXX zeigt den Verlauf der Gesamtleistung des Prozessors über der Hamming-Distanz. Auch hier ist eine deutliche Verbesserung erkennbar.
+
+Abbildung Total Power + Switching-power target
+
+
+Jedoch werden nicht nur Veränderung im Register-File hervorgerufen, denn auch in anderen Modulen ist eine Verbesserung der Verlustleistung zu verzeichnen. Dies liegt daran, dass die Register-Adressen ebenfalls an anderen Modulen Anliegen und dort Veränderungen in der Schaltaktivität verursachen.
+
+Tabelle Hirachy Report
+
+Im Folgenden wurde untersucht, ob diese Abhängigkeiten sich verändern wenn Source- und Target-Register gemeinsam verwendet werden. Hierzu wurden ebenfalls Testfälle generiert, welche die Hamming-Distanzen der Target und Source-Register variiert. Auch hier ist das lineare Verhalten von Hamming-Distanz zu Schaltleistung zu erkennen.
+
+
+\subsection{Heuristik} 
+Da nun die Abhängigkeiten der Register-Adressierung zu der Verlustleistung bewiesen wurde, soll nun verbesserte Heuristik untersucht werden. Hierzu werden wie in Kapitel \ref{cap:empirischeTests} Assemblerprogramme entworfen welche manuell geschedult sind und die Register mit Null initialisiert wurden. Der unterschied zu den empirischen Testprogrammen liegt darin, dass nun ebenfalls virtuelle Register verwendet werden.
+Dies hat zur folge, dass die Register-Allokation ein geeignete Zuweisung finden muss und somit die Schaltaktivität der Adresse minimieren kann. Das Testprogramm führt vorerst Addition und Or-Befehle mittels physikalischer Register aus. Hierbei wird dem ersten Issue-Slot die Addition und dem zweiten Issue-Slot eine Or-Operation zugewiesen. Durch das addieren und verodern und anschließende Abspeicherung in physikalische Register, wird eine gewisse Anzahl an Registern fest blockiert und kann nicht für virtuelle Register verwendet werden.(Siehe Abbildung xxx)
+Nach dem die Register-Files vorbelegt wurden werden die Instruktionen mit virtuellen Registern begonnen. Ab diesem Punkt ergeben sich Veränderungen in der Register-Allokation. Je nach gewähltem Verfahren, wird nach den physikalischen Registern nach unterschiedlichen Ansätzen gesucht. 
+
+Der Test zeigt hierbei, dass für diesen Testfall die neue Heuristik eine Verbesserung der Hamming-Distanz von XXX\% zu erzielen kann. Diese Verbesserung spiegelt sich ebenfalls in der Schaltleistung wieder.(siehe Abbildung XXX).
+
+SChaubild SChaltleistung heuristik genetischer Algo
+
+\subsection{Genetischer Algorithmus}
+Da die Heuristik wie bereits in Kapitel \ref{sec:genetischerAlgorithmus} erwähnt nur die Target-Register auf Schaltaktivität minimiert werden kann, wird nun die Verbesserung der Verlustleistung durch zusätzliches optimieren der Source-Register untersucht. 
+
+\subsection{Datenabhängigkeiten}
+Da bis zu diesem Punkt alle Test mit Null vorinitialisierten Registern arbeiten, wird in diesem Kapitel untersucht ob eine Datenabhängigkeit zwischen der Verlustleistung und Daten besteht. Hierzu wurde eine Programm entwickelt, welches zu beginn einige Register mit Daten befüllt. Diese werden im Anschluss mit den selben Instruktionen verarbeitet. Der Unterschied zwischen den Programmen liegt ausschließlich in der Adressierung der Register.  
+
+\section{reelle Testprogramme}
+\label{sec:testprogamme}
+Um den implementierten Code zu testen und eine reelle Einsparung der Verlustleistungsreduktion zu ermitteln wurden die folgenden Assembler-Programme verwendet. Dabei handelt es sich um Programme die eine häufig Anwendung in Hörgerät-Prozessoren finden. Ausschlaggebend für die Wahl war die Anzahl der verwendeten virtuellen Registern da mit einer hohen Zahl das Verbesserungspotential der Register-Allokation steigt.
+\subsection{Beamforming}
+Der Beamforming-Algorithmus wird eingesetzt um eine Positionsbestimmung von Schallwellen im Raum durchzuführen und somit eine Ein- bzw Ausblendung von verschiedenen Geräuschen zu gewährleisten und so das Hörerlebnis zu steigern. 
+
+\subsection{emulated floating Point}
+Da der verwendete Prozessor keine floating Point Variablen unterstützt, besteht ein Algorithmus der diese emuliert. 
+
+
+
+
+\section{Einfluss der Lastkapazität}
+ \label{cap:lastkapa}
+Wie bereits in Kapitel \ref{cap:empirischeTests} erwähnt besteht eine Abhängigkeit zwischen Lastkapazität und Verlustleistung. Dies lässt sich auf die Formel der dynamischen Verlustleistung zurückführen \ref{eq:dynVerlustleistung}, laut dieser steigt die Verlustleistung linear mit der Lastkapazität.
+Das untenstehende Schaubild \ref{fig:read_port_mux} zeigt wie die Daten aus den Registern an die Read-Ports angelegt werden. Hierbei ist jedes Bit der Register-Adresse für das Schalten eines Multiplexers zuständig. Besteht nun der Fall, dass ein Register mit einer Adresse von 31 ausgelesen werden soll, so müssen alle Multiplexer durchschalten. Dadurch werden die Daten des Registers an den Verwendeten Register-Port weitergeleitet. Wird im Gegensatz hierzu eine niedrige Adresse beispielsweise 0 angefragt, so muss keiner der Multiplexer schalten. Das Signal liegt direkt an dem Read-Port an. Aus diesem Grund benötigen die oberen Adressleitungen mehr Verlustleistung da das Signal eine höhere Lastkapazität aufweist. Dies lässt sich ebenfalls in den Power-Reports nachvollziehen. Dort ist deutlich zu erkennen, dass die oberen Register-Adressen eine höhere Lastkapazität aufweisen. 
 \begin{scriptsize}
 	\begin{figure}[htbp] 
 		\centering
@@ -81,6 +106,8 @@ Durch
 		\label{fig:read_port_mux}
 	\end{figure}
 \end{scriptsize}
+
+Aus diesem Grund wurde die Fitness Funktion des Genetischen Algorithmus so angepasst, dass die Lastkapazität zusätzlich berücksichtigt wird.
 
 \section{Evaluation}
 \label{sec:evalutation_verification}

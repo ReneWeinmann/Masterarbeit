@@ -44,11 +44,16 @@
 \BOOKMARK [1][-]{section.4.3}{Offset-Berechnung f\374r Immediat-Adressen}{chapter.4}% 44
 \BOOKMARK [0][-]{chapter.5}{Evaluation}{}% 45
 \BOOKMARK [1][-]{section.5.1}{Testprogramme}{chapter.5}% 46
-\BOOKMARK [2][-]{subsection.5.1.1}{Beamforming}{section.5.1}% 47
-\BOOKMARK [2][-]{subsection.5.1.2}{emulated floating Point}{section.5.1}% 48
-\BOOKMARK [2][-]{subsection.5.1.3}{Einfluss der Lastkapazit\344t}{section.5.1}% 49
-\BOOKMARK [1][-]{section.5.2}{Evaluation}{chapter.5}% 50
-\BOOKMARK [0][-]{chapter.6}{Schlussfolgerung}{}% 51
-\BOOKMARK [1][-]{section.6.1}{Evaluation}{chapter.6}% 52
-\BOOKMARK [0][-]{appendix.A}{Source Code}{}% 53
-\BOOKMARK [0][-]{chapter*.17}{Literaturverzeichnis}{}% 54
+\BOOKMARK [2][-]{subsection.5.1.1}{Empirische Tests}{section.5.1}% 47
+\BOOKMARK [2][-]{subsection.5.1.2}{Heuristik}{section.5.1}% 48
+\BOOKMARK [2][-]{subsection.5.1.3}{Genetischer Algorithmus}{section.5.1}% 49
+\BOOKMARK [2][-]{subsection.5.1.4}{Datenabh\344ngigkeiten}{section.5.1}% 50
+\BOOKMARK [1][-]{section.5.2}{reelle Testprogramme}{chapter.5}% 51
+\BOOKMARK [2][-]{subsection.5.2.1}{Beamforming}{section.5.2}% 52
+\BOOKMARK [2][-]{subsection.5.2.2}{emulated floating Point}{section.5.2}% 53
+\BOOKMARK [1][-]{section.5.3}{Einfluss der Lastkapazit\344t}{chapter.5}% 54
+\BOOKMARK [1][-]{section.5.4}{Evaluation}{chapter.5}% 55
+\BOOKMARK [0][-]{chapter.6}{Schlussfolgerung}{}% 56
+\BOOKMARK [1][-]{section.6.1}{Evaluation}{chapter.6}% 57
+\BOOKMARK [0][-]{appendix.A}{Source Code}{}% 58
+\BOOKMARK [0][-]{chapter*.17}{Literaturverzeichnis}{}% 59

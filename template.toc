@@ -42,12 +42,17 @@
 \contentsline {section}{\numberline {4.2}Neuberechnung der Immediat-Adresse}{38}{section.4.2}
 \contentsline {section}{\numberline {4.3}Offset-Berechnung f\IeC {\"u}r Immediat-Adressen}{39}{section.4.3}
 \contentsline {chapter}{\numberline {5}Evaluation}{40}{chapter.5}
-\contentsline {section}{\numberline {5.1}Testprogramme}{42}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Beamforming}{42}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}emulated floating Point}{43}{subsection.5.1.2}
-\contentsline {subsection}{\numberline {5.1.3}Einfluss der Lastkapazit\IeC {\"a}t}{44}{subsection.5.1.3}
-\contentsline {section}{\numberline {5.2}Evaluation}{44}{section.5.2}
-\contentsline {chapter}{\numberline {6}Schlussfolgerung}{45}{chapter.6}
-\contentsline {section}{\numberline {6.1}Evaluation}{45}{section.6.1}
-\contentsline {chapter}{\numberline {A}Source Code}{46}{appendix.A}
-\contentsline {chapter}{\nonumberline Literaturverzeichnis}{47}{chapter*.17}
+\contentsline {section}{\numberline {5.1}Testprogramme}{41}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Empirische Tests}{41}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Heuristik}{43}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}Genetischer Algorithmus}{44}{subsection.5.1.3}
+\contentsline {subsection}{\numberline {5.1.4}Datenabh\IeC {\"a}ngigkeiten}{44}{subsection.5.1.4}
+\contentsline {section}{\numberline {5.2}reelle Testprogramme}{44}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Beamforming}{45}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}emulated floating Point}{45}{subsection.5.2.2}
+\contentsline {section}{\numberline {5.3}Einfluss der Lastkapazit\IeC {\"a}t}{45}{section.5.3}
+\contentsline {section}{\numberline {5.4}Evaluation}{46}{section.5.4}
+\contentsline {chapter}{\numberline {6}Schlussfolgerung}{47}{chapter.6}
+\contentsline {section}{\numberline {6.1}Evaluation}{47}{section.6.1}
+\contentsline {chapter}{\numberline {A}Source Code}{48}{appendix.A}
+\contentsline {chapter}{\nonumberline Literaturverzeichnis}{49}{chapter*.17}
