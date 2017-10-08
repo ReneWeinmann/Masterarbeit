@@ -66,7 +66,7 @@ Bei ASICs handelt sich um anwendungsspezifische Schaltungen die in einer Integri
 		\label{fig:KAVUAKA}
 	\end{figure}
 \end{scriptsize}
-
+\newpage
 
 \subsection{Register File Organisation}
 Es besteht eine Vielzahl an Registerorganisationen für Signalprozessoren. Im Allgemeinen lassen sich diese auf vier Grundorganisationen herunterbrechen: zentralisierte, gruppierte, hierarchische und partitionierte Registerorganisation (siehe Abbildung \ref{fig:RegisterOrga}).\newline
@@ -77,17 +77,19 @@ Es besteht eine Vielzahl an Registerorganisationen für Signalprozessoren. Im Al
 	\label{fig:RegisterOrga}
 \end{figure}
 \newline
-Im folgenden soll nun weiter auf die partitionierte Organisation eingegangen werden. Physikalisch ist der Prozessor mit einem 4kB Register File ausgestattet. Dabei handelt es sich nicht um eine monolithische sondern um ein Multishared Register-File Organisation. Hierbei wird das Register in mehrere Teile getrennt, die Anzahl hängt hierbei von den Issue-Solts ab. Durch diese Aufteilung können Einsparungen in der Logik für die Schreib- und Leseports generiert werden und die Anzahl der Register-File-Ports wird erhöht.\\
-Der verwendete Prozessor besitzt zwei Register-Files mit jeweils 32 64bit-Registern. Beide Register weisen zwei Lese und vier Schreibports auf. Dadurch ist es möglich, dass Instruktionen aus dem Issue-Slot 1 in das Register-File 0 schreiben oder lesen und umgekehrt. Außerdem wird durch diese Architektur ein Schreiben und Lesen zweier Instruktionen auf das selbe Register-File möglich gemacht. Des weiteren können im Falle einer X2-Instruktion beide Ports des Registers verwendet werden. Die Aufteilung und  Zuordnung der Schreib- und Leseports können aus der Abbildung \ref{fig:reg_orga} und \ref{fig::schreib-port}+\ref{lese-port} entnommen werden.
+Im folgenden soll nun weiter auf die partitionierte Organisation eingegangen werden. Physikalisch ist der Prozessor mit einem 4kB Register File ausgestattet. Dabei handelt es sich nicht um eine monolithische sondern um ein Multishared Register-File Organisation. Hierbei wird das Register in mehrere Teile getrennt, die Anzahl hängt hierbei von den Issue-Solts ab. Durch diese Aufteilung können Einsparungen in der Logik für die Schreib- und Leseports generiert werden und die Anzahl der Register-File-Ports wird erhöht.
 
-%\begin{scriptsize}
-%	\begin{figure}[htbp] 
-%		\centering
-%		\includesvg[width=0.5\textwidth]{registerfile}
-%		\caption{Register File Organistaion}
-%		\label{fig:reg_orga}
-%	\end{figure}
-%\end{scriptsize}
+	\begin{wrapfigure}{r}{0.5\textwidth}
+		\vspace{-5pt}
+		\begin{center}
+			\includesvg[width=0.48\textwidth]{register_file}
+		\end{center}
+		\caption{Register File Organisation}
+		\label{fig:reg_orga}
+	\end{wrapfigure}
+Der verwendete Prozessor besitzt zwei Register-Files mit jeweils 32 64bit-Registern (siehe Abbildung \ref{fig:reg_orga}). Beide Register weisen zwei Lese und vier Schreibports auf. Dadurch ist es möglich, dass Instruktionen aus dem Issue-Slot 1 in das Register-File 0 schreiben oder lesen und umgekehrt. Außerdem wird durch diese Architektur ein Schreiben und Lesen zweier Instruktionen auf das selbe Register-File möglich gemacht. Des weiteren können im Falle einer X2-Instruktion beide Ports des Registers verwendet werden. Hierfür ist zu beachten, dass nur ein Issue-Slot eine X2-Instruktion ausführen kann, dabei kann diese jedoch vier Lese-Ports und zwei Schreib-Ports verwenden. Die Aufteilung und  Zuordnung der Schreib- und Leseports können aus der Abbildung \ref{fig:reg_orga} und \ref{fig::schreib-port}+\ref{lese-port} entnommen werden. Die linke Seite der Tabelle zeigt an, in von Welchem Port die Schreib- bzw. Leseanfrage stammt. Die rechte Seite zeigt an wie die Adressen an die Ports des Registers angelegt werden.
+
+\newpage
 
 \begin{table}[htbp]
 	
@@ -184,7 +186,7 @@ MVI V0R1 0x101
 ADD V0R0 V0R0 V0R1
 STORE 0x100 V0R0
 \end{lstlisting}
-Um nun den Code etwas flexibler zu gestalten, wird  nun dem Compiler überlassen welches Register er benutzt. Die selbe Addition ist in \ref{virtReg} mit virtuellen Registern realisiert. Hierbei wird dem Compiler durch ein  x gekennzeichnet, dass es sich um ein virtuelles Register handelt. Dieser wählt anschließend ein optimales Register aus, so dass sich der Entwickler um diese Aufgabe nicht bemühen muss. Dies hat den Vorteile, dass somit für den Code geeignete/optimale Register ausgewählt werden können. Hierbei wird darauf geachtet, dass beide Register-Files gleich ausgelastete sind und dass es möglich bleibt X2- oder MAC-Befehle (siehe Kapitel \ref{subsec:x2Mode} ff.) allokiert werden können. Außerdem sind die Register in diesem Fall so allokiert, dass die Verlustleistungsaufnahme minimal ist. Wie die Register für eine optimale Verlustleistung ausgewählt werden müssen wird in dieser Arbeit evaluiert und aufgezeigt.
+Um nun den Code etwas flexibler zu gestalten, wird  nun dem Compiler überlassen welches Register er benutzt. Die selbe Addition ist in \ref{virtReg} mit virtuellen Registern realisiert. Hierbei wird dem Compiler durch ein x gekennzeichnet, dass es sich um ein virtuelles Register handelt. Dieser wählt anschließend ein optimales Register aus, so dass sich der Entwickler um diese Aufgabe nicht bemühen muss. Dies hat den Vorteile, dass somit für den Code geeignete/optimale Register ausgewählt werden können. Hierbei wird darauf geachtet, dass beide Register-Files gleich ausgelastete sind und dass es möglich bleibt X2- oder MAC-Befehle (siehe Kapitel \ref{subsec:x2Mode} ff.) allokiert werden können. Außerdem sind die Register in diesem Fall so allokiert, dass die Verlustleistungsaufnahme minimal ist. Wie die Register für eine optimale Verlustleistung ausgewählt werden müssen wird in dieser Arbeit evaluiert und aufgezeigt.
 
 \begin{lstlisting}[frame=single,caption={virtuelle Register},captionpos=b,label=virtReg]
 MV VxR0 0x100
@@ -192,8 +194,8 @@ MV VxR1 0x101
 ADD VxR0 VxR0 VxR1
 STORE 0x100 VxR0
 \end{lstlisting}
-%\subsection{X2 Betriebsmodus}\label{subsec:x2Mode}
-%Der X2-Betriebsmodus ermöglicht es identischen Instruktionen mit dem selben Opcode den Registerzugriff zusammenzuführen, wobei sich die Adresse nur im letzten Bit unterscheidet. Dadurch wurde virtuell die Anzahl der Issue-Slots erhöht, ohne dabei die Anzahl der zu decodierenden Anweisungen zu erhöhen. Hierbei wird einem Befehl die doppelte Anzahl an Schreib- und Lese-Registern übergeben, somit steigt die Zahl der Parameter von drei auf sechs. Bei der Auswahl der Registern gibt es die Vorgabe, dass die erste Instruktionen auf gerade Register-Adressen und die zweite auf ungerade Adressen des zugreift. \cite{paya2009instruction}
+\subsection{X2 Betriebsmodus}\label{subsec:x2Mode}
+Der X2-Betriebsmodus ermöglicht es identischen Instruktionen mit dem selben Opcode den Registerzugriff zusammenzuführen, wobei sich die Adresse nur im letzten Bit unterscheidet. Dadurch wurde virtuell die Anzahl der Issue-Slots erhöht, ohne dabei die Anzahl der zu decodierenden Anweisungen zu erhöhen. Hierbei wird einem Befehl die doppelte Anzahl an Schreib- und Lese-Registern übergeben, somit steigt die Zahl der Parameter von drei auf sechs. Bei der Auswahl der Registern gibt es die Vorgabe, dass die erste Instruktionen auf gerade Register-Adressen und die zweite auf ungerade Adressen des zugreift. \cite{paya2009instruction}
 \subsection{MAC Operationen}\label{subsec:macMode}
 Die MAC(Multiply and Accumulate)-Operation führt eine Multiplikation zweier Werte aus und Akkumuliert diese im Anschluss. Werden bei einer n-bit Implementierungen zwei Werte multipliziert, so kann das Resultat eine Bitbreite von 2n aufweisen. Wird nun eine Architektur mit 64-bit Registern verwendet, müssen zwei Register zur Abspeicherung des Ergebnisses herangezogen werden. Dabei sollte es sich um zwei aufeinanderfolgende Register handeln, hierbei können diese im selben oder in einem benachbarten Register-File stammen. Eine weitere Besonderheit der MAC-Operation ist, dass der erste Operand in eine geraden Registe-Adresse liegen muss. Ein Beispiel für eine valide MAC-Allocation stellt das folgende Register-Paar V0R0 und V1R0 dar.
   

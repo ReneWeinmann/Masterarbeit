@@ -6,53 +6,53 @@
 \contentsline {section}{\numberline {1.2}Ziel der Arbeit}{3}{section.1.2}
 \contentsline {chapter}{\numberline {2}Grundlagen digitaler Signalverarbeitung in H\IeC {\"o}rger\IeC {\"a}ten}{4}{chapter.2}
 \contentsline {section}{\numberline {2.1}Aufbau der Architektur}{4}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Register File Organisation}{6}{subsection.2.1.1}
-\contentsline {subsection}{\numberline {2.1.2}Related Work}{10}{subsection.2.1.2}
-\contentsline {subsection}{\numberline {2.1.3}Compiler}{10}{subsection.2.1.3}
-\contentsline {subsection}{\numberline {2.1.4}Scheduling}{11}{subsection.2.1.4}
-\contentsline {section}{\numberline {2.2}Register Allokation}{11}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Virtuelle Register}{11}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}MAC Operationen}{13}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}Dummy-Register}{14}{subsection.2.2.3}
-\contentsline {subsection}{\numberline {2.2.4}Address-Isolation}{14}{subsection.2.2.4}
-\contentsline {subsection}{\numberline {2.2.5}Clock-Gating}{14}{subsection.2.2.5}
-\contentsline {section}{\numberline {2.3}Verlustleistung}{15}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Dynamische Verlustleistung}{15}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}Statische Verlustleistung}{15}{subsection.2.3.2}
-\contentsline {section}{\numberline {2.4}Genetische Algorithmen}{16}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Fitness}{17}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Crossover}{17}{subsection.2.4.2}
-\contentsline {subsection}{\numberline {2.4.3}Mutation}{17}{subsection.2.4.3}
-\contentsline {chapter}{\numberline {3}Implementierung}{18}{chapter.3}
-\contentsline {section}{\numberline {3.1}Ausgangsstatus}{18}{section.3.1}
-\contentsline {section}{\numberline {3.2}Ansatz}{21}{section.3.2}
-\contentsline {section}{\numberline {3.3}Heuristik}{22}{section.3.3}
-\contentsline {section}{\numberline {3.4}Genetischer Algorithmus}{25}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Gene und Chromosomen}{26}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Aufbau}{27}{subsection.3.4.2}
-\contentsline {subsection}{\numberline {3.4.3}Auswahl der Elternpaare}{28}{subsection.3.4.3}
-\contentsline {subsection}{\numberline {3.4.4}Fortpflanzung der Chromosomen}{29}{subsection.3.4.4}
-\contentsline {subsection}{\numberline {3.4.5}Fitness-Funktion}{30}{subsection.3.4.5}
-\contentsline {subsection}{\numberline {3.4.6}Parameter}{31}{subsection.3.4.6}
-\contentsline {subsection}{\numberline {3.4.7}Startpopulation}{33}{subsection.3.4.7}
-\contentsline {subsection}{\numberline {3.4.8}dynamische Anpassung}{33}{subsection.3.4.8}
-\contentsline {subsection}{\numberline {3.4.9}Algorithmus Modi}{35}{subsection.3.4.9}
-\contentsline {chapter}{\numberline {4}Hardware-Anpassungen}{37}{chapter.4}
-\contentsline {section}{\numberline {4.1}Piplinestufe f\IeC {\"u}r Adressports}{37}{section.4.1}
-\contentsline {section}{\numberline {4.2}Neuberechnung der Immediat-Adresse}{38}{section.4.2}
-\contentsline {section}{\numberline {4.3}Offset-Berechnung f\IeC {\"u}r Immediat-Adressen}{39}{section.4.3}
-\contentsline {chapter}{\numberline {5}Evaluation}{40}{chapter.5}
-\contentsline {section}{\numberline {5.1}Testprogramme}{41}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Empirische Tests}{41}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}Heuristik}{43}{subsection.5.1.2}
-\contentsline {subsection}{\numberline {5.1.3}Genetischer Algorithmus}{44}{subsection.5.1.3}
-\contentsline {subsection}{\numberline {5.1.4}Datenabh\IeC {\"a}ngigkeiten}{44}{subsection.5.1.4}
-\contentsline {section}{\numberline {5.2}reelle Testprogramme}{44}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Beamforming}{45}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}emulated floating Point}{45}{subsection.5.2.2}
-\contentsline {section}{\numberline {5.3}Einfluss der Lastkapazit\IeC {\"a}t}{45}{section.5.3}
-\contentsline {section}{\numberline {5.4}Evaluation}{46}{section.5.4}
-\contentsline {chapter}{\numberline {6}Schlussfolgerung}{47}{chapter.6}
-\contentsline {section}{\numberline {6.1}Evaluation}{47}{section.6.1}
-\contentsline {chapter}{\numberline {A}Source Code}{48}{appendix.A}
-\contentsline {chapter}{\nonumberline Literaturverzeichnis}{49}{chapter*.17}
+\contentsline {subsection}{\numberline {2.1.1}Register File Organisation}{8}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Related Work}{11}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}Compiler}{11}{subsection.2.1.3}
+\contentsline {subsection}{\numberline {2.1.4}Scheduling}{12}{subsection.2.1.4}
+\contentsline {section}{\numberline {2.2}Register Allokation}{13}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Virtuelle Register}{13}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}MAC Operationen}{14}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Dummy-Register}{15}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Address-Isolation}{15}{subsection.2.2.4}
+\contentsline {subsection}{\numberline {2.2.5}Clock-Gating}{15}{subsection.2.2.5}
+\contentsline {section}{\numberline {2.3}Verlustleistung}{16}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Dynamische Verlustleistung}{16}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Statische Verlustleistung}{16}{subsection.2.3.2}
+\contentsline {section}{\numberline {2.4}Genetische Algorithmen}{17}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Fitness}{18}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Crossover}{18}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}Mutation}{18}{subsection.2.4.3}
+\contentsline {chapter}{\numberline {3}Implementierung}{19}{chapter.3}
+\contentsline {section}{\numberline {3.1}Ausgangsstatus}{19}{section.3.1}
+\contentsline {section}{\numberline {3.2}Ansatz}{22}{section.3.2}
+\contentsline {section}{\numberline {3.3}Heuristik}{23}{section.3.3}
+\contentsline {section}{\numberline {3.4}Genetischer Algorithmus}{27}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Gene und Chromosomen}{27}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Aufbau}{28}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Auswahl der Elternpaare}{29}{subsection.3.4.3}
+\contentsline {subsection}{\numberline {3.4.4}Fortpflanzung der Chromosomen}{30}{subsection.3.4.4}
+\contentsline {subsection}{\numberline {3.4.5}Fitness-Funktion}{31}{subsection.3.4.5}
+\contentsline {subsection}{\numberline {3.4.6}Parameter}{33}{subsection.3.4.6}
+\contentsline {subsection}{\numberline {3.4.7}Startpopulation}{34}{subsection.3.4.7}
+\contentsline {subsection}{\numberline {3.4.8}dynamische Anpassung}{34}{subsection.3.4.8}
+\contentsline {subsection}{\numberline {3.4.9}Algorithmus Modi}{36}{subsection.3.4.9}
+\contentsline {chapter}{\numberline {4}Hardware-Anpassungen}{38}{chapter.4}
+\contentsline {section}{\numberline {4.1}Piplinestufe f\IeC {\"u}r Adressports}{38}{section.4.1}
+\contentsline {section}{\numberline {4.2}Neuberechnung der Immediat-Adresse}{39}{section.4.2}
+\contentsline {section}{\numberline {4.3}Offset-Berechnung f\IeC {\"u}r Immediat-Adressen}{40}{section.4.3}
+\contentsline {chapter}{\numberline {5}Evaluation}{41}{chapter.5}
+\contentsline {section}{\numberline {5.1}Testprogramme}{42}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Empirische Tests}{42}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Heuristik}{44}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}Genetischer Algorithmus}{45}{subsection.5.1.3}
+\contentsline {subsection}{\numberline {5.1.4}Datenabh\IeC {\"a}ngigkeiten}{45}{subsection.5.1.4}
+\contentsline {section}{\numberline {5.2}reelle Testprogramme}{45}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Beamforming}{46}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}emulated floating Point}{46}{subsection.5.2.2}
+\contentsline {section}{\numberline {5.3}Einfluss der Lastkapazit\IeC {\"a}t}{46}{section.5.3}
+\contentsline {section}{\numberline {5.4}Evaluation}{47}{section.5.4}
+\contentsline {chapter}{\numberline {6}Schlussfolgerung}{48}{chapter.6}
+\contentsline {section}{\numberline {6.1}Evaluation}{48}{section.6.1}
+\contentsline {chapter}{\numberline {A}Source Code}{49}{appendix.A}
+\contentsline {chapter}{\nonumberline Literaturverzeichnis}{50}{chapter*.18}
