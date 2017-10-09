@@ -6,45 +6,45 @@ Database file #1: bib.bib
 Warning--to sort, need author or key in statistica
 Warning--empty journal in davis1991handbook
 Warning--empty journal in lukasglitches2017
-You've used 18 entries,
+You've used 19 entries,
             2118 wiz_defined-function locations,
-            600 strings with 7491 characters,
-and the built_in function-call counts, 6572 in all, are:
-= -- 672
-> -- 266
-< -- 10
-+ -- 107
-- -- 88
-* -- 418
-:= -- 1029
-add.period$ -- 60
-call.type$ -- 18
-change.case$ -- 96
+            606 strings with 7767 characters,
+and the built_in function-call counts, 7130 in all, are:
+= -- 730
+> -- 294
+< -- 11
++ -- 118
+- -- 98
+* -- 456
+:= -- 1111
+add.period$ -- 64
+call.type$ -- 19
+change.case$ -- 104
 chr.to.int$ -- 0
-cite$ -- 21
-duplicate$ -- 278
-empty$ -- 535
-format.name$ -- 88
-if$ -- 1437
+cite$ -- 22
+duplicate$ -- 301
+empty$ -- 576
+format.name$ -- 98
+if$ -- 1563
 int.to.chr$ -- 0
-int.to.str$ -- 18
-missing$ -- 19
-newline$ -- 93
-num.names$ -- 34
-pop$ -- 126
+int.to.str$ -- 19
+missing$ -- 20
+newline$ -- 98
+num.names$ -- 36
+pop$ -- 137
 preamble$ -- 1
-purify$ -- 80
+purify$ -- 87
 quote$ -- 0
-skip$ -- 204
+skip$ -- 222
 stack$ -- 0
-substring$ -- 418
-swap$ -- 89
-text.length$ -- 10
+substring$ -- 455
+swap$ -- 100
+text.length$ -- 11
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 68
+type$ -- 72
 warning$ -- 3
-while$ -- 66
-width$ -- 20
-write$ -- 200
+while$ -- 71
+width$ -- 21
+write$ -- 212
 (There were 3 warnings)

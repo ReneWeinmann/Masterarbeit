@@ -12,22 +12,22 @@
 \contentsline {subsection}{\numberline {2.1.4}Scheduling}{12}{subsection.2.1.4}
 \contentsline {section}{\numberline {2.2}Register Allokation}{13}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}Virtuelle Register}{13}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}MAC Operationen}{14}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}Dummy-Register}{15}{subsection.2.2.3}
-\contentsline {subsection}{\numberline {2.2.4}Address-Isolation}{15}{subsection.2.2.4}
-\contentsline {subsection}{\numberline {2.2.5}Clock-Gating}{15}{subsection.2.2.5}
-\contentsline {section}{\numberline {2.3}Verlustleistung}{16}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Dynamische Verlustleistung}{16}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.2.2}X2 Betriebsmodus}{14}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}MAC Operationen}{14}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Dummy-Register}{15}{subsection.2.2.4}
+\contentsline {subsection}{\numberline {2.2.5}Address-Isolation}{15}{subsection.2.2.5}
+\contentsline {section}{\numberline {2.3}Verlustleistung}{15}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Dynamische Verlustleistung}{15}{subsection.2.3.1}
 \contentsline {subsection}{\numberline {2.3.2}Statische Verlustleistung}{16}{subsection.2.3.2}
-\contentsline {section}{\numberline {2.4}Genetische Algorithmen}{17}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Fitness}{18}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Crossover}{18}{subsection.2.4.2}
+\contentsline {section}{\numberline {2.4}Genetische Algorithmen}{16}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Fitness}{17}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Crossover}{17}{subsection.2.4.2}
 \contentsline {subsection}{\numberline {2.4.3}Mutation}{18}{subsection.2.4.3}
 \contentsline {chapter}{\numberline {3}Implementierung}{19}{chapter.3}
-\contentsline {section}{\numberline {3.1}Ausgangsstatus}{19}{section.3.1}
+\contentsline {section}{\numberline {3.1}Ausgangsstatus}{20}{section.3.1}
 \contentsline {section}{\numberline {3.2}Ansatz}{22}{section.3.2}
 \contentsline {section}{\numberline {3.3}Heuristik}{23}{section.3.3}
-\contentsline {section}{\numberline {3.4}Genetischer Algorithmus}{27}{section.3.4}
+\contentsline {section}{\numberline {3.4}Genetischer Algorithmus}{26}{section.3.4}
 \contentsline {subsection}{\numberline {3.4.1}Gene und Chromosomen}{27}{subsection.3.4.1}
 \contentsline {subsection}{\numberline {3.4.2}Aufbau}{28}{subsection.3.4.2}
 \contentsline {subsection}{\numberline {3.4.3}Auswahl der Elternpaare}{29}{subsection.3.4.3}

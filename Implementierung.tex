@@ -1,14 +1,23 @@
 \chapter{Implementierung}
 \label{chap:Implementierung}
 Nachdem die nötigen Grundlagen erläutert wurden soll in diesem Kapitel aufgezeigt werden wie der Compiler aufgebaut ist und wie das gesetzte Ziel implementiert wurde. Hierzu wird kurz auf den Ausgangsstatus des Codes und dessen Bestandteile eingegangen um das komplette System besser verstehen zu können. Anschließend wird veranschaulicht wie die Verlustleistung gesenkt werden soll und wie dies mit einer Heuristik implementiert wurde. Im Anschluss wird diese Implementierung durch den Einsatz eines genetischen Algorithmus noch verbessert und die einzelnen Komponenten erläutert.
+\newpage
 \section{Ausgangsstatus}
  Das unten stehende Schaubild (siehe Abbildung \ref{fig:flow_compiler}) zeigt den Aufbau des Codes um die Register Allokation besser in den Code einzuordnen. Gestartet wird mit einem Assembler-Programm das in einer ASM-Datei vorliegt und dem Code übergeben wird.
-
+ 
+ 
+%	\begin{wrapfigure}{r}{0.5\textwidth}
+%		\begin{center}
+%			\includesvg[width=0.48\textwidth]{flowchart}
+%		\end{center}
+%		\caption{Compiler Ablaufdiagramm}
+%		\label{fig:flow_compiler}
+%	\end{wrapfigure}
 
 \begin{scriptsize}
 	\begin{figure}[htbp] 
 		\centering
-		\includesvg[width=0.70\textwidth]{flowchart}
+		\includesvg[width=0.5\textwidth]{flowchart}
 		\caption{Compiler Ablaufdiagramm}
 		\label{fig:flow_compiler}
 	\end{figure}
@@ -98,8 +107,6 @@ Aus dem Minimalbeispiel ergibt sich ein unterschied der Hamming-Distanzen von se
 	\label{tab::hamming_distanz}
 \end{table}
 
-virtuelle Ports fuer X2 MOde
-
 
 \section{Genetischer Algorithmus}
 \label{sec:genetischerAlgorithmus}
@@ -184,11 +191,11 @@ Im Folgenden wird auf die einzelnen Ansätze der Fitness-Funktion eingegangen:
 	\item Hamming-Distanz\\
 		Als erste Variante wurde die Summe der Hamming-Distanzen als Fitnesswert verwendet. Hierzu wurden die Hammingdistanzen der Target- sowie Source-Register ermittelt. Wie im Falle der Heueristik mussten die verschiedenen Issue-Slots berücksichtigt werden. Da jeder Adress-Dekoder zwei Source-Adressen aufweist, gibt es in diesem Fall vier Möglichkeiten der Allokation.
 	\item Lastkapazität\\
-		Da die Lastkapazität ebenfalls eine Rolle bei der Berechnung der dynamischen Verlustleistung spielt, wurde diese Ebenfalls als Fitness-Funktion verwendet. Hierbei wurde für jede Adress-Leitung die entsprechende Lastkapazität aus den Power-Reports. Ermittelt. Um die einzelnen Allokations-Ansätze vergleichen zu können, wurden die Kapazitäten aufsummiert. Der Ansatz mit der niedrigsten Belastung wird als Mapping verwendet. 
+		Da die Lastkapazität ebenfalls eine Rolle bei der Berechnung der dynamischen Verlustleistung spielt, wurde diese als Fitness-Funktion verwendet. Hierbei wurde für jede Adress-Leitung die entsprechende Lastkapazität aus den Power-Reports. ermittelt. Um die einzelnen Allokations-Ansätze vergleichen zu können, wurden die Kapazitäten aufsummiert. Der Ansatz mit der niedrigsten Belastung wird als Mapping  der Register verwendet. 
 	\item Hamming-Distanz und Lastkapazität\\
 		Um die Formel der dynamischen Verlustleistung noch besser anzunähern, wurde eine Fitness-Funktion mit Hamming-Distanz und Lastkapazität evaluiert. Hierzu wurden die Summen der Lastkapazität und der Hamming-Distanz multipliziert und als Bewertungsmaß verwendet.
 	\item gewichtete Funktion\\
-		Als weitere Erweiterung wurde zusätzlich eine Gewichtung der Hamming-Distanz und der Lastkapazität eingefügt um den Einfluss der beiden Faktoren zu beeinflussen und somit die Verlustleistung bestmöglich anzugleichen.
+		Als zusätzliche Erweiterung wurde eine Gewichtung der Hamming-Distanz und Lastkapazität eingefügt um den Einfluss der Faktoren zu beeinflussen und somit die Verlustleistung bestmöglich anzunähern.
 \end{itemize}
 
 Schaubild Fitness-Funktion -> Power

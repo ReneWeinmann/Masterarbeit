@@ -157,7 +157,7 @@ Der verwendete Prozessor besitzt zwei Register-Files mit jeweils 32 64bit-Regist
 \newpage
 \subsection{Related Work}
 
-Es bestehen bereits eine Vielzahl an Ansätzen zur Verlustleistungsoptimierung von Prozessoren. Diese sind in zwei Kategorien eingeteilt, Optimierung durch Hardware-Anpassungen\cite{wu2000clock, horowitz1994low, hajj1998architectural}, oder Software \cite{gebotys1997low, asanovic2000energy, toburen1998instruction, su1995cache }. Hierbei werden in Hardware verschiedene Ansätze verfolgt, wie das dynamische Anpassen der Spannung \cite{horowitz1994low} oder Clock-Gating \cite{wu2000clock}. In \cite{asanovic2000energy} wurde neue Instruktionen eingeführt um den Energieverbrauch im Register-File zu senken. Ein weiterer Ansatz über das Scheduling die Verlustleistung zu senken wurde von \cite{toburen1998instruction} untersucht. Hierbei ist das Ziel so viele Instruktionen wie möglich in einem Takt unterzubringen.
+Es bestehen bereits eine Vielzahl an Ansätzen zur Verlustleistungsoptimierung von Prozessoren. Diese sind in zwei Kategorien eingeteilt, Optimierung durch Hardware-Anpassungen\cite{wu2000clock, horowitz1994low, hajj1998architectural}, oder Software \cite{gebotys1997low, asanovic2000energy, toburen1998instruction, su1995cache }. Hierbei werden in Hardware verschiedene Ansätze verfolgt, wie das dynamische Anpassen der Spannung \cite{horowitz1994low} oder Clock-Gating \cite{wu2000clock}. Hinter dem Begriff Clock-Gating verbirgt sich eine Abschaltung des Clock-Signals in Teilen des Prozessors der nicht genutzt werden. Dadurch lässt sich die Schaltaktivität in vielen Bereichen des Prozessors deutlich minimieren. Das Resultat spiegelt sich in der Leistungsaufnahme wieder, die dabei deutlich sinkt.\cite{donno2003clock}. In \cite{asanovic2000energy} wurde neue Instruktionen eingeführt um den Energieverbrauch im Register-File zu senken. Ein weiterer Ansatz über das Scheduling die Verlustleistung zu senken wurde von \cite{toburen1998instruction} untersucht. Hierbei ist das Ziel so viele Instruktionen wie möglich in einem Takt unterzubringen.
 Ein weiterer Ansatz um die Verlustleistung im Register wurde von \cite{su1995cache} veröffentlicht. Dabei wird mit Hilfe einer Gray-Codierung die Schaltaktivität der Adressen minimiert. Dieser Ansatz ist jedoch nur hilfreich, wenn Daten hintereinander im Register liegen. Mit dem in dieser Arbeit vorgestellten Verfahren, wird auch in diesem Fall die Schaltaktivität minimiert.
 
 Der Vorteil einer Optimierung zur Compilezeit liegt darin, dass keinerlei neue Hardware benötigt wird. Dies macht das es äußerst lukrative, da kein Abtausch zwischen Chipfläche und Leistung stattfinden muss. Die meisten Literaturen beschränken sich bei der Optimierung auf das Scheduling und die Ausführungszeit der Codes. Die Besonderheit des Ansatzes in dieser Arbeit liegt bei der Optimierung der Verlustleistung durch den Compiler und das leistungsoptimierte zuweisen von Registern. Die Hauptkomponenten des Compilers sind das Scheduling und die Register Allokation. Im folgenden soll kurz auf die Funktionen des Compilers eingegangen werden. 
@@ -178,7 +178,6 @@ Diese Art von Algorithmus findet jedoch nicht immer eine optimale Lösung und is
 \label{sub:virtuelleR}
 Bei virtuellen Registern handelt es sich um Register die an beliebiger Stelle im Register-File allokiert werden können, das heißt der Compiler kann selbst entscheiden wo im Registerfile er diese Variable platziert. 
 Die Idee hierbei ist es, dem Compiler die Aufgabe zu übergeben ein geeignetes Register auszuwählen. Das Codebeispiel \ref{phyReg} zeigt anhand einer einfachen Addition diese Funktion. Da der Prozessor nicht mit Immediates addieren kann, müssen zwei Hilfsvariablen verwendet werden. In diesem Fall wurden die Register V0R0 und V0R1 gewählt. Mithilfe dieser Register kann der Prozessor nun eine Addition in Zeile drei durchführen. Anschließend wird der Code in den Speicher zurück geschrieben.
-\newpage
 \renewcommand{\lstlistingname}{Codebeispiel}
 \begin{lstlisting}[frame=single, caption={physikalische Register},captionpos=b,label=phyReg]
 MVI V0R0 0x100
@@ -197,7 +196,7 @@ STORE 0x100 VxR0
 \subsection{X2 Betriebsmodus}\label{subsec:x2Mode}
 Der X2-Betriebsmodus ermöglicht es identischen Instruktionen mit dem selben Opcode den Registerzugriff zusammenzuführen, wobei sich die Adresse nur im letzten Bit unterscheidet. Dadurch wurde virtuell die Anzahl der Issue-Slots erhöht, ohne dabei die Anzahl der zu decodierenden Anweisungen zu erhöhen. Hierbei wird einem Befehl die doppelte Anzahl an Schreib- und Lese-Registern übergeben, somit steigt die Zahl der Parameter von drei auf sechs. Bei der Auswahl der Registern gibt es die Vorgabe, dass die erste Instruktionen auf gerade Register-Adressen und die zweite auf ungerade Adressen des zugreift. \cite{paya2009instruction}
 \subsection{MAC Operationen}\label{subsec:macMode}
-Die MAC(Multiply and Accumulate)-Operation führt eine Multiplikation zweier Werte aus und Akkumuliert diese im Anschluss. Werden bei einer n-bit Implementierungen zwei Werte multipliziert, so kann das Resultat eine Bitbreite von 2n aufweisen. Wird nun eine Architektur mit 64-bit Registern verwendet, müssen zwei Register zur Abspeicherung des Ergebnisses herangezogen werden. Dabei sollte es sich um zwei aufeinanderfolgende Register handeln, hierbei können diese im selben oder in einem benachbarten Register-File stammen. Eine weitere Besonderheit der MAC-Operation ist, dass der erste Operand in eine geraden Registe-Adresse liegen muss. Ein Beispiel für eine valide MAC-Allocation stellt das folgende Register-Paar V0R0 und V1R0 dar.
+Die MAC(Multiply and Accumulate)-Operation führt eine Multiplikation zweier Werte aus und Akkumuliert diese im Anschluss. Werden bei einer n-bit Implementierungen zwei Werte multipliziert, so kann das Resultat eine Bitbreite von 2n aufweisen. Wird nun eine Architektur mit 64-bit Registern verwendet, müssen zwei Register zur Abspeicherung des Ergebnisses herangezogen werden. Dabei sollte es sich um zwei aufeinanderfolgende Register handeln, hierbei können diese im selben oder in einem benachbarten Register-File stammen. Eine weitere Besonderheit der MAC-Operation ist, dass der erste Operand in eine geraden Register-Adresse liegen muss. Ein Beispiel für eine valide MAC-Allocation stellt das folgende Register-Paar V0R0 und V1R0 dar.
   
 
 \subsection{Dummy-Register}\label{subsec:dummy}
@@ -206,8 +205,8 @@ Dummy-Register sind Register die im Register-File implementiert sind, jedoch kan
 \subsection{Address-Isolation}\label{subsec:add_iso}
 Eine weitere Komponente des Prozessors ist die Adress-Isolation. Dabei handelt es sich um eine Funktion, welche die Switching-Aktivität des Register-Files verringert. Hierbei werden die Adressen der Schreib- und Leseports solange in einem Flipflop gespeichert bis eine neue Adresse angelegt wird.\cite{lukasglitches2017}
 
-\subsection{Clock-Gating}\label{subsec:clock-gate}
-Das Taktnetz ist bei Prozessoren in der Regel sehr groß, muss eine hohe Last treiben und hat sehr viele Schaltvorgänge, dadurch nimmt dieses meist über 40\% der Gesamtleistung auf. Aus diesem Grund wurde das Clock-Gating entwickelt. Hinter dem Begriff verbirgt sich eine Abschaltung des Clock-Signals in Teilen des Prozessors der nicht genutzt werden. Dadurch lässt sich die Schaltaktivität in vielen Bereichen des Prozessors deutlich minimieren. Das Resultat spiegelt sich in der Leistungsaufnahme wieder, die dabei deutlich sinkt.\cite{donno2003clock} In dieser Arbeit wird bis auf weiteres kein Clock-Gating eingesetzt.
+%\subsection{Clock-Gating}\label{subsec:clock-gate}
+%Das Taktnetz ist bei Prozessoren in der Regel sehr groß, muss eine hohe Last treiben und hat sehr viele Schaltvorgänge, dadurch nimmt dieses meist über 40\% der Gesamtleistung auf. Aus diesem Grund wurde das Clock-Gating entwickelt. Hinter dem Begriff verbirgt sich eine Abschaltung des Clock-Signals in Teilen des Prozessors der nicht genutzt werden. Dadurch lässt sich die Schaltaktivität in vielen Bereichen des Prozessors deutlich minimieren. Das Resultat spiegelt sich in der Leistungsaufnahme wieder, die dabei deutlich sinkt.\cite{donno2003clock} In dieser Arbeit wird bis auf weiteres kein Clock-Gating eingesetzt.
 
 \section{Verlustleistung}
 \label{sec:verlustleistung}
@@ -250,8 +249,4 @@ Die in der Literatur am weitesten verbreiteten Methoden ist das Roulette-Wheele-
 
 \subsection{Mutation}
 Auch der Prozess der Mutation stammt aus der Natur. Hierbei besteht eine geringe Chance, dass Chromosomen verändert werden und Eigenschaften aufweisen die in keinem der Elternteile aufzufinden sind. Hierzu werden in dem durch Crossover erzeugtem Chromosom einzelne Gene durch Zufall verändert. Die Wahrscheinlichkeit einer zufälligen Veränderung ist hierbei wie in der Natur sehr gering.\cite{davis1991handbook}
-
-Clockgating
-Loop unrolling 
-Grey Code \cite{su1995cache}
 

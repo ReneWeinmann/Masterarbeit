@@ -65,6 +65,13 @@ Gerlach Lukas, Pay{\'a}~Vay{\'a} Guillermo, Liu Shuango, Wei{\ss}brich Moritz,
   algorithm performance using a hearing aid asip.
 \newblock 2017.
 
+\bibitem{paya2009instruction}
+Guillermo Pay{\'a}-Vay{\'a}, Javier Mart{\'\i}n-Langerwerf, Florian Giesemann,
+  Holger Blume, and Peter Pirsch.
+\newblock Instruction merging to increase parallelism in vliw architectures.
+\newblock In {\em System-on-Chip, 2009. SOC 2009. International Symposium on},
+  pages 143--146. IEEE, 2009.
+
 \bibitem{paya2010multi}
 Guillermo Pay{\'a}-Vay{\'a}, Javier Mart{\'\i}n-Langerwerf, and Peter Pirsch.
 \newblock A multi-shared register file structure for vliw processors.
