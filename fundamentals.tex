@@ -78,81 +78,262 @@ Es besteht eine Vielzahl an Registerorganisationen für Signalprozessoren. Im Al
 \end{figure}
 \newline
 Im folgenden soll nun weiter auf die partitionierte Organisation eingegangen werden. Physikalisch ist der Prozessor mit einem 4kB Register File ausgestattet. Dabei handelt es sich nicht um eine monolithische sondern um ein Multishared Register-File Organisation. Hierbei wird das Register in mehrere Teile getrennt, die Anzahl hängt hierbei von den Issue-Solts ab. Durch diese Aufteilung können Einsparungen in der Logik für die Schreib- und Leseports generiert werden und die Anzahl der Register-File-Ports wird erhöht.
-
-	\begin{wrapfigure}{r}{0.5\textwidth}
-		\vspace{-5pt}
-		\begin{center}
-			\includesvg[width=0.48\textwidth]{register_file}
-		\end{center}
+\begin{scriptsize}
+	\begin{figure}[htbp] 
+		\centering
+		\includesvg[width=\textwidth]{register_file}
 		\caption{Register File Organisation}
 		\label{fig:reg_orga}
-	\end{wrapfigure}
+	\end{figure}
+\end{scriptsize}
+
+%	\begin{wrapfigure}{r}{0.5\textwidth}
+%		\vspace{-5pt}
+%		\begin{center}
+%			\includesvg[width=0.48\textwidth]{register_file}
+%		\end{center}
+%		\caption{Register File Organisation}
+%		\label{fig:reg_orga}
+%	\end{wrapfigure}
 Der verwendete Prozessor besitzt zwei Register-Files mit jeweils 32 64bit-Registern (siehe Abbildung \ref{fig:reg_orga}). Beide Register weisen zwei Lese und vier Schreibports auf. Dadurch ist es möglich, dass Instruktionen aus dem Issue-Slot 1 in das Register-File 0 schreiben oder lesen und umgekehrt. Außerdem wird durch diese Architektur ein Schreiben und Lesen zweier Instruktionen auf das selbe Register-File möglich gemacht. Des weiteren können im Falle einer X2-Instruktion beide Ports des Registers verwendet werden. Hierfür ist zu beachten, dass nur ein Issue-Slot eine X2-Instruktion ausführen kann, dabei kann diese jedoch vier Lese-Ports und zwei Schreib-Ports verwenden. Die Aufteilung und  Zuordnung der Schreib- und Leseports können aus der Abbildung \ref{fig:reg_orga} und \ref{fig::schreib-port}+\ref{lese-port} entnommen werden. Die linke Seite der Tabelle zeigt an, in von Welchem Port die Schreib- bzw. Leseanfrage stammt. Die rechte Seite zeigt an wie die Adressen an die Ports des Registers angelegt werden.
 
 \newpage
 
-\begin{table}[htbp]
-	
-	\begin{minipage}{.5\textwidth}
-		\flushleft
-		\begin{tabular}{cccccc}
-			\multicolumn{2}{l}{Write-Ports}                 & \multicolumn{4}{|l}{Register-Ports}                                                               \\ 
-			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3} \\ 
-			\hline
-			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} \\ 
-			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{} \\ 
-			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{} \\ 
-			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{0} &  \multicolumn{1}{c}{1}                   
-		\end{tabular}
-		\caption{\label{fig::schreib-port}Schreib-Port}
-	\end{minipage}
-	\hfill
-	\begin{minipage}{.5\textwidth}
-		\flushleft
+%\begin{table}[htbp]
+%	
+%	\begin{minipage}{.5\textwidth}
+%		\flushleft
+%		\begin{tabular}{cccccccc}
+%			\multicolumn{4}{c}{Issue Slot}                 & \multicolumn{4}{|l}{Register-Ports}                                                               \\ 
+%			\multicolumn{2}{c}{0} & \multicolumn{2}{c}{1} & \multicolumn{1}{|c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} \\
+%			\multicolumn{1}{c}{x0} & \multicolumn{1}{c}{y0} &
+%			\multicolumn{1}{c}{x1} & \multicolumn{1}{c}{y1} &
+%			\multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3} \\
+%			\hline
+%			\multicolumn{1}{c}{x0} & \multicolumn{1}{c}{y0} &
+%			\multicolumn{1}{c}{-} & \multicolumn{1}{c}{-} &
+%			\multicolumn{1}{|c}{x0} & \multicolumn{1}{c}{y0} & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{-} \\ 
+%			\multicolumn{1}{c}{-} & \multicolumn{1}{c}{-} &
+%			\multicolumn{1}{c}{x1} & \multicolumn{1}{c}{y1} &
+%			\multicolumn{1}{|c}{-} & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{x1} & \multicolumn{1}{c}{y1} \\ 
+%			\multicolumn{1}{c}{x0} & \multicolumn{1}{c}{-} &
+%			\multicolumn{1}{c}{x1} & \multicolumn{1}{c}{-} &
+%			\multicolumn{1}{|c}{x0} & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{x1} & \multicolumn{1}{c}{-} \\ 
+%			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} &
+%			\multicolumn{1}{c}{x0} & \multicolumn{1}{c}{y0} &
+%			\multicolumn{1}{|c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{0} &  \multicolumn{1}{c}{1}                   
+%		\end{tabular}
+%		\caption{\label{fig::schreib-port}Schreib-Port}
+%	\end{minipage}
+%	\hfill
+%	\begin{minipage}{.5\textwidth}
+%		\flushleft
 		
-		\begin{tabular}{cccccccccccccccccc}
-			\multicolumn{4}{l}{Read-Ports.}                 & \multicolumn{8}{|l}{Register-Ports}                                                               \\ 
-			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2}& \multicolumn{1}{c}{3} &
-			\multicolumn{1}{c}{4} & \multicolumn{1}{c}{5} & \multicolumn{1}{c}{6}& \multicolumn{1}{c}{7} \\
-			\hline
-			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2}& \multicolumn{1}{c}{3} &
-			\multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
-			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{3} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
-			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{3}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{2} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
-			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{3} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
-			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
-			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{3} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
-			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{2} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
-			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{3} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{1}& \multicolumn{1}{c}{} \\
-			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
-			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{3} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
-			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{2} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
-			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{3} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{0}& \multicolumn{1}{c}{} \\
-			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{2} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
-			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{2} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{3} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0}& \multicolumn{1}{c}{} \\
-			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{3} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{2} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0}& \multicolumn{1}{c}{} \\
-			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
-			\multicolumn{1}{c}{3} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{1}& \multicolumn{1}{c}{0} \\
-			
-		\end{tabular}
-		\caption{\label{lese-port}Lese-Port}
+%		\begin{tabular}{cccccccccccccccc}
+%			\multicolumn{8}{c}{Read-Ports.}                 & \multicolumn{8}{|l}{Register-Ports}                                                               \\
+%			\multicolumn{4}{c}{0} & \multicolumn{4}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2}& \multicolumn{1}{c}{3} &
+%			\multicolumn{1}{c}{4} & \multicolumn{1}{c}{5} & \multicolumn{1}{c}{6}& \multicolumn{1}{c}{7}\\
+%			\multicolumn{1}{c}{a} & \multicolumn{1}{c}{b} & \multicolumn{1}{c}{c} & \multicolumn{1}{c}{d} &
+%			\multicolumn{1}{c}{a} & \multicolumn{1}{c}{b} & \multicolumn{1}{c}{c} & \multicolumn{1}{c}{d} &
+%			\multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2}& \multicolumn{1}{c}{3} &
+%			\multicolumn{1}{c}{4} & \multicolumn{1}{c}{5} & \multicolumn{1}{c}{6}& \multicolumn{1}{c}{7} \\
+%			\hline
+%			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2}& \multicolumn{1}{c}{3} &
+%			\multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+%			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2}& \multicolumn{1}{c}{} &
+%			\multicolumn{1}{c}{3} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+%			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{3}& \multicolumn{1}{c}{} &
+%			\multicolumn{1}{c}{2} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+%			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+%			\multicolumn{1}{c}{3} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+%			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3}& \multicolumn{1}{c}{} &
+%			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+%			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+%			\multicolumn{1}{c}{3} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+%			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+%			\multicolumn{1}{c}{2} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+%			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+%			\multicolumn{1}{c}{3} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{1}& \multicolumn{1}{c}{} \\
+%			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3}& \multicolumn{1}{c}{} &
+%			\multicolumn{1}{c}{0} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+%			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+%			\multicolumn{1}{c}{3} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+%			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+%			\multicolumn{1}{c}{2} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+%			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+%			\multicolumn{1}{c}{3} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{0}& \multicolumn{1}{c}{} \\
+%			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{2} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+%			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+%			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{2} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+%			\multicolumn{1}{c}{3} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0}& \multicolumn{1}{c}{} \\
+%			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{|c}{3} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+%			\multicolumn{1}{c}{2} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0}& \multicolumn{1}{c}{} \\
+%			\multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+%			\multicolumn{1}{c}{3} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{1}& \multicolumn{1}{c}{0} \\
+%			
+%		\end{tabular}
+
+\begin{table}[htbp]
+	\centering
+	\begin{minipage}{\textwidth}
+	\centering
+	\begin{tabular}{cccccccc}
+		\multicolumn{4}{c}{Issue Slot}                 & \multicolumn{4}{|l}{Register-Ports}                                                               \\ 
+		\multicolumn{2}{c}{0} & \multicolumn{2}{|c}{1} & \multicolumn{2}{|c}{v0} & 
+		\multicolumn{2}{|c}{v1} \\
+		\multicolumn{1}{c}{x0} & \multicolumn{1}{c}{y0} &
+		\multicolumn{1}{|c}{x1} & \multicolumn{1}{c}{y1} &
+		\multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{|c}{2} & \multicolumn{1}{c}{3} \\
+		\hline
+		\multicolumn{1}{c}{-} & \multicolumn{1}{c}{-} &
+		\multicolumn{1}{c}{v0} & \multicolumn{1}{c}{v0} &
+		\multicolumn{1}{|c}{x1} & \multicolumn{1}{c}{y1} & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{-} \\ 
+		\multicolumn{1}{c}{-} & \multicolumn{1}{c}{-} &
+		\multicolumn{1}{c}{v0} & \multicolumn{1}{c}{v1} &
+		\multicolumn{1}{|c}{x1} & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{y1} & \multicolumn{1}{c}{-} \\ 
+		\multicolumn{1}{c}{-} & \multicolumn{1}{c}{-} &
+		\multicolumn{1}{c}{v1} & \multicolumn{1}{c}{v0} &
+		\multicolumn{1}{|c}{y1} & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{x1} & \multicolumn{1}{c}{-} \\ 
+		\multicolumn{1}{c}{-} & \multicolumn{1}{c}{-} &
+		\multicolumn{1}{c}{v1} & \multicolumn{1}{c}{v1} &
+		\multicolumn{1}{|c}{-} & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{x1} &  \multicolumn{1}{c}{y1} \\
+		\multicolumn{1}{c}{v0} & \multicolumn{1}{c}{v0} &
+		\multicolumn{1}{c}{-} & \multicolumn{1}{c}{-} &
+		\multicolumn{1}{|c}{x0} & \multicolumn{1}{c}{y0} & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{-} \\ 
+		\multicolumn{1}{c}{v0} & \multicolumn{1}{c}{v1} &
+		\multicolumn{1}{c}{-} & \multicolumn{1}{c}{-} &
+		\multicolumn{1}{|c}{x0} & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{y0} & \multicolumn{1}{c}{-} \\ 
+		\multicolumn{1}{c}{v1} & \multicolumn{1}{c}{v0} &
+		\multicolumn{1}{c}{-} & \multicolumn{1}{c}{-} &
+		\multicolumn{1}{|c}{y0} & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{x0} & \multicolumn{1}{c}{-} \\ 
+		\multicolumn{1}{c}{v1} & \multicolumn{1}{c}{v1} &
+		\multicolumn{1}{c}{-} & \multicolumn{1}{c}{-} &
+		\multicolumn{1}{|c}{-} & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{x0} &  \multicolumn{1}{c}{y0} \\
+		\multicolumn{1}{c}{v0} & \multicolumn{1}{c}{-} &
+		\multicolumn{1}{c}{v1} & \multicolumn{1}{c}{-} &
+		\multicolumn{1}{|c}{x0} & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{x1} &  \multicolumn{1}{c}{-} \\
+		\multicolumn{1}{c}{v1} & \multicolumn{1}{c}{-} &
+		\multicolumn{1}{c}{v0} & \multicolumn{1}{c}{-} &
+		\multicolumn{1}{|c}{x1} & \multicolumn{1}{c}{-} & \multicolumn{1}{c}{x0} &  \multicolumn{1}{c}{-}                
+	\end{tabular}
+	\caption{\label{fig::schreib-port}Schreib-Port}
+%	\newline
+%	\newline
+%	\newline
+	\end{minipage}
+	
+	
+	
+	\begin{minipage}{\textwidth}
+	\centering
+	\begin{tabular}{cccccccccccccccc}
+		\multicolumn{8}{c}{Read-Ports.}                 & \multicolumn{8}{|l}{Register-Ports}                                                               \\
+		\multicolumn{4}{c}{0} & \multicolumn{4}{c}{1} & \multicolumn{1}{|c}{} & \multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{}\\
+		\multicolumn{1}{c}{a} & \multicolumn{1}{c}{b} & \multicolumn{1}{c}{c} & \multicolumn{1}{c}{d} &
+		\multicolumn{1}{c}{a} & \multicolumn{1}{c}{b} & \multicolumn{1}{c}{c} & \multicolumn{1}{c}{d} &
+		\multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2}& \multicolumn{1}{c}{3} &
+		\multicolumn{1}{c}{4} & \multicolumn{1}{c}{5} & \multicolumn{1}{c}{6}& \multicolumn{1}{c}{7} \\
+		\hline
+		\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} &
+		\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} &
+		\multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2}& \multicolumn{1}{c}{3} &
+		\multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{}&
+		\multicolumn{1}{c}{} \\
+		\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} &
+		\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} &
+		\multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2}&
+		\multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{3} & \multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{}&
+		\multicolumn{1}{c}{} \\
+		\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} &
+		\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} &
+		\multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{3}&
+		\multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{2} & \multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{}&
+		\multicolumn{1}{c}{} \\
+		\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} &
+		\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} &
+		\multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{}&
+		\multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{3} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{}&
+		\multicolumn{1}{c}{} \\
+		\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} &
+		\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} &
+		\multicolumn{1}{|c}{0} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3}&
+		\multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{1} & \multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{}&
+		\multicolumn{1}{c}{} \\
+		\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} &
+		\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} &
+		\multicolumn{1}{|c}{0} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{}&
+		\multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{3} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{}&
+		\multicolumn{1}{c}{} \\
+		\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} &
+		\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} &
+		\multicolumn{1}{|c}{0} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{}&
+		\multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{2} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{}&
+		\multicolumn{1}{c}{} \\
+		\multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} &
+		\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} &
+		\multicolumn{1}{|c}{0} & \multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{}&
+		\multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{3} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{1}&
+		\multicolumn{1}{c}{} \\
+		\multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} &
+		\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} &
+		\multicolumn{1}{|c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{3}&
+		\multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{0} & \multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{}&
+		\multicolumn{1}{c}{} \\
+		\multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} &
+		\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} &
+		\multicolumn{1}{|c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{3} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+		\multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} &
+		\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} &
+		\multicolumn{1}{|c}{1} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{2} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+		\multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} &
+		\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} &
+		\multicolumn{1}{|c}{1} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{3} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{0}& \multicolumn{1}{c}{} \\
+		\multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} &
+		\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} &
+		\multicolumn{1}{|c}{2} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} \\
+		\multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} &
+		\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} &
+		\multicolumn{1}{|c}{2} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{3} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0}& \multicolumn{1}{c}{} \\
+		\multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} &
+				\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} &
+		\multicolumn{1}{|c}{3} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{2} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0}& \multicolumn{1}{c}{} \\
+		\multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} &
+				\multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} &
+		\multicolumn{1}{|c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{}& \multicolumn{1}{c}{} &
+		\multicolumn{1}{c}{3} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{1}& \multicolumn{1}{c}{0} \\
+		
+	\end{tabular}
+	\caption{\label{lese-port}Lese-Port}
+
 	\end{minipage}
 \end{table}
-
 
 \newpage
 \subsection{Related Work}
