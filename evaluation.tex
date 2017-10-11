@@ -40,9 +40,14 @@ Um den Einfluss der Register-Adressen besser verstehen zu können wurden Assembl
 \subsection{Empirische Tests}
 \label{cap:empirischeTests}
 Um die aufgestellte Annahme, dass sich die Verlustleistung proportional zur Hamming-Distanz verhält, zu bestätigen, wurden zu Beginn Assemblerprogramme entworfen, die nur mit physikalischen bzw. festen Registern arbeiten.
-Ausserdem wurden vorerst der Best- und Worst-Case untersucht, um das maximale Optimierungspotenial zu ermittelen. Das Programm durchläuft dabei alle Möglichkeiten der Allokation, um zum einen die Register-Allokation und die damit verbundene Hamming-Distanz-Berechnung zu testen, zum Andern alle Einflüsse der Register-Adressierung zu ermitteln. Es bestehen für die Target-Register vier und für die Source-Register 16 Möglichkeiten, dabei sind X2-Operationen ausgenommen. Im Worst-Case werden die Register so adressiert, dass die maximale Hamming-Distanz entsteht. Dabei wechseln die Adressen von 0 auf 31 welches der maximalen Hamming-Distanz von fuenf entspricht. Das Programm hat hierbei keinerlei Funktion und besteht aus Gruenden der Übersichtlichkeit aus nur zwei Instruktionen (ADD und OR). Damit keine Einflüsse durch Scheduling oder Daten entstehen, wurden Instruktionen manuell geschedult und den einzelnen Issue-Slots zugewiesen. Somit ist die Anordnung der Assemblerbefehlen für jeden Testfall identisch und der Einfluss ist somit entkoppelt. Im Falle der Datenabhängigkeiten wurden alle Register mit einer Null initialisiert und im Anschluss nicht verändert. Dadurch werden alle Instruktionen mit den selben Daten ausgeführt und somit besteht keine Abhängigkeit der Daten mehr.
-Fuer den Fall des Best-Case wurde die Adresse nicht veraendert und immer auf die Adresse 0 gelesen sowie geschrieben.
-Das Power-Analyse-Tool zeigt nach dem ausfuehren des Workflows \ref{fig:flow_power_analyse} eine Uebersicht ueber die Leistungsaufnahme des Prozessors an. Hierbei wird die Leistung in Interne-, Schalt- und Leakageleistung aufgeteilt (siehe Abbildung XXX). 
+Außerdem wurden vorerst der Best- und Worst-Case untersucht, um das maximale Optimierungspotenial zu ermitteln. Das Programm durchläuft dabei alle Möglichkeiten der Allokation, um zum einen die Register-Allokation und die damit verbundene Hamming-Distanz-Berechnung zu testen, zum Andern alle Einflüsse der Register-Adressierung zu ermitteln. Es bestehen für die Target-Register vier und für die Source-Register 16 Möglichkeiten, dabei sind X2-Operationen ausgenommen. Im Worst-Case werden die Register so adressiert, dass die maximale Hamming-Distanz entsteht. Dabei wechseln die Adressen von 0 auf 31 welches der maximalen Hamming-Distanz von fünf entspricht. Das Programm hat hierbei keinerlei Funktion und besteht aus Gründen der Übersichtlichkeit aus nur zwei Instruktionen (ADD und OR). Damit keine Einflüsse durch Scheduling oder Daten entstehen, wurden Instruktionen manuell geschedult und den einzelnen Issue-Slots zugewiesen. Somit ist die Anordnung der Assemblerbefehlen für jeden Testfall identisch und der Einfluss ist somit entkoppelt. Im Falle der Datenabhängigkeiten wurden alle Register mit einer Null initialisiert und im Anschluss nicht verändert. Dadurch werden alle Instruktionen mit den selben Daten ausgeführt und somit besteht keine Abhängigkeit der Daten mehr.
+Für den Fall des Best-Case wurde die Adresse nicht verändert und immer auf die Adresse 0 gelesen sowie geschrieben.
+Das Power-Analyse-Tool zeigt nach dem ausführen des Workflows \ref{fig:flow_power_analyse} eine Übersicht über die Leistungsaufnahme des Prozessors an. Hierbei wird die Leistung in Interne-, Schalt- und Leakageleistung aufgeteilt (siehe Abbildung XXX). Außerdem wird diese über die Hierarchie der Module aufgeschlüsselt. Die letzte Spalte des Reports zeigt die Aufteilung der Leistungsaufnahme in Prozent. Dabei ist zu erkennen, dass das Register-File die größte Leistungsaufnahme im Prozessor aufweist.
+
+Abbildung Hierachy Report
+
+Aus beiden ermittelten Reports für den Worst- und Best-Case wurde die untenstehende Tabelle erzeugt (\ref{fig:bes_powersave}). Dabei sind die Einträge in Prozent angegeben und zeigen eine deutliches Einsparungspotential. Das Augenmerk sollte hierbei auf die Switching-Leistung des Register-Files gelegt werden, denn hier wurden die Veränderungen in der Adressierung erzeugt. Dabei ist deutlich zu erkennen, dass eine maximal Einsparung von 38\% zu erreichen ist. Dies zeigt sehr deutlich, dass die Adressierung der Register eine Auswirkung auf die Verlustleistung hat. In den andern Modulen des Prozessors sind ebenfalls Verbesserungen zu erziehen, das liegt vor allem dran, dass die Register-Adressen ebenfalls in diesen angelegt sind. Bei Execution-Stage ist keine Verbesserung zu erzielen, da dort nur die Daten der jeweiligen Instruktion anliegen. Die Verbesserung der internen Leistungsaufnahme kann damit begründet werden, dass die Adressen ebenfalls Einfluss auf die interne dynamische Verlustleistung haben.
+Durch das minimieren der Schaltaktivitäten hat zusätzlich den Vorteil, dass die Leakageleistung der Schaltung minimiert wird. Das Resultat der unterschiedlichen Adressierungen ist eine Gesamtverlustleistungseinsparung von 10\%.
 
 \begin{figure}[htbp] 
 	\centering
@@ -51,12 +56,7 @@ Das Power-Analyse-Tool zeigt nach dem ausfuehren des Workflows \ref{fig:flow_pow
 	\label{fig:bes_powersave}
 \end{figure}
 
-Um die einzelnen Ergebnisse vergleichen zu können wurden die Programme so entworfen, dass die Hamming-Distanzen für alle Testfälle identisch ausfallen. Ein Beispiel für ein solches Testprogramm, welches den Einfluss der Target-Register testet finden sie im Codebeispiel \ref{code:target_switching_test}.
-
-Start Adressen im Port
-Nur eine Variante Adresse 2 auf 0
-Varianten aufzaehlen
-
+Da nun bewiesen wurde, dass ein Zusammenhang zwischen Adressierung und Verlustleistung besteht, soll die Register-Allokation nun näher untersucht werden. Hierzu wurden Testfälle erstellt welche mit unterschiedlichen Adressierungen aber selben Daten arbeiten. Dabei wurden vorerst die Register einzeln betrachtet. Um die einzelnen Ergebnisse vergleichen zu können wurden die Programme so entworfen, dass die Hamming-Distanzen für alle Testfälle identisch ausfallen. Das heißt die Schaltaktivitäten in den Lese- sowie Schreibports sind identisch und die Leistungen können somit verglichen werden. Ein Beispiel für ein solches Testprogramm, welches den Einfluss der Target-Register testet, finden sie im Codebeispiel \ref{code:target_switching_test}. Um die Source-Register vom Test zu entkoppeln, wurden die Adressen der Register, die nicht untersucht werden sollten nicht verändert. Dadurch entsteht keinerlei Schaltaktivität in den Adressleitungen. Gestartet wird die Berechnung der Hamming-Distanz immer mit der Adresse 0, da keine Aussage getroffen werden kann welche Adresse in der letzten SLM zugewiesen wurde.
 
 \begin{algorithm}[H]
 	\begin{algorithmic}[1]
@@ -73,8 +73,7 @@ Varianten aufzaehlen
 	\end{algorithmic}
 \end{algorithm}
 
-
-Um den Einfluss der Adressierung zu ermitteln wurden im Codebeispiel CCC, die Adressen des Target-Registers, von Test zu Test variiert. Um die Source-Register vom Test zu entkoppeln, wurden die Adressen der Register, die nicht untersucht werden sollten nicht verändert. Dadurch entsteht keinerlei Schaltaktivität in den Adressleitungen.
+Dieser Test wurde für Adressen zwei, fünf, 24, 25 ,27 und 31 ausgeführt. Außerdem wurden Target, Source 1 und Source2 getestet. Die untenstehenden Schaubilder(XXX) zeigen hierbei der Schaltleistung der verschiedenen Testfälle. Es ist schön zu erkennen, dass die Schaltleistungen der Lese- sowie Schreibports linear mit der Hamming-Distanz steigen. Außerdem sind die Steigungen der Kurven nahezu identisch, welches impliziert, dass die Adressen in allen Ports die selbe Verlustleistung verursacht.
 
 \begin{figure}
 	\centering
@@ -82,16 +81,13 @@ Um den Einfluss der Adressierung zu ermitteln wurden im Codebeispiel CCC, die Ad
 	\caption{dynamische Verlustleistung Source 1}
 \end{figure}
 
-Um die aufgestellte These zu bestätigen, wurden vorerst zusätzlich nur die Leistung der Adress-Leitungen untersucht. Außerdem wurde der Fokus auf die Untersuchung der Schaltleistung gelegt. Der Test zeigt hierbei, dass bei steigender Hamming-Distanzen die Schaltleistungen der Adress-Leitungen linear zunimmt(siehe Abbildung XXX). Dies bestätigt die Annahme, dass sich die Leistung proportional zur Hamming-Distanz verhält und entspricht somit Formel \ref{eq:dynVerlustleistung} der dynamischen Verlustleistung. Außerdem ist erkennbar, dass keine Schaltleistungen durch Source-Adressen verursacht wurden.
-Auffällig ist zudem der Sprung bei einer Hamming-Distanz von 64. Dieser lässt sich dadurch erklären, dass zwar die Hamming-Distanzen identisch sind, aber unterschiedliche Adressleitungen verwendet werden, welche eine größere Lastkapazität aufweisen. Durch die höhere Lastkapazität wird automatisch auch einer größere Leistung benötigt. Dieses Phänomen wird in Kapitel \ref{cap:lastkapa} näher untersucht und erläutert.\\
-Abbildung XXX zeigt den Verlauf der Gesamtleistung des Prozessors über der Hamming-Distanz. Auch hier ist eine deutliche Verbesserung erkennbar.
+Bei den Graphen ist ein Sprung der Leistung bei einer Hamming-Distanz von 64 auffällig. Dieser lässt sich dadurch erklären, dass zwar die Hamming-Distanzen identisch sind, aber unterschiedliche Adressleitungen verwendet werden, welche eine größere Lastkapazität aufweisen. Durch die höhere Lastkapazität wird automatisch auch einer größere Leistung benötigt. Dieses Phänomen wird in Kapitel \ref{cap:lastkapa} näher untersucht und erläutert.\\
+
+Nach dem die Register nun getrennt voneinander betrachtet, und gezeigt wurde, dass die Adressen etwa die selbe Schaltleistungen in den Ports verursachen, soll nun das Verhalten beim Schalten der Source- sowie Target-Register untersucht werden. Auch hierbei werden die Tests mit den selben Hamming-Distanzen für Lese- und Schreib-Ports ausgeführt. Das untenstehende Schaubild XXX zeigt auch hier, dass ein linearer Verlauf erkennbar ist.
+Außerdem zeigt Abbildung XXX die Gesamtleistung des Prozessors über der Hamming-Distanz. Auch hier ist eine deutliche Verbesserung erkennbar welche sich ebenfalls linear zur Hamming-Distanz verhält.
 
 Abbildung Total Power + Switching-power target
 
-
-Jedoch werden nicht nur Veränderung im Register-File hervorgerufen, denn auch in anderen Modulen ist eine Verbesserung der Verlustleistung zu verzeichnen. Dies liegt daran, dass die Register-Adressen ebenfalls an anderen Modulen Anliegen und dort Veränderungen in der Schaltaktivität verursachen.
-
-Tabelle Hirachy Report
 
 Im Folgenden wurde untersucht, ob diese Abhängigkeiten sich verändern wenn Source- und Target-Register gemeinsam verwendet werden. Hierzu wurden ebenfalls Testfälle generiert, welche die Hamming-Distanzen der Target und Source-Register variiert. Auch hier ist das lineare Verhalten von Hamming-Distanz zu Schaltleistung zu erkennen.
 
