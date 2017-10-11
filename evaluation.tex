@@ -89,13 +89,10 @@ Außerdem zeigt Abbildung XXX die Gesamtleistung des Prozessors über der Hammin
 Abbildung Total Power + Switching-power target
 
 
-Im Folgenden wurde untersucht, ob diese Abhängigkeiten sich verändern wenn Source- und Target-Register gemeinsam verwendet werden. Hierzu wurden ebenfalls Testfälle generiert, welche die Hamming-Distanzen der Target und Source-Register variiert. Auch hier ist das lineare Verhalten von Hamming-Distanz zu Schaltleistung zu erkennen.
-
-
 \subsection{Heuristik} 
-Da nun die Abhängigkeiten der Register-Adressierung zu der Verlustleistung bewiesen wurde, soll nun verbesserte Heuristik untersucht werden. Hierzu werden wie in Kapitel \ref{cap:empirischeTests} Assemblerprogramme entworfen welche manuell geschedult sind und die Register mit Null initialisiert wurden. Der unterschied zu den empirischen Testprogrammen liegt darin, dass nun ebenfalls virtuelle Register verwendet werden.
+Da nun die Abhängigkeiten der Register-Adressierung zu der Verlustleistung bewiesen wurde, wie diese durch den Einsatz von virtuellen Registern und der neu implementierten Heuristik verbessert werden kann. Hierzu werden wie in Kapitel \ref{cap:empirischeTests} Assemblerprogramme entworfen welche manuell geschedult sind und die Register mit Null initialisiert wurden. Der unterschied zu den empirischen Testprogrammen liegt darin, dass nun ebenfalls virtuelle Register verwendet werden.
 Dies hat zur folge, dass die Register-Allokation ein geeignete Zuweisung finden muss und somit die Schaltaktivität der Adresse minimieren kann. Das Testprogramm führt vorerst Addition und Or-Befehle mittels physikalischer Register aus. Hierbei wird dem ersten Issue-Slot die Addition und dem zweiten Issue-Slot eine Or-Operation zugewiesen. Durch das addieren und verodern und anschließende Abspeicherung in physikalische Register, wird eine gewisse Anzahl an Registern fest blockiert und kann nicht für virtuelle Register verwendet werden.(Siehe Abbildung xxx)
-Nach dem die Register-Files vorbelegt wurden werden die Instruktionen mit virtuellen Registern begonnen. Ab diesem Punkt ergeben sich Veränderungen in der Register-Allokation. Je nach gewähltem Verfahren, wird nach den physikalischen Registern nach unterschiedlichen Ansätzen gesucht. 
+Nach dem die Register-Files vorbelegt wurden, werden die Instruktionen mit virtuellen Registern begonnen. Ab diesem Punkt ergeben sich Veränderungen in der Register-Allokation. Je nach gewähltem Verfahren, wird nach den optimalen physikalischen Registern nach unterschiedlichen Ansätzen gesucht. 
 
 Der Test zeigt hierbei, dass für diesen Testfall die neue Heuristik eine Verbesserung der Hamming-Distanz von XXX\% zu erzielen kann. Diese Verbesserung spiegelt sich ebenfalls in der Schaltleistung wieder.(siehe Abbildung XXX).
 
