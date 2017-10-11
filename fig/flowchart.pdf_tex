@@ -1,0 +1,73 @@
+%% Creator: Inkscape inkscape 0.91, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'flowchart.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{425.02936583bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1.43945166)%
+    \put(0.05608696,0.79874036){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.6285168\unitlength}\raggedright \end{minipage}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{flowchart.pdf}}%
+    \put(0.33294284,1.38569674){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.38695763\unitlength}\centering {\tiny ASM-File}\end{minipage}}}%
+    \put(0.32087352,1.24625898){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.41109577\unitlength}\centering {\tiny prescheduling}\end{minipage}}}%
+    \put(0.31765977,1.12115419){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.42002659\unitlength}\centering {\tiny virtual }\end{minipage}}}%
+    \put(0.35145575,0.9432453){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.34993156\unitlength}\centering {\tiny register init}\end{minipage}}}%
+    \put(0.3654316,0.79312698){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.32198053\unitlength}\centering {\tiny scheduling}\end{minipage}}}%
+    \put(-0.05117586,0.69773462){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.46699708\unitlength}\centering {\tiny genetic}\end{minipage}}}%
+    \put(0.52219237,0.69773457){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.63934406\unitlength}\centering {\tiny heuristik}\end{minipage}}}%
+    \put(0.26970401,0.49504563){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.50416082\unitlength}\centering {\tiny register}\end{minipage}}}%
+    \put(-0.05784262,0.33421311){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.50467533\unitlength}\centering {\tiny genetic }\end{minipage}}}%
+    \put(0.56549695,0.3379775){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.5505108\unitlength}\centering {\tiny heuristik}\end{minipage}}}%
+    \put(0.30388135,0.11835867){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.43755037\unitlength}\centering {\tiny Binary}\end{minipage}}}%
+    \put(0.31765978,1.08154639){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.42002659\unitlength}\centering {\tiny renaming }\end{minipage}}}%
+    \put(-0.05117586,0.65467091){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.46699708\unitlength}\centering {\tiny scheduling}\end{minipage}}}%
+    \put(-0.05784262,0.29041769){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.50467533\unitlength}\centering {\tiny register alloc }\end{minipage}}}%
+    \put(0.30388136,0.08143106){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.43755037\unitlength}\centering {\tiny  Output}\end{minipage}}}%
+    \put(0.26970401,0.45820124){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.50416082\unitlength}\centering {\tiny  allocation}\end{minipage}}}%
+    \put(0.52219237,0.65216751){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.63934406\unitlength}\centering {\tiny scheduling}\end{minipage}}}%
+    \put(0.56549695,0.29668553){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.5505108\unitlength}\centering {\tiny register alloc}\end{minipage}}}%
+  \end{picture}%
+\endgroup%

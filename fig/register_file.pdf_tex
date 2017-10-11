@@ -1,0 +1,97 @@
+%% Creator: Inkscape inkscape 0.91, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'register_file.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{485.21772461bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.48856908)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{register_file.pdf}}%
+    \put(0.49815972,0.24066692){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small Partitioned }}}}%
+    \put(0.49328869,0.30645294){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small 32 Register }}}}%
+    \put(0.49328869,0.33982877){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small V0}}}}%
+    \put(0.50054251,0.09969442){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small 32 Register }}}}%
+    \put(0.50054251,0.13307025){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small V1}}}}%
+    \put(0.49815972,0.20617686){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small Register File}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{register_file.pdf}}%
+    \put(0.06874258,0.31611146){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[b]{\smash{{\small Issue Slot 0 }}}}}%
+    \put(0.06629029,0.12349361){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[b]{\smash{{\small Issue Slot 1}}}}}%
+    \put(0.94726563,0.32617354){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[b]{\smash{{\small Issue Slot 0 }}}}}%
+    \put(0.94151579,0.13355569){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[b]{\smash{{\small Issue Slot 1}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{register_file.pdf}}%
+    \put(0.09061235,0.43135027){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small Decode (DE) }}}}%
+    \put(0.89947216,0.43135027){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small Write Back (WB) }}}}%
+    \put(0.48979992,0.43710003){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small Register File  }}}}%
+    \put(0.20662295,0.2315452){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\tiny Virtual }}}}%
+    \put(0.20662295,0.2056711){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\tiny Read }}}}%
+    \put(0.77585172,0.23729504){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\tiny Virtual }}}}%
+    \put(0.77585172,0.21142094){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\tiny Write }}}}%
+    \put(0.13554256,0.38167454){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small a }}}}%
+    \put(0.13507982,0.33875969){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small b }}}}%
+    \put(0.13554256,0.29584484){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small c }}}}%
+    \put(0.13507982,0.25292999){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small d }}}}%
+    \put(0.13554256,0.18787995){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small a }}}}%
+    \put(0.13507982,0.1449651){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small b }}}}%
+    \put(0.13554256,0.10205025){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small c }}}}%
+    \put(0.13507982,0.0591354){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small d }}}}%
+    \put(0.85769032,0.38572808){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small x }}}}%
+    \put(0.8572276,0.2569832){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small y }}}}%
+    \put(0.85769032,0.19447503){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small x }}}}%
+    \put(0.8572276,0.06573025){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small y }}}}%
+    \put(0.58318424,0.38742241){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small 0 }}}}%
+    \put(0.58522669,0.25867753){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small 1 }}}}%
+    \put(0.58318424,0.19134028){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small 2 }}}}%
+    \put(0.58522669,0.06259544){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small 3 }}}}%
+    \put(0.40578336,0.38317002){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small 0 }}}}%
+    \put(0.40578336,0.34025498){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small 1 }}}}%
+    \put(0.40578336,0.29733991){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small 2 }}}}%
+    \put(0.40782582,0.25442491){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small 3 }}}}%
+    \put(0.40578336,0.18708767){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small 4 }}}}%
+    \put(0.40578336,0.14417274){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small 5 }}}}%
+    \put(0.40578336,0.10125782){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small 6 }}}}%
+    \put(0.40782582,0.05834282){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\small 7 }}}}%
+  \end{picture}%
+\endgroup%

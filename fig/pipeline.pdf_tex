@@ -1,0 +1,80 @@
+%% Creator: Inkscape inkscape 0.91, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'pipeline.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{650.28569336bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.52196837)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{pipeline.pdf}}%
+    \put(0.01412772,0.45773045){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.24260641\unitlength}\raggedright Befehl 1\end{minipage}}}%
+    \put(0.01412772,0.25506082){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.24260641\unitlength}\raggedright Befehl 3\end{minipage}}}%
+    \put(0.01412772,0.35639563){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.24260641\unitlength}\raggedright Befehl 2\end{minipage}}}%
+    \put(0.01412772,0.153726){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.24260641\unitlength}\raggedright Befehl 4\end{minipage}}}%
+    \put(-1.71616874,1.06063272){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.05623895\unitlength}\raggedright \end{minipage}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{pipeline.pdf}}%
+    \put(0.24161272,0.45813846){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 1\end{minipage}}}%
+    \put(0.34117746,0.45813846){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 2\end{minipage}}}%
+    \put(0.44074219,0.45813846){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 3\end{minipage}}}%
+    \put(0.54030692,0.45813846){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 4\end{minipage}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{pipeline.pdf}}%
+    \put(0.33889772,0.35972018){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 1\end{minipage}}}%
+    \put(0.43846245,0.35972018){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 2\end{minipage}}}%
+    \put(0.53802718,0.35972018){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 3\end{minipage}}}%
+    \put(0.63759191,0.35972018){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 4\end{minipage}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{pipeline.pdf}}%
+    \put(0.43618259,0.26130191){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 1\end{minipage}}}%
+    \put(0.53574732,0.26130191){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 2\end{minipage}}}%
+    \put(0.63531205,0.26130191){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 3\end{minipage}}}%
+    \put(0.73487678,0.26130191){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 4\end{minipage}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{pipeline.pdf}}%
+    \put(0.53346771,0.16288362){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 1\end{minipage}}}%
+    \put(0.63303244,0.16288362){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 2\end{minipage}}}%
+    \put(0.73259717,0.16288362){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 3\end{minipage}}}%
+    \put(0.8321619,0.16288362){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 4\end{minipage}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{pipeline.pdf}}%
+  \end{picture}%
+\endgroup%
