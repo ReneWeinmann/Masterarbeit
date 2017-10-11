@@ -1,0 +1,72 @@
+%% Creator: Inkscape inkscape 0.91, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'registerfile.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{301.04433654bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1.2783458)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{registerfile.pdf}}%
+    \put(0.46309684,1.27627165){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{}}}%
+    \put(0.89537072,1.51073238){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.24957755\unitlength}\centering \end{minipage}}}%
+    \put(-0.49435262,1.59652152){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{2.12402745\unitlength}\centering \end{minipage}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{registerfile.pdf}}%
+    \put(0.66665786,0.27671107){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\tiny FU}}}}%
+    \put(0.83986209,0.27671097){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\tiny FU}}}}%
+    \put(0.48510744,0.27671097){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\tiny ALU}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{registerfile.pdf}}%
+    \put(0.20190383,1.18585881){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\tiny Issue Slot 0}}}}%
+    \put(0.66798566,1.18795979){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\tiny Issue Slot 1}}}}%
+    \put(0.61829674,0.47885617){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\tiny Partitioned Register File}}}}%
+    \put(0.27642859,0.6518385){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\tiny 32 Register }}}}%
+    \put(0.27642859,0.72327134){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\tiny V0}}}}%
+    \put(0.71882808,0.65393949){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\tiny 32 Register }}}}%
+    \put(0.71882808,0.72537233){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\tiny V0}}}}%
+    \put(0.26667407,1.11730775){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\tiny Instruction Decoder}}}}%
+    \put(0.73275589,1.11940871){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{{\tiny Instruction Decoder}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{registerfile.pdf}}%
+  \end{picture}%
+\endgroup%

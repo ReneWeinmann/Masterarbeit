@@ -1,0 +1,76 @@
+%% Creator: Inkscape inkscape 0.91, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'targetswitching.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{1524.75200387bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.53374474)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{targetswitching.pdf}}%
+    \put(0.0824187,0.20176228){\makebox(0,0)[b]{\smash{20}}}%
+    \put(0.13016341,0.20176221){\makebox(0,0)[b]{\smash{40}}}%
+    \put(0.17725461,0.20176224){\makebox(0,0)[b]{\smash{60}}}%
+    \put(0.21680868,0.20176221){\makebox(0,0)[b]{\smash{80}}}%
+    \put(0.263209,0.20176221){\makebox(0,0)[b]{\smash{100}}}%
+    \put(0.31458195,0.20176218){\makebox(0,0)[b]{\smash{120}}}%
+    \put(0.36056299,0.20176218){\makebox(0,0)[b]{\smash{140}}}%
+    \put(0.3980837,0.20176218){\makebox(0,0)[b]{\smash{160}}}%
+    \put(0.42866207,0.20176218){\makebox(0,0)[b]{\smash{180}}}%
+    \put(0.02240534,0.37523621){\makebox(0,0)[b]{\smash{0.00E+00}}}%
+    \put(0.02240534,0.37523621){\makebox(0,0)[b]{\smash{5.00E-07}}}%
+    \put(0.02240534,0.37523621){\makebox(0,0)[b]{\smash{1.00E-06}}}%
+    \put(0.02240534,0.37523621){\makebox(0,0)[b]{\smash{1.50E-06}}}%
+    \put(0.02240534,0.37523621){\makebox(0,0)[b]{\smash{2.00E-06}}}%
+    \put(0.02240534,0.37523621){\makebox(0,0)[b]{\smash{2.50E-06}}}%
+    \put(0.18236521,0.54922205){\makebox(0,0)[b]{\smash{Schaltleistung-Schreib-Adress-Leitung}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{targetswitching.pdf}}%
+    \put(0.70366765,0.37538335){\makebox(0,0)[b]{\smash{Power Read Register File 0: }}}%
+    \put(0.7035252,0.34842148){\makebox(0,0)[b]{\smash{Power Read Register File 1: }}}%
+    \put(0.69467837,0.3211528){\makebox(0,0)[b]{\smash{Switching Power Target: }}}%
+    \put(0.31199043,0.17856657){\makebox(0,0)[b]{\smash{Hamming-Distanz}}}%
+    \put(-0.06507644,0.39176219){\rotatebox{90}{\makebox(0,0)[b]{\smash{Schaltleistung [ W ]}}}}%
+  \end{picture}%
+\endgroup%
