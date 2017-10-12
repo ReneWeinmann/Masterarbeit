@@ -1,19 +1,26 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Pipeline-Prinzip\relax }}{6}{figure.caption.6}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces KAVUAKA-Prozessor}}{7}{figure.caption.7}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces KAVUAKA-Prozessor}}{5}{figure.caption.6}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Pipeline-Prinzip\relax }}{6}{figure.caption.7}
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Register File Organisation}}{8}{figure.caption.8}
 \contentsline {figure}{\numberline {2.4}{\ignorespaces Register File Organisation\relax }}{9}{figure.caption.9}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Compiler Ablaufdiagramm\relax }}{20}{figure.caption.11}
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Heuristik Beispiel\relax }}{24}{figure.caption.12}
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Fortpflanzung mittels Crossover\relax }}{30}{figure.caption.14}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Ermittlung der maximalen Durchlaufszahl\relax }}{33}{figure.caption.15}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces dynamische Anpassung der Mutationsrate\relax }}{36}{figure.caption.16}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Power Analyse Ablaufdiagramm\relax }}{41}{figure.caption.16}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Best-Case Leistungseinsparung\relax }}{44}{figure.caption.17}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces dynamische Verlustleistung Source 1\relax }}{45}{figure.caption.18}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Read-Port Multiplexer\relax }}{49}{figure.caption.19}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Power Analyse Ablaufdiagramm\relax }}{42}{figure.caption.18}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Best-Case hierarchische Leistungsaufnahme\relax }}{44}{figure.caption.19}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Einsparungspotential Best-Worst-Case\relax }}{45}{figure.caption.20}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Schaltleistung Read Register File 0\relax }}{46}{figure.caption.21}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Schaltleistung Read Register File 1\relax }}{47}{figure.caption.22}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Schaltleistung Read+Write Register\relax }}{48}{figure.caption.23}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces gesamte Verlustleistung des Prozessors\relax }}{48}{figure.caption.24}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Einfluss der Daten auf die gesamte Verlustleistung\relax }}{49}{figure.caption.25}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Read-Port Multiplexer\relax }}{52}{figure.caption.26}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

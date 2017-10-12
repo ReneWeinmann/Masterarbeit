@@ -33,20 +33,23 @@ In diesem Kapitel wird kurz auf die Grundlagen und Begriffe von Signalprozessore
 \label{chap:architecture_overview}
 Bei dem verwendeten Prozessor handelt es sich um einen MIPS-Prozessor der Teil des RAPANUI Projektes ist. Es handelt sich hierbei um einen ASIP-Prozessor. ASIP ist die Abkürzung für \"Application Specific Instruction Set Processor\". Die Architektur dieses Prozessors ist anwendungsspezifisch optimiert. Hierbei sind ASIPs meist auf eine gewisse Funktion optimiert. Durch diese Spezialisierung ist es möglich Einsparungen hinsichtlich Siliziumfläche und Energieverbrauch gegenüber herkömmlichen Prozessoren zu erreichen. MIPS oder auch \glqq Microprocessor Without Interlocked Pipeline Stages\grqq{} ist eine Befehlssatzarchitektur bei der der Entwickler/Compiler, Datenabhängigkeiten der Befehle erkennen und auflösen muss.
 Um dem niedrigen Energieverbrauch und Flächenbedarf bei Hörgeräten zu genügen, handelt es sich bei dem Prozessor zusätzlich um eine vereinfacht Implementierung der MOAI-Prozessor-Architektur(siehe Abbildung \ref{fig:KAVUAKA}). Dieser wird auch KAVUAKA genannt und ist ein VLIW-SIMD ASIP Prozessor.\\
+	\begin{figure}[H] 
+		\centering
+		\includesvg[width=0.70\textwidth]{kavuaka2pipeline}
+		\caption[KAVUAKA-Prozessor]{KAVUAKA-Prozessor \cite{lukasglitches2017}}
+		\label{fig:KAVUAKA}
+	\end{figure}
 Bei VLIW  handelt es sich um eine Eigenschaft von Mikroprozessor-Architekturen. VLIW steht für \"Very Long Instruction Word\" und bedeutet soviel wie sehr langes Instruktions-Wort. Das Ziel dieser Struktur ist eine schnelle Abarbeitung des Befehlsatzes, wobei hierbei einige Befehle parallel ausgeführt werden können. Um dies zu ermöglichen sind mehrere Instruktions-Dekoder vonnöten. Eine VLIW-Architekur geht meist mit Pipelining einher.\\
 Der Begriff SIMD steht für \"Single Instruction Multiple Data\" und ist eine Datenverarbeitungseigenschaft von Prozessoren die meist in der Signalverarbeitung zum Einsatz kommt. Der Vorteil einer solchen Implementierung ist, dass eine Instruktion in mehreren ALUs parallel mit unterschiedlichen Daten ausgeführt werden kann. Somit ist nur eine Instruktion für die Berechnung vieler Operationen nötig, wodurch eine erhebliche Performanz-Steigerung erreichbar ist.\cite[Seite 249]{wust2010mikroprozessortechnik}\\
 Außerdem verfügt die Architektur des verwendeten Prozessors über zwei Pipeline-Stufen.
 Wie das Wort Pipelining schon besagt, handelt es sich hierbei um eine Befehlsabarbeitung am Fließband. Wurde ein Befehl in der ersten Pipelinestufe abgearbeitet, kann dieser an die nächste Stufe weitergeleitet werden und der nachfolgende Befehl führt die erste Stufe aus. Die Zeit bis ein Befehl alle Piplinestufen passiert hat, nennt man Latenzzeit und diese dauert genau so viele Takte, wie die Pipeline Stufen hat (siehe Abbildung \ref{fig:pipeline}). Diese Verzögerung mach sich jedoch nur beim Befüllen der Pipeline bemerkbar. Im Idealfall kann im Anschluss mit jedem Takt ein Befehl beendet werden. Somit ist eine parallele Verarbeitung mehrerer unterschiedlicher Befehle möglich. Dabei ist darauf zu achten, dass die Taktung der Pipelinestufen sich an der Stufe orientiert, welche die längste Ausführungsdauer aufweist. \cite[Seite 204]{wust2010mikroprozessortechnik}
-\newpage
-\begin{scriptsize}
-	\begin{figure}[htbp] 
+	\begin{figure}[H] 
 		\centering
 		\includesvg[width=0.70\textwidth]{pipeline}
 		\caption{Pipeline-Prinzip}
 		\label{fig:pipeline}
 	\end{figure}
-\end{scriptsize}
-
+\newpage
 Die beiden Pipelinestufen des verwendeten KUAVAKA-Prozessors sind wie folgt aufgeteilt:
 \begin{itemize}
 	\item[1.] Instruction Fetch - Decode - Register Access (IF - DE - RA) 
@@ -58,14 +61,7 @@ Der verwendete KAVUAKA-Prozessor besitzt außerdem zwei Instruktion-Dekoder, auc
 Für die Implementierung wird der Prozessor auf einem ASIC entwickelt und zur Verifikation auf einem FPGA getestet, da dieser eine hohe Flexibilität sowie geringere Entwicklungszeiten bietet und die spätere Hardware eins zu eins abgebildet werden kann.\cite{lukasglitches2017}
 Bei ASICs handelt es sich um anwendungsspezifische Schaltungen, die in einer Integrierten Schaltung zusammengefügt werden. Hierbei ist die komplette Funktion in Hardware abgebildet und ist somit äußerst klein in der Bauweise, performant und gleichzeitig energie-effizient. 
 
-\begin{scriptsize}
-	\begin{figure}[htbp] 
-		\centering
-		\includesvg[width=0.70\textwidth]{kavuaka2pipeline}
-		\caption[KAVUAKA-Prozessor]{KAVUAKA-Prozessor \cite{lukasglitches2017}}
-		\label{fig:KAVUAKA}
-	\end{figure}
-\end{scriptsize}
+
 \newpage
 
 \subsection{Register File Organisation}

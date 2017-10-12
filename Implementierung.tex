@@ -1,9 +1,10 @@
-\chapter{Implementierung}
+\chapter{Implementierung einer energieeffizienten Registerallokation}
 \label{chap:Implementierung}
-Nachdem die nötigen Grundlagen erläutert sind soll in diesem Kapitel aufgezeigt werden, wie der Compiler aufgebaut ist und wie das gesetzte Ziel implementiert wurde. Hierzu wird kurz auf den Ausgangsstatus des Codes und dessen Bestandteile eingegangen, um das komplette System besser verstehen zu können. Anschließend wird veranschaulicht, wie die Verlustleistung gesenkt werden soll und wie dies mit einer Heuristik implementiert wurde. Im Anschluss wird diese Implementierung durch den Einsatz eines genetischen Algorithmus noch verbessert und die einzelnen Komponenten erläutert.
+Nachdem die nötigen Grundlagen erläutert sind, soll in diesem Kapitel aufgezeigt werden, wie der Compiler aufgebaut ist und wie das gesetzte Ziel implementiert wurde. Hierzu wird kurz auf den Ausgangsstatus des Codes und dessen Bestandteile eingegangen, um das komplette System besser verstehen zu können. Anschließend wird veranschaulicht, wie mit Hilfe einer optimierten Registerallokation die Verlustleistung gesenkt werden kann und wie dies mit einer Heuristik implementiert wurde. Im Anschluss wird ein genetischer Opimierungsalgorithmus entworfen, implementiert und evaluiert.
 \newpage
-\section{Ausgangsstatus}
- Das folgende Schaubild (siehe Abbildung \ref{fig:flow_compiler}) zeigt den Aufbau des Codes und verdeutlicht die Anordnung der Register-Allokation. Gestartet wird mit einem Assembler-Programm, dass in einer ASM-Datei vorliegt und dem Code übergeben wird.
+\section{Instruktion-Scheduler}
+ Das folgende Schaubild (siehe Abbildung \ref{fig:flow_compiler}) zeigt den Aufbau, Bestandteile, Ein- und Ausgaben des Schedulers.Die nachfolgenden Bestandteile yu denen auch die in dieser Arbeit relevante Register-Allokation gehoert, sind im Einzelnen detailliert beschrieben.
+ Gestartet wird mit einem Assembler-Programm, dass in einer ASM-Datei vorliegt und dem Code übergeben wird.
  
  
 %	\begin{wrapfigure}{r}{0.5\textwidth}
@@ -14,14 +15,13 @@ Nachdem die nötigen Grundlagen erläutert sind soll in diesem Kapitel aufgezeig
 %		\label{fig:flow_compiler}
 %	\end{wrapfigure}
 
-\begin{scriptsize}
-	\begin{figure}[htbp] 
+
+	\begin{figure}[H] 
 		\centering
 		\includesvg[width=0.5\textwidth]{flowchart}
 		\caption{Compiler Ablaufdiagramm}
 		\label{fig:flow_compiler}
 	\end{figure}
-\end{scriptsize}
 
 \begin{itemize}
 	\item Precompiler\\
@@ -31,16 +31,17 @@ Nachdem die nötigen Grundlagen erläutert sind soll in diesem Kapitel aufgezeig
 	\item Register-Initalisierung\\
 		Die Register-Initalisierung iteriert über alle Operationen, dabei werden die Adressen des Register-Files blockiert, welche bereits von physikalischen Registern verwendet werden. Dadurch wird verhindert, dass diese Positionen im weiteren Verlauf für das virtuelle Register-Mapping verwendet werden können.
 	\item Scheduling\\
-		Wie in den Grundlagen \ref{sec:scheduling} beschrieben, ist das Scheduling zuständig für die Anordnung der Operationen im OP-Code des Prozessor. Dabei wird je nach gewähltem Optimierungsgrad ein Scheduling gewählt. Hierbei kann zwischen einem genetischen Instruktions-Scheduling und einem Heuristischem-Ansatz entschieden werden. Beide Algorithmen rufen intern die Register-Allokation auf. Wird der genetische Algorithmus verwendet, wird der Fitness-Wert der Register-Zuweisung mit der Bewertungsfunktion des Instruktion-Schedulings verrechnet.
+		Wie in den Grundlagen \ref{sec:scheduling} beschrieben, ist das Scheduling zuständig für die Anordnung der Operationen im OP-Code des Prozessor. Dabei wird je nach gewähltem Optimierungsgrad ein anderer Scheduling-Algorithmus gewählt. Hierbei kann zwischen einem genetischen Instruktions-Scheduling und einem Heuristischem-Ansatz entschieden werden. Beide Algorithmen rufen intern die Register-Allokation auf. Wird der genetische Algorithmus verwendet, wird der Fitness-Wert der Register-Zuweisung mit der Bewertungsfunktion des Instruktion-Schedulings verrechnet.
 	\item Register Allokation\\
-		Die Register-Allokation ist dafür zuständig, dass alle Register, sowohl physikalische als auch virtuelle, im Register-File abgespeichert werden können. Dazu wird diese nach jedem Scheduling einer SLM aufgerufen und durchläuft alle Instruktionen, sowie die darin verwendeten Register. Bei der Verwendung eines physikalischen Registers überprüft die Allokation ob die vom Programmierer gewählte Register-Adresse und Register-File bereits blockiert, oder nicht zuweisbar ist. Handelt es sich um ein virtuelles Register wird zuerst eine geeignete Adresse zugewiesen. Hierbei wird ebenfalls darauf geachtet, dass diese nicht blockiert oder nicht möglich ist.
-		Bei der Regsiter-Allokation bestehen ebenfalls zwei Arten der Zuweisung. Zum Einen eine Heuristik (siehe Kapitel \ref{sec:Heuristik}) und zum Andern ein Genetischer Algorithmus (siehe Kapitel \ref{sec:genetischerAlgorithmus}). Beide Algorithmen werden im Folgenden nun näher beleuchtet.
+		Die Register-Allokation ist dafür zuständig, dass alle Register, sowohl physikalische als auch virtuelle, im Register-File abgespeichert werden können. Dazu wird diese nach jedem Scheduling einer SLM aufgerufen und durchläuft alle Instruktionen, sowie die darin verwendeten Register. Bei der Verwendung eines physikalischen Registers überprüft die Allokation ob die vom Programmierer gewählte Register-Adresse und Register-File bereits blockiert, oder nicht zuweisbar ist. Handelt es sich um ein virtuelles Register, wird zuerst eine geeignete Adresse zugewiesen. Hierbei wird ebenfalls darauf geachtet, dass diese nicht blockiert oder nicht möglich ist.
+		Es existieren auch hier zwei Algorithmen zur Register-Allokation. Zum Einen eine Heuristik (siehe Kapitel \ref{sec:Heuristik}) und zum Andern ein Genetischer Algorithmus (siehe Kapitel \ref{sec:genetischerAlgorithmus}). Beide Algorithmen werden im Folgenden nun näher beleuchtet.
 \end{itemize}
 
 
 \section{Ansatz}
 \label{chap:ansatz}
-Um die Verlustleistung des Prozessors zu senken ist es nötig einen Zusammenhang zwischen der Register-Allokation und der Leistungsaufnahme zu finden. Da die Verlustleistung nicht direkt zur Compilezeit bestimmt werden kann, ist eine Variable nötig die mit dieser korreliert.
+
+Um die Verlustleistung des Prozessors zu senken, ist es nötig einen Zusammenhang zwischen der Register-Allokation und der Leistungsaufnahme zu finden. Da die Verlustleistung nicht direkt zur Compilezeit bestimmt werden kann, ist eine Variable nötig die mit dieser korreliert.
 Nach genauerem Betrachten der Formel für die dynamische Verlustleistung (siehe Formel \ref{eq:dynVerlustleistung}) hängt diese von vier Faktoren ab: Schaltaktivitäten,  Lastkapazität, Versorgungsspannung und der Frequenz. Die statische Verlustleistung wird nicht weiter betrachtet, da diese nur durch eine Veränderung der Hardware verbessert werden könnte. Das ist jedoch nicht Teil dieser Arbeit. Da die Spannung und Frequenz von der Architektur und anderen nicht beeinflussbaren Faktoren ebenfalls vorgegeben wurde, kann auch an diesen Parametern nichts verbessert werden. Im Folgenden wird nun erst darauf eingegangen, wie durch Minimierung der Schaltaktivitäten die Verlustleistung optimiert werden kann. Im weiteren Verlauf des Textes wird dann ebenfalls der Einfluss der Lastkapazitäten überprüft.\\
 Um in ein Register zu schreiben, muss eine geeignete Adresse an den Adressbus angelegt werden. Da es sich bei der Architektur um 32-bit-Register handelt, muss eine 5-bit Adresse angelegt werden.
 Da der Prozessor zusätzlich über zwei Issue-Slots verfügt, müssen pro Slot ein Target- und zwei Source-Register adressiert werden. Hierbei können die Instruktionen auf Register-File 0 oder 1 schreiben bzw. lesen. Aus diesem Grund besitzt jedes der Register-Files vier Lese- und zwei Schreibports. Die Zuordnung der Issues auf die Register können sie aus den Tabellen \ref{fig::schreib-port}+\ref{lese-port} entnehmen. Die Adressen werden zudem binär codiert, so dass die benachbarten Adressen nicht immer die optimale Lösung hinsichtlich der Schaltaktivität sind. Schreibt nun beispielsweise eine Instruktion an die Adresse Null und die nachfolgende Instruktion an die Adresse 31 des selben Ports, so wäre dies der Worst-Case, da in diesem Fall alle 5-Bit umgeladen werden müssten. Im Best-Case wurde nur eine Adress-Leitung toggeln.\\
@@ -72,7 +73,7 @@ Durch den Einsatz einer Architektur mit Adresse-Isolation (siehe Kapitel \ref{su
 \end{algorithmic}
 \end{algorithm}
 
-\begin{figure}[htbp] 
+\begin{figure}[H] 
 	\centering
 	\includesvg[width=\textwidth]{heuristik}
 	\caption{Heuristik Beispiel}
@@ -206,9 +207,15 @@ Es bestehen eine Vielzahl an Parametern und Einstellungsmöglichkeiten bei der V
 
 \begin{itemize}
 	\item Anzahl der Durchläufe\\
-		Die Anzahl der Durchläufe wurde experimentell ermittelt und ist für jede Problemstellung unterschiedliche. Hierfür wurde der beste Fitness-Wert über der Anzahl an Durchläufen in einem Diagramm aufgetragen. An der Stelle an der der Algorithmus keine signifikanten Verbesserungen findet wurde der Abstand zwischen den zuletzt aufgetretenen Optimierungen ermittelt. Dieser wurde im Anschluss als maximale Durchlaufzahl verwendet.
+		Die Anzahl der Durchläufe wurde experimentell ermittelt und ist für jede Problemstellung unterschiedliche. Hierfür wurde der beste Fitness-Wert über der Anzahl an Durchläufen in einem Diagramm aufgetragen (siehe Abbildung \ref{fig:iteration_analyse}). An der Stelle an der der Algorithmus keine signifikanten Verbesserungen findet wurde der Abstand zwischen den zuletzt aufgetretenen Optimierungen ermittelt. Dieser wurde im Anschluss als maximale Durchlaufzahl verwendet.
 		
-		Schaubild Fitness über Durchläufe 
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=\textwidth]{fig/iteration_analyse.pdf}
+			\caption{Ermittlung der maximalen Durchlaufszahl}
+			\label{fig:iteration_analyse}
+		\end{figure}
+	
 	\item Größe der Population $N$\\
 		Die Populationsgröße $N = 40$ wurde aus der Literatur \cite{grefenstette1986optimization} und Erfahrungswerte aus dem genetischen Instruktion-Scheduling entnommen.  
 	
@@ -224,14 +231,27 @@ Es bestehen eine Vielzahl an Parametern und Einstellungsmöglichkeiten bei der V
 \subsection{Startpopulation}
 \label{sub:startpop}
 Die Startpopulation besteht im Normalfall wie in Kapitel \ref{chap:aufbau} aus zufällig gewählten Genen. Hierbei werden nur Register verwendet die nicht bereits von physikalische Registern blockiert sind.
-Um eine schnellere Konvergenz zu einem globalen Minimum zu gewährleisteten wird ein Chromosom der Startpopulation durch ein Heuristik-Algorithmus bestimmt. Dadurch wird bereits an einem lokalen Minimum gestartet und der genetische Algorithmus muss dieses nicht selbst finden. 
+Um eine schnellere Konvergenz zu einem globalen Minimum zu gewährleisteten wird ein Chromosom der Startpopulation durch ein Heuristik-Algorithmus bestimmt. Dadurch wird bereits an einem lokalen Minimum gestartet und der genetische Algorithmus muss dieses nicht selbst finden. Ein Vergleich des Verlaufs der Fitness über der Anzahl der Durchläufe, kann in Abbildung XXX nachfolzogen werden und zeigt hierbei eine deutliche Zeitersparnis.
+
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=\textwidth]{fig/startpop.pdf}
+%	\caption{Verlauf der Fitness mit und ohne Startpopulation}
+%	\label{fig:startpop}
+%\end{figure}
+
 Nachteilig ist hierbei jedoch das durch ungeeignete Parameter der Algorithmus bei dem bereits sehr starken lokalen Minimum stagniert und keine Verbesserung mehr finden kann. Aus diesem Grund sollte beim Start mit der Heuristik eine höhere Mutations-Wahrscheinlichkeit eingesetzt werden um dieses Minimum dennoch zu überwinden.
 
 \subsection{dynamische Anpassung}
 Um eine schnellere Konvergenz gegen ein globales Minimum zu erreichen, wurde eine dynamische Anpassung der Parameter implementiert. Dies ist sinnvoll, da zu beginn die Suche auf einen großen Bereich ausgelegt werden muss, jedoch im weiteren Verlauf diese Parameter eventuell nicht mehr die schnellste Option darstellen. Aus diesem Grund wurde die Mutationsrate während der Berechnung angepasst. Zu beginn des Algorithmus werden viele bessere Lösungen als die der Startpopulation gefunden. AUs diesem Grund wird mit einer sehr kleinen Mutationsrate gestartet. Sobald für eine gewisse Anzahl an Durchläufen keine Verbesserung gefunden wurde, sprich der Algorithmus gegen ein lokales Minimum tendiert, wird die Mutations-Wahrscheinlichkeit erhöht. Dies hat zur folge, dass die Suche nach geeigneten Genen breiter wird bzw. mehr Gene mutiert werden. Dadurch steigt die Wahrscheinlichkeit ein lokales Minimum zu überwinden an. Wird eine Verbesserung gefunden, wird die Mutationsrate auf den Startwert zurückgesetzt. Anderenfalls wird die Wahrscheinlichkeit weiter minimiert. Damit wird aus einer gezielten Suche wie in Abschnitt \ref{cap:parameter} erläutert eine Zufallssuche.
-Das untenstehende Schaubild zeigt die Optimierung, die durch diese Verfahren erreicht wurde. Hierbei wurden beide genetischen Algorithmen mit dem selben Seed/Startwert ausgeführt um die Versionen vergleichen zu können.
+Das untenstehende Schaubild \ref{fig:dyn_genetic} zeigt die Optimierung, die durch diese Verfahren erreicht wurde. Hierbei wurden beide genetischen Algorithmen mit dem selben Seed/Startwert ausgeführt um die Versionen vergleichen zu können.
 
-Schaubild Dynamisch->statischer GA
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{fig/dyn_genetic.pdf}
+	\caption{dynamische Anpassung der Mutationsrate}
+	\label{fig:dyn_genetic}
+\end{figure}
  
 \newpage
 \subsection{Algorithmus Modi}
