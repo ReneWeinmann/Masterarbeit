@@ -46,7 +46,7 @@ Das Power-Analyse-Tool zeigt nach dem ausführen des Workflows \ref{fig:flow_pow
 
 Abbildung Hierachy Report
 
-Aus beiden ermittelten Reports für den Worst- und Best-Case wurde die untenstehende Tabelle erzeugt (\ref{fig:bes_powersave}). Dabei sind die Einträge in Prozent angegeben und zeigen eine deutliches Einsparungspotential. Das Augenmerk sollte hierbei auf die Switching-Leistung des Register-Files gelegt werden, denn hier wurden die Veränderungen in der Adressierung erzeugt. Dabei ist deutlich zu erkennen, dass eine maximal Einsparung von 38\% zu erreichen ist. Dies zeigt sehr deutlich, dass die Adressierung der Register eine Auswirkung auf die Verlustleistung hat. In den andern Modulen des Prozessors sind ebenfalls Verbesserungen zu erziehen, das liegt vor allem dran, dass die Register-Adressen ebenfalls in diesen angelegt sind. Bei Execution-Stage ist keine Verbesserung zu erzielen, da dort nur die Daten der jeweiligen Instruktion anliegen. Die Verbesserung der internen Leistungsaufnahme kann damit begründet werden, dass die Adressen ebenfalls Einfluss auf die interne dynamische Verlustleistung haben.
+Aus beiden ermittelten Reports für den Worst- und Best-Case wurde die untenstehende Tabelle erzeugt (\ref{fig:bes_powersave}). Dabei sind die Einträge in Prozent angegeben und zeigen eine deutliches Einsparungspotential. Außerdem sind alle Prozente auf die Gesamtleistung der entsprechenden Spalte bezogen. Das Augenmerk sollte hierbei auf die Switching-Leistung des Register-Files gelegt werden, denn hier wurden die Veränderungen in der Adressierung erzeugt. Dabei ist deutlich zu erkennen, dass eine maximal Einsparung von 38\% zu erreichen ist. Dies zeigt sehr deutlich, dass die Adressierung der Register eine Auswirkung auf die Verlustleistung hat. In den andern Modulen des Prozessors sind ebenfalls Verbesserungen zu erziehen, das liegt vor allem dran, dass die Register-Adressen ebenfalls in diesen angelegt sind. Bei Execution-Stage ist keine Verbesserung zu erzielen, da dort nur die Daten der jeweiligen Instruktion anliegen. Die Verbesserung der internen Leistungsaufnahme kann damit begründet werden, dass die Adressen ebenfalls Einfluss auf die interne dynamische Verlustleistung haben.
 Durch das minimieren der Schaltaktivitäten hat zusätzlich den Vorteil, dass die Leakageleistung der Schaltung minimiert wird. Das Resultat der unterschiedlichen Adressierungen ist eine Gesamtverlustleistungseinsparung von 10\%.
 
 \begin{figure}[htbp] 
@@ -73,7 +73,7 @@ Da nun bewiesen wurde, dass ein Zusammenhang zwischen Adressierung und Verlustle
 	\end{algorithmic}
 \end{algorithm}
 
-Dieser Test wurde für Adressen zwei, fünf, 24, 25 ,27 und 31 ausgeführt. Außerdem wurden Target, Source 1 und Source2 getestet. Die untenstehenden Schaubilder(XXX) zeigen hierbei der Schaltleistung der verschiedenen Testfälle. Es ist schön zu erkennen, dass die Schaltleistungen der Lese- sowie Schreibports linear mit der Hamming-Distanz steigen. Außerdem sind die Steigungen der Kurven nahezu identisch, welches impliziert, dass die Adressen in allen Ports die selbe Verlustleistung verursacht.
+Dieser Test wurde für Adressen zwei, fünf, 24, 25 ,27 und 31 ausgeführt. Außerdem wurden Target, Source 1 und Source 2 getestet. Die untenstehenden Schaubilder(XXX) zeigen hierbei der Schaltleistung der verschiedenen Testfälle. Es ist schön zu erkennen, dass die Schaltleistungen der Lese- sowie Schreibports linear mit der Hamming-Distanz steigen. Außerdem sind die Steigungen der Kurven nahezu identisch, welches impliziert, dass die Adressen in allen Ports die selbe Verlustleistung verursacht.
 
 \begin{figure}
 	\centering
@@ -88,6 +88,10 @@ Außerdem zeigt Abbildung XXX die Gesamtleistung des Prozessors über der Hammin
 
 Abbildung Total Power + Switching-power target
 
+Um nun ebenfalls den Einfluss der Daten auf die Verlustleistung zu ermitteln wurden die oben genannten Programme mit Zufallszahlen ausgeführt. Hierzu wurden vorerst alle Register mit zufälligen Zahlen initialisiert und im Anschluss die oben beschriebenen Funktionen abgearbeitet. Diese Änderung verursacht einen Anstieg der Verlustleistung, jedoch ist zu untersuchen, ob die Einsparung durch die Adressierung dominiert. Hierzu wurden die Testfälle mehrere Male durchlaufen, so dass die Werte aussagekräftig sind. Das untenstehende Schaubild XXX zeigt hierbei die Verläufe des Testfalls mit null initialisierten Daten in rot und mit Zufallszahlen befüllten Registern in blau. Es ist deutlich zu erkennen, dass trotz einer Abhängigkeit der Daten die Optimierung der Adressen dominiert und die Verlaufe sich ähneln.
+
+Schaubild Random Data 
+
 
 \subsection{Heuristik} 
 Da nun die Abhängigkeiten der Register-Adressierung zu der Verlustleistung bewiesen wurde, wie diese durch den Einsatz von virtuellen Registern und der neu implementierten Heuristik verbessert werden kann. Hierzu werden wie in Kapitel \ref{cap:empirischeTests} Assemblerprogramme entworfen welche manuell geschedult sind und die Register mit Null initialisiert wurden. Der unterschied zu den empirischen Testprogrammen liegt darin, dass nun ebenfalls virtuelle Register verwendet werden.
@@ -101,8 +105,7 @@ SChaubild SChaltleistung heuristik genetischer Algo
 \subsection{Genetischer Algorithmus}
 Da die Heuristik wie bereits in Kapitel \ref{sec:genetischerAlgorithmus} erwähnt nur die Target-Register auf Schaltaktivität minimiert werden kann, wird nun die Verbesserung der Verlustleistung durch zusätzliches optimieren der Source-Register untersucht. 
 
-\subsection{Datenabhängigkeiten}
-Da bis zu diesem Punkt alle Test mit Null vorinitialisierten Registern arbeiten, wird in diesem Kapitel untersucht ob eine Datenabhängigkeit zwischen der Verlustleistung und Daten besteht. Hierzu wurde eine Programm entwickelt, welches zu beginn einige Register mit Daten befüllt. Diese werden im Anschluss mit den selben Instruktionen verarbeitet. Der Unterschied zwischen den Programmen liegt ausschließlich in der Adressierung der Register.  
+ 
 
 \section{reelle Testprogramme}
 \label{sec:testprogamme}
@@ -114,7 +117,9 @@ Der Beamforming-Algorithmus wird eingesetzt um eine Positionsbestimmung von Scha
 Da der verwendete Prozessor keine floating Point Variablen unterstützt, besteht ein Algorithmus der diese emuliert. 
 
 
-
+\subsection{Datenabhängigkeiten}
+In Kapitel \ref{cap:empirischeTests} wurde bereits der Einfluss der Daten auf die Verlustleistung ermittelt. Da sich nun jedoch eine Verschlechterung der Register-File-Leistung bei besserer Adressierung in den reelen Testfällen ergibt wurden die Datenabhängigkeit nochmals überprüft. Dabei ergab sich, dass auf Grund des Verhalten des Adress-Decoders eine Veränderung der Daten verursacht wird. Da die Adressen über einen Adress-Decoder decodiert werden müssen und dieser nicht direkt alle Bits auf einmal umschalten kann, liegen kurze Zeit, Daten aus anderen Adressen an den Daten-Leitungen an. Dies Verursacht dort eine Schaltleistung welches die Verbesserung durch die Adressierung aufhebt.
+Um dieses Verhalten und die Funktion des Decoders besser nachzuvollziehen wurden nun weitere Testfälle generiert. Diese befüllen wie in Kapitel \ref{cap:empirischeTests} alle Register mit zufälligen Daten. Der unterschied liegt jedoch darin, dass die Instruktionen in allen Testfällen mit den selben Zufallsdaten arbeiten, so dass immer die selben Daten in die entsprechenden Register geschrieben werden.
 
 \section{Einfluss der Lastkapazität}
  \label{cap:lastkapa}
