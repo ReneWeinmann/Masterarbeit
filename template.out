@@ -26,7 +26,7 @@
 \BOOKMARK [2][-]{subsection.2.6.3}{Mutation}{section.2.6}% 26
 \BOOKMARK [0][-]{chapter.3}{Implementierung einer energieeffizienten Registerallokation}{}% 27
 \BOOKMARK [1][-]{section.3.1}{Instruktion-Scheduler}{chapter.3}% 28
-\BOOKMARK [1][-]{section.3.2}{Ansatz}{chapter.3}% 29
+\BOOKMARK [1][-]{section.3.2}{Optimierungsansatz durch Register-Allokation}{chapter.3}% 29
 \BOOKMARK [1][-]{section.3.3}{Heuristik}{chapter.3}% 30
 \BOOKMARK [1][-]{section.3.4}{Genetischer Algorithmus}{chapter.3}% 31
 \BOOKMARK [2][-]{subsection.3.4.1}{Gene und Chromosomen}{section.3.4}% 32
