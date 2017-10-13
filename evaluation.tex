@@ -3,10 +3,32 @@
 \section{Piplinestufe für Adressports}
 Da der Verwendete Prozessor Adress-Isolation ( siehe Kapitel \ref{subsec:add_iso}) einsetzt, sollten die Adressen so lange an einem Port anliegen bis diese geändert werden.
 Die für die Schreib- und Lesezugriffe verwendeten Adressen werden jeweils zwischen den Takten an die benötigten Ports angelegt um so zu gewährleisten, dass diese mit der steigenden Taktflanke auch übernommen werden können. Die Auswahl der Ports wird über Enable-Signale geregelt. Werden beispielsweise zwei Instruktionen verwendet die beide an Register-File 1 schreiben, so werden die entsprechenden Adressen an die Ports 0 und 1 angelegt. Sobald diese zu Verfügung stehen, werden diese von den Enable-Signalen freigegeben.\\
+
+\begin{figure}[H] 
+	\centering
+	\includesvg[width=0.70\textwidth]{glitches}
+	\caption{Glitches Write-Adress}
+	\label{fig:glitches}
+\end{figure}
+
 Im Fall dieser Architektur tritt nun jedoch Problem auf, denn Adress- und Enable-Signal sind nicht synchron und somit weisen diese ein Zeitversatz, zwischen den beiden Signalen, auf. Dies liegt daran, dass die benötigten Enable-Signale aufwendig berechnet werden müssen und dies eine kurze Verzögerung nach sich zieht. Aus diesem Grund liegt die bereits geänderte Adresse kurze Zeit an dem falschen Adressport an. Sobald das Enable-Signal berechnet wurde, werden die richtigen Adressen angelegt. Dieses Szenario tritt lediglich auf, wenn ein Wechsel in den Enable-Signalen und sich somit die Herkunft der Adressen ändert. Das Beschriebene Problem verursacht eine Erhöhung der Schaltaktivität auf den Adressleitungen und somit auch eine steigende Verlustleistung. %um XXX \%
 Um diesem Effekt entgegenzuwirken wurde eine zweite Pipline-Stufe eingebaut. Durch die Verzögerung der Adress- und Enable-Signale ist garantiert, dass die Adressen erst dann an den entsprechenden Ports anliegen, wenn diese benötigt werden. Der zusätzliche Energieverbrauch der Pipeline-Register wird an dieser Stelle nicht weiter untersucht, da der Anstieg der Verlustleistung in den zu vergleichenden Algorithmen identisch ist.
 
-Schaubild Pipelinestufe
+%\begin{figure}[H] 
+%	\centering
+%	\includesvg[width=\textwidth]{glitches_pipeline}
+%	\caption{Pipelinestufe gegen Glitches}
+%	\label{fig:glitches_pipeline}
+%\end{figure}
+
+%\begin{figure}[!ht]
+%	\centering                  % zentrierte Ausrichtung
+%	\def\svgwidth{200pt}    % die Bildbreite festgelegt
+%	%\includegraphics{test1.pdf}
+%	\input{fig/glitches_pipeline.pdf_tex} %hier ist meine text Datei
+%	\caption{test}    % Bildunterschrift
+%	\label{fig:test}          % Label für Verweise
+%\end{figure}
 
 Es besteht jedoch eine Möglichkeit, die Pipeline-Stufen zu vermeiden.
 Da der Prozessor für ein ASIC entwickelt wird, können die Glitches durch den Einsatz von Buffer behoben werden. Hierzu müssten lediglich die betroffenen Signale mittels eines im ASIC implementierten Buffer verzögert werden. Dieser könnte beispielsweise durch das Einbauen zwei hintereinander geschalteter Inverter realisiert werden. Dabei würde sich die Verzögerung aus der Summe der Gatterlaufzeiten ergeben. Die Anzahl der Inverter-Gatter müsste dann an den Versatz von Adress- und Enable-Signal angepasst werden. 
