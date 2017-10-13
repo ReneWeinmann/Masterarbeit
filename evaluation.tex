@@ -151,7 +151,7 @@ Da der verwendete Prozessor keine floating Point Variablen unterstützt, besteht
 
 
 \subsection{Datenabhängigkeiten}
-In Kapitel \ref{cap:empirischeTests} wurde bereits der Einfluss der Daten auf die Verlustleistung ermittelt. Da sich nun jedoch eine Verschlechterung der Register-File-Leistung bei besserer Adressierung in den reelen Testfällen ergibt wurden die Datenabhängigkeit nochmals überprüft. Dabei ergab sich, dass auf Grund des Verhalten des Adress-Decoders eine Veränderung der Daten verursacht wird. Da die Adressen über einen Adress-Decoder decodiert werden müssen und dieser nicht direkt alle Bits auf einmal umschalten kann, liegen kurze Zeit, Daten aus anderen Adressen an den Daten-Leitungen an. Dies Verursacht dort eine Schaltleistung welches die Verbesserung durch die Adressierung aufhebt.
+In Kapitel \ref{cap:empirischeTests} wurde bereits der Einfluss der Daten auf die Verlustleistung ermittelt. Da sich nun jedoch eine Verschlechterung der Register-File-Leistung bei besserer Adressierung in den realen Testfällen ergibt wurden die Datenabhängigkeit nochmals überprüft. Dabei ergab sich, dass auf Grund des Verhalten des Adress-Decoders eine Veränderung der Daten verursacht wird. Da die Adressen über einen Adress-Decoder decodiert werden müssen und dieser nicht direkt alle Bits auf einmal umschalten kann, liegen kurze Zeit, Daten aus anderen Adressen an den Daten-Leitungen an. Dies Verursacht dort eine Schaltleistung welches die Verbesserung durch die Adressierung aufhebt.
 Um dieses Verhalten und die Funktion des Decoders besser nachzuvollziehen wurden nun weitere Testfälle generiert. Diese befüllen wie in Kapitel \ref{cap:empirischeTests} alle Register mit zufälligen Daten. Der unterschied liegt jedoch darin, dass die Instruktionen in allen Testfällen mit den selben Zufallsdaten arbeiten, so dass immer die selben Daten in die entsprechenden Register geschrieben werden.
 
 \section{Einfluss der Lastkapazität}
@@ -169,8 +169,14 @@ Das untenstehende Schaubild \ref{fig:read_port_mux} zeigt wie die Daten aus den 
 
 Aus diesem Grund wurde die Fitness Funktion des Genetischen Algorithmus so angepasst, dass die Lastkapazität zusätzlich berücksichtigt wird.
 
-\section{Evaluation}
-\label{sec:evalutation_verification}
+\section{Schlussfolgerung}
+\label{sec:Schlussfolgerung}
+Das Ziel dieser Arbeit war es, durch einen genetischen Optimierungsalgorithmus eine Register-Allokation zu finden, welche die Verlustleistung des KUVAKA-Prozessors minimiert. Dabei wurde zu Beginn der Ansatz gewählt die Register so zu allokieren, dass die Schaltaktivität der Register-Adressierung minimiert wird. Hierzu ein genetische Optimierungsalgorithmus implementiert, welcher anhand der Hamming-Distanz gepaart mit der Lastkapazität als Fitness-Wert die Schaltaktivität in den Registern optimiert. Dabei hat die Evaluation gezeigt, dass die Parameter des Algorithmus an das jeweilige Problem angepasst werden muss. Eine Startpopulationsberechnung durch eine Heuristik und dynamische Anpassung der Mutationswahrscheinlichkeit ist jedoch für alle Problemstellungen sinnvoll.
+Außerdem hat die Evaluation gezeigt, dass durch eine geeignete Adressierung die dynamische Verlustleistung insbesondere in den großen Register-Files minimiert werden kann.Im Fall einer optimalen Adressierung, kann eine Einsparung von 7,87\% für die Verlustleistung des gesamten Prozessors und eine Reduzierung um 38,65\% für die Schaltleistung erzielt werden. Weitere Untersuchungen haben gezeigt dass Werte im Bereich von 1\% für die Gesamtverlustleistung wahrscheinlicher sind. Für die realen Testfälle des Beamforming und emulated-floation-point sind Einsparungen von XXX \% zu erzielen. Dabei ist zu beachten, dass es zu Schaltaktivitäten der Daten auf Grund des Verhaltens der Adressdecoder kommt und diese eine Verschlechterung der Verlustleistungsergebnisse erzeugt. Außerdem wurde der Einfluss der Lastkapazität auf die Verlustleistung bewiesen und aufgezeigt. Durch eine Berücksichtigung dieser kann die Leistung weiter optimiert werden.
+Außerdem wurde eine weitere Pipeline-Stufe in dem Prozessor eingebaut, diese verhindert, dass Glitches durch die Berechnung der ADressen an die Regsiter-Files weitergeleitet werden und dort Schaltleistung verursacht.
+
+
+ 
 
 
 
