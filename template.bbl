@@ -47,6 +47,11 @@ NBM Hajj, C~Polyckronopoulos, and George Stamoulist.
 \newblock In {\em Low Power Electronics and Design, 1998. Proceedings. 1998
   International Symposium on}, pages 70--75. IEEE, 1998.
 
+\bibitem{hamming1950error}
+Richard~W Hamming.
+\newblock Error detecting and error correcting codes.
+\newblock {\em Bell Labs Technical Journal}, 29(2):147--160, 1950.
+
 \bibitem{horowitz1994low}
 Mark Horowitz, Thomas Indermaur, and Ricardo Gonzalez.
 \newblock Low-power digital design.
@@ -64,6 +69,11 @@ Gerlach Lukas, Pay{\'a}~Vay{\'a} Guillermo, Liu Shuango, Wei{\ss}brich Moritz,
 \newblock Analyzing the trade-off between power consumption and beamforming
   algorithm performance using a hearing aid asip.
 \newblock 2017.
+
+\bibitem{moore1965moore}
+Gordon Moore.
+\newblock Moore’s law.
+\newblock {\em Electronics Magazine}, 38(8):114, 1965.
 
 \bibitem{paya2009instruction}
 Guillermo Pay{\'a}-Vay{\'a}, Javier Mart{\'\i}n-Langerwerf, Florian Giesemann,

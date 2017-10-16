@@ -40,17 +40,37 @@ Nachdem die nötigen Grundlagen erläutert sind, soll in diesem Kapitel aufgezei
 
 \section{Optimierungsansatz durch Register-Allokation}
 \label{chap:ansatz}
-Das Ziel des Algorithmus ist es, eine geeignete Register-Allokation zu finden, bei der die Verlustleistung minimal wird. Um dies zu erreichen, soll der Freiheitsgrad durch den Einsatz von virtuellen Registern ausgenutzt werden.
+Das Ziel des Algorithmus ist es, eine geeignete Register-Allokation zu finden, bei der die Verlustleistung minimal wird. Um dies zu erreichen, soll der Freiheitsgrad, der durch den Einsatz von virtuellen Registern entsteht, ausgenutzt werden.
 Damit die Verlustleistung des Prozessors gesenkt werden kann, ist es nötig einen Zusammenhang zwischen der Register-Allokation und der Leistungsaufnahme zu finden. Da die Verlustleistung nicht direkt zur Compilezeit bestimmt werden kann, ist eine Metrik nötig die mit dieser korreliert.
-Nach genauerem Betrachten der Formel für die dynamische Verlustleistung (siehe Formel \ref{eq:dynVerlustleistung}), hängt diese von vier Faktoren ab: Schaltaktivitäten,  Lastkapazität, Versorgungsspannung und der Frequenz. Da der KUVAKA-Prozessor aus Hardwaresicht bereits fertig entwickelt und optimiert wurde, wird die statische Verlustleistung nicht weiter betrachtet, da diese  nur durch eine Veränderung der Hardware verändert werden kann. Da ebenfalls  die Spannung und Frequenz von der Architektur abhängt, können auch diese  hardware-relevanten Faktoren durch eine Software-Anpassung nicht weiter optimiert werden. Im Folgenden wird nun erst darauf eingegangen, wie durch Minimierung der Schaltaktivitäten die Verlustleistung optimiert werden kann. Im weiteren Verlauf des Textes wird dann ebenfalls der Einfluss der Lastkapazitäten überprüft.\\
-Um in ein Register zu schreiben, muss eine geeignete Adresse an den Adressbus angelegt werden. Da es sich bei der Architektur um 2x32 Register handelt, muss für jedes Register eine 5-bit Adresse angelegt werden.
-Da der Prozessor zusätzlich über zwei Issue-Slots verfügt, müssen pro Slot ein Target- und zwei Source-Register adressiert werden. Hierbei können die Instruktionen auf Register-File 0 oder 1 schreiben bzw. lesen. Aus diesem Grund besitzt jedes der Register-Files vier Lese- und zwei Schreibports. Die Zuordnung der Issues auf die Register können aus den Tabellen \ref{fig::schreib-port}+\ref{lese-port} entnommen werden.
-Schreibt nun beispielsweise eine Instruktion an die Adresse Null und die nachfolgende Instruktion an die Adresse 31 des selben Ports, so wäre dies der Worst-Case, da in diesem Fall alle 5-Bit umgeladen werden müssten. Im Best-Case wurde nur eine Adress-Leitung toggeln.\\
-Durch den Einsatz von virtuellen Register (Kapitel \ref{sub:virtuelleR}) können Instruktionen an beliebigen Adressen und Register-Files schreiben bzw. lesen. Durch diese Änderung ist es möglich, die Schaltaktivitäten des Adressbus zu verringern und die Register an eine Position zu alokieren, welche für die Schaltaktivität optimal ist.\\
-In der bestehenden Implementierung wurde diese Zuweisung der Register so geregelt, dass die Register-Files immer von einer Seite befüllt wurden. Die Auswahl des Register-Files wurde hierbei über die Anzahl der freien Register-Adressen ermittelt und dasjenige File mit der höheren Anzahl an freien Adressen verwendet. Außerdem wurde bei der Zuweisung darauf geachtet, dass es weiterhin möglich ist X2-Befehle und MAC-Operationen zu bedienen.\\
-Um nun dieses Mapping auf die Schaltaktivität und somit auch auf die Verlustleistung zu optimieren, wurde eine neue Heuristik implementiert.
+Nach genauerem Betrachten der Formel für die dynamische Verlustleistung (siehe Formel \ref{eq:dynVerlustleistung}), hängt diese von vier Faktoren ab: Schaltaktivitäten,  Lastkapazität, Versorgungsspannung und der Frequenz. Da der KUVAKA-Prozessor aus Hardwaresicht bereits fertig entwickelt und optimiert wurde, wird die statische Verlustleistung nicht weiter betrachtet, da diese  nur durch eine Veränderung der Hardware weiter optimiert werden kann. Da ebenfalls  die Spannung und Frequenz von der Architektur abhängt, können auch diese hardware-relevanten Faktoren nicht durch eine Software-Anpassung optimiert werden. Im Folgenden wird nun erst darauf eingegangen, wie durch Minimierung der Schaltaktivitäten die Verlustleistung optimiert werden kann. Im weiteren Verlauf des Textes wird dann ebenfalls der Einfluss der Lastkapazitäten überprüft.\\
+Die Register-Allokation ist dazu zuständig die im Algorithmus zum Schreiben und Lesen verwendeten Register einem in Hardware existentem Register zuzuweisen. Dabei ist die einzige Variable die Register-Adresse. Diese Adressen sollen nun so gewählt werden, dass die Schaltaktivität minimiert wird.
+Um in ein Register zu schreiben, muss eine geeignete Adresse an den Adressbus angelegt werden. Da es sich bei der Architektur um 2x32 Register handelt, muss für jeden Register-Port eine 5-bit Adresse angelegt werden.
+Da der Prozessor zusätzlich über zwei Issue-Slots verfügt, müssen pro Slot ein Target- und zwei Source-Register adressiert werden. Hierbei können die Instruktionen auf Register-File null oder eins schreiben bzw. lesen. Aus diesem Grund besitzt jedes der Register-Files vier Lese- und zwei Schreibports. Die Zuordnung der Issues auf die Register-Ports können aus den Tabellen \ref{fig::schreib-port} sowie \ref{lese-port} entnommen werden.\\
+Schreibt nun beispielsweise eine Instruktion an die Adresse Null und die nachfolgende Instruktion an die Adresse 31 des selben Register-Ports, so wäre dies der Worst-Case, da in diesem Fall alle Bits des Adressbus umgeladen werden müssten. Im Best-Case wurde nur eine Adress-Leitung toggeln.\\
+Durch den Einsatz von frei allokierbaren Registern entsteht ein Freiheitsgrad. Dieser kann ausgenutzt werden, um die Zuweisung der Adressen dahin zu optimieren, dass die Adresse gewählt werden, die die geringste Schaltaktivität verursachen. Das Codebeispiel \ref{code:registerZuweisung} zeigt den Einsatz solcher Register als Target-Register. 
+\begin{algorithm}[H]
+	\begin{algorithmic}[1]
+		\STATE {:0 \textbf {ADD} VxR0 V0R0 V0R0   \hspace{50pt}:1 \textbf {OR} VxR1 V0R0 V0R0}
+		\STATE {:0 \textbf {ADD} VxR2 V0R0 V0R0 \hspace{50pt}:1 \textbf {OR} VxR3 V0R0 V0R0}
+		\caption{Beispiel Register-Allokation}
+		\label{code:registerZuweisung}
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{figure}[H] 
+	\centering
+	\includesvg[width=0.7\textwidth]{register_aloc_example}
+	\caption{Beispiel Register-Allokation}
+	\label{fig:register_aloc_example}
+\end{figure}
+Die virtuellen Register sind hier mit einem x gekennzeichnet und können an beliebige Adresse und Register-File zugewiesen werden. Das Schaubild zeigt eine Option der Zuweisung. In diesem Beispiel wird von der Register-Allokation die Adressen Null und 31 ausgewählt, welches dem zuvor erwähnten Worst-Case entspricht. Diese Zuweisung soll nun durch ein genetischen Optimierungsalgorithmus optimiert werden.\\
+
+In der bestehenden Implementierung wurde diese Zuweisung der Register so geregelt, dass beide Register-Files immer von einer Seite befüllt wurden. Die Auswahl des Register-Files wurde über die Anzahl der freien Register-Adressen ermittelt und dasjenige File mit der höheren Anzahl an freien Adressen verwendet. Dadurch wird eine Register-File-Balancing erreicht, welches sicherstellt, dass beide Files gleich stark auslastet sind.\\
+% Außerdem wurde bei der Zuweisung darauf geachtet, dass es weiterhin möglich ist X2-Befehle und MAC-Operationen zu bedienen.\\
+Diese Variante der Register-Allokation nimmt keine Rücksicht auf die Schaltaktivitäten der Adressleitungen und ist demzufolge nicht geeignet um die Verlustleistung zu senken.
+Um nun die Adressierung auf die Schaltaktivität und somit auch auf die Verlustleistung zu optimieren, wurde vorerst eine neue Heuristik implementiert.
 Diese optimiert die Anzahl der Schaltaktivität anhand der Hamming-Distanz.
-Die Hamming-Distanz ist nach dem amerikanischen Mathematiker Richard Wesley Hamming benannt und gibt ein Maß für die Unterschiedlichkeit zweier Zeichenketten an. Hierbei ist die Hamming-Distanz die Anzahl der unterschiedlichen Stellen beider Codewörter.
+Die Hamming-Distanz ist nach dem amerikanischen Mathematiker Richard Wesley Hamming benannt und gibt ein Maß für die Unterschiedlichkeit zweier Zeichenketten an. Hierbei ist die Hamming-Distanz die Anzahl der unterschiedlichen Stellen beider Codewörter (siehe Gleichung \ref{eq:hammingdistanze}). Ursprünglich wurde diese in der Fehlererkennung von Datenwörter verwendet.\cite{hamming1950error} 
 \begin{equation}
 00100 \text{ und } 00001 \rightarrow \text{Hamming-Distanze}= 2
 \label{eq:hammingdistanze}
@@ -58,9 +78,9 @@ Die Hamming-Distanz ist nach dem amerikanischen Mathematiker Richard Wesley Hamm
  
 \section{Heuristik}
 \label{sec:Heuristik}
-Um die Hamming-Distanz berechnen zu können, werden die Adressen der letzten adressierten Register gespeichert. Da die Architektur, wie bereits erwähnt, zwei Issue-Slots aufweist und diese auf beide Register-Files zugreifen können, müssen dementsprechend vier Target- und acht Source-Adressen abgespeichert werden (siehe Abbildung \ref{fig:reg_orga}).\\
-Hierbei werden nur die Adressen innerhalb einer SLM optimiert, da das Scheduling der einzelnen SLMs parallel in mehrere Threads aufgeteilt ist. Dadurch wuerden Datenabhaenigkeiten bei der Register-Allokation entstehen. Da jedoch SLMs meist sehr groß ausfallen, fallen die nicht optimalen Adress-Toggel nicht stark ins Gewicht. 
-Durch den Einsatz einer Architektur mit Adresse-Isolation (siehe Kapitel \ref{subsec:add_iso}), bleiben die zuvor verwendeten Adressen an den Register-File Ports angelegt. Um die Schaltaktivität zu minimieren, wird nun bei jedem virtuellen und physikalischen Register die Hamming-Distanz zu der zuletzt angelegten Adresse des jeweiligen Ports berechnet. Hierbei wird die Adresse auf das Register gemappt, welches die geringste Hamming-Distanz zur zuletzt verwendeten Adresse des selbingen Ports aufweist.\\
+Wie zuvor erwähnt minimiert die neu implementierte Heuristik die Schaltaktivitäten durch Minimierung der Hamming-Distanz. Um die Hamming-Distanz berechnen zu können, werden die Adressen der zuletzt adressierten Register gespeichert. Da die Architektur, wie bereits erwähnt, zwei Issue-Slots aufweist und diese auf beide Register-Files zugreifen können, müssen dementsprechend vier Target- und acht Source-Adressen abgespeichert werden (siehe Abbildung \ref{fig:reg_orga}).\\
+Hierbei werden nur die Adressen innerhalb einer SLM optimiert, da das Scheduling der einzelnen SLMs parallel in mehrere Threads aufgeteilt ist. Dies hat zur folge, dass Datenabhängigkeiten bei der Register-Allokation entstehen würden, wenn eine SLM-übergreifende Optimierung stattfinden soll. Da jedoch SLMs meist sehr groß ausfallen, fallen die nicht optimalen Adress-Toggel nicht stark ins Gewicht. 
+Durch den Einsatz einer Architektur mit Adresse-Isolation (siehe Kapitel \ref{subsec:add_iso}), bleiben die zuvor verwendeten Adressen an den Register-File Ports angelegt. Um die Schaltaktivität zu minimieren, wird nun bei jedem virtuellen und physikalischen Register die Hamming-Distanz zu der zuletzt angelegten Adresse des jeweiligen Ports berechnet. Hierbei wird die Adresse auf das Register gemappt, welches die geringste Hamming-Distanz zur zuletzt verwendeten Adresse des selbigen Ports aufweist.\\
 
 \begin{algorithm}[H]
 	\begin{algorithmic}[1]
@@ -86,33 +106,34 @@ Der Code zeigt hierbei einen bereist geschedulten Assembler-Code, wobei das Sche
 Vorerst werden in beiden Register-Files drei Adressen mittels physikalischer Register belegt/blockiert(Abbildung \ref{fig:heuristik} blau hinterlegte Felder). Im Anschluss beginnt die Zuweisung der virtuellen Register(Zeile 4).
 Dabei wird mit dem ersten Issue-Slot, der ADD-Operation begonnen. Hierbei  überprüft der Algorithmus nun, in welchem der Register-Files mehr freie Register zu Verfügung stehen, um eine gleiche Auslastung zu gewährleisten. Für die Zuweisung wird das Register-File mit der höheren Anzahl an freien Registern verwendet. Sind die Zahlen identisch, so wird das Register ausgewählt welches zuletzt zugewiesen wurde. In diesem Fall haben beide Register-Blöcke noch 29 freie Register, deshalb ist das ausgewählte Register-File 0, da zuletzt das Source-Register V0R0 an den Adress-Port geschrieben wurde.
 Aus diesem Grund beginnt die Suche eines geeigneten Registers in genau diesem Register-File. Gestartet wird in der neuen Heuristik mit der ersten Adresse, dabei wird überprüft ob diese von einem anderen Register bereits blockiert wurde. Da in der ersten Zeile des Codes diese Adresse V0R0 beschrieben wurde, kann diese nicht als Mapping für das virtuelle Register VxR0 dienen. Deshalb sucht der Algorithmus weiter nach einer geeigneten Zuweisung. Mit der zweiten Adresse ist dies möglich. Anhand dieser wird nun die Hamming-Distanz zur letzten zugewiesenen Target-Adresse auf dem selben Port berechnet. Dabei wird anhand der Tabelle \ref{fig::schreib-port} die letzte Adresse ermittelt. Für dieses Beispiel ist dies trivial, denn Issue-Slot 0 schreibt immer an Register-File 0 und Issue-Slot 1 an das benachbarte Register-File. Deshalb wird die Hamming-Distanz aus den beiden Adressen vier und eins ermittelt(\ref{eq:hammingdistanze}).Das Ergebnis sowie die Adresse werden gespeichert, falls es bis zu diesem Zeitpunkt noch keine bessere Lösung gab. Anschließend wird die Suche fortgeführt. Dieser Vorgang wird für alle Adressen des Register-Files durchgeführt, es sei denn es wird eine Lösung gefunden bei der die Hamming-Distanz null beträgt. Dieser Fall tritt auf, wenn virtuelle Register zu einer Adresse zugewiesen wurden und die Lebensdauer dieser Variable erlischt. Dadurch wird diese Adresse freigegeben und kann erneut zugewiesen werden.  Werden mehrere Lösungen für eine Allokation gefunden, verwendet der Algorithmus die zuerst gefundene Adresse. Im Codebeispiel \ref{code:heuristik} weist der Code die Adresse 5 zu (Abbildung \ref{fig:heuristik} rot hinterlege Felder), da diese eine Hamming-Distanz von eins aufweist.
-Die nachfolgende Instruktion wird auf Grund des Gleichgewichts an die selbe Adresse des Register-Files 1 zugewiesen. Dieser Vorgang wird für alle virtuellen Register vorgenommen. Ist bei der Suche keine geeignete Stelle im zuerst gewählten Register-File zu finden, wird das jeweilig Andere Register-File durchsucht. Ist weiterhin keine Zuweisung möglich, schlägt der Algorithmus fehl. Dieser Fall kann jedoch nur auftreten, wenn zu viele Variablen im Assembler-Code verwendet wurden und diese nicht freigegeben werden können. Lösbar ist dieses Problem nur durch eine Anpassung des Assembler-Programms.
+Die nachfolgende Instruktion wird auf Grund des Register-File-Balancing an die selbe Adresse des Register-Files 1 zugewiesen. Dieser Vorgang wird für alle virtuellen Register vorgenommen. Ist bei der Suche keine geeignete Stelle im zuerst gewählten Register-File zu finden, wird das jeweilig Andere Register-File durchsucht. Ist weiterhin keine Zuweisung möglich, schlägt der Algorithmus fehl. Dieser Fall kann jedoch nur auftreten, wenn zu viele Variablen im Assembler-Code verwendet wurden und diese nicht freigegeben werden können. Lösbar ist dieses Problem nur durch eine Anpassung des Assembler-Programms.
 In der alten Heuristik-Version wurden die Registerblöcke von einer Seite aus aufgefüllt. Hierbei wurde ebenfalls überprüft ob es sich um eine freie Adresse handelt. Dabei wurde jedoch vernachlässigt, wie viele Adressleitungen toggeln. Dementsprechend wurden die Adresse 31 und 30 des jeweiligen Register-Files als mapping für die vier virtuellen Register verwendet.
-Die Berechnung der Hamming-Distanzen fuer beide Versionen und die daraus ergebene Schaltaktivitätsminimierung kann in \ref{tab::hamming_distanz} nachvollzogen werden. Dabei wird auf Grund der Symmetrie nur Register-File 0 betrachtet.
-Aus dem Minimalbeispiel ergibt sich ein Unterschied der Hamming-Distanzen von sechs. Dies bedeutet, dass die alte Version sechs Schaltaktivitäten mehr aufweist und somit einen höheren Energieverbrauch verzeichnet. Weitere Untersuchungen zur Verlustleistungseinsparung werden im Evaluationskapitel \ref{chap:evaluation} beschrieben.
-
-\begin{table}
+Die Berechnung der Hamming-Distanzen für beide Versionen und die daraus ergebene Schaltaktivitätsminimierung kann in \ref{tab::hamming_distanz} nachvollzogen werden. Dabei wird auf Grund der Symmetrie nur Register-File 0 betrachtet.
+\begin{table}[H]
 	\centering
 	$ \begin{array}{|l|l|}
 	\hline
 	\textbf{alte Version} & \textbf{neue Version} \\
 	\hline
-\text{V0R0 -->V0R0: }&\text{V0R0-->V0R0: }\\ 
-\hspace{50pt} 00000 \text{ und } 00000 \rightarrow H= 0 &\hspace{50pt} 00000 \text{ und } 00000 \rightarrow H= 0\\
-\text{V0R0 -->V0R2: } &\text{V0R0-->V0R2: }\\
-\hspace{50pt} 00000 \text{ und } 00010 \rightarrow H= 1 &\hspace{50pt} 00000 \text{ und } 00010 \rightarrow H= 1 \\
-\text{V0R2 -->V0R4: } &\text{V0R2-->V0R4: }\\
-\hspace{50pt} 00010 \text{ und } 00100 \rightarrow H= 2 &\hspace{50pt} 00010 \text{ und } 00100 \rightarrow H= 2 \\
-\text{V0R4-->V0R31: } &\text{V0R0-->V0R5: }\\
-\hspace{50pt} 00100 \text{ und } 11111 \rightarrow H= 4 &\hspace{50pt} 00100 \text{ und } 00101 \rightarrow H= 1 \\
-\text{V0R31-->V0R30: } &\text{V0R5-->V0R1: }\\
-\hspace{50pt} 11111 \text{ und } 11110 \rightarrow H= 1 &\hspace{50pt} 00101 \text{ und } 00001 \rightarrow H= 1 \\
+	\text{V0R0 -->V0R0: }&\text{V0R0-->V0R0: }\\ 
+	\hspace{50pt} 00000 \text{ und } 00000 \rightarrow H= 0 &\hspace{50pt} 00000 \text{ und } 00000 \rightarrow H= 0\\
+	\text{V0R0 -->V0R2: } &\text{V0R0-->V0R2: }\\
+	\hspace{50pt} 00000 \text{ und } 00010 \rightarrow H= 1 &\hspace{50pt} 00000 \text{ und } 00010 \rightarrow H= 1 \\
+	\text{V0R2 -->V0R4: } &\text{V0R2-->V0R4: }\\
+	\hspace{50pt} 00010 \text{ und } 00100 \rightarrow H= 2 &\hspace{50pt} 00010 \text{ und } 00100 \rightarrow H= 2 \\
+	\text{V0R4-->V0R31: } &\text{V0R0-->V0R5: }\\
+	\hspace{50pt} 00100 \text{ und } 11111 \rightarrow H= 4 &\hspace{50pt} 00100 \text{ und } 00101 \rightarrow H= 1 \\
+	\text{V0R31-->V0R30: } &\text{V0R5-->V0R1: }\\
+	\hspace{50pt} 11111 \text{ und } 11110 \rightarrow H= 1 &\hspace{50pt} 00101 \text{ und } 00001 \rightarrow H= 1 \\
 	\hspace{142pt} \sum H=8 &\hspace{142pt}\sum H=5 \\
 	\hline
 	\end{array} $
 	\caption{Hamming-Distanz-Berechnung}
 	\label{tab::hamming_distanz}
 \end{table}
+Aus dem Minimalbeispiel ergibt sich ein Unterschied der Hamming-Distanzen für beide Register-File Adressierungen von sechs. Dies bedeutet, dass die alte Version sechs Schaltaktivitäten mehr aufweist und somit einen höheren Energieverbrauch verzeichnet. Weitere Untersuchungen zur Verlustleistungseinsparung werden im Evaluationskapitel \ref{chap:evaluation} beschrieben.
+
+
 
 
 \section{Genetischer Algorithmus}

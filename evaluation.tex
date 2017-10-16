@@ -1,8 +1,9 @@
 \chapter{Hardware-Anpassungen}
 
 \section{Piplinestufe für Adressports}
-Da der Verwendete Prozessor Adress-Isolation ( siehe Kapitel \ref{subsec:add_iso}) einsetzt, sollten die Adressen so lange an einem Port anliegen bis diese geändert werden.
-Die für die Schreib- und Lesezugriffe verwendeten Adressen werden jeweils zwischen den Takten an die benötigten Ports angelegt um so zu gewährleisten, dass diese mit der steigenden Taktflanke auch übernommen werden können. Die Auswahl der Ports wird über Enable-Signale geregelt. Werden beispielsweise zwei Instruktionen verwendet die beide an Register-File 1 schreiben, so werden die entsprechenden Adressen an die Ports 0 und 1 angelegt. Sobald diese zu Verfügung stehen, werden diese von den Enable-Signalen freigegeben.\\
+Da der Verwendete Prozessor Adress-Isolation (siehe Kapitel \ref{subsec:add_iso}) einsetzt, sollten die Adressen so lange an einem Port anliegen bis diese geändert werden.
+Die für die Schreib- und Lesezugriffe verwendeten Adressen werden jeweils zwischen den Takten von dem Adress-Decoder berechnet und an die benötigten Ports angelegt. Dadurch ist gewährleistet, dass diese mit der steigenden Taktflanke auch übernommen werden können. Die Auswahl der Ports wird über Enable-Signale geregelt. Im Fall dieser Architektur treten in diesem Fall Glitches auf, die auf Grund der unterschiedlichen Berechnungszeiten der Kombinatorik verursacht werden. In Schaubild \ref{fig:glitches} wird dieses Verhalten veranschaulicht. Hier ist zu erkennen, dass das Enable-Signal vor schaltet bevor die neue Adresse angelegt wird. Dadurch wird ein Glitch in den Adressleitungen verursacht. Dieses Szenario tritt nur auf, wenn ein Wechsel in den Enable-Signalen und sich somit die Herkunft der Adressen geändert wird.
+% Werden beispielsweise zwei Instruktionen verwendet die beide an Register-File 1 schreiben, so werden die entsprechenden Adressen an die Ports 0 und 1 angelegt. Sobald diese zu Verfügung stehen, werden diese von den Enable-Signalen freigegeben.\\
 
 \begin{figure}[H] 
 	\centering
@@ -11,15 +12,17 @@ Die für die Schreib- und Lesezugriffe verwendeten Adressen werden jeweils zwisc
 	\label{fig:glitches}
 \end{figure}
 
-Im Fall dieser Architektur tritt nun jedoch Problem auf, denn Adress- und Enable-Signal sind nicht synchron und somit weisen diese ein Zeitversatz, zwischen den beiden Signalen, auf. Dies liegt daran, dass die benötigten Enable-Signale aufwendig berechnet werden müssen und dies eine kurze Verzögerung nach sich zieht. Aus diesem Grund liegt die bereits geänderte Adresse kurze Zeit an dem falschen Adressport an. Sobald das Enable-Signal berechnet wurde, werden die richtigen Adressen angelegt. Dieses Szenario tritt lediglich auf, wenn ein Wechsel in den Enable-Signalen und sich somit die Herkunft der Adressen ändert. Das Beschriebene Problem verursacht eine Erhöhung der Schaltaktivität auf den Adressleitungen und somit auch eine steigende Verlustleistung. %um XXX \%
-Um diesem Effekt entgegenzuwirken wurde eine zweite Pipline-Stufe eingebaut. Durch die Verzögerung der Adress- und Enable-Signale ist garantiert, dass die Adressen erst dann an den entsprechenden Ports anliegen, wenn diese benötigt werden. Der zusätzliche Energieverbrauch der Pipeline-Register wird an dieser Stelle nicht weiter untersucht, da der Anstieg der Verlustleistung in den zu vergleichenden Algorithmen identisch ist.
 
-%\begin{figure}[H] 
-%	\centering
-%	\includesvg[width=\textwidth]{glitches_pipeline}
-%	\caption{Pipelinestufe gegen Glitches}
-%	\label{fig:glitches_pipeline}
-%\end{figure}
+% Dies liegt daran, dass die benötigten Enable-Signale aufwendig berechnet werden müssen und dies eine kurze Verzögerung nach sich zieht
+Das beschriebene Problem verursacht eine Erhöhung der Schaltaktivität auf den Adressleitungen. Dadurch steigt die Verlustleistung in den einzelnen Adress-Ports um teilweise XXX\%
+Um diesem Effekt entgegenzuwirken wurde eine weitere Pipline-Stufe eingebaut. Diese verzögert die Adressen, so dass keine Glitches an die Register-Ports weitergeleitet werden (siehe Abbildung \ref{fig:glitches_pipeline}). Der zusätzliche Energieverbrauch der Pipeline-Register wird an dieser Stelle nicht weiter untersucht, da der Anstieg der Verlustleistung in den zu vergleichenden Algorithmen identisch ist.
+
+\begin{figure}[H] 
+	\centering
+	\includesvg[width=\textwidth]{glitches_pipeline}
+	\caption{Pipelinestufe gegen Glitches}
+	\label{fig:glitches_pipeline}
+\end{figure}
 
 %\begin{figure}[!ht]
 %	\centering                  % zentrierte Ausrichtung
@@ -33,10 +36,10 @@ Um diesem Effekt entgegenzuwirken wurde eine zweite Pipline-Stufe eingebaut. Dur
 Es besteht jedoch eine Möglichkeit, die Pipeline-Stufen zu vermeiden.
 Da der Prozessor für ein ASIC entwickelt wird, können die Glitches durch den Einsatz von Buffer behoben werden. Hierzu müssten lediglich die betroffenen Signale mittels eines im ASIC implementierten Buffer verzögert werden. Dieser könnte beispielsweise durch das Einbauen zwei hintereinander geschalteter Inverter realisiert werden. Dabei würde sich die Verzögerung aus der Summe der Gatterlaufzeiten ergeben. Die Anzahl der Inverter-Gatter müsste dann an den Versatz von Adress- und Enable-Signal angepasst werden. 
 
-\section{Neuberechnung der Immediat-Adresse}
-Die im Implementierungsteil erläuterten Änderungen sollten keinen Einfluss auf die Daten der auszuführenden Algorithmen haben, jedoch ist beim Vergleich der Implementierungen, eine Abhängigkeit der Daten aufgetaucht.
-Diese wurde von Glitches an den Daten-Leitungen verursacht. Diese Veränderung der Daten sind nicht erwünscht und wurden aus diesem Grund mittels Anpassung der Hardware entfernt.
-Die Exekution-Stage verwendet für jede Instruktion die dekodierten Adressen aus der Decoding-Stage, hierbei wurde die Source-Adresse für kurze Zeit als Immediat-Adresse interpretiert. Dies führt dazu, dass kurzzeitig Daten aus dem falschen Register gelesen werden. Dies hat zur Folge, dass die falschen Daten an den Register-Ports angelegt werden. Dadurch entstehen Schaltaktivitäten die zu einer höheren dynamischen Verlustleistung an den Daten-Leitungen führen. Um dieses Phänomen zu beheben,  wird eine Neuberechnung der Immediat-Adresse nur dann vorgenommen, wenn auch eine Immediat-Instruktion vorliegt. Hierzu wurde im Decode-Modul des Prozessors verändert. 
+\section{Neuberechnung der Immediate-Adresse}
+Die im Implementierungsteil erläuterten Änderungen sollten keinen Einfluss auf die Daten der auszuführenden Algorithmen haben, jedoch ist beim Vergleich der Implementierungen eine Abhängigkeit der Daten aufgetaucht.
+
+Die Decoding-Stage berechnet unabhängig von den angelegt Instruktionen aus jeder Adresse eine Immediate-Adresse und leitet dies an die Exekution-Stage weiter. Dort werden Source-Adressen für kurze Zeit als Immediate-Adressen interpretiert und verursachen dadurch Schaltaktivitäten an den Daten-Leitungen. Diese Veränderung der Daten sind nicht erwünscht und wurden aus diesem Grund mittels Anpassung der Hardware entfernt. Um das beschriebene Phänomen zu beheben,  wird eine Neuberechnung der Immediate-Adresse nur dann vorgenommen, wenn es sich bei der angelegten Instruktion auch um eine Immediate-Instruktion handelt.
 Mittels dieser Veränderung, ist die Verlustleistung nun nicht mehr von den Daten abhängig.
 
 \section{Offset-Berechnung für Immediat-Adressen}
@@ -58,13 +61,13 @@ Da die Verlustleistung nicht im Code und zur Laufzeit bestimmt werden kann, muss
 Vorerst wird das gewünschte Assembler Programm zusammen mit der Prozessor-Konfiguration in den im Implementierung Kapitel beschriebenen Compiler geladen. Hierbei muss unter Anderem angegeben werden mit welchen Takten der Prozessor taktet und wie gross die Register fuer diesen Fall sind. Außerdem muss dem Compiler die Variante der zu verwendenden Register-Allocation (Tabelle \ref{tab:algo_conifg}) übergeben werden. Nach erfolgreichem compilieren des Codes steht die Binary Datei und der geschedulte Code zu Verfügung. Im Anschluss an diesen Prozess wird die Leistungsanalyse durchgeführt. Hierzu wird die Netzliste des Prozessors und die Binary Datei benötigt. Das Tool \glqq Prime Time Suite\grqq von Synopsys analysiert hierbei alle Schaltaktivitäten im Prozessor und gibt anschließend eine detaillierte Übersicht über die Leistungsaufnahme des Prozessors aus. AUSFÜHRLICHER .\\ 
 Mithilfe dieses Evalutionsablaufes sind die in diesem Kapitel evaluierten Ergebnisse entstanden.
 \section{Testprogramme}
-Um den Einfluss der Register-Adressen besser verstehen zu können wurden Assemblerprogramme entwickelt welche den Einfluss von Target-, Source1 und Source2-Register untersuchen.Hierbei sind diese in der Komplexität gestaffelt. In den folgenden Kapiteln wird nun auf die Ergebnisse der einzelnen Programme und deren Erkenntnisse eingegangen.
+Um den Einfluss der Register-Adressen besser verstehen zu können wurden Assemblerprogramme entwickelt welche den Einfluss von Target-, Source1- und Source2-Register untersuchen.Hierbei sind diese in der Komplexität gestaffelt. In den folgenden Kapiteln wird nun auf die Ergebnisse der einzelnen Programme und deren Erkenntnisse eingegangen.
 \subsection{Empirische Tests}
 \label{cap:empirischeTests}
 Um die aufgestellte Annahme, dass sich die Verlustleistung proportional zur Hamming-Distanz verhält, zu bestätigen, wurden zu Beginn Assemblerprogramme entworfen, die nur mit physikalischen bzw. festen Registern arbeiten.
-Außerdem wurden vorerst der Best- und Worst-Case untersucht, um das maximale Optimierungspotenial zu ermitteln. Das Programm durchläuft dabei alle Möglichkeiten der Allokation, um zum einen die Register-Allokation und die damit verbundene Hamming-Distanz-Berechnung zu testen, zum Andern alle Einflüsse der Register-Adressierung zu ermitteln. Es bestehen für die Target-Register vier und für die Source-Register 16 Möglichkeiten, dabei sind X2-Operationen ausgenommen. Im Worst-Case werden die Register so adressiert, dass die maximale Hamming-Distanz entsteht. Dabei wechseln die Adressen von 0 auf 31 welches der maximalen Hamming-Distanz von fünf entspricht. Das Programm hat hierbei keinerlei Funktion und besteht aus Gründen der Übersichtlichkeit aus nur zwei Instruktionen (ADD und OR). Damit keine Einflüsse durch Scheduling oder Daten entstehen, wurden Instruktionen manuell geschedult und den einzelnen Issue-Slots zugewiesen. Somit ist die Anordnung der Assemblerbefehlen für jeden Testfall identisch und der Einfluss ist somit entkoppelt. Im Falle der Datenabhängigkeiten wurden alle Register mit einer Null initialisiert und im Anschluss nicht verändert. Dadurch werden alle Instruktionen mit den selben Daten ausgeführt und somit besteht keine Abhängigkeit der Daten mehr.
+Außerdem wurden vorerst der Best- und Worst-Case untersucht, um das maximale Optimierungspotenial zu ermitteln. Das Programm durchläuft dabei alle Möglichkeiten der Adress-Port-Zuweisung, dies testet zum einen die Register-Allokation und die damit verbundene Hamming-Distanz-Berechnung, zum andern werden alle Einflüsse der Register-Adressierung ermittelt. Da der Prozessor zwei Register-Files mit jeweils zwei Write- und vier Read-Ports aufweist, bestehen für die Target-Register vier und für die Source-Register 16 Möglichkeiten der Portzuweisung (siehe Tabelle \ref{lese-port} sowie \ref{fig::schreib-port}), dabei sind X2-Operationen ausgenommen. Im Worst-Case werden die Register so adressiert, dass die maximale Hamming-Distanz entsteht. Dabei wechseln die Adressen von 0 auf 31 welches der maximalen Hamming-Distanz von fünf entspricht. Damit keine Einflüsse durch Scheduling oder Daten entstehen, wurden Instruktionen manuell geschedult und den einzelnen Issue-Slots zugewiesen. Somit ist die Anordnung der Assemblerbefehlen für jeden Testfall identisch und der Einfluss ist somit entkoppelt. Im Falle der Datenabhängigkeiten wurden alle Register mit einer Null initialisiert und im Anschluss nicht verändert. Dadurch werden alle Instruktionen mit den selben Daten ausgeführt und somit besteht keine Abhängigkeit der Daten mehr.
 Für den Fall des Best-Case wurde die Adresse nicht verändert und immer auf die Adresse 0 gelesen sowie geschrieben.
-Das Power-Analyse-Tool zeigt nach dem ausführen des Workflows \ref{fig:flow_power_analyse} eine Übersicht über die Leistungsaufnahme des Prozessors an. Hierbei wird die Leistung in Interne-, Schalt- und Leakageleistung aufgeteilt (siehe Abbildung \ref{best_power_hierarchy}). Außerdem wird diese über die Hierarchie der Module aufgeschlüsselt. Die letzte Spalte des Reports zeigt die Aufteilung der Leistungsaufnahme in Prozent. Dabei ist zu erkennen, dass das Register-File die größte Leistungsaufnahme im Prozessor aufweist.
+Das Power-Analyse-Tool zeigt nach dem ausführen des Workflows \ref{fig:flow_power_analyse} eine Übersicht über die Leistungsaufnahme des Prozessors an. Hierbei wird die Leistung in Interne-, Schalt- und Leakageleistung aufgeteilt (siehe Abbildung \ref{best_power_hierarchy}). Außerdem wird diese über die Hierarchie der Module aufgeschlüsselt. Die letzte Spalte des Reports zeigt die Aufteilung der Leistungsaufnahme in Prozent. Dabei ist zu erkennen, dass das Register-File (vrf\_inst) die größte Leistungsaufnahme im Prozessor aufweist.
 
 \begin{figure}[H] 
 	\centering
@@ -82,8 +85,8 @@ Durch das minimieren der Schaltaktivitäten hat zusätzlich den Vorteil, dass di
 	\caption{Einsparungspotential Best-Worst-Case}
 	\label{fig:best_powersave}
 \end{figure}
-
-Da nun bewiesen wurde, dass ein Zusammenhang zwischen Adressierung und Verlustleistung besteht, soll die Register-Allokation nun näher untersucht werden. Hierzu wurden Testfälle erstellt welche mit unterschiedlichen Adressierungen aber selben Daten arbeiten. Dabei wurden vorerst die Register einzeln betrachtet. Um die einzelnen Ergebnisse vergleichen zu können wurden die Programme so entworfen, dass die Hamming-Distanzen für alle Testfälle identisch ausfallen. Das heißt die Schaltaktivitäten in den Lese- sowie Schreibports sind identisch und die Leistungen können somit verglichen werden. Ein Beispiel für ein solches Testprogramm, welches den Einfluss der Target-Register testet, finden sie im Codebeispiel \ref{code:target_switching_test}. Um die Source-Register vom Test zu entkoppeln, wurden die Adressen der Register, die nicht untersucht werden sollten nicht verändert. Dadurch entsteht keinerlei Schaltaktivität in den Adressleitungen. Gestartet wird die Berechnung der Hamming-Distanz immer mit der Adresse 0, da keine Aussage getroffen werden kann welche Adresse in der letzten SLM zugewiesen wurde.
+\subsection{Synthetische Testprogramme}
+Da nun bewiesen wurde, dass ein Zusammenhang zwischen Adressierung und Verlustleistung besteht, soll die Register-Allokation nun näher untersucht werden. Hierzu wurden synthetische Testfälle erstellt welche mit unterschiedlichen Adressierungen, aber selben Daten arbeiten. Dabei wurden vorerst die Register einzeln betrachtet. Um die einzelnen Ergebnisse vergleichen zu können wurden die Programme so entworfen, dass die Hamming-Distanzen für alle Testfälle identisch ausfallen. Das heißt die Schaltaktivitäten in den Lese- sowie Schreibports sind identisch und die Leistungen können somit verglichen werden. Ein Beispiel für ein solches Testprogramm, welches den Einfluss der Target-Register testet, finden sie im Codebeispiel \ref{code:target_switching_test}. Um die Source-Register vom Test zu entkoppeln, wurden die Adressen der Register, die nicht untersucht werden sollten nicht verändert. Dadurch entsteht keinerlei Schaltaktivität in den Adressleitungen. Gestartet wird die Berechnung der Hamming-Distanz immer mit der Adresse 0, da keine Aussage getroffen werden kann welche Adresse in der letzten SLM zugewiesen wurde.
 
 \begin{algorithm}[H]
 	\begin{algorithmic}[1]
@@ -100,7 +103,7 @@ Da nun bewiesen wurde, dass ein Zusammenhang zwischen Adressierung und Verlustle
 	\end{algorithmic}
 \end{algorithm}
 
-Dieser Test wurde für Adressen zwei, fünf, 24, 25 ,27 und 31 ausgeführt. Außerdem wurden Target, Source 1 und Source 2 getestet. Die untenstehenden Schaubilder(\ref{fig:source1_power}) zeigen hierbei der Schaltleistung der verschiedenen Testfälle. Es ist schön zu erkennen, dass die Schaltleistungen der Lese- sowie Schreibports linear mit der Hamming-Distanz steigen. Außerdem sind die Steigungen der Kurven nahezu identisch, welches impliziert, dass die Adressen in allen Ports die selbe Verlustleistung verursacht.\\
+Dieser Test wurde für Adressen zwei, fünf, 24, 25 ,27 und 31 ausgeführt. Außerdem wurden Target, Source 1 und Source 2 getestet. Die untenstehenden Schaubilder(\ref{fig:source1_power}) zeigen hierbei der Schaltleistung der verschiedenen Testfälle. Es ist schön zu erkennen, dass die Schaltleistungen der Lese- sowie Schreibports linear mit der Hamming-Distanz steigen. Außerdem sind die Graphen der Source-Register nahezu identisch, welches impliziert, dass die Adressen in den Lese-Ports eine identische Verlustleistung verursachen.\\
 
 \begin{figure}[H]
 	\centering
@@ -117,9 +120,9 @@ Dieser Test wurde für Adressen zwei, fünf, 24, 25 ,27 und 31 ausgeführt. Auß
 
 Target Register File 0 +1
 
-Bei den Graphen ist ein Sprung der Leistung bei einer Hamming-Distanz von 64 auffällig. Dieser lässt sich dadurch erklären, dass zwar die Hamming-Distanzen identisch sind, aber unterschiedliche Adressleitungen verwendet werden, welche eine größere Lastkapazität aufweisen. Durch die höhere Lastkapazität wird automatisch auch einer größere Leistung benötigt. Dieses Phänomen wird in Kapitel \ref{cap:lastkapa} näher untersucht und erläutert.\\
+Bei den Graphen ist ein Sprung der Leistung bei einer Hamming-Distanz von 64 auffällig. Dieser lässt sich dadurch erklären, dass zwar die Hamming-Distanzen der Testfälle mit den Register-Adressen fünf und 24 identisch sind, aber unterschiedliche Adressleitungen verwendet werden, welche eine größere Lastkapazität aufweisen. Durch die höhere Lastkapazität wird automatisch auch einer größere Leistung benötigt. Dieses Phänomen wird in Kapitel \ref{cap:lastkapa} näher untersucht und erläutert.\\
 
-Nach dem die Register nun getrennt voneinander betrachtet, und gezeigt wurde, dass die Adressen etwa die selbe Schaltleistungen in den Ports verursachen, soll nun das Verhalten beim gemeinsamen Schalten der Source- sowie Target-Register untersucht werden. Auch hierbei werden die Tests mit den selben Hamming-Distanzen für Lese- und Schreib-Ports ausgeführt. Das untenstehende Schaubild \ref{fig:source_target_power} zeigt auch hier, dass ein linearer Verlauf erkennbar ist.
+Nach dem die Register nun getrennt voneinander betrachtet und gezeigt wurde, dass die Adressen ca. die selbe Schaltleistungen in den Ports verursachen, soll nun das Verhalten beim gemeinsamen Schalten der Source- sowie Target-Register untersucht werden. Auch hierbei werden die Tests mit den selben Hamming-Distanzen für Lese- und Schreib-Ports ausgeführt. Das untenstehende Schaubild \ref{fig:source_target_power} zeigt auch hier, dass ein linearer Verlauf erkennbar ist.
 
 \begin{figure}[H]
 	\centering
@@ -137,7 +140,6 @@ Außerdem zeigt Abbildung \ref{fig:total_power_source_target} die Gesamtleistung
 	\label{fig:total_power_source_target}
 \end{figure}
 
-
 Um nun ebenfalls den Einfluss der Daten auf die Verlustleistung zu ermitteln wurden die oben genannten Programme mit Zufallszahlen ausgeführt. Hierzu wurden vorerst alle Register mit zufälligen Zahlen initialisiert und im Anschluss die oben beschriebenen Funktionen abgearbeitet. Diese Änderung verursacht einen Anstieg der Verlustleistung, jedoch ist zu untersuchen, ob die Einsparung durch die Adressierung dominiert. Hierzu wurden die Testfälle mehrere Male durchlaufen, so dass die Werte aussagekräftig sind. Das untenstehende Schaubild \ref{fig:random_data_total_power} zeigt hierbei die Verläufe des Testfalls mit null initialisierten Daten in rot und mit Zufallszahlen befüllten Registern in blau. Es ist deutlich zu erkennen, dass trotz einer Abhängigkeit der Daten die Optimierung der Adressen dominiert und die Verlaufe sich ähneln.
 
 \begin{figure}[H]
@@ -148,19 +150,46 @@ Um nun ebenfalls den Einfluss der Daten auf die Verlustleistung zu ermitteln wur
 \end{figure}
 
 
-\subsection{Heuristik} 
-Da nun die Abhängigkeiten der Register-Adressierung zu der Verlustleistung bewiesen wurde, wie diese durch den Einsatz von virtuellen Registern und der neu implementierten Heuristik verbessert werden kann. Hierzu werden wie in Kapitel \ref{cap:empirischeTests} Assemblerprogramme entworfen welche manuell geschedult sind und die Register mit Null initialisiert wurden. Der unterschied zu den empirischen Testprogrammen liegt darin, dass nun ebenfalls virtuelle Register verwendet werden.
-Dies hat zur folge, dass die Register-Allokation ein geeignete Zuweisung finden muss und somit die Schaltaktivität der Adresse minimieren kann. Das Testprogramm führt vorerst Addition und Or-Befehle mittels physikalischer Register aus. Hierbei wird dem ersten Issue-Slot die Addition und dem zweiten Issue-Slot eine Or-Operation zugewiesen. Durch das addieren und verodern und anschließende Abspeicherung in physikalische Register, wird eine gewisse Anzahl an Registern fest blockiert und kann nicht für virtuelle Register verwendet werden.(Siehe Abbildung xxx)
-Nach dem die Register-Files vorbelegt wurden, werden die Instruktionen mit virtuellen Registern begonnen. Ab diesem Punkt ergeben sich Veränderungen in der Register-Allokation. Je nach gewähltem Verfahren, wird nach den optimalen physikalischen Registern nach unterschiedlichen Ansätzen gesucht. 
+\subsection{Heuristik}
+\label{chap:eval_heuristik}
+Da nun die Abhängigkeiten der Register-Adressierung zu der Verlustleistung bewiesen wurde, wie diese durch den Einsatz von virtuellen Registern und der neu implementierten Heuristik verbessert werden kann. Hierzu werden wie in Kapitel \ref{cap:empirischeTests} Assemblerprogramme entworfen welche manuell geschedult sind und die Register mit Null initialisiert werden. Der unterschied zu den empirischen Testprogrammen liegt darin, dass nun ebenfalls virtuelle Register verwendet werden.
+Dies hat zur folge, dass die Register-Allokation ein geeignete Zuweisung finden muss und somit die Schaltaktivität der Adresse minimieren kann. Das Testprogramm belegt vorerst durch physikalische Adressierung eine gewisse Anzahl an Registern vor und blockiert diese somit für die Verwendung von virtuellen Register.(Siehe Abbildung \ref{fig:heuristik_eval}, blau hinterlegte Felder)
+Nach dem die Register-Files vorbelegt wurden, wird mit der Zuweisung von virtuellen Registern begonnen. Ab diesem Punkt ergeben sich Veränderungen in der Register-Allokation. Je nach gewähltem Verfahren, wird nach den optimalen physikalischen Registern mit unterschiedlichen Algorithmen gesucht. 
 
-Der Test zeigt hierbei, dass für diesen Testfall die neue Heuristik eine Verbesserung der Hamming-Distanz von XXX\% zu erzielen kann. Diese Verbesserung spiegelt sich ebenfalls in der Schaltleistung wieder.(siehe Abbildung XXX).
+\begin{figure}[H] 
+	\centering
+	\includesvg[width=\textwidth]{heuristik_eval_worst}
+	\caption{Heuristik Evaluation}
+	\label{fig:heuristik_eval}
+\end{figure}
+Das Schaubild zeigt hierbei den Vergleich der alten zur neuen Heuristik. Die blockierten Register-Adressen sind blau hinterlegt, die von den Algorithmen ausgewählten Register-Adressen sind rot gekennzeichnet. Durch die beiden unterschiedlichen Verfahren ergibt sich ein Unterschied von 11 Schaltvorgängen in den Adress-Leitungen. Damit dieser in der Verlustleistung deutlicher zu erkennen ist, wird die Zuweisung der virtuelle Register zehn mal wiederholt. Dadurch ergibt sich ein Differenz der Hamming-Distanzen von 101, da durch das wiederholte Ausführen der Allokation die Zuweisung mit unterschiedlichen Adressen gestartet wird.
+Damit der Zusammenhang von Verlustleistung zu Schaltaktivität zu erkennen ist, wurden fünf Testfälle mit unterschiedlichen Hamming-Distanzen erzeugt. Hierbei variieren die Hamming-Distanzen im Bereich zwischen 101 und 500 Das Schaubild XXX zeigt den Verlauf der Verlustleistung der Adress-Ports über der Hamming-Distanz. 
 
-SChaubild SChaltleistung heuristik genetischer Algo
+SChaubild SChaltleistung heuristik neu 
+
+Die Evaluation der Heuristik zeigt, dass für die entwickelten synthetischen Testfälle die neue Heuristik eine durchschnittliche Verbesserung der Hamming-Distanz von XXX\% erzielt werden kann. Diese Optimierung spiegelt sich ebenfalls in der Schaltleistung des Prozessor wieder.(siehe Abbildung XXX).
+
+ Schaubild Gesamtleistung Heuristik neu
+
+Die Tabelle XXX zeigt die Optimierung der Verlustleistung in den einzelnen Modulen des Prozessors gegenüber der alten Implementierung. Hierbei sind alle Werte in Prozent angegeben und beziehen sich auf die Gesamtleistungen der Spalten. Auch hier ist zu erkennen das deutliche Einsparungen in den Register-Files generiert werden konnten. Dabei wurde die Schaltleistung im Register-File gegenüber der alten Heuristik um XXX\% verbessert. Die gesamte Verlustleistung wurde um XXX\% optimiert. 
+
+Tabelle Prozent alt neu
 
 \subsection{Genetischer Algorithmus}
-Da die Heuristik wie bereits in Kapitel \ref{sec:genetischerAlgorithmus} erwähnt, nur die Target-Register auf Schaltaktivität minimiert werden kann, wird nun die Verbesserung der Verlustleistung durch zusätzliches optimieren der Source-Register untersucht. 
+Da die Heuristik wie bereits in Kapitel \ref{sec:genetischerAlgorithmus} erwähnt, nur die Target-Register auf Schaltaktivität minimiert werden, wird nun die Verbesserung der Verlustleistung durch zusätzliches optimieren der Source-Register untersucht.
+Bei der Evaluation wurde ein genetischer Algorithmus verwendet, der mit einer Heuristik eine Startpopulation berechnet um eine schnelle Konvergenz gegen ein Minimum zu garantieren. Außerdem wird die Mutationswahrscheinlichkeit dynamisch angepasst. Als Fitness-Funktion wird die Multiplikation aus Hamming-Distanz und Lastkapazität gewählt. 
+Um den Optimierungsgrad gegenüber der alten und neuen Heuristik vergleichen zu können, wurde der genetische Algorithmus mit den selben synthetischen Testprogrammen wie in Kapitel \ref{chap:eval_heuristik} getestet.
+Da der genetische Algorithmus zufallsgesteuert ist, variieren die Ergebnisse stark. Um dennoch eine Aussage über die Verbesserung gegenüber der Heuristik treffen zu können, wurden die Testfälle fünf mal ausgeführt und aus den Ergebnissen ein Mittelwert gebildet. Das Schaubild XXX zeigt hierbei wie stark die Ergebnisse untereinander variieren. Es ist jedoch deutlich zu erkennen, dass in jedem Fall eine Verbesserung der Schaltleistung erzielt werden konnte.
 
- 
+genetischer Algo fünf werte pro testfall in einem Diagramm
+
+In der besten Variante des genetischen Algorithmus, ist eine Verbesserung der Hamming-Distanz von XXX\% zu erreichen. Diese verursacht eine Optimierung der Schaltleistung um XXX\% und der Gesamtleistung um XXX\%.
+Im unten stehenden Schaubild XXX wird der Mittelwert der Testfälle gegenüber der alten Heuristik veranschaulicht. 
+
+Mittelwert genetischer Algo gegenüber alter heuristik
+
+Auch hier zeigt ein prozentualer Vergleich der Verlustleistungen des kompletten Prozessors eine deutliche Verbesserung der Schaltleistung in den Register-Files.
+
 
 \section{reelle Testprogramme}
 \label{sec:testprogamme}
@@ -190,16 +219,3 @@ Das untenstehende Schaubild \ref{fig:read_port_mux} zeigt wie die Daten aus den 
 \end{scriptsize}
 
 Aus diesem Grund wurde die Fitness Funktion des Genetischen Algorithmus so angepasst, dass die Lastkapazität zusätzlich berücksichtigt wird.
-
-\section{Schlussfolgerung}
-\label{sec:Schlussfolgerung}
-Das Ziel dieser Arbeit war es, durch einen genetischen Optimierungsalgorithmus eine Register-Allokation zu finden, welche die Verlustleistung des KUVAKA-Prozessors minimiert. Dabei wurde zu Beginn der Ansatz gewählt die Register so zu allokieren, dass die Schaltaktivität der Register-Adressierung minimiert wird. Hierzu ein genetische Optimierungsalgorithmus implementiert, welcher anhand der Hamming-Distanz gepaart mit der Lastkapazität als Fitness-Wert die Schaltaktivität in den Registern optimiert. Dabei hat die Evaluation gezeigt, dass die Parameter des Algorithmus an das jeweilige Problem angepasst werden muss. Eine Startpopulationsberechnung durch eine Heuristik und dynamische Anpassung der Mutationswahrscheinlichkeit ist jedoch für alle Problemstellungen sinnvoll.
-Außerdem hat die Evaluation gezeigt, dass durch eine geeignete Adressierung die dynamische Verlustleistung insbesondere in den großen Register-Files minimiert werden kann.Im Fall einer optimalen Adressierung, kann eine Einsparung von 7,87\% für die Verlustleistung des gesamten Prozessors und eine Reduzierung um 38,65\% für die Schaltleistung erzielt werden. Weitere Untersuchungen haben gezeigt dass Werte im Bereich von 1\% für die Gesamtverlustleistung wahrscheinlicher sind. Für die realen Testfälle des Beamforming und emulated-floation-point sind Einsparungen von XXX \% zu erzielen. Dabei ist zu beachten, dass es zu Schaltaktivitäten der Daten auf Grund des Verhaltens der Adressdecoder kommt und diese eine Verschlechterung der Verlustleistungsergebnisse erzeugt. Außerdem wurde der Einfluss der Lastkapazität auf die Verlustleistung bewiesen und aufgezeigt. Durch eine Berücksichtigung dieser kann die Leistung weiter optimiert werden.
-Außerdem wurde eine weitere Pipeline-Stufe in dem Prozessor eingebaut, diese verhindert, dass Glitches durch die Berechnung der Adressen an die Regsiter-Files weitergeleitet werden und dort Schaltleistung verursacht.
-
-
- 
-
-
-
-Parameter sind auf spezielle Algorithmen und koennen nicht pauschalisiert werden.
