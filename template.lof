@@ -21,11 +21,14 @@
 \contentsline {figure}{\numberline {5.3}{\ignorespaces Einsparungspotential Best-Worst-Case\relax }}{46}{figure.caption.25}
 \contentsline {figure}{\numberline {5.4}{\ignorespaces Schaltleistung Read Register File 0\relax }}{48}{figure.caption.26}
 \contentsline {figure}{\numberline {5.5}{\ignorespaces Schaltleistung Read Register File 1\relax }}{48}{figure.caption.27}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Schaltleistung Read+Write Register\relax }}{49}{figure.caption.28}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces gesamte Verlustleistung des Prozessors\relax }}{49}{figure.caption.29}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Einfluss der Daten auf die gesamte Verlustleistung\relax }}{50}{figure.caption.30}
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Heuristik Evaluation\relax }}{51}{figure.caption.31}
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Read-Port Multiplexer\relax }}{55}{figure.caption.32}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Schaltleistung Write Register File 0\relax }}{48}{figure.caption.28}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Schaltleistung Write Register File 1\relax }}{49}{figure.caption.29}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Schaltleistung Read+Write Register\relax }}{50}{figure.caption.30}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces gesamte Verlustleistung des Prozessors\relax }}{50}{figure.caption.31}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Einfluss der Daten auf die gesamte Verlustleistung\relax }}{51}{figure.caption.32}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Heuristik Evaluation\relax }}{52}{figure.caption.33}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Gesamtverlustleistung genetischer Algorithmus vs. Heuristik\relax }}{54}{figure.caption.34}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Read-Port Multiplexer\relax }}{56}{figure.caption.35}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
