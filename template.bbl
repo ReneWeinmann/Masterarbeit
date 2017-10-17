@@ -58,6 +58,10 @@ Mark Horowitz, Thomas Indermaur, and Ricardo Gonzalez.
 \newblock In {\em Low Power Electronics, 1994. Digest of Technical Papers.,
   IEEE Symposium}, pages 8--11. IEEE, 1994.
 
+\bibitem{primeTime2016}
+Synopsys Inc.
+\newblock {\em PrimeTime PX User Guide Version L-2016.06}.
+
 \bibitem{landskov1980local}
 David Landskov, Scott Davidson, Bruce Shriver, and Patrick~W Mallett.
 \newblock Local microcode compaction techniques.

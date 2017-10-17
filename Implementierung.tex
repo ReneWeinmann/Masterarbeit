@@ -230,9 +230,16 @@ Im Folgenden wird auf die einzelnen Ansätze der Fitness-Funktion eingegangen:
 		Als zusätzliche Erweiterung wurde eine Gewichtung der Hamming-Distanz und Lastkapazität eingefügt, um den Einfluss der Faktoren zu beeinflussen und somit die Verlustleistung bestmöglich anzunähern.
 \end{itemize}
 
-Schaubild Fitness-Funktion -> Power
+Das Schaubild \ref{fig:compare_genetic_modes} zeigt, wie sich der Einsatz von verschiedenen Fitness-Funktionsansätze auf die Gesamtleistung des Prozessors auswirkt. Da der genetische Algorithmus zufalls gesteuert ist, wurden die verschiedenen Algorithmen-Ansaetze mit den selben Seed ausgefuehrt. Dadurch koennen die Ergebnisse untereinander verglichen werden. Hierbei ist zu erkennen, dass eine Kombination aus Lastkapazität und Hamming-Distanz die besten Ergebnisse liefert.
+
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=\textwidth]{fig/compare_genetic_modes.pdf}
+	\caption{Vergleich Fitness-Funktionsansätze}
+	\label{fig:compare_genetic_modes}
+\end{figure}
  
-\subsection{Parameter}
+\subsection{Parameter des genetischen Algorithmus}
 \label{cap:parameter}
 Es bestehen eine Vielzahl an Parametern und Einstellungsmöglichkeiten bei der Verwendung eines genetischen Algorithmus, dabei haben einige einen erheblichen Einfluss auf die Funktion und das Ergebnis. Da die Parameter sehr von der Problemstellung abhängen, kann nur begrenzt auf Literatur zurück gegriffen werden. Jedoch wurden eine Größenordnung und erste Richtwerte aus der Literatur \cite{grefenstette1986optimization} und dem genetischen Scheduling entnommen. Im Folgenden sollen die Parameter und deren Funktion sowie Einfluss auf das Ergebnis erläutert werden.
 
@@ -286,7 +293,8 @@ Das untenstehende Schaubild \ref{fig:dyn_genetic} zeigt die Optimierung, die dur
  
 \newpage
 \subsection{Algorithmus Modi}
-Dieses Kapitel soll die Algorithmus-Modi des genetischen Algorithmus verdeutlichen und die Einstellungsmöglichkeiten aufzeigen.
+Die Tabelle \ref{tab:algo_conifg} zeigt die Algorithmus-Modi des genetischen Algorithmus sowie der Heuristiken und verdeutlicht die Einstellungsmöglichkeiten der Registerallokation. Diese Variablen können übergeben werden und wurden so gewählt, dass die einzelnen Versionen bessere getestet werden können . Diese Varibalen können beim aufrufen des Schedulers 
+Alle weiteren Variablen können nur innerhalb des Algorithmus geaender werden.
 
 %\begin{itemize}
 %	 \setlength{\itemsep}{-6pt}
@@ -332,17 +340,17 @@ Dieses Kapitel soll die Algorithmus-Modi des genetischen Algorithmus verdeutlich
 	%Tabelle mit allen Modis 
 	\begin{table}[htp]
 		\centering
-		\begin{tabular}{cccccccc}
-			\multicolumn{2}{l}{}                 & \multicolumn{6}{|l}{Modi}                                                               \\ 
-			\multicolumn{2}{c}{Algorithmus-Konfig.}  & \multicolumn{1}{|c}{-E} & \multicolumn{1}{c}{-M} & \multicolumn{1}{c}{-G} & \multicolumn{1}{c}{-D} & \multicolumn{1}{c}{-H} & \multicolumn{1}{c}{-U} \\ 
+		\begin{tabular}{ccccccc}
+			\multicolumn{2}{l}{}                 & \multicolumn{5}{|l}{Modi}                                                               \\ 
+			\multicolumn{2}{c}{Algorithmus-Konfig.}  & \multicolumn{1}{|c}{-E} & \multicolumn{1}{c}{-M} & \multicolumn{1}{c}{-G} & \multicolumn{1}{c}{-D} & \multicolumn{1}{c}{-H}  \\ 
 			\hline
-		\multicolumn{2}{l}{Heuristik alt}  & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} \\
-		\multicolumn{2}{l}{Heuristik neu}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} \\ 
-		\multicolumn{2}{l}{Genetischer Algo. Hamming-Fitness}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} \\
-			\multicolumn{2}{r}{Heuristik als Startpop.}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0}  \\
-			\multicolumn{2}{r}{dynamischer Genetischer Algo.}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} \\
-		\multicolumn{2}{l}{Genetischer Algo. Load-Fitness}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0}  \\ 
-		\multicolumn{2}{l}{Genetischer Algo. Hamming*Load-Fitness}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0}                     
+		\multicolumn{2}{l}{Heuristik alt}  & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} \\
+		\multicolumn{2}{l}{Heuristik neu}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X}  \\ 
+		\multicolumn{2}{l}{Genetischer Algo. Hamming-Fitness}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} \\
+			\multicolumn{2}{r}{Heuristik als Startpop.}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1}  \\
+			\multicolumn{2}{r}{dynamischer Genetischer Algo.}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} \\
+		\multicolumn{2}{l}{Genetischer Algo. Load-Fitness}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0}   \\ 
+		\multicolumn{2}{l}{Genetischer Algo. Hamming*Load-Fitness}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0}                
 		\end{tabular}
 		\newline
 		\caption{Algorithmus-Konfiguration}

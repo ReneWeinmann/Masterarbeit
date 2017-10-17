@@ -42,12 +42,13 @@ Die im Implementierungsteil erläuterten Änderungen sollten keinen Einfluss auf
 Die Decoding-Stage berechnet unabhängig von den angelegt Instruktionen aus jeder Adresse eine Immediate-Adresse und leitet dies an die Exekution-Stage weiter. Dort werden Source-Adressen für kurze Zeit als Immediate-Adressen interpretiert und verursachen dadurch Schaltaktivitäten an den Daten-Leitungen. Diese Veränderung der Daten sind nicht erwünscht und wurden aus diesem Grund mittels Anpassung der Hardware entfernt. Um das beschriebene Phänomen zu beheben,  wird eine Neuberechnung der Immediate-Adresse nur dann vorgenommen, wenn es sich bei der angelegten Instruktion auch um eine Immediate-Instruktion handelt.
 Mittels dieser Veränderung, ist die Verlustleistung nun nicht mehr von den Daten abhängig.
 
-%\section{Offset-Berechnung für Immediat-Adressen}
+Die selbe Vorgehensweise wurde bei der Neuberechnung der Offset-Werte angewant, so dass auch hier keine ungewollten Schaltaktivitäten auftauchen.
+
 
 
 \chapter{Evaluation}
 \label{chap:evaluation} 
-Da die Verlustleistung nicht im Code und zur Laufzeit bestimmt werden kann, musste eine Analyse nach der Ausführung des Codes stattfinden. Die Vorgehensweise ist in Schaubild \ref{fig:flow_power_analyse} abgebildet.
+Damit die implementieren Algorithmen hinsichtlich des Verlustleistungsoptimierung verifiziert werden koennen, werden diese auf Gatterebene in einer 40nm ASIC-Technologie getest. Da die Verlustleistung nicht im Code und zur Laufzeit bestimmt werden kann, muss eine Verlustleistungssimulation nach der Ausführung des Codes stattfinden. Die Vorgehensweise ist in Schaubild \ref{fig:flow_power_analyse} abgebildet.
 
 \begin{scriptsize}
 	\begin{figure}[htbp] 
@@ -58,7 +59,14 @@ Da die Verlustleistung nicht im Code und zur Laufzeit bestimmt werden kann, muss
 	\end{figure}
 \end{scriptsize}
 
-Vorerst wird das gewünschte Assembler Programm zusammen mit der Prozessor-Konfiguration in den im Implementierung Kapitel beschriebenen Compiler geladen. Hierbei muss unter Anderem angegeben werden mit welchen Takten der Prozessor taktet und wie gross die Register fuer diesen Fall sind. Außerdem muss dem Compiler die Variante der zu verwendenden Register-Allocation (Tabelle \ref{tab:algo_conifg}) übergeben werden. Nach erfolgreichem compilieren des Codes steht die Binary Datei und der geschedulte Code zu Verfügung. Im Anschluss an diesen Prozess wird die Leistungsanalyse durchgeführt. Hierzu wird die Netzliste des Prozessors und die Binary Datei benötigt. Das Tool \glqq Prime Time Suite\grqq von Synopsys analysiert hierbei alle Schaltaktivitäten im Prozessor und gibt anschließend eine detaillierte Übersicht über die Leistungsaufnahme des Prozessors aus. AUSFÜHRLICHER .\\ 
+Vorerst wird das gewünschte Assembler Programm zusammen mit der Prozessor-Konfiguration in den im Implementierung Kapitel beschriebenen Scheduler geladen. Hierbei muss unter Anderem angegeben werden, mit welchen Takten der Prozessor taktet. Außerdem muss dem Scheduler die Variante der zu verwendenden Register-Allocation (Tabelle \ref{tab:algo_conifg}) übergeben werden. Nach erfolgreichem compilieren des Codes steht die Binary Datei und der geschedulte Code zu Verfügung. Im Anschluss an diesen Prozess wird die Leistungsanalyse durchgeführt. Hierzu wird die Netzliste des Prozessors und die Binary-Datei benötigt. Das Tool \glqq Prime Time Suite\grqq von Synopsys analysiert hierbei alle Schaltaktivitäten im Prozessor und gibt anschließend eine detaillierte Übersicht über die Leistungsaufnahme des Prozessors aus.\\
+Hierbei wird die Leistung in Internal-, Switching- und Leakage-Leistung aufgeteilt. Die Leakage-Power ist so definiert, dass alle Zeiten die eine Zelle nicht benutzt wird oder ihren Zustand nicht ändertauf, summiert werden und mit den jeweiligen Transistor-Konfigurationen verrechnet werden. Dabei gibt es zwei Verschiedene Ströme die die Verlustleistung verursachen, der Gate-Leakage-Strom $I_{gl}$ und der Source-Drain-Strom $I_{lk}$ (siehe Abbildung \ref{fig:prime_time_power}).  Bei der Leakage-Leistung handelt es sich somit um eine statische Verlustleistung. Hingegen sind Internal- und Switching-Leistung dynamische Verlustleistungen die von den Schaltvorgängen beeinflusst werden. Die Internal-Leistung inkludiert alle Leistungen die in einer Zelle durch das Laden/Entladen von Kapazitäten $I_{SW}$ und der auf Grund der Kurzschluss-Ströme $I_{SC}$ verursachte werden. Dagegen sind in der Switching-Leistung die Verlustleistungen berücksichtigt, die durch das Laden von externen Lastkapazitäten verursacht wurden.\cite{primeTime2016}
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=\textwidth]{prime_time_power}
+	\caption[Komponenten der Leistungsaufnahme]{Komponenten der Leistungsaufnahme \cite{primeTime2016}}
+	\label{fig:prime_time_power}
+\end{figure}
 Mithilfe dieses Evalutionsablaufes sind die in diesem Kapitel evaluierten Ergebnisse entstanden.
 \section{Testprogramme}
 Um den Einfluss der Register-Adressen besser verstehen zu können wurden Assemblerprogramme entwickelt welche den Einfluss von Target-, Source1- und Source2-Register untersuchen.Hierbei sind diese in der Komplexität gestaffelt. In den folgenden Kapiteln wird nun auf die Ergebnisse der einzelnen Programme und deren Erkenntnisse eingegangen.
@@ -208,9 +216,16 @@ In der besten Variante des genetischen Algorithmus, ist eine Verbesserung der Ha
 Auch hier zeigt ein prozentualer Vergleich der Verlustleistungen des kompletten Prozessors eine deutliche Verbesserung der Schaltleistung in den Register-Files. In diesem Fall wird die beste Variante des genetischen Algorithmus mit der Heuristik verglichen. Die Tabelle zeigt eine Verbesserung der Schaltleistung um 7,78\%. Die Verlustleistung die durch die Leakage-Ströme verursacht wurden sind um zwei bzw. drei Zehnerpotenzen kleiner als die Verlustleistungen die durch die Schaltvorgänge hervorgerufen werden. Aus diesem Grund werden dies Vernachlässigt. Eine Verschlechterung der Leakage-Leistung ist damit zu erklären, dass die Signale des Prozessors für längere Zeit ihre Pegel halten. Da die Leakage-Leistung nur dann auftritt, wenn kein Wechsel der Pegel stattfindet, wird im Fall einer optimierten Schaltleistung die Leakage-Leistung ungewollt erhöht.
 Die prozentuale Veränderung der Internal-Leistung liegt im sehr niedrigen Prozentbereich. 
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{fig/power_percent_genetic.pdf}
+	\caption{Prozentuale Verbesserung der Verlustleistung}
+	\label{fig:power_percent_genetic}
+\end{figure}
 
 
-\section{reelle Testprogramme}
+
+\section{Hörgerätalgorithmen}
 \label{sec:testprogamme}
 Um den implementierten Code zu testen und eine reelle Einsparung der Verlustleistungsreduktion zu ermitteln wurden die folgenden Assembler-Programme verwendet. Dabei handelt es sich um Programme die eine häufig Anwendung in Hörgerät-Prozessoren finden. Ausschlaggebend für die Wahl war die Anzahl der verwendeten virtuellen Registern da mit einer hohen Zahl das Verbesserungspotential der Register-Allokation steigt.
 \subsection{fft floating Point}
@@ -222,7 +237,7 @@ Der Beamforming-Algorithmus wird eingesetzt um eine Positionsbestimmung von Scha
 Da der verwendete Prozessor keine floating Point Variablen unterstützt, besteht ein Algorithmus der diese emuliert. 
 
 
-\subsection{Einfluss des Adress-Decoder auf Daten}
+\subsection{Einfluss des Register-Daten auf die Verlustleistung}
 In Kapitel \ref{cap:empirischeTests} wurde bereits der Einfluss der Daten auf die Verlustleistung ermittelt. Da sich nun jedoch eine Verschlechterung der Register-File-Leistung bei besserer Adressierung in den realen Testfällen ergibt wurden die Datenabhängigkeit nochmals überprüft. Dabei ergab sich, dass auf Grund des Verhalten des Adress-Decoders eine Veränderung der Daten verursacht wird. Da die Adressen über einen Adress-Decoder decodiert werden müssen und dieser nicht direkt alle Bits auf einmal umschalten kann, liegen kurze Zeit, Daten aus anderen Adressen an den Daten-Leitungen an. Dies Verursacht dort eine Schaltleistung welches die Verbesserung durch die Adressierung aufhebt.
 Um dieses Verhalten und die Funktion des Decoders besser nachzuvollziehen wurden nun weitere Testfälle generiert. Diese befüllen wie in Kapitel \ref{cap:empirischeTests} alle Register mit zufälligen Daten. Der unterschied liegt jedoch darin, dass die Instruktionen in allen Testfällen mit den selben Zufallsdaten arbeiten, so dass immer die selben Daten in die entsprechenden Register geschrieben werden.
 
