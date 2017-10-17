@@ -3,7 +3,7 @@
 Nachdem die nötigen Grundlagen erläutert sind, soll in diesem Kapitel aufgezeigt werden, wie der Compiler aufgebaut ist und wie das gesetzte Ziel implementiert wurde. Hierzu wird kurz auf den Ausgangsstatus des Codes und dessen Bestandteile eingegangen, um das komplette System besser verstehen zu können. Anschließend wird veranschaulicht, wie mit Hilfe einer optimierten Registerallokation die Verlustleistung gesenkt werden kann und wie dies mit einer Heuristik implementiert wurde. Im Anschluss wird ein genetischer Opimierungsalgorithmus entworfen, implementiert und evaluiert.
 \newpage
 \section{Instruktion-Scheduler}
- Das folgende Schaubild (siehe Abbildung \ref{fig:flow_compiler}) zeigt den Aufbau, Bestandteile, Ein- und Ausgaben des Schedulers.Die nachfolgenden Bestandteile yu denen auch die in dieser Arbeit relevante Register-Allokation gehoert, sind im Einzelnen detailliert beschrieben.
+ Das folgende Schaubild (siehe Abbildung \ref{fig:flow_compiler}) zeigt den Aufbau, Bestandteile, Ein- und Ausgaben des Schedulers. Die nachfolgenden Bestandteile zu denen auch die in dieser Arbeit relevante Register-Allokation gehört, sind im Einzelnen detailliert beschrieben.
  Gestartet wird mit einem Assembler-Programm, dass in einer ASM-Datei vorliegt und dem Code übergeben wird.
  
  
@@ -25,7 +25,7 @@ Nachdem die nötigen Grundlagen erläutert sind, soll in diesem Kapitel aufgezei
 
 \begin{itemize}
 	\item Precompiler\\
-		Da der Assembler-Code, Kommentare oder Bestandteile aufweisen kann, die nicht in der eigentlichen Assemblersprache enthalten sind, ist es nötig diese aufzulösen. Dies übernimmt der Precompiler oder Preprozessor der die Konstrukte in einen vom Prozessor ausführbaren Code bzw. Anweisungen umwandelt. Ein Beispiel für ein solches Konstrukt ist das An- und Ausschalten des Schedulings für bestimmte Bereiche des Codes. Hierbei kann dem Compiler, im Assembler-Programm durch Angabe des \"scheduling-off\"-Befehls mitgeteilt werden, welche SLMs vom Scheduling unberührt bleiben sollen.
+		Da der Assembler-Code, Kommentare oder Bestandteile aufweisen kann, die nicht in der eigentlichen Assemblersprache enthalten sind, ist es nötig diese aufzulösen. Dies übernimmt der Precompiler oder Preprozessor der die Konstrukte in einen vom Prozessor ausführbaren Code bzw. Anweisungen umwandelt. Ein Beispiel für ein solches Konstrukt ist das An- und Ausschalten des Schedulings für bestimmte Bereiche des Codes. Hierbei kann dem Compiler, im Assembler-Programm durch Angabe des \glqq scheduling-off \grqq-Befehls mitgeteilt werden, welche SLMs vom Scheduling unberührt bleiben sollen.
 	\item Virtual Renaming\\
 		Im Teil des virtuellen Renaming (Umbenennen) werden die im Assembler-Code vorhandenen virtuellen Register umbenannt, um eine konsistente Allokation und bessere Nachvollziehbarkeit zu gewährleisteten. Außerdem wird in diesem Teil des Compilers überprüft, ob ein virtuelles Register verwendet wurde, bevor dieses zugewiesen wurde. Diese Szenario ist nicht zulässig und muss im Assembler-Programm aufgelöst werden.
 	\item Register-Initalisierung\\
@@ -35,14 +35,14 @@ Nachdem die nötigen Grundlagen erläutert sind, soll in diesem Kapitel aufgezei
 	\item Register Allokation\\
 		Die Register-Allokation ist dafür zuständig, dass alle Register, sowohl physikalische als auch virtuelle, im Register-File abgespeichert werden können. Dazu wird diese nach jedem Scheduling einer SLM aufgerufen und durchläuft alle Instruktionen, sowie die darin verwendeten Register. Bei der Verwendung eines physikalischen Registers überprüft die Allokation ob die vom Programmierer gewählte Register-Adresse und Register-File bereits blockiert, oder nicht zuweisbar ist. Handelt es sich um ein virtuelles Register, wird zuerst eine geeignete Adresse zugewiesen. Hierbei wird ebenfalls darauf geachtet, dass diese nicht blockiert oder nicht möglich ist.
 		Es existieren auch hier zwei Algorithmen zur Register-Allokation. Zum Einen eine Heuristik (siehe Kapitel \ref{sec:Heuristik}) und zum Andern ein Genetischer Algorithmus (siehe Kapitel \ref{sec:genetischerAlgorithmus}). Beide Algorithmen werden im Folgenden nun näher beleuchtet.
-\end{itemize}
+\end{itemize} ZITAT
 
 
 \section{Optimierungsansatz durch Register-Allokation}
 \label{chap:ansatz}
 Das Ziel des Algorithmus ist es, eine geeignete Register-Allokation zu finden, bei der die Verlustleistung minimal wird. Um dies zu erreichen, soll der Freiheitsgrad, der durch den Einsatz von virtuellen Registern entsteht, ausgenutzt werden.
 Damit die Verlustleistung des Prozessors gesenkt werden kann, ist es nötig einen Zusammenhang zwischen der Register-Allokation und der Leistungsaufnahme zu finden. Da die Verlustleistung nicht direkt zur Compilezeit bestimmt werden kann, ist eine Metrik nötig die mit dieser korreliert.
-Nach genauerem Betrachten der Formel für die dynamische Verlustleistung (siehe Formel \ref{eq:dynVerlustleistung}), hängt diese von vier Faktoren ab: Schaltaktivitäten,  Lastkapazität, Versorgungsspannung und der Frequenz. Da der KUVAKA-Prozessor aus Hardwaresicht bereits fertig entwickelt und optimiert wurde, wird die statische Verlustleistung nicht weiter betrachtet, da diese  nur durch eine Veränderung der Hardware weiter optimiert werden kann. Da ebenfalls  die Spannung und Frequenz von der Architektur abhängt, können auch diese hardware-relevanten Faktoren nicht durch eine Software-Anpassung optimiert werden. Im Folgenden wird nun erst darauf eingegangen, wie durch Minimierung der Schaltaktivitäten die Verlustleistung optimiert werden kann. Im weiteren Verlauf des Textes wird dann ebenfalls der Einfluss der Lastkapazitäten überprüft.\\
+Nach genauerem Betrachten der Formel für die dynamische Verlustleistung (siehe Formel \ref{eq:dynVerlustleistung}), hängt diese von vier Faktoren ab: Schaltaktivitäten,  Lastkapazität, Versorgungsspannung und der Frequenz. Da der KUVAKA-Prozessor aus Hardwaresicht bereits fertig entwickelt und stark optimiert wurde, wird die statische Verlustleistung nicht weiter betrachtet, da diese  nur durch eine Veränderung der Hardware weiter optimiert werden kann. Da ebenfalls  die Spannung und Frequenz von der Architektur abhängt, können auch diese hardware-relevanten Faktoren nicht durch eine Software-Anpassung optimiert werden. Im Folgenden wird nun erst darauf eingegangen, wie durch Minimierung der Schaltaktivitäten die Verlustleistung optimiert werden kann. Im weiteren Verlauf des Textes wird dann ebenfalls der Einfluss der Lastkapazitäten überprüft.\\
 Die Register-Allokation ist dazu zuständig die im Algorithmus zum Schreiben und Lesen verwendeten Register einem in Hardware existentem Register zuzuweisen. Dabei ist die einzige Variable die Register-Adresse. Diese Adressen sollen nun so gewählt werden, dass die Schaltaktivität minimiert wird.
 Um in ein Register zu schreiben, muss eine geeignete Adresse an den Adressbus angelegt werden. Da es sich bei der Architektur um 2x32 Register handelt, muss für jeden Register-Port eine 5-bit Adresse angelegt werden.
 Da der Prozessor zusätzlich über zwei Issue-Slots verfügt, müssen pro Slot ein Target- und zwei Source-Register adressiert werden. Hierbei können die Instruktionen auf Register-File null oder eins schreiben bzw. lesen. Aus diesem Grund besitzt jedes der Register-Files vier Lese- und zwei Schreibports. Die Zuordnung der Issues auf die Register-Ports können aus den Tabellen \ref{fig::schreib-port} sowie \ref{lese-port} entnommen werden.\\
@@ -138,7 +138,7 @@ Aus dem Minimalbeispiel ergibt sich ein Unterschied der Hamming-Distanzen für b
 
 \section{Genetischer Algorithmus}
 \label{sec:genetischerAlgorithmus}
-Da nur Target-Adressen mit Hilfe von virtuellen Registern frei gewählt werden können, optimiert die Heuristik nur diese, dennoch haben die Target-Register Einfluss auf die Source-Addressen und somit auch auf die Schaltaktivität. Auch wenn die Adresstoggel der Target-Regsiter minimiert wurde, kann es zu ineffizienten Adressnutzung der Source-Register kommen. Beim Allokieren der Register kann außerdem keine Aussage getroffen werden, ob und wie oft im Code Adressen verwendet werden.  Außerdem bestehen bei einer Berücksichtigung der Source-Register eine weitaus größere Anzahl an Allokationsmöglichkeiten. Aus diesen Gründen wurde ein genetischer Algorithmus ausgewählt, mit welchem es möglich ist, das Toggeln sowohl in den Source-Adressen als auch in den Target-Adressen zu minimieren. Die Funktion und Bestandteile sollen nun erläutert werden.
+Da nur Target-Adressen mit Hilfe von virtuellen Registern frei gewählt werden können, optimiert die Heuristik nur diese, dennoch haben die Target-Register Einfluss auf die Source-Addressen und somit auch auf die Schaltaktivität. Auch wenn die Adresstoggel der Target-Regsiter minimiert wurde, kann es zu ineffizienten Adressnutzung der Source-Register kommen. Beim Allokieren der Register kann außerdem keine Aussage getroffen werden, ob und wie oft im Code Adressen verwendet werden.  Außerdem bestehen bei einer Berücksichtigung der Source-Register eine weitaus größere Anzahl an Allokationsmöglichkeiten, welches die Auswahl noch komplexer macht. Aus diesen Gründen wurde ein genetischer Algorithmus ausgewählt, mit welchem es möglich ist, das Toggeln sowohl in den Source-Adressen als auch in den Target-Adressen zu minimieren. Die Funktion und Bestandteile sollen nun erläutert werden.
 
 \subsection{Gene und Chromosomen}
 Der genetische Algorithmus bildet, wie in Kapitel \ref{sec:genetischer_algo} beschrieben die Fortpflanzung von Lebewesen in der Natur ab. Dabei werden die Eigenschaften der Generationen weitergeben und abgeändert. Diese sind mit Hilfe der Gene codiert. Da die gegebene Problemstellung eine Optimierung der Register-Adressen darstellt, repräsentieren die Gene die Register-Allokation. Hierbei wird für jedem Gen ein Register zugewiesen. Mithilfe dieser kann die Problemstellung optimiert werden.\\ 
@@ -248,10 +248,10 @@ Es bestehen eine Vielzahl an Parametern und Einstellungsmöglichkeiten bei der V
 		\end{figure}
 	
 	\item Größe der Population $N$\\
-		Die Populationsgröße $N = 40$ wurde aus der Literatur \cite{grefenstette1986optimization} und Erfahrungswerte aus dem genetischen Instruktion-Scheduling entnommen.  
+		Die Populationsgröße $N = 40$ wurde aus der Literatur \cite{grefenstette1986optimization} und Erfahrungswerte aus dem genetischen Instruktion-Scheduling entnommen. Die Evaluation hat jedoch gezeigt, dass die Populationsgröße an der Anzahl der Instruktionen in einer SLM angepasst werden sollte. 
 	
 	\item Mutations-Wahrscheinlichkeit $w_M$\\
-		Die Mutation ist dem Crossover untergeordnet und hebt die Flexibilität des Algorithmus. Dabei sind sehr kleine Werte zu wählen. Die Wahl fiel hierbei auf eine Wahrscheinlichkeit $w_M$ von einem Prozent. Dies bedeutet das $w_M * N * n$ Gene pro Population mutiert werden. Hierbei ist $n$ die Anzahl der Gene in einem Chromosom. Ist $w_M$ zu hoch gewählt, handelt es sich um eine Zufallssuche.
+		Die Mutation ist dem Crossover untergeordnet und hebt die Flexibilität des Algorithmus. Dabei sind sehr kleine Werte im niedrigen Prozentbereich zu wählen. Die Wahl fiel hierbei auf eine Wahrscheinlichkeit $w_M$ von einem Prozent. Dies bedeutet das $w_M * N * n$ Gene pro Population mutiert werden. Hierbei ist $n$ die Anzahl der Gene in einem Chromosom. Ist $w_M$ zu hoch gewählt, handelt es sich um eine Zufallssuche.
 		
 	\item Startwerte\\
 		Die Startwerte haben einen erheblichen Einfluss auf die Laufzeit und Konvergenz des genetischen Algorithmus. Da die Gene zufallsgesteuert sind, kann auf diesen Parameter nur bedingt Einfluss genommen werden. Durch das Vorschalten der Heuristik und damit der Berechnung einer gültigen Register-Allokation, kann der Algorithmus bereits an einem besseren Ausgangsposition starten.(siehe Kapitel \ref{sub:startpop})
@@ -286,61 +286,63 @@ Das untenstehende Schaubild \ref{fig:dyn_genetic} zeigt die Optimierung, die dur
  
 \newpage
 \subsection{Algorithmus Modi}
-\begin{itemize}
-	 \setlength{\itemsep}{-6pt}
-	\item-E -> Register Allokations-Modus Heuristik
-			\begin{itemize}
-				\setlength{\itemsep}{-4pt}
-				\item Alt
-				\item Neu
-			\end{itemize}
-	\item-M -> Register Allokations-Modus Genetischer Algorithmus
-		\begin{itemize}
-			\setlength{\itemsep}{-4pt}
-			\item Hamming-Distanz
-			\item Load
-			\item Hamming*Load
-		\end{itemize}
-	\item-G -> Auswahl der Algorithmen
-			\begin{itemize}
-				\setlength{\itemsep}{-4pt}
-				\item Genetischer Algorithmus
-				\item Heuristik
-			\end{itemize}
-	\item-D -> dynamischer Genetischer Algorithmus
-	\item-H -> Heuristik als Startgen
-	\item-U -> Mutation-Modus
-				\begin{itemize}
-					\setlength{\itemsep}{-4pt}
-					\item Mutation auf Crossover-Gen
-					\item Mutation auf Zufalls-Gen
-				\end{itemize}
-	\item-o -> Optimierungsgrad
-			\begin{itemize}
-				\setlength{\itemsep}{-4pt}
-				\item o1 List Scheduling
-				\item o2 Genetisches Scheduling 20 Gene
-				\item o3 Genetisches Scheduling 100 Gene
-				\item o4 Genetisches Scheduling 200 Gene
-			\end{itemize}
-	
-\end{itemize}
+Dieses Kapitel soll die Algorithmus-Modi des genetischen Algorithmus verdeutlichen und die Einstellungsmöglichkeiten aufzeigen.
+
+%\begin{itemize}
+%	 \setlength{\itemsep}{-6pt}
+%	\item-E -> Register Allokations-Modus Heuristik
+%			\begin{itemize}
+%				\setlength{\itemsep}{-4pt}
+%				\item Alt
+%				\item Neu
+%			\end{itemize}
+%	\item-M -> Register Allokations-Modus Genetischer Algorithmus
+%		\begin{itemize}
+%			\setlength{\itemsep}{-4pt}
+%			\item Hamming-Distanz
+%			\item Load
+%			\item Hamming*Load
+%		\end{itemize}
+%	\item-G -> Auswahl der Algorithmen
+%			\begin{itemize}
+%				\setlength{\itemsep}{-4pt}
+%				\item Genetischer Algorithmus
+%				\item Heuristik
+%			\end{itemize}
+%	\item-D -> dynamischer Genetischer Algorithmus
+%	\item-H -> Heuristik als Startgen
+%	\item-U -> Mutation-Modus
+%				\begin{itemize}
+%					\setlength{\itemsep}{-4pt}
+%					\item Mutation auf Crossover-Gen
+%					\item Mutation auf Zufalls-Gen
+%				\end{itemize}
+%	\item-o -> Optimierungsgrad
+%			\begin{itemize}
+%				\setlength{\itemsep}{-4pt}
+%				\item o1 List Scheduling
+%				\item o2 Genetisches Scheduling 20 Gene
+%				\item o3 Genetisches Scheduling 100 Gene
+%				\item o4 Genetisches Scheduling 200 Gene
+%			\end{itemize}
+%	
+%\end{itemize}
 
 
 	%Tabelle mit allen Modis 
 	\begin{table}[htp]
 		\centering
-		\begin{tabular}{ccccccccc}
-			\multicolumn{2}{l}{}                 & \multicolumn{7}{|l}{Modi}                                                               \\ 
-			\multicolumn{2}{c}{Algorithmus-Konfig.}  & \multicolumn{1}{|c}{-E} & \multicolumn{1}{c}{-M} & \multicolumn{1}{c}{-G} & \multicolumn{1}{c}{-D} & \multicolumn{1}{c}{-H} & \multicolumn{1}{c}{-U} & \multicolumn{1}{c}{-o} \\ 
+		\begin{tabular}{cccccccc}
+			\multicolumn{2}{l}{}                 & \multicolumn{6}{|l}{Modi}                                                               \\ 
+			\multicolumn{2}{c}{Algorithmus-Konfig.}  & \multicolumn{1}{|c}{-E} & \multicolumn{1}{c}{-M} & \multicolumn{1}{c}{-G} & \multicolumn{1}{c}{-D} & \multicolumn{1}{c}{-H} & \multicolumn{1}{c}{-U} \\ 
 			\hline
-		\multicolumn{2}{l}{Heuristik alt}  & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{1} \\
-		\multicolumn{2}{l}{Heuristik neu}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{1} \\ 
-		\multicolumn{2}{l}{Genetischer Algo. Hamming-Fitness}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{2-4} \\
-			\multicolumn{2}{r}{Heuristik als Startpop.}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{2-4} \\
-			\multicolumn{2}{r}{dynamischer Genetischer Algo.}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{2-4} \\
-		\multicolumn{2}{l}{Genetischer Algo. Load-Fitness}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{2-4} \\ 
-		\multicolumn{2}{l}{Genetischer Algo. Hamming*Load-Fitness}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{2-4}                     
+		\multicolumn{2}{l}{Heuristik alt}  & \multicolumn{1}{|c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} \\
+		\multicolumn{2}{l}{Heuristik neu}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} & \multicolumn{1}{c}{X} \\ 
+		\multicolumn{2}{l}{Genetischer Algo. Hamming-Fitness}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} \\
+			\multicolumn{2}{r}{Heuristik als Startpop.}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0}  \\
+			\multicolumn{2}{r}{dynamischer Genetischer Algo.}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} \\
+		\multicolumn{2}{l}{Genetischer Algo. Load-Fitness}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0}  \\ 
+		\multicolumn{2}{l}{Genetischer Algo. Hamming*Load-Fitness}  & \multicolumn{1}{|c}{1} & \multicolumn{1}{c}{3} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0}                     
 		\end{tabular}
 		\newline
 		\caption{Algorithmus-Konfiguration}
