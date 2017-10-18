@@ -172,7 +172,7 @@ Um nun ebenfalls den Einfluss der Daten auf die Verlustleistung zu ermitteln wur
 \subsection{Heuristik}
 \label{chap:eval_heuristik}
 Da nun die Abhängigkeiten der Register-Adressierung zu der Verlustleistung bewiesen wurde, wie diese durch den Einsatz von virtuellen Registern und der neu implementierten Heuristik verbessert werden kann. Hierzu werden wie in Kapitel \ref{cap:empirischeTests} Assemblerprogramme entworfen welche manuell geschedult sind und die Register mit Null initialisiert werden. Der unterschied zu den empirischen Testprogrammen liegt darin, dass nun ebenfalls virtuelle Register verwendet werden.
-Dies hat zur folge, dass die Register-Allokation ein geeignete Zuweisung finden muss und somit die Schaltaktivität der Adresse minimieren kann. Das Testprogramm belegt vorerst durch physikalische Adressierung eine gewisse Anzahl an Registern vor und blockiert diese somit für die Verwendung von virtuellen Register.(Siehe Abbildung \ref{fig:heuristik_eval}, blau hinterlegte Felder)
+Dies hat zur Folge, dass die Register-Allokation ein geeignete Zuweisung finden muss und somit die Schaltaktivität der Adresse minimieren kann. Das Testprogramm belegt vorerst durch physikalische Adressierung eine gewisse Anzahl an Registern vor und blockiert diese somit für die Verwendung von virtuellen Register.(Siehe Abbildung \ref{fig:heuristik_eval}, blau hinterlegte Felder)
 Nach dem die Register-Files vorbelegt wurden, wird mit der Zuweisung von virtuellen Registern begonnen. Ab diesem Punkt ergeben sich Veränderungen in der Register-Allokation. Je nach gewähltem Verfahren, wird nach den optimalen physikalischen Registern mit unterschiedlichen Algorithmen gesucht. 
 
 \begin{figure}[H] 
