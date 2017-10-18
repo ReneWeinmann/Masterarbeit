@@ -14,7 +14,7 @@ Die für die Schreib- und Lesezugriffe verwendeten Adressen werden jeweils zwisc
 
 
 % Dies liegt daran, dass die benötigten Enable-Signale aufwendig berechnet werden müssen und dies eine kurze Verzögerung nach sich zieht
-Das beschriebene Problem verursacht eine Erhöhung der Schaltaktivität auf den Adressleitungen. Dadurch stieg die Verlustleistung in den Testfaellen an den einzelnen Adress-Ports um teilweise 49,44\%
+Das beschriebene Problem verursacht eine Erhöhung der Schaltaktivität auf den Adressleitungen. Dadurch stieg die Verlustleistung in den Testfällen an den einzelnen Adress-Ports um teilweise 49,44\%
 Um diesem Effekt entgegenzuwirken wurde eine weitere Pipline-Stufe eingebaut. Diese verzögert die Adressen, so dass keine Glitches an die Register-Ports weitergeleitet werden (siehe Abbildung \ref{fig:glitches_pipeline}). Der zusätzliche Energieverbrauch der Pipeline-Register wird an dieser Stelle nicht weiter untersucht, da der Anstieg der Verlustleistung in den zu vergleichenden Algorithmen identisch ist.
 
 \begin{figure}[H] 
@@ -48,7 +48,7 @@ Die selbe Vorgehensweise wurde bei der Neuberechnung der Offset-Werte angewant, 
 
 \chapter{Evaluation}
 \label{chap:evaluation} 
-Damit die implementieren Algorithmen hinsichtlich des Verlustleistungsoptimierung verifiziert werden koennen, werden diese auf Gatterebene in einer 40nm ASIC-Technologie getest. Da die Verlustleistung nicht im Code und zur Laufzeit bestimmt werden kann, muss eine Verlustleistungssimulation nach der Ausführung des Codes stattfinden. Die Vorgehensweise ist in Schaubild \ref{fig:flow_power_analyse} abgebildet.
+Damit die implementieren Algorithmen hinsichtlich des Verlustleistungsoptimierung verifiziert werden können, werden diese auf Gatterebene in einer 40nm ASIC-Technologie getestet. Da die Verlustleistung nicht im Code und zur Laufzeit bestimmt werden kann, muss eine Verlustleistungssimulation nach der Ausführung des Codes stattfinden. Die Vorgehensweise ist in Schaubild \ref{fig:flow_power_analyse} abgebildet.
 
 \begin{scriptsize}
 	\begin{figure}[htbp] 
