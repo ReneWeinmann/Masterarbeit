@@ -8,43 +8,43 @@ Warning--empty journal in davis1991handbook
 Warning--empty journal in lukasglitches2017
 You've used 22 entries,
             2118 wiz_defined-function locations,
-            626 strings with 8054 characters,
-and the built_in function-call counts, 7859 in all, are:
-= -- 802
-> -- 315
-< -- 11
-+ -- 127
-- -- 104
-* -- 502
-:= -- 1236
-add.period$ -- 72
+            624 strings with 8229 characters,
+and the built_in function-call counts, 8107 in all, are:
+= -- 832
+> -- 326
+< -- 12
++ -- 131
+- -- 108
+* -- 515
+:= -- 1262
+add.period$ -- 73
 call.type$ -- 22
-change.case$ -- 115
+change.case$ -- 117
 chr.to.int$ -- 0
 cite$ -- 25
-duplicate$ -- 332
-empty$ -- 644
-format.name$ -- 104
-if$ -- 1712
+duplicate$ -- 344
+empty$ -- 662
+format.name$ -- 108
+if$ -- 1777
 int.to.chr$ -- 0
 int.to.str$ -- 22
 missing$ -- 22
 newline$ -- 112
 num.names$ -- 42
-pop$ -- 148
+pop$ -- 155
 preamble$ -- 1
-purify$ -- 96
+purify$ -- 98
 quote$ -- 0
-skip$ -- 242
+skip$ -- 253
 stack$ -- 0
-substring$ -- 504
-swap$ -- 104
-text.length$ -- 11
+substring$ -- 527
+swap$ -- 114
+text.length$ -- 12
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 84
 warning$ -- 3
-while$ -- 80
+while$ -- 82
 width$ -- 24
-write$ -- 241
+write$ -- 242
 (There were 3 warnings)

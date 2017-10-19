@@ -226,18 +226,18 @@ Im Folgenden wird auf die einzelnen Ansätze der Fitness-Funktion eingegangen:
 		Da die Lastkapazität ebenfalls eine Rolle bei der Berechnung der dynamischen Verlustleistung spielt, wurde diese als Fitness-Funktion verwendet. Hierbei wurde für jede Adress-Leitung die entsprechende Lastkapazität aus den Synthese-Reports ermittelt. Um die einzelnen Allokations-Ansätze vergleichen zu können, wurden die Kapazitäten aufsummiert. Der Ansatz mit der niedrigsten Belastung wird als Mapping  der Register verwendet. 
 	\item Hamming-Distanz und Lastkapazität\\
 		Um die Formel der dynamischen Verlustleistung noch besser anzunähern, wurde eine Fitness-Funktion mit Hamming-Distanz und Lastkapazität evaluiert. Hierzu wurden die Summen der Lastkapazität und der Hamming-Distanz multipliziert und als Bewertungsmaß verwendet.
-	\item gewichtete Funktion\\
-		Als zusätzliche Erweiterung wurde eine Gewichtung der Hamming-Distanz und Lastkapazität eingefügt, um den Einfluss der Faktoren zu beeinflussen und somit die Verlustleistung bestmöglich anzunähern.
+%	\item gewichtete Funktion\\
+%		Als zusätzliche Erweiterung wurde eine Gewichtung der Hamming-Distanz und Lastkapazität eingefügt, um den Einfluss der Faktoren zu beeinflussen und somit die Verlustleistung bestmöglich anzunähern.
 \end{itemize}
 
 Das Schaubild \ref{fig:compare_genetic_modes} zeigt, wie sich der Einsatz von verschiedenen Fitness-Funktionsansätze auf die Gesamtleistung des Prozessors auswirkt. Da der genetische Algorithmus zufalls gesteuert ist, wurden die verschiedenen Algorithmen-Ansaetze mit den selben Seed ausgefuehrt. Dadurch koennen die Ergebnisse untereinander verglichen werden. Hierbei ist zu erkennen, dass eine Kombination aus Lastkapazität und Hamming-Distanz die besten Ergebnisse liefert.
 
-%\begin{figure}[H] 
-%	\centering
-%	\includegraphics[width=\textwidth]{fig/compare_genetic_modes.pdf}
-%	\caption{Vergleich Fitness-Funktionsansätze}
-%	\label{fig:compare_genetic_modes}
-%\end{figure}
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=\textwidth]{fig/compare_genetic_modes.pdf}
+	\caption{Vergleich Fitness-Funktionsansätze}
+	\label{fig:compare_genetic_modes}
+\end{figure}
  
 \subsection{Parameter des genetischen Algorithmus}
 \label{cap:parameter}

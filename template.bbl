@@ -34,6 +34,13 @@ Catherine~H Gebotys.
 \newblock In {\em Proceedings of the 34th annual Design Automation Conference},
   pages 435--440. ACM, 1997.
 
+\bibitem{gerlach2016efficient}
+Lukas Gerlach, Guillermo Pay{\'a}-Vay{\'a}, and Holger Blume.
+\newblock Efficient emulation of floating-point arithmetic on fixed-point simd
+  processors.
+\newblock In {\em Signal Processing Systems (SiPS), 2016 IEEE International
+  Workshop on}, pages 254--259. IEEE, 2016.
+
 \bibitem{grefenstette1986optimization}
 John~J Grefenstette.
 \newblock Optimization of control parameters for genetic algorithms.
@@ -73,11 +80,6 @@ Gerlach Lukas, Pay{\'a}~Vay{\'a} Guillermo, Liu Shuango, Wei{\ss}brich Moritz,
 \newblock Analyzing the trade-off between power consumption and beamforming
   algorithm performance using a hearing aid asip.
 \newblock 2017.
-
-\bibitem{moore1965moore}
-Gordon Moore.
-\newblock Moore’s law.
-\newblock {\em Electronics Magazine}, 38(8):114, 1965.
 
 \bibitem{paya2009instruction}
 Guillermo Pay{\'a}-Vay{\'a}, Javier Mart{\'\i}n-Langerwerf, Florian Giesemann,
