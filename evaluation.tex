@@ -61,12 +61,12 @@ Damit die implementieren Algorithmen hinsichtlich des Verlustleistungsoptimierun
 
 Vorerst wird das gewünschte Assembler Programm zusammen mit der Prozessor-Konfiguration in den im Implementierung Kapitel beschriebenen Scheduler geladen. Hierbei muss unter Anderem angegeben werden, mit welchen Takten der Prozessor taktet. Außerdem muss dem Scheduler die Variante der zu verwendenden Register-Allocation (Tabelle \ref{tab:algo_conifg}) übergeben werden. Nach erfolgreichem compilieren des Codes steht die Binary Datei und der geschedulte Code zu Verfügung. Im Anschluss an diesen Prozess wird die Leistungsanalyse durchgeführt. Hierzu wird die Netzliste des Prozessors und die Binary-Datei benötigt. Das Tool \glqq Prime Time Suite\grqq von Synopsys analysiert hierbei alle Schaltaktivitäten im Prozessor und gibt anschließend eine detaillierte Übersicht über die Leistungsaufnahme des Prozessors aus.\\
 Hierbei wird die Leistung in Internal-, Switching- und Leakage-Leistung aufgeteilt. Die Leakage-Power ist so definiert, dass alle Zeiten die eine Zelle nicht benutzt wird oder ihren Zustand nicht ändertauf, summiert werden und mit den jeweiligen Transistor-Konfigurationen verrechnet werden. Dabei gibt es zwei Verschiedene Ströme die die Verlustleistung verursachen, der Gate-Leakage-Strom $I_{gl}$ und der Source-Drain-Strom $I_{lk}$ (siehe Abbildung \ref{fig:prime_time_power}).  Bei der Leakage-Leistung handelt es sich somit um eine statische Verlustleistung. Hingegen sind Internal- und Switching-Leistung dynamische Verlustleistungen die von den Schaltvorgängen beeinflusst werden. Die Internal-Leistung inkludiert alle Leistungen die in einer Zelle durch das Laden/Entladen von Kapazitäten $I_{SW}$ und der auf Grund der Kurzschluss-Ströme $I_{SC}$ verursachte werden. Dagegen sind in der Switching-Leistung die Verlustleistungen berücksichtigt, die durch das Laden von externen Lastkapazitäten verursacht wurden.\cite{primeTime2016}
-\begin{figure}[H] 
-	\centering
-	\includegraphics[width=\textwidth]{prime_time_power}
-	\caption[Komponenten der Leistungsaufnahme]{Komponenten der Leistungsaufnahme \cite{primeTime2016}}
-	\label{fig:prime_time_power}
-\end{figure}
+%\begin{figure}[H] 
+%	\centering
+%	\includegraphics[width=\textwidth]{prime_time_power}
+%	\caption[Komponenten der Leistungsaufnahme]{Komponenten der Leistungsaufnahme \cite{primeTime2016}}
+%	\label{fig:prime_time_power}
+%\end{figure}
 Mithilfe dieses Evalutionsablaufes sind die in diesem Kapitel evaluierten Ergebnisse entstanden.
 \section{Testprogramme}
 Um den Einfluss der Register-Adressen besser verstehen zu können wurden Assemblerprogramme entwickelt welche den Einfluss von Target-, Source1- und Source2-Register untersuchen.Hierbei sind diese in der Komplexität gestaffelt. In den folgenden Kapiteln wird nun auf die Ergebnisse der einzelnen Programme und deren Erkenntnisse eingegangen.
@@ -126,18 +126,18 @@ Dieser Test wurde für Adressen zwei, fünf, 24, 25 ,27 und 31 ausgeführt. Auß
 	\caption{Schaltleistung Read Register File 1}
 	\label{fig:source1_power}
 \end{figure}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{fig/register_eval_target_port0.pdf}
-	\caption{Schaltleistung Write Register File 0}
-	\label{fig:target0_power}
-\end{figure}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{fig/register_eval_target_port1.pdf}
-	\caption{Schaltleistung Write Register File 1}
-	\label{fig:target1_power}
-\end{figure}
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=\textwidth]{fig/register_eval_target_port0.pdf}
+%	\caption{Schaltleistung Write Register File 0}
+%	\label{fig:target0_power}
+%\end{figure}
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=\textwidth]{fig/register_eval_target_port1.pdf}
+%	\caption{Schaltleistung Write Register File 1}
+%	\label{fig:target1_power}
+%\end{figure}
 
 Bei den Graphen ist ein Sprung der Leistung bei einer Hamming-Distanz von 64 auffällig. Dieser lässt sich dadurch erklären, dass zwar die Hamming-Distanzen der Testfälle mit den Register-Adressen fünf und 24 identisch sind, aber unterschiedliche Adressleitungen verwendet werden, welche eine größere Lastkapazität aufweisen. Durch die höhere Lastkapazität wird automatisch auch einer größere Leistung benötigt. Dieses Phänomen wird in Kapitel \ref{cap:lastkapa} näher untersucht und erläutert.\\
 
@@ -182,7 +182,7 @@ Nach dem die Register-Files vorbelegt wurden, wird mit der Zuweisung von virtuel
 	\label{fig:heuristik_eval}
 \end{figure}
 Das Schaubild zeigt hierbei den Vergleich der alten zur neuen Heuristik. Die blockierten Register-Adressen sind blau hinterlegt, die von den Algorithmen ausgewählten Register-Adressen sind rot gekennzeichnet. Durch die beiden unterschiedlichen Verfahren ergibt sich ein Unterschied von 11 Schaltvorgängen in den Adress-Leitungen. Damit dieser in der Verlustleistung deutlicher zu erkennen ist, wird die Zuweisung der virtuelle Register zehn mal wiederholt. Dadurch ergibt sich ein Differenz der Hamming-Distanzen von 101, da durch das wiederholte Ausführen der Allokation die Zuweisung mit unterschiedlichen Adressen gestartet wird.
-Damit der Zusammenhang von Verlustleistung zu Schaltaktivität zu erkennen ist, wurden fünf Testfälle mit unterschiedlichen Hamming-Distanzen erzeugt. Hierbei variieren die Hamming-Distanzen im Bereich zwischen 101 und 500 Das Schaubild XXX zeigt den Verlauf der Verlustleistung der Adress-Ports über der Hamming-Distanz. 
+Damit der Zusammenhang von Verlustleistung zu Schaltaktivität zu erkennen ist, wurden fünf Testfälle mit unterschiedlichen Hamming-Distanzen erzeugt. Hierbei variieren die Hamming-Distanzen im Bereich zwischen 101 und 500 Das Schaubild XXX zeigt den Verlauf der Verlustleistung über der Hamming-Distanz. 
 
 SChaubild SChaltleistung heuristik neu 
 
@@ -190,7 +190,7 @@ Die Evaluation der Heuristik zeigt, dass für die entwickelten synthetischen Tes
 
  Schaubild Gesamtleistung Heuristik neu
 
-Die Tabelle XXX zeigt die Optimierung der Verlustleistung in den einzelnen Modulen des Prozessors gegenüber der alten Implementierung. Hierbei sind alle Werte in Prozent angegeben und beziehen sich auf die Gesamtleistungen der Spalten. Auch hier ist zu erkennen das deutliche Einsparungen in den Register-Files generiert werden konnten. Dabei wurde die Schaltleistung im Register-File gegenüber der alten Heuristik um XXX\% verbessert. Die gesamte Verlustleistung wurde um XXX\% optimiert. 
+Die Tabelle XXX zeigt die Optimierung der Verlustleistung eines Testfalls, dabei sind die einzelnen Modulen des Prozessors gegenüber der alten Implementierung aufgeschlüsselt. Alle Werte sind in Prozent angegeben und beziehen sich auf die Gesamtleistungen der Spalten. Auch hier ist zu erkennen das deutliche Einsparungen in den Register-Files generiert werden konnten. Dabei wurde die Schaltleistung im Register-File gegenüber der alten Heuristik um XXX\% verbessert. Die gesamte Verlustleistung wurde um XXX\% optimiert. 
 
 Tabelle Prozent alt neu
 
@@ -216,25 +216,29 @@ In der besten Variante des genetischen Algorithmus, ist eine Verbesserung der Ha
 Auch hier zeigt ein prozentualer Vergleich der Verlustleistungen des kompletten Prozessors eine deutliche Verbesserung der Schaltleistung in den Register-Files. In diesem Fall wird die beste Variante des genetischen Algorithmus mit der Heuristik verglichen. Die Tabelle zeigt eine Verbesserung der Schaltleistung um 7,78\%. Die Verlustleistung die durch die Leakage-Ströme verursacht wurden sind um zwei bzw. drei Zehnerpotenzen kleiner als die Verlustleistungen die durch die Schaltvorgänge hervorgerufen werden. Aus diesem Grund werden dies Vernachlässigt. Eine Verschlechterung der Leakage-Leistung ist damit zu erklären, dass die Signale des Prozessors für längere Zeit ihre Pegel halten. Da die Leakage-Leistung nur dann auftritt, wenn kein Wechsel der Pegel stattfindet, wird im Fall einer optimierten Schaltleistung die Leakage-Leistung ungewollt erhöht.
 Die prozentuale Veränderung der Internal-Leistung liegt im sehr niedrigen Prozentbereich. 
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{fig/power_percent_genetic.pdf}
-	\caption{Prozentuale Verbesserung der Verlustleistung}
-	\label{fig:power_percent_genetic}
-\end{figure}
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=\textwidth]{fig/power_percent_genetic.pdf}
+%	\caption{Prozentuale Verbesserung der Verlustleistung}
+%	\label{fig:power_percent_genetic}
+%\end{figure}
 
 
 
 \section{Hörgerätalgorithmen}
 \label{sec:testprogamme}
-Um den implementierten Code zu testen und eine reelle Einsparung der Verlustleistungsreduktion zu ermitteln wurden die folgenden Assembler-Programme verwendet. Dabei handelt es sich um Programme die eine häufig Anwendung in Hörgerät-Prozessoren finden. Ausschlaggebend für die Wahl war die Anzahl der verwendeten virtuellen Registern da mit einer hohen Zahl das Verbesserungspotential der Register-Allokation steigt.
+Um den implementierten Code zu testen und eine reale Einsparung der Verlustleistungsreduktion zu ermitteln wurden die folgenden Assembler-Programme verwendet. Dabei handelt es sich um Programme die eine häufig Anwendung in Hörgerät-Prozessoren finden. Ausschlaggebend für die Wahl der Algorithmen, war die Anzahl der verwendeten virtuellen Registern, da mit einer hohen Zahl an frei allokierbaren Registern das Verbesserungspotential des Optimierungsalgorithmus steigt.
+\subsection{emulated floating Point}
+Da der verwendete Prozessor keine floating-point-Variablen unterstützt, besteht ein Algorithmus der diese emuliert.
+
 \subsection{fft floating Point}
+
+
 
 \subsection{Beamforming}
 Der Beamforming-Algorithmus wird eingesetzt um eine Positionsbestimmung von Schallwellen im Raum durchzuführen und somit eine Ein- bzw Ausblendung von verschiedenen Geräuschen zu gewährleisten und so das Hörerlebnis zu steigern. 
 
-\subsection{emulated floating Point}
-Da der verwendete Prozessor keine floating Point Variablen unterstützt, besteht ein Algorithmus der diese emuliert. 
+ 
 
 
 \subsection{Einfluss des Register-Daten auf die Verlustleistung}
