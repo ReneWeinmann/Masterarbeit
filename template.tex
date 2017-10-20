@@ -248,12 +248,12 @@ escapechar=||}																						% text within defined char is escaped to \La
 % rename bibliography and nomenclature for listing in caption
 % \addto\captionsngerman{\renewcommand{\refname}{Quellenverzeichnis}}
 
-% \renewcommand{\nomname}{Abk�rzungsverzeichnis}						% rename title of list to the matching german word
-\setlength{\nomlabelwidth}{.20\hsize}											% set abbreviation width
+ \renewcommand{\nomname}{Abkürzungsverzeichnis}						% rename title of list to the matching german word
+\setlength{\nomlabelwidth}{.3\textwidth}											% set abbreviation width
 \renewcommand{\nomlabel}[1]{#1 \dotfill}									% fill space between abbreviation & explanation
 \setlength{\nomitemsep}{-\parsep}													% vertical distance between abbreviations = paragraph distance
 \makenomenclature																					% trigger index creation for abbreviations
- \newcommand{\Abkuerzungsverzeichnis}{											% defines a new command to actually place the nomenclature
+\newcommand{\Abkuerzungsverzeichnis}{											% defines a new command to actually place the nomenclature
 %\markboth{\nomname}{\nomname}														% left header & right header
 \printnomenclature																				% print the created index
 \newpage																									% place following content on a new page
@@ -341,6 +341,7 @@ vorgelegen.
 \listoffigures
 \listoftables
 \listofalgorithms
+%\Abkuerzungsverzeichnis
 \cleardoublepage
 \newpage
 %
@@ -362,7 +363,8 @@ vorgelegen.
 %
 %\input{task}
 %\clearpage
-%\newpage
+%\newpage	
+
 %
 \input{introduction}
 \clearpage
