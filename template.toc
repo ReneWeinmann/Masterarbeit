@@ -1,7 +1,6 @@
-\contentsline {chapter}{\nonumberline Abbildungsverzeichnis}{VII}{chapter*.3}
-\contentsline {chapter}{\nonumberline Tabellenverzeichnis}{VIII}{chapter*.4}
-\contentsline {chapter}{\nonumberline List of Algorithms}{IX}{chapter*.5}
-\contentsline {chapter}{Abk\IeC {\"u}rzungsverzeichnis}{X}{chapter*.6}
+\contentsline {chapter}{\nonumberline Abbildungsverzeichnis}{VIII}{chapter*.3}
+\contentsline {chapter}{\nonumberline Tabellenverzeichnis}{IX}{chapter*.4}
+\contentsline {chapter}{\nonumberline List of Algorithms}{X}{chapter*.5}
 \contentsline {chapter}{\numberline {1}Einleitung}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Ziel der Arbeit}{2}{section.1.1}
 \contentsline {chapter}{\numberline {2}Grundlagen digitaler Signalverarbeitung in H\IeC {\"o}rger\IeC {\"a}ten}{4}{chapter.2}
@@ -45,12 +44,12 @@
 \contentsline {subsection}{\numberline {5.1.1}Empirische Tests}{46}{subsection.5.1.1}
 \contentsline {subsection}{\numberline {5.1.2}Synthetische Testprogramme}{49}{subsection.5.1.2}
 \contentsline {subsection}{\numberline {5.1.3}Heuristik}{54}{subsection.5.1.3}
-\contentsline {subsection}{\numberline {5.1.4}Genetischer Algorithmus}{55}{subsection.5.1.4}
-\contentsline {section}{\numberline {5.2}H\IeC {\"o}rger\IeC {\"a}talgorithmen}{57}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}emulated floating Point}{57}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}FFT floating Point}{58}{subsection.5.2.2}
-\contentsline {subsection}{\numberline {5.2.3}Beamforming}{58}{subsection.5.2.3}
-\contentsline {subsection}{\numberline {5.2.4}Einfluss des Register-Daten auf die Verlustleistung}{58}{subsection.5.2.4}
-\contentsline {section}{\numberline {5.3}Einfluss der Lastkapazit\IeC {\"a}t}{58}{section.5.3}
-\contentsline {chapter}{\numberline {6}Schlussfolgerung}{60}{chapter.6}
-\contentsline {chapter}{\nonumberline Literaturverzeichnis}{63}{chapter*.39}
+\contentsline {subsection}{\numberline {5.1.4}Genetischer Algorithmus}{56}{subsection.5.1.4}
+\contentsline {section}{\numberline {5.2}H\IeC {\"o}rger\IeC {\"a}talgorithmen}{58}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}emulated floating Point}{58}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}FFT floating Point}{59}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Beamforming}{59}{subsection.5.2.3}
+\contentsline {subsection}{\numberline {5.2.4}Einfluss des Register-Daten auf die Verlustleistung}{59}{subsection.5.2.4}
+\contentsline {section}{\numberline {5.3}Einfluss der Lastkapazit\IeC {\"a}t}{59}{section.5.3}
+\contentsline {chapter}{\numberline {6}Schlussfolgerung}{61}{chapter.6}
+\contentsline {chapter}{\nonumberline Literaturverzeichnis}{64}{chapter*.41}

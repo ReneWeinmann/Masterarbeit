@@ -184,12 +184,12 @@ Nach dem die Register-Files vorbelegt wurden, wird mit der Zuweisung von virtuel
 Das Schaubild \ref{fig:heuristik_eval}zeigt den Vergleich eines der implementiereten Tesprogramme der alten zur neuen Heuristik. Die blockierten Register-Adressen sind blau hinterlegt, die von den Algorithmen ausgewählten Register-Adressen sind rot gekennzeichnet. Durch die beiden unterschiedlichen Verfahren ergibt sich ein Unterschied von 11 Schaltvorgängen in den Adress-Leitungen. Damit dieser in der Verlustleistung deutlicher zu erkennen ist, wird die Zuweisung der virtuelle Register 20 mal wiederholt. Dadurch ergibt sich ein Differenz der Hamming-Distanzen von 101, da durch das wiederholte Ausführen der Allokation die Zuweisung mit unterschiedlichen Adressen gestartet wird.
 Damit der Zusammenhang von Verlustleistung zu Schaltaktivität zu erkennen ist, wurden fünf solcher Testfälle mit unterschiedlichen Hamming-Distanzen entwicketl. Hierbei variieren die Distanzen im Bereich zwischen 1291 und 2046 fuer die alte Heuristik. Diese werden von der neuen Heuristik auf einen Hamming-Distanz-Bereich von 840 bis 1109 optimiert. Das Schaubild \ref{fig:heuristic_schaltleistung_alt_neu} zeigt den Verlauf der Schaltleistungen an den Register-Ports gegenüber der Hamming-Distanz. 
 
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=\textwidth]{fig/heuristik_schaltleistung_alt_neu.pdf}
-%	\caption{Vergleich der Schaltleistungen von Target+Source-Ports}
-%	\label{fig:heuristic_schaltleistung_alt_neu}
-%\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{fig/heuristik_schaltleistung_alt_neu.pdf}
+	\caption{Vergleich der Schaltleistungen von Target+Source-Ports}
+	\label{fig:heuristic_schaltleistung_alt_neu}
+\end{figure}
 
 Dabei ist zu erkennen, das die Heuristik eine deutlich bessere Lösung findet. Die Verschlechterung der Schaltleistung in der neuen Heuristik, lässt sich mit unterschiedlichen Lastkapazitäten begründen. Durch eine Berücksichtigung dieser würde die Heuristik die Verlustleistung noch besser modellieren. 
 Die Evaluation der Heuristik zeigt, dass für die entwickelten synthetischen Testfälle die neue Heuristik eine durchschnittliche Verbesserung der Schaltleistung von  erzielt werden kann. Diese Optimierung spiegelt sich ebenfalls in der Schaltleistung des Prozessor wieder.(siehe Abbildung XXX).
@@ -198,12 +198,12 @@ Die Evaluation der Heuristik zeigt, dass für die entwickelten synthetischen Tes
 
 Die Tabelle \ref{fig:compare_power_heuristic} zeigt die Optimierung der Verlustleistung eines Testfalls, dabei sind die einzelnen Module des Prozessors gegenüber der alten Implementierung aufgeschlüsselt. Alle Werte sind in Prozent angegeben und beziehen sich auf die Gesamtleistungen der Spalten. Auch hier ist zu erkennen das deutliche Einsparungen in den Register-Files generiert werden konnten. Dabei wurde die Schaltleistung im Register-File gegenüber der alten Heuristik um 8,53\% verbessert. Die gesamte Verlustleistung wurde um 2,56\% optimiert. 
 
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=\textwidth]{fig/compare_power_heuristic.pdf}
-%	\caption{Prozentuale Verbesserung der Verlustleistung- alte zu neue Heuristik}
-%	\label{fig:compare_power_heuristic}
-%\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{fig/compare_power_heuristic.pdf}
+	\caption{Prozentuale Verbesserung der Verlustleistung- alte zu neue Heuristik}
+	\label{fig:compare_power_heuristic}
+\end{figure}
 
 
 \subsection{Genetischer Algorithmus}
@@ -228,12 +228,12 @@ In der besten Variante des genetischen Algorithmus, ist eine Verbesserung der Ha
 Auch hier zeigt ein prozentualer Vergleich der Verlustleistungen des kompletten Prozessors eine deutliche Verbesserung der Schaltleistung in den Register-Files. In diesem Fall wird die beste Variante des genetischen Algorithmus mit der Heuristik verglichen. Die Tabelle zeigt eine Verbesserung der Schaltleistung um 7,78\%. Die Verlustleistung die durch die Leakage-Ströme verursacht wurden sind um zwei bzw. drei Zehnerpotenzen kleiner als die Verlustleistungen die durch die Schaltvorgänge hervorgerufen werden. Aus diesem Grund werden dies Vernachlässigt. Eine Verschlechterung der Leakage-Leistung ist damit zu erklären, dass die Signale des Prozessors für längere Zeit ihre Pegel halten. Da die Leakage-Leistung nur dann auftritt, wenn kein Wechsel der Pegel stattfindet, wird im Fall einer optimierten Schaltleistung die Leakage-Leistung ungewollt erhöht.
 Die prozentuale Veränderung der Internal-Leistung liegt im sehr niedrigen Prozentbereich und wir ebenfalls nicht weiter berücksichtigt. 
 
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=\textwidth]{fig/power_percent_genetic.pdf}
-%	\caption{Prozentuale Verbesserung der Verlustleistung}
-%	\label{fig:power_percent_genetic}
-%\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{fig/power_percent_genetic.pdf}
+	\caption{Prozentuale Verbesserung der Verlustleistung}
+	\label{fig:power_percent_genetic}
+\end{figure}
 
 
 
