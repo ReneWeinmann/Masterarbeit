@@ -11,7 +11,7 @@
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Fortpflanzung mittels Crossover\relax }}{32}{figure.caption.16}
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Vergleich Fitness-Funktionsans\IeC {\"a}tze\relax }}{35}{figure.caption.17}
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Ermittlung der maximalen Durchlaufszahl\relax }}{36}{figure.caption.18}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Verlauf der Fitness mit und ohne Startpopulation\relax }}{37}{figure.caption.19}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Verlauf der Fitness mit und ohne Startpopulation\relax }}{38}{figure.caption.19}
 \contentsline {figure}{\numberline {3.8}{\ignorespaces dynamische Anpassung der Mutationsrate\relax }}{39}{figure.caption.20}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Glitches Write-Adress\relax }}{42}{figure.caption.22}
@@ -32,7 +32,8 @@
 \contentsline {figure}{\numberline {5.13}{\ignorespaces Vergleich der Schaltleistungen von Target+Source-Ports\relax }}{55}{figure.caption.36}
 \contentsline {figure}{\numberline {5.14}{\ignorespaces Prozentuale Verbesserung der Verlustleistung- alte zu neue Heuristik\relax }}{56}{figure.caption.37}
 \contentsline {figure}{\numberline {5.15}{\ignorespaces Gesamtverlustleistung genetischer Algorithmus vs. Heuristik\relax }}{57}{figure.caption.38}
-\contentsline {figure}{\numberline {5.16}{\ignorespaces Prozentuale Verbesserung der Verlustleistung\relax }}{58}{figure.caption.39}
-\contentsline {figure}{\numberline {5.17}{\ignorespaces Read-Port Multiplexer\relax }}{60}{figure.caption.40}
+\contentsline {figure}{\numberline {5.16}{\ignorespaces Schaltleistung genetischer Algorithmus vs. Heuristik\relax }}{57}{figure.caption.39}
+\contentsline {figure}{\numberline {5.17}{\ignorespaces Prozentuale Verbesserung der Verlustleistung\relax }}{58}{figure.caption.40}
+\contentsline {figure}{\numberline {5.18}{\ignorespaces Read-Port Multiplexer\relax }}{60}{figure.caption.41}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

@@ -35,7 +35,7 @@
 \BOOKMARK [2][-]{subsection.3.4.5}{Fitness-Funktion}{section.3.4}% 35
 \BOOKMARK [2][-]{subsection.3.4.6}{Parameter des genetischen Algorithmus}{section.3.4}% 36
 \BOOKMARK [2][-]{subsection.3.4.7}{Startpopulation}{section.3.4}% 37
-\BOOKMARK [2][-]{subsection.3.4.8}{dynamische Anpassung}{section.3.4}% 38
+\BOOKMARK [2][-]{subsection.3.4.8}{Dynamische Anpassung der Parameter}{section.3.4}% 38
 \BOOKMARK [2][-]{subsection.3.4.9}{Algorithmus Modi}{section.3.4}% 39
 \BOOKMARK [0][-]{chapter.4}{Hardware-Anpassungen}{}% 40
 \BOOKMARK [1][-]{section.4.1}{Piplinestufe f\374r Adressports}{chapter.4}% 41
@@ -53,4 +53,4 @@
 \BOOKMARK [2][-]{subsection.5.2.4}{Einfluss des Register-Daten auf die Verlustleistung}{section.5.2}% 53
 \BOOKMARK [1][-]{section.5.3}{Einfluss der Lastkapazit\344t}{chapter.5}% 54
 \BOOKMARK [0][-]{chapter.6}{Schlussfolgerung}{}% 55
-\BOOKMARK [0][-]{chapter*.41}{Literaturverzeichnis}{}% 56
+\BOOKMARK [0][-]{chapter*.42}{Literaturverzeichnis}{}% 56

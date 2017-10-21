@@ -34,7 +34,7 @@
 \contentsline {subsection}{\numberline {3.4.5}Fitness-Funktion}{33}{subsection.3.4.5}
 \contentsline {subsection}{\numberline {3.4.6}Parameter des genetischen Algorithmus}{35}{subsection.3.4.6}
 \contentsline {subsection}{\numberline {3.4.7}Startpopulation}{37}{subsection.3.4.7}
-\contentsline {subsection}{\numberline {3.4.8}dynamische Anpassung}{38}{subsection.3.4.8}
+\contentsline {subsection}{\numberline {3.4.8}Dynamische Anpassung der Parameter}{38}{subsection.3.4.8}
 \contentsline {subsection}{\numberline {3.4.9}Algorithmus Modi}{40}{subsection.3.4.9}
 \contentsline {chapter}{\numberline {4}Hardware-Anpassungen}{41}{chapter.4}
 \contentsline {section}{\numberline {4.1}Piplinestufe f\IeC {\"u}r Adressports}{41}{section.4.1}
@@ -46,10 +46,10 @@
 \contentsline {subsection}{\numberline {5.1.3}Heuristik}{54}{subsection.5.1.3}
 \contentsline {subsection}{\numberline {5.1.4}Genetischer Algorithmus}{56}{subsection.5.1.4}
 \contentsline {section}{\numberline {5.2}H\IeC {\"o}rger\IeC {\"a}talgorithmen}{58}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}emulated floating Point}{58}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.1}emulated floating Point}{59}{subsection.5.2.1}
 \contentsline {subsection}{\numberline {5.2.2}FFT floating Point}{59}{subsection.5.2.2}
 \contentsline {subsection}{\numberline {5.2.3}Beamforming}{59}{subsection.5.2.3}
 \contentsline {subsection}{\numberline {5.2.4}Einfluss des Register-Daten auf die Verlustleistung}{59}{subsection.5.2.4}
-\contentsline {section}{\numberline {5.3}Einfluss der Lastkapazit\IeC {\"a}t}{59}{section.5.3}
-\contentsline {chapter}{\numberline {6}Schlussfolgerung}{61}{chapter.6}
-\contentsline {chapter}{\nonumberline Literaturverzeichnis}{64}{chapter*.41}
+\contentsline {section}{\numberline {5.3}Einfluss der Lastkapazit\IeC {\"a}t}{60}{section.5.3}
+\contentsline {chapter}{\numberline {6}Schlussfolgerung}{62}{chapter.6}
+\contentsline {chapter}{\nonumberline Literaturverzeichnis}{65}{chapter*.42}

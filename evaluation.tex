@@ -214,7 +214,7 @@ Da der genetische Algorithmus zufallsgesteuert ist, variieren die Ergebnisse sta
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{fig/eval_genetic_total_power.pdf}
+	\includegraphics[width=\textwidth]{fig/gesamtleistung_genetik_heuristik.pdf}
 	\caption{Gesamtverlustleistung genetischer Algorithmus vs. Heuristik}
 	\label{fig:eval_genetic_total_power}
 \end{figure}
@@ -224,6 +224,12 @@ In der besten Variante des genetischen Algorithmus, ist eine Verbesserung der Ha
 %Im unten stehenden Schaubild XXX wird der Mittelwert der Testfälle gegenüber der alten Heuristik veranschaulicht. 
 %
 %Mittelwert genetischer Algo gegenüber alter heuristik
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{fig/schaltleistung_genetic_heuristik.pdf}
+	\caption{Schaltleistung genetischer Algorithmus vs. Heuristik}
+	\label{fig:eval_genetic_switching_power}
+\end{figure}
 
 Auch hier zeigt ein prozentualer Vergleich der Verlustleistungen des kompletten Prozessors eine deutliche Verbesserung der Schaltleistung in den Register-Files. In diesem Fall wird die beste Variante des genetischen Algorithmus mit der Heuristik verglichen. Die Tabelle zeigt eine Verbesserung der Schaltleistung um 7,78\%. Die Verlustleistung die durch die Leakage-Ströme verursacht wurden sind um zwei bzw. drei Zehnerpotenzen kleiner als die Verlustleistungen die durch die Schaltvorgänge hervorgerufen werden. Aus diesem Grund werden dies Vernachlässigt. Eine Verschlechterung der Leakage-Leistung ist damit zu erklären, dass die Signale des Prozessors für längere Zeit ihre Pegel halten. Da die Leakage-Leistung nur dann auftritt, wenn kein Wechsel der Pegel stattfindet, wird im Fall einer optimierten Schaltleistung die Leakage-Leistung ungewollt erhöht.
 Die prozentuale Veränderung der Internal-Leistung liegt im sehr niedrigen Prozentbereich und wir ebenfalls nicht weiter berücksichtigt. 
