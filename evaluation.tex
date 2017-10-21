@@ -1,8 +1,8 @@
 \chapter{Hardware-Anpassungen}
 
 \section{Piplinestufe für Adressports}
-Da der Verwendete Prozessor Adress-Isolation (siehe Kapitel \ref{subsec:add_iso}) einsetzt, sollten die Adressen so lange an einem Port anliegen bis diese geändert werden.
-Die für die Schreib- und Lesezugriffe verwendeten Adressen werden jeweils zwischen den Takten von dem Adress-Decoder berechnet und an die benötigten Ports angelegt. Dadurch ist gewährleistet, dass diese mit der steigenden Taktflanke auch übernommen werden können. Die Auswahl der Ports wird über Enable-Signale geregelt. Im Fall dieser Architektur treten in diesem Fall Glitches auf, die auf Grund der unterschiedlichen Berechnungszeiten der Kombinatorik verursacht werden. In Schaubild \ref{fig:glitches} wird dieses Verhalten veranschaulicht. Hier ist zu erkennen, dass das Enable-Signal vor schaltet bevor die neue Adresse angelegt wird. Dadurch wird ein Glitch in den Adressleitungen verursacht. Dieses Szenario tritt nur auf, wenn ein Wechsel in den Enable-Signalen und sich somit die Herkunft der Adressen geändert wird.
+Da der verwendete Prozessor Adress-Isolation (siehe Kapitel \ref{subsec:add_iso}) einsetzt, sollten die Adressen so lange an einem Port anliegen bis diese geändert werden.
+Die für die Schreib- und Lesezugriffe verwendeten Adressen werden jeweils zwischen den Takten von dem Adress-Decoder berechnet und an die benötigten Ports angelegt. Dadurch ist gewährleistet, dass diese mit der steigenden Taktflanke auch übernommen werden können. Die Auswahl der Ports wird über Enable-Signale geregelt. Im Fall dieser Architektur treten in diesem Fall Glitches auf, die auf Grund der unterschiedlichen Berechnungszeiten der Kombinatorik verursacht werden. In Schaubild \ref{fig:glitches} wird dieses Verhalten veranschaulicht. Hier ist zu erkennen, dass das Enable-Signal schaltet bevor die neue Adresse angelegt wird. Dadurch wird ein Glitch in den Adressleitungen verursacht. Im Schaubild werden die Registerport-Adressen angezeigt, die nicht angesprochen werden sollen, da dort die Glitches am deutlichsten erkennbar sind. Dieses Szenario tritt nur auf, wenn ein Wechsel in den Enable-Signalen besteht und sich somit die Herkunft der Adressen geändert hat.
 % Werden beispielsweise zwei Instruktionen verwendet die beide an Register-File 1 schreiben, so werden die entsprechenden Adressen an die Ports 0 und 1 angelegt. Sobald diese zu Verfügung stehen, werden diese von den Enable-Signalen freigegeben.\\
 
 \begin{figure}[H] 
@@ -14,7 +14,7 @@ Die für die Schreib- und Lesezugriffe verwendeten Adressen werden jeweils zwisc
 
 
 % Dies liegt daran, dass die benötigten Enable-Signale aufwendig berechnet werden müssen und dies eine kurze Verzögerung nach sich zieht
-Das beschriebene Problem verursacht eine Erhöhung der Schaltaktivität auf den Adressleitungen. Dadurch stieg die Verlustleistung in den Testfällen an den einzelnen Adress-Ports um teilweise 49,44\%
+Das beschriebene Problem verursacht eine Erhöhung der Schaltaktivität auf den Adressleitungen. Dadurch stieg die Verlustleistung in den Testfällen an den einzelnen Adress-Ports um teilweise 49,44\%.
 Um diesem Effekt entgegenzuwirken wurde eine weitere Pipline-Stufe eingebaut. Diese verzögert die Adressen, so dass keine Glitches an die Register-Ports weitergeleitet werden (siehe Abbildung \ref{fig:glitches_pipeline}). Der zusätzliche Energieverbrauch der Pipeline-Register wird an dieser Stelle nicht weiter untersucht, da der Anstieg der Verlustleistung in den zu vergleichenden Algorithmen identisch ist.
 
 \begin{figure}[H] 
@@ -242,6 +242,7 @@ Die prozentuale Veränderung der Internal-Leistung liegt im sehr niedrigen Proze
 Um den implementierten Code zu testen und eine reale Einsparung der Verlustleistungsreduktion zu ermitteln wurden die folgenden Assembler-Programme verwendet. Dabei handelt es sich um Programme die eine häufig Anwendung in Hörgerät-Prozessoren finden. Ausschlaggebend für die Wahl der Algorithmen, war die Anzahl der verwendeten virtuellen Registern, da mit einer hohen Zahl an frei allokierbaren Registern das Verbesserungspotential des Optimierungsalgorithmus steigt.
 
 \subsection{emulated floating Point}
+\label{chap:emulated_floating_point}
 Da der verwendete Prozessor keine Gleitkommavariablen unterstützt, besteht ein Algorithmus der diese emuliert. Dabei wird eine Gleitkommazahl als zwei Subworte deklariert, zum einen der Signifikant $T$ und zum anderen der Exponent $E$. Mit Hilfe dieser kann eine Gleitkommazahl $f$ nach Formel \ref{eq:emulated_floating_point} berechnet werden.
 \begin{equation}
 f = T *2^E

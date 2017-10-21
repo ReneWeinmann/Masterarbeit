@@ -230,7 +230,7 @@ Im Folgenden wird auf die einzelnen Ansätze der Fitness-Funktion eingegangen:
 %		Als zusätzliche Erweiterung wurde eine Gewichtung der Hamming-Distanz und Lastkapazität eingefügt, um den Einfluss der Faktoren zu beeinflussen und somit die Verlustleistung bestmöglich anzunähern.
 \end{itemize}
 
-Das Schaubild \ref{fig:compare_genetic_modes} zeigt, wie sich der Einsatz von verschiedenen Fitness-Funktionsansätze auf die Gesamtleistung des Prozessors auswirkt. Da der genetische Algorithmus zufallsgesteuert ist, wurden die verschiedenen Algorithmen-Ansätze mit den selben Seed ausgeführt. Dadurch können die Ergebnisse untereinander verglichen werden. Hierbei ist zu erkennen, dass eine Kombination aus Lastkapazität und Hamming-Distanz die besten Ergebnisse liefert.
+Das Schaubild \ref{fig:compare_genetic_modes} zeigt, wie sich der Einsatz von verschiedenen Fitness-Funktionsansätze auf die Gesamtleistung des Prozessors auswirkt. Dabei wird für jeden Ansatz der selbe synthetischer Testfall ausgeführt. Dieser wird in Kapitel \ref{chap:evaluation} genauer erläutert. Da der genetische Algorithmus zufallsgesteuert ist, wurden die verschiedenen Algorithmen-Ansätze mit den selben Seed ausgeführt. Dadurch können die Ergebnisse untereinander verglichen werden. Hierbei ist zu erkennen, dass eine Kombination aus Lastkapazität und Hamming-Distanz die besten Ergebnisse liefert. 
 
 \begin{figure}[H] 
 	\centering
@@ -244,8 +244,9 @@ Das Schaubild \ref{fig:compare_genetic_modes} zeigt, wie sich der Einsatz von ve
 Es bestehen eine Vielzahl an Parametern und Einstellungsmöglichkeiten bei der Verwendung eines genetischen Algorithmus, dabei haben einige einen erheblichen Einfluss auf die Funktion und das Ergebnis. Da die Parameter sehr von der Problemstellung abhängen, kann nur begrenzt auf Literatur zurück gegriffen werden. Jedoch wurden eine Größenordnung und erste Richtwerte aus der Literatur \cite{grefenstette1986optimization} und dem genetischen Scheduling entnommen. Im Folgenden sollen die Parameter und deren Funktion sowie Einfluss auf das Ergebnis erläutert werden.
 
 \begin{itemize}
-	\item Anzahl der Durchläufe\\
-		Die Anzahl der Durchläufe wurde experimentell ermittelt und ist für jede Problemstellung unterschiedlich. Hierfür wurde der beste Fitness-Wert über der Anzahl an Durchläufen in einem Diagramm aufgetragen (siehe Abbildung \ref{fig:iteration_analyse}). An der Stelle an der der Algorithmus keine signifikanten Verbesserungen findet wurde der Abstand zwischen den zuletzt aufgetretenen Optimierungen ermittelt. Dieser wurde im Anschluss als maximale Durchlaufzahl verwendet.
+	\item Anzahl der Durchläufe $R$\\
+		Bei der Anzahl der Durchläufe $R$ handelt es sich um eine Variable die steuert, wie oft eine neue Population erzeugt wird. Diese wird mit jeder Verbesserung des Fitness-Wert erneut zurückgesetzt. Demnach endet die Suche nach einer besseren Population nach dem $R$-mal keine Optimierung gefunden wurde.
+		$R$ wurde experimentell ermittelt und ist für jede Problemstellung unterschiedlich. Hierfür wurde der beste Fitness-Wert über der Anzahl an Durchläufen in einem Diagramm aufgetragen (siehe Abbildung \ref{fig:iteration_analyse}). Für diesen Test wurde ein synthetischer Test verwendet der in Kapitel \ref{chap:evaluation} näher beschrieben wird. Das Diagramm zeigt hierbei schön wie sich der Fitness-Wert an ein Minimum annähert. An der Stelle an der der Algorithmus keine signifikanten Verbesserungen findet wurde der Abstand zwischen den zuletzt aufgetretenen Optimierungen ermittelt. Dieser wurde im Anschluss als maximale Durchlaufzahl $R$ verwendet.
 		
 		\begin{figure}[H]
 			\centering
@@ -255,7 +256,7 @@ Es bestehen eine Vielzahl an Parametern und Einstellungsmöglichkeiten bei der V
 		\end{figure}
 	
 	\item Größe der Population $N$\\
-		Die Populationsgröße $N = 40$ wurde aus der Literatur \cite{grefenstette1986optimization} und Erfahrungswerte aus dem genetischen Instruktion-Scheduling entnommen. Die Evaluation hat jedoch gezeigt, dass die Populationsgröße an der Anzahl der Instruktionen in einer SLM angepasst werden sollte. 
+		Die Populationsgröße $N = 40$ wurde aus der Literatur \cite{grefenstette1986optimization} und Erfahrungswerte aus dem genetischen Instruktion-Scheduling entnommen. Die Evaluation hat jedoch gezeigt, dass die Populationsgröße an der Anzahl der Instruktionen in einer SLM angepasst werden sollte. Dabei hat sich beispielsweise für komplexere Testfälle wie den emulated floating point \ref{chap:emulated_floating_point} eine Population von $N = 100$ als sinnvoll erwiesen.
 	
 	\item Mutations-Wahrscheinlichkeit $w_M$\\
 		Die Mutation ist dem Crossover untergeordnet und hebt die Flexibilität des Algorithmus. Dabei sind sehr kleine Werte im niedrigen Prozentbereich zu wählen. Die Wahl fiel hierbei auf eine Wahrscheinlichkeit $w_M$ von einem Prozent. Dies bedeutet das $w_M * N * n$ Gene pro Population mutiert werden. Hierbei ist $n$ die Anzahl der Gene in einem Chromosom. Ist $w_M$ zu hoch gewählt, handelt es sich um eine Zufallssuche.
@@ -280,7 +281,7 @@ Um eine schnellere Konvergenz zu einem globalen Minimum zu gewährleisteten, wir
 
 Nachteilig ist hierbei jedoch das durch ungeeignete Parameter der Algorithmus bei dem bereits sehr starken lokalen Minimum stagniert und keine Verbesserung mehr finden kann. Aus diesem Grund sollte beim Start mit der Heuristik eine höhere Mutations-Wahrscheinlichkeit eingesetzt werden um dieses Minimum dennoch zu überwinden.
 
-\subsection{dynamische Anpassung}
+\subsection{Dynamische Anpassung der Parameter}
 Um eine schnellere Konvergenz gegen ein globales Minimum zu erreichen, wurde eine dynamische Anpassung der Parameter implementiert. Dies ist sinnvoll, da zu beginn die Suche auf einen großen Bereich ausgelegt werden muss, jedoch im weiteren Verlauf diese Parameter eventuell nicht mehr die schnellste Option darstellen. Aus diesem Grund wurde die Mutationsrate während der Berechnung angepasst. Zu beginn des Algorithmus werden viele bessere Lösungen als die der Startpopulation gefunden. Aus diesem Grund wird mit einer sehr kleinen Mutationsrate gestartet. Sobald für eine gewisse Anzahl an Durchläufen keine Verbesserung gefunden wurde, sprich der Algorithmus gegen ein lokales Minimum tendiert, wird die Mutations-Wahrscheinlichkeit erhöht. Dies hat zur Folge, dass die Suche nach geeigneten Genen breiter wird bzw. mehr Gene mutiert werden. Dadurch steigt die Wahrscheinlichkeit ein lokales Minimum zu überwinden an. Wird eine Verbesserung gefunden, wird die Mutationsrate auf den Startwert zurückgesetzt. Anderenfalls wird die Wahrscheinlichkeit weiter minimiert. Damit wird aus einer gezielten Suche wie in Abschnitt \ref{cap:parameter} erläutert eine Zufallssuche.
 Das untenstehende Schaubild \ref{fig:dyn_genetic} zeigt die Optimierung, die durch diese Verfahren erreicht wurde. Hierbei wurden beide genetische Algorithmen mit dem selben Seed/Startwert ausgeführt, um die Versionen vergleichen zu können.
 
