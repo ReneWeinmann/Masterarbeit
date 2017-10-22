@@ -1,39 +1,43 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces KAVUAKA-Prozessor}}{5}{figure.caption.6}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Pipeline-Prinzip\relax }}{6}{figure.caption.7}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Register File Organisation}}{8}{figure.caption.8}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Register File Organisation\relax }}{9}{figure.caption.9}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces KAVUAKA-Prozessor}}{5}{figure.caption.7}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Pipeline-Prinzip\relax }}{6}{figure.caption.8}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Register File Organisationstypen}}{8}{figure.caption.9}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Register File Organisation\relax }}{9}{figure.caption.10}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Compiler Ablaufdiagramm\relax }}{21}{figure.caption.12}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Beispiel Register-Allokation\relax }}{24}{figure.caption.13}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Heuristik Beispiel\relax }}{26}{figure.caption.14}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Fortpflanzung mittels Crossover\relax }}{32}{figure.caption.16}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Vergleich Fitness-Funktionsans\IeC {\"a}tze\relax }}{35}{figure.caption.17}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Ermittlung der maximalen Durchlaufszahl\relax }}{36}{figure.caption.18}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Verlauf der Fitness mit und ohne Startpopulation\relax }}{38}{figure.caption.19}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces dynamische Anpassung der Mutationsrate\relax }}{39}{figure.caption.20}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Compiler Ablaufdiagramm\relax }}{21}{figure.caption.13}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Beispiel Register-Allokation\relax }}{24}{figure.caption.14}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Heuristik Beispiel\relax }}{26}{figure.caption.15}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Fortpflanzung mittels Crossover\relax }}{32}{figure.caption.17}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Vergleich Fitness-Funktionsans\IeC {\"a}tze\relax }}{35}{figure.caption.18}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Ermittlung der maximalen Durchlaufszahl\relax }}{36}{figure.caption.19}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Verlauf der Fitness mit und ohne Startpopulation\relax }}{38}{figure.caption.20}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces dynamische Anpassung der Mutationsrate\relax }}{39}{figure.caption.21}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Glitches Write-Adress\relax }}{42}{figure.caption.22}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Pipelinestufe gegen Glitches\relax }}{42}{figure.caption.23}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Glitches Write-Adress\relax }}{42}{figure.caption.23}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Pipelinestufe gegen Glitches\relax }}{43}{figure.caption.24}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Power Analyse Ablaufdiagramm\relax }}{44}{figure.caption.24}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Komponenten der Leistungsaufnahme}}{46}{figure.caption.25}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Best-Case hierarchische Leistungsaufnahme\relax }}{48}{figure.caption.26}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Einsparungspotential Best-Worst-Case\relax }}{49}{figure.caption.27}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Schaltleistung Read Register File 0\relax }}{50}{figure.caption.28}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Schaltleistung Read Register File 1\relax }}{51}{figure.caption.29}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Schaltleistung Write Register File 0\relax }}{51}{figure.caption.30}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Schaltleistung Write Register File 1\relax }}{51}{figure.caption.31}
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Schaltleistung Read+Write Register\relax }}{52}{figure.caption.32}
-\contentsline {figure}{\numberline {5.10}{\ignorespaces gesamte Verlustleistung des Prozessors\relax }}{53}{figure.caption.33}
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Einfluss der Daten auf die gesamte Verlustleistung\relax }}{53}{figure.caption.34}
-\contentsline {figure}{\numberline {5.12}{\ignorespaces Heuristik Evaluation\relax }}{54}{figure.caption.35}
-\contentsline {figure}{\numberline {5.13}{\ignorespaces Vergleich der Schaltleistungen von Target+Source-Ports\relax }}{55}{figure.caption.36}
-\contentsline {figure}{\numberline {5.14}{\ignorespaces Prozentuale Verbesserung der Verlustleistung- alte zu neue Heuristik\relax }}{56}{figure.caption.37}
-\contentsline {figure}{\numberline {5.15}{\ignorespaces Gesamtverlustleistung genetischer Algorithmus vs. Heuristik\relax }}{57}{figure.caption.38}
-\contentsline {figure}{\numberline {5.16}{\ignorespaces Schaltleistung genetischer Algorithmus vs. Heuristik\relax }}{57}{figure.caption.39}
-\contentsline {figure}{\numberline {5.17}{\ignorespaces Prozentuale Verbesserung der Verlustleistung\relax }}{58}{figure.caption.40}
-\contentsline {figure}{\numberline {5.18}{\ignorespaces Read-Port Multiplexer\relax }}{60}{figure.caption.41}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Power-Analyse Ablaufdiagramm\relax }}{46}{figure.caption.25}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Komponenten der Leistungsaufnahme}}{47}{figure.caption.26}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Best-Case hierarchische Leistungsaufnahme\relax }}{49}{figure.caption.27}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Einsparungspotential Best-Worst-Case\relax }}{50}{figure.caption.28}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Schaltleistung Read Register File 0\relax }}{51}{figure.caption.29}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Schaltleistung Read Register File 1\relax }}{52}{figure.caption.30}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Schaltleistung Write Register File 0\relax }}{52}{figure.caption.31}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Schaltleistung Write Register File 1\relax }}{52}{figure.caption.32}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Schaltleistung Read+Write Register\relax }}{53}{figure.caption.33}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces gesamte Verlustleistung des Prozessors\relax }}{54}{figure.caption.34}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Einfluss der Daten auf die gesamte Verlustleistung\relax }}{54}{figure.caption.35}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Heuristik Evaluation\relax }}{55}{figure.caption.36}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Schaltleistung Target- und Source-Adressports\relax }}{56}{figure.caption.37}
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Vergleich der Schaltleistungen von Target und Source-Ports\relax }}{57}{figure.caption.38}
+\contentsline {figure}{\numberline {5.15}{\ignorespaces Prozentuale Verbesserung der Verlustleistung- alte zu neue Heuristik\relax }}{58}{figure.caption.39}
+\contentsline {figure}{\numberline {5.16}{\ignorespaces Vergleich der Schaltleistungen f\IeC {\"u}r Heuristik und genetischer Algorithmus\relax }}{59}{figure.caption.40}
+\contentsline {figure}{\numberline {5.17}{\ignorespaces Gesamtverlustleistung genetischer Algorithmus vs. Heuristik\relax }}{60}{figure.caption.41}
+\contentsline {figure}{\numberline {5.18}{\ignorespaces Prozentuale Verbesserung der Verlustleistung\relax }}{60}{figure.caption.42}
+\contentsline {figure}{\numberline {5.19}{\ignorespaces Verlauf der Gesamtleistung alte Heuristik \relax }}{61}{figure.caption.43}
+\contentsline {figure}{\numberline {5.20}{\ignorespaces Verlauf der Gesamtleistung neue Heuristik\relax }}{61}{figure.caption.44}
+\contentsline {figure}{\numberline {5.21}{\ignorespaces Verlauf der Gesamtleistung genetischer Algorithmus\relax }}{62}{figure.caption.45}
+\contentsline {figure}{\numberline {5.22}{\ignorespaces Read-Port Multiplexer\relax }}{64}{figure.caption.46}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

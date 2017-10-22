@@ -65,11 +65,12 @@ Bei ASICs handelt es sich um anwendungsspezifische Schaltungen, die in einer int
 \newpage
 
 \subsection{Register File Organisation}
+\label{chap:register_orga}
 Es besteht eine Vielzahl an Registerorganisationen für Signalprozessoren. Im Allgemeinen lassen sich diese auf vier Grundorganisationen herunterbrechen: zentralisierte, gruppierte, hierarchische und partitionierte Registerorganisation (siehe Abbildung \ref{fig:RegisterOrga}) \cite{paya2010multi}.\newline
 \begin{figure}[htbp] 
 	\centering
 	\includegraphics[width=\textwidth]{fig/Register_orga.png}
-	\caption[Register File Organisation]{Register File Organisation –\\ a)zentralisierte Organisation b)gruppierte Organisation c)hierarchische Organisation d)partitionierte Organisation  \cite{paya2010multi}}
+	\caption[Register File Organisationstypen]{Register File Organisation –\\ a)zentralisierte Organisation b)gruppierte Organisation c)hierarchische Organisation d)partitionierte Organisation  \cite{paya2010multi}}
 	\label{fig:RegisterOrga}
 \end{figure}
 \newline
@@ -601,10 +602,10 @@ Die Fitness einer Generation gibt an, wie gut sich das Chromosom an das gegebene
 
 \subsection{Crossover}
 \label{chap:grundlagen_cossover}
-Bei dem Crossover-Prozess handelt es sich um die Fortpflanzung von Generationen. Hierbei ist ausschlaggebend welche Generationen miteinander gepaart werden. Auf den ersten Blick scheint es einleuchtend, immer die Generation mit der besten Fitness zu paaren. Dies ist jedoch nicht immer sinnvoll, da so schnell ein lokales Minimum erreicht wird. Aus diesem Grund gibt es verschiedene Ansätze um geeignete Eltern für die neue Generation zu finden.\cite{davis1991handbook}
+Bei dem Crossover-Prozess handelt es sich um die Fortpflanzung von Generationen. Hierbei ist ausschlaggebend, welche Generationen miteinander gepaart werden. Auf den ersten Blick scheint es einleuchtend, immer die Generationen zu paaren die die besten Fitness-Werte aufweisen. Dies ist jedoch nicht immer sinnvoll, da so schnell ein lokales Minimum erreicht wird. Um diesem Phänomen entgegenzuwirken, bestehen verschiedene Ansätze um geeignete Eltern für die neue Generation zu finden.\cite{davis1991handbook}
 Die in der Literatur am weitest verbreiteten Methoden sind die Roulette-Wheele-Selection und die Tournament-Selection.\cite{zhong2005comparison} Bei beiden Verfahren besteht die Möglichkeit, dass Populationsmitglieder mit einer niedrigen Fitness selektiert und somit gepaart werden.
 % wird zufällig ein Elternpaar gewählt, wobei die Chance einer jeden Generation ausgewählt zu werden proportional zur Fitness ist. Dieses Verfahren trägt ihren Namen daher, dass es einem Roulette-Rad gleicht, wobei das Rad in Stücke unterteilt ist, welche die Größe proportional zur Fitness haben. Die Auswahl kann nun einem Drehen an einem Rad gleichgesetzt werden. Hierbei ist es wahrscheinlicher, dass die Generationen mit höher Fitness ausgewählt werden. Es ist jedoch auch möglich, dass Populationsmitglieder mit niedriger Fitness gepaart werden.
 
 \subsection{Mutation}
-Auch der Prozess der Mutation stammt aus der Natur. Bei der Mutation besteht eine geringe Chance, dass Chromosomen verändert werden und Eigenschaften aufweisen die in keinem der Elternteile aufzufinden sind. Hierzu werden in dem durch Crossover erzeugtem Chromosom einzelne Gene durch Zufall verändert. Die Wahrscheinlichkeit einer zufälligen Veränderung ist dabei wie in der Natur, sehr gering.\cite{davis1991handbook}
+Auch der Prozess der Mutation stammt aus der Natur. Bei der Mutation besteht eine geringe Chance, dass Chromosomen verändert werden und Eigenschaften aufweisen, die in keinem der Elternteile aufzufinden sind. Hierzu werden in dem durch Crossover erzeugten Chromosom einzelne Gene durch Zufall verändert. Die Wahrscheinlichkeit einer zufälligen Veränderung ist dabei wie in der Natur sehr gering.\cite{davis1991handbook}
 

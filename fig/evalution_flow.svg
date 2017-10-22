@@ -144,7 +144,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.60103236"
-     inkscape:cx="360.29703"
+     inkscape:cx="-44.839226"
      inkscape:cy="398.88451"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -171,7 +171,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -433,7 +433,7 @@
          id="flowPara4482">{\tiny Assembler-}</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4140-6"
-       style="font-style:normal;font-weight:normal;font-size:23.00756645px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-weight:normal;font-size:23.00756645px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
        transform="matrix(1.1607221,0,0,1.4561518,-155.29744,118.47731)"><flowRegion
          id="flowRegion4142-2"><rect
            id="rect4144-9"
@@ -441,8 +441,8 @@
            height="62.957066"
            x="301.31738"
            y="100.06435"
-           style="font-size:23.00756645px;line-height:125%;text-align:center;writing-mode:lr-tb;text-anchor:middle" /></flowRegion><flowPara
-         id="flowPara4404">{\normalsize Compiler}</flowPara></flowRoot>    <flowRoot
+           style="font-size:23.00756645px;line-height:125%;text-align:center;writing-mode:lr;text-anchor:middle;" /></flowRegion><flowPara
+         id="flowPara4244">{\normalsize Scheduler}</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4140-62"
        style="font-style:normal;font-weight:normal;font-size:23.00756645px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"

@@ -2,55 +2,56 @@
 \BOOKMARK [0][-]{chapter*.3}{Abbildungsverzeichnis}{}% 2
 \BOOKMARK [0][-]{chapter*.4}{Tabellenverzeichnis}{}% 3
 \BOOKMARK [0][-]{chapter*.5}{List of Algorithms}{}% 4
-\BOOKMARK [0][-]{chapter.1}{Einleitung}{}% 5
-\BOOKMARK [1][-]{section.1.1}{Ziel der Arbeit}{chapter.1}% 6
-\BOOKMARK [0][-]{chapter.2}{Grundlagen digitaler Signalverarbeitung in H\366rger\344ten}{}% 7
-\BOOKMARK [1][-]{section.2.1}{Aufbau der Architektur}{chapter.2}% 8
-\BOOKMARK [2][-]{subsection.2.1.1}{Register File Organisation}{section.2.1}% 9
-\BOOKMARK [1][-]{section.2.2}{Related Work}{chapter.2}% 10
-\BOOKMARK [1][-]{section.2.3}{Compiler}{chapter.2}% 11
-\BOOKMARK [2][-]{subsection.2.3.1}{Scheduling}{section.2.3}% 12
-\BOOKMARK [1][-]{section.2.4}{Register Allokation}{chapter.2}% 13
-\BOOKMARK [2][-]{subsection.2.4.1}{Virtuelle Register}{section.2.4}% 14
-\BOOKMARK [2][-]{subsection.2.4.2}{X2 Betriebsmodus}{section.2.4}% 15
-\BOOKMARK [2][-]{subsection.2.4.3}{MAC Operationen}{section.2.4}% 16
-\BOOKMARK [2][-]{subsection.2.4.4}{Dummy-Register}{section.2.4}% 17
-\BOOKMARK [2][-]{subsection.2.4.5}{Address-Isolation}{section.2.4}% 18
-\BOOKMARK [1][-]{section.2.5}{Verlustleistung}{chapter.2}% 19
-\BOOKMARK [2][-]{subsection.2.5.1}{Dynamische Verlustleistung}{section.2.5}% 20
-\BOOKMARK [2][-]{subsection.2.5.2}{Statische Verlustleistung}{section.2.5}% 21
-\BOOKMARK [1][-]{section.2.6}{Genetische Algorithmen}{chapter.2}% 22
-\BOOKMARK [2][-]{subsection.2.6.1}{Fitness}{section.2.6}% 23
-\BOOKMARK [2][-]{subsection.2.6.2}{Crossover}{section.2.6}% 24
-\BOOKMARK [2][-]{subsection.2.6.3}{Mutation}{section.2.6}% 25
-\BOOKMARK [0][-]{chapter.3}{Implementierung einer energieeffizienten Registerallokation}{}% 26
-\BOOKMARK [1][-]{section.3.1}{Instruktion-Scheduler}{chapter.3}% 27
-\BOOKMARK [1][-]{section.3.2}{Optimierungsansatz durch Register-Allokation}{chapter.3}% 28
-\BOOKMARK [1][-]{section.3.3}{Heuristik}{chapter.3}% 29
-\BOOKMARK [1][-]{section.3.4}{Genetischer Algorithmus}{chapter.3}% 30
-\BOOKMARK [2][-]{subsection.3.4.1}{Gene und Chromosomen}{section.3.4}% 31
-\BOOKMARK [2][-]{subsection.3.4.2}{Aufbau}{section.3.4}% 32
-\BOOKMARK [2][-]{subsection.3.4.3}{Auswahl der Elternpaare}{section.3.4}% 33
-\BOOKMARK [2][-]{subsection.3.4.4}{Fortpflanzung der Chromosomen}{section.3.4}% 34
-\BOOKMARK [2][-]{subsection.3.4.5}{Fitness-Funktion}{section.3.4}% 35
-\BOOKMARK [2][-]{subsection.3.4.6}{Parameter des genetischen Algorithmus}{section.3.4}% 36
-\BOOKMARK [2][-]{subsection.3.4.7}{Startpopulation}{section.3.4}% 37
-\BOOKMARK [2][-]{subsection.3.4.8}{Dynamische Anpassung der Parameter}{section.3.4}% 38
-\BOOKMARK [2][-]{subsection.3.4.9}{Algorithmus Modi}{section.3.4}% 39
-\BOOKMARK [0][-]{chapter.4}{Hardware-Anpassungen}{}% 40
-\BOOKMARK [1][-]{section.4.1}{Piplinestufe f\374r Adressports}{chapter.4}% 41
-\BOOKMARK [1][-]{section.4.2}{Neuberechnung der Immediate-Adresse und Offset-Werte}{chapter.4}% 42
-\BOOKMARK [0][-]{chapter.5}{Evaluation}{}% 43
-\BOOKMARK [1][-]{section.5.1}{Testprogramme}{chapter.5}% 44
-\BOOKMARK [2][-]{subsection.5.1.1}{Empirische Tests}{section.5.1}% 45
-\BOOKMARK [2][-]{subsection.5.1.2}{Synthetische Testprogramme}{section.5.1}% 46
-\BOOKMARK [2][-]{subsection.5.1.3}{Heuristik}{section.5.1}% 47
-\BOOKMARK [2][-]{subsection.5.1.4}{Genetischer Algorithmus}{section.5.1}% 48
-\BOOKMARK [1][-]{section.5.2}{H\366rger\344talgorithmen}{chapter.5}% 49
-\BOOKMARK [2][-]{subsection.5.2.1}{emulated floating Point}{section.5.2}% 50
-\BOOKMARK [2][-]{subsection.5.2.2}{FFT floating Point}{section.5.2}% 51
-\BOOKMARK [2][-]{subsection.5.2.3}{Beamforming}{section.5.2}% 52
-\BOOKMARK [2][-]{subsection.5.2.4}{Einfluss des Register-Daten auf die Verlustleistung}{section.5.2}% 53
-\BOOKMARK [1][-]{section.5.3}{Einfluss der Lastkapazit\344t}{chapter.5}% 54
-\BOOKMARK [0][-]{chapter.6}{Schlussfolgerung}{}% 55
-\BOOKMARK [0][-]{chapter*.42}{Literaturverzeichnis}{}% 56
+\BOOKMARK [0][-]{chapter*.6}{Abk\374rzungsverzeichnis}{}% 5
+\BOOKMARK [0][-]{chapter.1}{Einleitung}{}% 6
+\BOOKMARK [1][-]{section.1.1}{Ziel der Arbeit}{chapter.1}% 7
+\BOOKMARK [0][-]{chapter.2}{Grundlagen digitaler Signalverarbeitung in H\366rger\344ten}{}% 8
+\BOOKMARK [1][-]{section.2.1}{Aufbau der Architektur}{chapter.2}% 9
+\BOOKMARK [2][-]{subsection.2.1.1}{Register File Organisation}{section.2.1}% 10
+\BOOKMARK [1][-]{section.2.2}{Related Work}{chapter.2}% 11
+\BOOKMARK [1][-]{section.2.3}{Compiler}{chapter.2}% 12
+\BOOKMARK [2][-]{subsection.2.3.1}{Scheduling}{section.2.3}% 13
+\BOOKMARK [1][-]{section.2.4}{Register Allokation}{chapter.2}% 14
+\BOOKMARK [2][-]{subsection.2.4.1}{Virtuelle Register}{section.2.4}% 15
+\BOOKMARK [2][-]{subsection.2.4.2}{X2 Betriebsmodus}{section.2.4}% 16
+\BOOKMARK [2][-]{subsection.2.4.3}{MAC Operationen}{section.2.4}% 17
+\BOOKMARK [2][-]{subsection.2.4.4}{Dummy-Register}{section.2.4}% 18
+\BOOKMARK [2][-]{subsection.2.4.5}{Address-Isolation}{section.2.4}% 19
+\BOOKMARK [1][-]{section.2.5}{Verlustleistung}{chapter.2}% 20
+\BOOKMARK [2][-]{subsection.2.5.1}{Dynamische Verlustleistung}{section.2.5}% 21
+\BOOKMARK [2][-]{subsection.2.5.2}{Statische Verlustleistung}{section.2.5}% 22
+\BOOKMARK [1][-]{section.2.6}{Genetische Algorithmen}{chapter.2}% 23
+\BOOKMARK [2][-]{subsection.2.6.1}{Fitness}{section.2.6}% 24
+\BOOKMARK [2][-]{subsection.2.6.2}{Crossover}{section.2.6}% 25
+\BOOKMARK [2][-]{subsection.2.6.3}{Mutation}{section.2.6}% 26
+\BOOKMARK [0][-]{chapter.3}{Implementierung einer energieeffizienten Registerallokation}{}% 27
+\BOOKMARK [1][-]{section.3.1}{Instruktion-Scheduler}{chapter.3}% 28
+\BOOKMARK [1][-]{section.3.2}{Optimierungsansatz durch Register-Allokation}{chapter.3}% 29
+\BOOKMARK [1][-]{section.3.3}{Heuristik}{chapter.3}% 30
+\BOOKMARK [1][-]{section.3.4}{Genetischer Algorithmus}{chapter.3}% 31
+\BOOKMARK [2][-]{subsection.3.4.1}{Gene und Chromosomen}{section.3.4}% 32
+\BOOKMARK [2][-]{subsection.3.4.2}{Aufbau}{section.3.4}% 33
+\BOOKMARK [2][-]{subsection.3.4.3}{Auswahl der Elternpaare}{section.3.4}% 34
+\BOOKMARK [2][-]{subsection.3.4.4}{Fortpflanzung der Chromosomen}{section.3.4}% 35
+\BOOKMARK [2][-]{subsection.3.4.5}{Fitness-Funktion}{section.3.4}% 36
+\BOOKMARK [2][-]{subsection.3.4.6}{Parameter des genetischen Algorithmus}{section.3.4}% 37
+\BOOKMARK [2][-]{subsection.3.4.7}{Startpopulation}{section.3.4}% 38
+\BOOKMARK [2][-]{subsection.3.4.8}{Dynamische Anpassung der Parameter}{section.3.4}% 39
+\BOOKMARK [2][-]{subsection.3.4.9}{Algorithmus Modi}{section.3.4}% 40
+\BOOKMARK [0][-]{chapter.4}{Hardware-Anpassungen}{}% 41
+\BOOKMARK [1][-]{section.4.1}{Piplinestufe f\374r Adressports}{chapter.4}% 42
+\BOOKMARK [1][-]{section.4.2}{Neuberechnung der Immediate-Adresse und Offset-Werte}{chapter.4}% 43
+\BOOKMARK [0][-]{chapter.5}{Evaluation}{}% 44
+\BOOKMARK [1][-]{section.5.1}{Testprogramme}{chapter.5}% 45
+\BOOKMARK [2][-]{subsection.5.1.1}{Empirische Tests}{section.5.1}% 46
+\BOOKMARK [2][-]{subsection.5.1.2}{Synthetische Testprogramme}{section.5.1}% 47
+\BOOKMARK [2][-]{subsection.5.1.3}{Heuristik}{section.5.1}% 48
+\BOOKMARK [2][-]{subsection.5.1.4}{Genetischer Algorithmus}{section.5.1}% 49
+\BOOKMARK [1][-]{section.5.2}{H\366rger\344tealgorithmen}{chapter.5}% 50
+\BOOKMARK [2][-]{subsection.5.2.1}{emulated floating Point}{section.5.2}% 51
+\BOOKMARK [2][-]{subsection.5.2.2}{FFT emulated floating Point}{section.5.2}% 52
+\BOOKMARK [2][-]{subsection.5.2.3}{Filter emulated floating Point}{section.5.2}% 53
+\BOOKMARK [2][-]{subsection.5.2.4}{Einfluss des Register-Daten auf die Verlustleistung}{section.5.2}% 54
+\BOOKMARK [1][-]{section.5.3}{Einfluss der Lastkapazit\344t}{chapter.5}% 55
+\BOOKMARK [0][-]{chapter.6}{Schlussfolgerung}{}% 56
+\BOOKMARK [0][-]{chapter*.47}{Literaturverzeichnis}{}% 57

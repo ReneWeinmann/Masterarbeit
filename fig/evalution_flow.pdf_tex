@@ -55,7 +55,7 @@
     \put(0,0){\includegraphics[width=\unitlength,page=2]{evalution_flow.pdf}}%
     \put(0.13830803,0.69695114){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.54917266\unitlength}\raggedright \end{minipage}}}%
     \put(0.13246272,1.22526036){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.3263679\unitlength}\centering {\tiny Assembler-}\end{minipage}}}%
-    \put(0.23066462,0.97620729){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.46088029\unitlength}\centering {\normalsize Compiler}\end{minipage}}}%
+    \put(0.23066462,0.97620729){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.46088029\unitlength}\centering {\normalsize Scheduler}\end{minipage}}}%
     \put(0.46281736,1.23587305){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.30057983\unitlength}\centering {\tiny Prozessor-}\end{minipage}}}%
     \put(0.29734839,0.1188708){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.33867425\unitlength}\centering {\tiny Power-Reports}\end{minipage}}}%
     \put(0.23574647,0.36446488){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.44471807\unitlength}\centering {\normalsize Power-Analyse}\end{minipage}}}%
