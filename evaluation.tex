@@ -59,7 +59,7 @@ Damit die implementieren Algorithmen hinsichtlich des Verlustleistungsoptimierun
 \end{scriptsize}
 
 Vorerst wird das gewünschte Assembler Programm zusammen mit der Prozessor-Konfiguration in den Scheduler geladen. Hierbei muss unter anderem angegeben werden, mit welchen Takten der Prozessor taktet. Außerdem muss dem Scheduler die Variante der zu verwendenden Register-Allocation (Tabelle \ref{tab:algo_conifg}, Kapitel \ref{chap:register_orga}) übergeben werden. Nach erfolgreichem Compilieren des Codes steht die Binary Datei und der geschedulte Code zur Verfügung. Im Anschluss an diesen Prozess wird die Leistungsanalyse durchgeführt. Hierzu wird die Netzliste des Prozessors und die Binary-Datei benötigt. Das Tool \glqq Prime Time Suite\grqq{ } von Synopsys analysiert hierbei alle Schaltaktivitäten im Prozessor und gibt anschließend eine detaillierte Übersicht über die Leistungsaufnahme des Prozessors aus.\\
-Hierbei wird die Leistung in Internal-, Switching- und Leakage-Leistung aufgeteilt. Die Leakage-Power ist so definiert, dass alle Zeiten die eine Zelle nicht benutzt wird oder ihren Zustand nicht ändert aufsummiert werden und mit den jeweiligen Transistor-Konfigurationen verrechnet werden. Dabei gibt es zwei Verschiedene Ströme die die Verlustleistung verursachen, der Gate-Leakage-Strom $I_{gl}$ und der Source-Drain-Strom $I_{lk}$ (siehe Abbildung \ref{fig:prime_time_power}).  Bei der Leakage-Leistung handelt es sich somit um eine statische Verlustleistung. Hingegen sind Internal- und Switching-Leistung dynamische Verlustleistungen die von den Schaltvorgängen beeinflusst werden. Die Internal-Leistung inkludiert alle Leistungen die in einer Zelle durch das Laden/Entladen von Kapazitäten $I_{SW}$ und der auf Grund der Kurzschluss-Ströme $I_{SC}$ verursachte werden. Dagegen sind in der Switching-Leistung die Verlustleistungen berücksichtigt, die durch das Laden von externen Lastkapazitäten verursacht werden.\cite{primeTime2016}
+Hierbei wird die Leistung in Internal-, Switching- und Leakage-Leistung aufgeteilt. Die Leakage-Power ist so definiert, dass alle Zeiten die eine Zelle nicht benutzt wird oder ihren Zustand nicht ändert aufsummiert werden und mit den jeweiligen Transistor-Konfigurationen verrechnet werden. Dabei gibt es zwei Verschiedene Ströme die die Verlustleistung verursachen, der Gate-Leakage-Strom $I_{gl}$ und der Source-Drain-Strom $I_{lk}$ (siehe Abbildung \ref{fig:prime_time_power}).  Bei der Leakage-Leistung handelt es sich um eine statische Verlustleistung. Hingegen sind Internal- und Switching-Leistung dynamische Verlustleistungen die von den Schaltvorgängen beeinflusst werden. Die Internal-Leistung inkludiert alle Leistungen die in einer Zelle durch das Laden/Entladen von Kapazitäten $I_{SW}$ und der auf Grund der Kurzschluss-Ströme $I_{SC}$ verursachte werden. Dagegen sind in der Switching-Leistung die Verlustleistungen berücksichtigt, die durch das Laden von externen Lastkapazitäten verursacht werden.\cite{primeTime2016}
 \begin{figure}[H] 
 	\centering
 	\includegraphics[width=\textwidth]{prime_time_power}
@@ -74,7 +74,7 @@ Um den Einfluss der Register-Adressen besser verstehen zu können wurden Assembl
 Um die aufgestellte Annahme, dass sich die Verlustleistung proportional zur Hamming-Distanz verhält, zu bestätigen, wurden zu Beginn Assemblerprogramme entworfen, die nur mit physikalischen bzw. festen Registern arbeiten.
 Außerdem wurden vorerst der Best- und Worst-Case untersucht, um das maximale Optimierungspotenial zu ermitteln. Das Programm durchläuft dabei alle Möglichkeiten der Adress-Port-Zuweisung. Es testet zum einen die Register-Allokation und die damit verbundene Hamming-Distanz-Berechnung, zum anderen werden alle Einflüsse der Register-Adressierung ermittelt. Da der Prozessor zwei Register-Files mit jeweils zwei Write- und vier Read-Ports aufweist, bestehen für die Target-Register vier und für die Source-Register 16 Möglichkeiten der Portzuweisung (siehe Tabelle \ref{lese-port} sowie \ref{fig::schreib-port}). Dabei sind X2-Operationen ausgenommen. Im Worst-Case werden die Register so adressiert, dass die maximale Hamming-Distanz entsteht. Dabei wechseln die Adressen von Null auf 31, welches der maximalen Hamming-Distanz von fünf entspricht. Damit keine Einflüsse durch Scheduling oder Daten entstehen, wurden Instruktionen manuell geschedult und den einzelnen Issue-Slots zugewiesen. Somit ist die Anordnung der Assemblerbefehle für jeden Testfall identisch und der Einfluss ist demzufolge entkoppelt. Im Falle der Datenabhängigkeiten werden alle Register mit einer Null initialisiert und im Anschluss nicht verändert. Dadurch werden alle Instruktionen mit den selben Daten ausgeführt und somit besteht keine Abhängigkeit der Daten mehr.
 Für den Fall des Best-Case wird die Adresse nicht verändert und immer auf die Adresse Null gelesen sowie geschrieben.
-Das Power-Analyse-Tool zeigt nach dem Ausführen des Workflows (Abbildung \ref{fig:flow_power_analyse}) eine Übersicht über die Leistungsaufnahme des Prozessors an. Hierbei wird die Leistung in Internal-, Switching- und Leakage-Leistung aufgeteilt (siehe Abbildung \ref{fig:best_power_hierarchy}). Die Leakage-Power wird aus der Ausführungszeit des Programms, der und der jeweiligen Transistor-Konfigurationen berechnet. Bei der Leakage-Leistung handelt es sich um eine statische Verlustleistung. Internal- und Switching-Leistung sind hingegen dynamische Verlustleistungen, die von den Schaltvorgängen beeinflusst werden. Die Internal-Leistung inkludiert alle Leistungen, die in einer Zelle durch das Laden von Kapazitäten verursachte werden. Dagegen werden in der Switching-Leistung die Verlustleistungen berücksichtigt, die durch das Laden von externen Lastkapazitäten verursacht werden.
+Das Power-Analyse-Tool zeigt nach dem Ausführen des Workflows (Abbildung \ref{fig:flow_power_analyse}) eine Übersicht über die Leistungsaufnahme des Prozessors an. Hierbei wird die Leistung in Internal-, Switching- und Leakage-Leistung aufgeteilt (siehe Abbildung \ref{fig:best_power_hierarchy}). Die Leakage-Power wird mit der jeweiligen Transistor-Konfigurationen und den anliegenden Spannungen berechnet. Bei der Leakage-Leistung handelt es sich um eine statische Verlustleistung. Internal- und Switching-Leistung sind hingegen dynamische Verlustleistungen, die von den Schaltvorgängen beeinflusst werden. Die Internal-Leistung inkludiert alle Leistungen, die in einer Zelle durch das Laden von Kapazitäten verursachte werden. Dagegen werden in der Switching-Leistung die Verlustleistungen berücksichtigt, die durch das Laden von externen Lastkapazitäten verursacht werden.
 Diese Leistungen werden hierarchisch nach den einzelnen Prozessor-Modulen aufgeschlüsselt. Die letzte Spalte des Reports zeigt die Aufteilung der Leistungsaufnahme in Prozent. Dabei ist zu erkennen, dass das Register-File (vrf\_inst) mit 65,2\% die größte Leistungsaufnahme im Prozessor aufweist.
 
 \begin{figure}[H] 
@@ -210,7 +210,7 @@ Die Tabelle \ref{fig:compare_power_heuristic}. zeigt die Optimierung der Verlust
 \end{figure}
 
 
-\subsection{Genetischer Algorithmus}
+\subsection{Evaluation des genetischen Algorithmus}
 Da die Heuristik, wie bereits in Kapitel \ref{sec:genetischerAlgorithmus} erwähnt, nur die Target-Register auf Schaltaktivität minimiert werden, wird nun die Verbesserung der Verlustleistung durch zusätzliches optimieren der Source-Register untersucht.
 Bei der Evaluation wurde ein genetischer Algorithmus verwendet, der mit einer Heuristik eine Startpopulation berechnet, um eine schnelle Konvergenz gegen ein Minimum zu garantieren. Außerdem wird die Mutationswahrscheinlichkeit dynamisch angepasst. Als Fitness-Funktion wird die Multiplikation aus Hamming-Distanz und Lastkapazität gewählt. 
 Um den Optimierungsgrad gegenüber der alten und neuen Heuristik vergleichen zu können, wurde der genetische Algorithmus mit den selben synthetischen Testprogrammen wie in Kapitel \ref{chap:eval_heuristik} getestet.
@@ -275,7 +275,7 @@ Bei der Gesamtleistung für die neuen Heuristik ist auffällig, dass die Leistun
 \label{sec:testprogamme}
 Um den implementierten Code zu testen und eine reale Einsparung der Verlustleistungsreduktion zu ermitteln, wurden die folgenden Hörgerätealgorithmen verwendet. Dabei handelt es sich um die Programme die eine häufig Anwendung in Hörgerät-Prozessoren finden.
 
-\subsection{emulated floating Point}
+\subsection{Emulated Floating Point}
 \label{chap:emulated_floating_point}
 Da der verwendete Prozessor keine Gleitkommavariablen unterstützt, besteht eine softwarebasierte Methode der diese emuliert. Dabei wird eine Gleitkommazahl als zwei Subworte deklariert, zum einen der Signifikant $T$ und zum anderen der Exponent $E$. Mit Hilfe dieser kann eine Gleitkommazahl $f$ nach Formel \ref{eq:emulated_floating_point} berechnet werden.
 \begin{equation}
@@ -286,13 +286,24 @@ Beide Variablen $ T,E$ können als Subwort im Register gespeichert werden. Dabei
 Wenn nun ein Algorithmus mit Gleitkommazahlen rechnet, werden viele temporäre Zwischenwerte berechnet, welches den Algorithmus prädestiniert für eine Adressoptimierung macht und aus diesem Grund Algorithmen verwendet werden, die mit diesen arbeiten. \cite{gerlach2016efficient}
 
 \subsection{Filter und FFT mit emulated floating point}
-Im folgenden wird die Verlustleistung der beiden Algorithmen zur Fast Fourier Transformation und zu einem Frequenzfilter analysiert. Die Beiden Abbildungen XXX zeigen die Einsparungen die durch die neue Heursistik und den genetischen Algorithmus erreicht wurden.
+Im folgenden wird die Verlustleistung der beiden Algorithmen zur Fast Fourier Transformation und zu einem Frequenzfilter analysiert. Die beiden Abbildungen \ref{fig:fft_vergleich_heuristik} und \ref{fig:fft_vergleich_genetisch} zeigen die Einsparungen die durch die neue Heursistik und den genetischen Algorithmus erreicht wurden.
 
-Abbildungen FFT und Filter emulated floating point
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{fig/fft_vergleich_heuristik.pdf}
+	\caption{Gesamtleistungseinsparung FFT Heuristik}
+	\label{fig:fft_vergleich_heuristik}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{fig/fft_vergleich_genetisch.pdf}
+	\caption{Gesamtleistungseinsparung FFT genetischer Algorithmus}
+	\label{fig:fft_vergleich_genetisch}
+\end{figure}
 
-Im Fall der FFT ist eine Optimierung der Verlustleistung um XXX\% erreichbar. Der Filter mit Gleitkommazahl-Berechnung konnte hingegen eine Einsprung von XXX\% erzielen. Dabei ist anzumerken, dass die Problemstellung der FFT mit nahe zu 8000 Instruktionen groß ausfällt und der genetische Algorithmus nur geringe Verbesserungen finden konnte. Durch ein längere Testdauer, sollte es dem genetischen Algorithmus jedoch möglich sein weitere Verbesserungen zu finden.
+Im Fall der FFT ist eine Optimierung der Verlustleistung um 0.3392\% mit der Heuristik und um 0,4078\% mit dem genetischen Algorithmus zu erreichen. Dabei ist anzumerken, dass die Problemstellung der FFT mit nahe zu 8000 Instruktionen groß ausfällt und der genetische Algorithmus nur geringe Verbesserungen finden konnte. Durch ein längere Testdauer sollte es dem genetischen Algorithmus jedoch möglich sein weitere Verbesserungen zu finden.
 
-%\subsection{Filter emulated floating Point}
+%\subsection{Filter emulated floating Point}Der Filter mit Gleitkommazahl-Berechnung konnte hingegen eine Einsprung von XXX\% erzielen
 
 
 
@@ -302,13 +313,13 @@ Im Fall der FFT ist eine Optimierung der Verlustleistung um XXX\% erreichbar. De
  
 
 
-\section{Einfluss des Register-Daten auf die Verlustleistung}
+\section{Einfluss der Register-Daten auf die Verlustleistung}
 In Kapitel \ref{cap:empirischeTests} wurde bereits der Einfluss der Daten auf die Verlustleistung ermittelt. Da sich nun jedoch eine Verschlechterung der Register-File-Leistung bei besserer Adressierung in den realen Testfällen ergibt wurden die Datenabhängigkeit nochmals überprüft. Dabei ergab sich, dass auf Grund des Verhalten des Adress-Decoders eine Veränderung der Daten verursacht wird. Da die Adressen über einen Adress-Decoder decodiert werden müssen und dieser nicht direkt alle Bits auf einmal umschalten kann, liegen kurze Zeit, Daten aus anderen Adressen an den Daten-Leitungen an. Dies Verursacht dort eine Schaltleistung welches die Verbesserung durch die Adressierung aufhebt.
 %Um dieses Verhalten und die Funktion des Decoders besser nachzuvollziehen wurden nun weitere Testfälle generiert. Diese befüllen wie in Kapitel \ref{cap:empirischeTests} alle Register mit zufälligen Daten. Der unterschied liegt jedoch darin, dass die Instruktionen in allen Testfällen mit den selben Zufallsdaten arbeiten, so dass immer die selben Daten in die entsprechenden Register geschrieben werden.
 %
 %Hierbei war zu erkennen, 
 
-\section{Einfluss der Lastkapazität}
+\section{Einfluss der Lastkapazität  auf die Verlustleistung}
  \label{cap:lastkapa}
 Wie bereits in Kapitel \ref{cap:empirischeTests} erwähnt, besteht eine Abhängigkeit zwischen Lastkapazität und Verlustleistung. Dies lässt sich auf die Formel der dynamischen Verlustleistung zurückführen \ref{eq:dynVerlustleistung}, laut dieser steigt die Verlustleistung linear mit der Lastkapazität.
 Das untenstehende Schaubild \ref{fig:read_port_mux} zeigt, wie die Daten aus den Registern an die Read-Ports angelegt werden. Hierbei ist jedes Bit der Register-Adresse für das Schalten eines Multiplexers zuständig. Besteht nun der Fall, dass ein Register mit einer Adresse von 31 ausgelesen werden soll, so müssen alle Multiplexer durchschalten. Dadurch werden die Daten des Registers an den Verwendeten Register-Port weitergeleitet. Wird im Gegensatz hierzu eine niedrige Adresse, beispielsweise Null, angefragt, so muss keiner der Multiplexer schalten. Das Signal liegt direkt an dem Read-Port an. Aus diesem Grund benötigen die oberen Adressleitungen mehr Verlustleistung da das Signal eine höhere Lastkapazität aufweist. Dies lässt sich ebenfalls in den Power-Reports nachvollziehen. Dort ist deutlich zu erkennen, dass die oberen Register-Adressen eine höhere Lastkapazität aufweisen. 

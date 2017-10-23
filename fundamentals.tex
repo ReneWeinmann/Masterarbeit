@@ -1,7 +1,7 @@
 % !TeX spellcheck = de_DE
 \chapter{Grundlagen digitaler Signalverarbeitung in Hörgeräten}
 \label{chap:grundlagen}
-In diesem Kapitel wird kurz auf die Grundlagen und Begriffe von Signalprozessoren anhand der zugrundeliegenden Architektur eingegangen. Im Anschluss werden einzelne, für diese Arbeit relevante Bestandteile genauer beschrieben. Daraufhin wird ein kurzer Einblick in verwandte Ansätze gegeben werden, um im weiteren Verlauf die Funktion des Scheduling und das Prinzip der Verlustleistung zu beschreiben. Das Ende des Kapitels gibt eine grobe Übersicht über genetische Algorithmen.
+In diesem Kapitel wird kurz auf die Grundlagen und Begriffe von Signalprozessoren anhand der zugrundeliegenden Architektur eingegangen. Im Anschluss werden einzelne, für diese Arbeit relevante Bestandteile genauer beschrieben. Daraufhin wird ein kurzer Einblick in verwandte Ansätze gegeben, um im weiteren Verlauf die Funktion des Scheduling und das Prinzip der Verlustleistung zu beschreiben. Das Ende des Kapitels gibt eine grobe Übersicht über genetische Algorithmen.
 
 %\section{FPGA}
 %Bei einem FPGA (Field Programmable Gate Array) handelt es sich um ein frei programmierbaren integrierten Schaltkreis, welcher mithilfe von Look-Up-Tabellen sehr effizient Algorithmen abbildet. Um eine gewünschte Funktion auf dem FPGA zu implementieren ist es notwendig die Look-Up-Tabellen mit einer Wahrheitstabellen zu befüllen, welche diese Funktion abbildet. Dadurch kann ein FPGA jegliche erdenkliche Aufgabe erfüllen. Um die beschriebenen Blöcke mit dem IO-Ports des Chips zu verbinden ist es notwendig eine Verbindung mithilfe von Rooting-Switches und Connection-Boxen zu erstellen. Damit der Chip konfiguriert werden kann, muss die Funktion mithilfe einer HDL(Hardware Description Language) beschrieben werden.\cite{farooq2012fpga} Vorteil dieser Implementierung ist, dass eine echte Parallelität erreicht werden kann, so dass mehrere Blöcke zeitgleich ausführbar sind. In dieser Arbeit wird ein FPGA als Entwicklungsumgebung verwendet, um den zu entwickelnden ASIP bestmöglich abzubilden und dabei möglichst flexibel zu bleiben.
@@ -556,7 +556,7 @@ STORE 0x100 VxR0
 \subsection{X2 Betriebsmodus}\label{subsec:x2Mode}
 Der X2-Betriebsmodus ermöglicht es identischen Instruktionen mit dem selben Opcode, den Registerzugriff zusammenzuführen, wobei sich die Adresse nur im letzten Bit unterscheidet. Dadurch wurde virtuell die Anzahl der Issue-Slots erhöht, ohne dabei die Anzahl der zu decodierenden Anweisungen zu erhöhen. Hierbei wird einem Befehl die doppelte Anzahl an Schreib- und Lese-Registern übergeben. Somit steigt die Zahl der Parameter von drei auf sechs. Bei der Auswahl von Registern gibt es die Vorgabe, dass die erste Instruktion auf gerade Register-Adressen und die zweite auf ungerade Adressen zugreift. \cite{paya2009instruction}
 \subsection{MAC Operationen}\label{subsec:macMode}
-Die MAC (Multiply and Accumulate) -Operation führt eine Multiplikation zweier Werte aus und akkumuliert diese im Anschluss. Werden bei einer n-bit Implementierungen zwei Werte multipliziert, so kann das Resultat eine Bitbreite von 2n aufweisen. Wird nun eine Architektur mit 64-bit Registern verwendet, müssen zwei Register zur Abspeicherung des Ergebnisses herangezogen werden. Dabei sollte es sich um zwei aufeinanderfolgende Register handeln, wobei diese aus dem selben oder einem benachbarten Register-File stammen können. Eine weitere Besonderheit der MAC-Operation ist, dass der erste Operand in einer geraden Register-Adresse liegen muss. Ein Beispiel für eine valide MAC-Allocation stellt das  Register-Paar V0R0 und V1R0 dar \cite{meyer2007digital}.
+Die MAC (Multiply and Accumulate) -Operation führt eine Multiplikation zweier Werte aus und akkumuliert diese im Anschluss. Werden bei einer $n$-bit Implementierungen zwei Werte multipliziert, so kann das Resultat eine Bitbreite von 2$n$ aufweisen. Wird nun eine Architektur mit 64-bit Registern verwendet, müssen zwei Register zur Abspeicherung des Ergebnisses herangezogen werden. Dabei sollte es sich um zwei aufeinanderfolgende Register handeln, wobei diese aus dem selben oder einem benachbarten Register-File stammen können. Eine weitere Besonderheit der MAC-Operation ist, dass der erste Operand in einer geraden Register-Adresse liegen muss. Ein Beispiel für eine valide MAC-Allocation stellt das  Register-Paar V0R0 und V1R0 dar \cite{meyer2007digital}.
   
 
 \subsection{Dummy-Register}\label{subsec:dummy}
@@ -573,12 +573,19 @@ Eine weitere Komponente des Prozessors ist die Adress-Isolation. Dabei handelt e
 Unter Verlustleistung in integrierten Schaltungen versteht man die in den Transistoren umgesetzte Leistung, die in Form von Wärme verloren geht.
 Es wird in statische \(P_{stat}\) und dynamische \(P_{dyn}\) Verlustleistung unterschieden. \cite[Seite 4 ff.]{flynn2007low} Hierbei wird die Verlustleistung von CMOS Transistoren untersucht.
 \subsection{Dynamische Verlustleistung}\label{subsec:dynVerl}
-Jedes Mal wenn eine Kapazität geladen oder entladen wird, entsteht eine dynamische Verlustleistung \(P_C\). Eine weitere dynamische Verlustleistung \(P_{SC}\) tritt bei dem Schaltvorgang von CMOS-Transistoren auf. Diese soll anhand eines CMOS-Inverters nun verdeutlicht werden. Beim Umschalten der Pegel entsteht eine kurze Zeitspanne, in der beide Transistoren eine leitende Verbindung aufweisen. In diesem Fall besteht ein Kurzschlussstrom \(I_{SC}\) zwischen Versorgungsspannung \(V_{DD}\) und Masse \(V_{SS}\). Die dynamische Verlustleistung ist proportional zur Schaltaktivität \(\alpha\) und somit auch zur Taktfrequenz $f$.\cite[Seite 4 ff.]{flynn2007low}
+Jedes Mal wenn eine Kapazität geladen oder entladen wird, entsteht eine dynamische Verlustleistung \(P_C\) die mit Formel \ref{eq:dynVerlustleistung_kapa} berechnet werden kann. Eine weitere dynamische Verlustleistung \(P_{SC}\) tritt bei dem Schaltvorgang von CMOS-Transistoren auf. Diese soll anhand eines CMOS-Inverters nun verdeutlicht werden. Beim Umschalten der Pegel entsteht eine kurze Zeitspanne, in der beide Transistoren eine leitende Verbindung aufweisen. In diesem Fall besteht ein Kurzschlussstrom \(I_{SC}\) zwischen Versorgungsspannung \(V_{DD}\) und Masse \(V_{SS}\). Integriert man diesen Strom ueber die Zeit erhaelt man die Ladung $Q_{SC}$. Demzufolge setzt sich die gesamte dynamische Verlustleistung nach Formel \ref{eq:dynVerlustleistung} zusammen. Dabei sind \(P_C\) und \(P_{SC}\) proportional zur Schaltaktivität \(\alpha\) und somit auch zur Taktfrequenz $f$.\cite[Seite 4 ff.]{flynn2007low}
 \begin{equation}
-P_{dyn} = \alpha  C_L  V_{dd}^{2}  f
+	P_{C} = \alpha \cdot C_L \cdot V_{dd}^{2} \cdot f
+\label{eq:dynVerlustleistung_kapa}
+\end{equation}
+\setstretch{0.5}
+\begin{equation}
+	P_{dyn} = P_{C} + P_{SC} = \alpha \cdot f \cdot (C_L \cdot V_{dd} + 2 \cdot Q_{SC}) \cdot V_{dd}
 \label{eq:dynVerlustleistung}
 \end{equation}
+
 \subsection{Statische Verlustleistung}\label{subsec:statVerl}
+\setstretch{1.5}
 Sobald die Verlustleistung unabhängig von der Taktrate ist, kann diese als statische \(P_{Stat}\) bezeichnet werden. Dies ist der Fall, wenn aufbaubedingt ein konstanter Strom zwischen \(V_{DD}\) und \(V_{SS}\) besteht. Dieser Strom ist unabhängig von der angelegten Gatespannung. Der dadurch auftretende Strom wird Leakagestrom genannt. Mit immer kleiner werdenden Strukturen wird dieser Strom immer bedeutender.\cite[Seite 8]{flynn2007low}
 
 Die gesamte Verlustleistung ist die Summer der drei erwähnten Verluste.
