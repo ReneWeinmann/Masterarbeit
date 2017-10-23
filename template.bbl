@@ -74,6 +74,13 @@ David Landskov, Scott Davidson, Bruce Shriver, and Patrick~W Mallett.
 \newblock Local microcode compaction techniques.
 \newblock {\em ACM Computing Surveys (CSUR)}, 12(3):261--294, 1980.
 
+\bibitem{lee2007low}
+Seung~Jin Lee, Sunyoung Kim, and Hoi-Jun Yoo.
+\newblock A low power digital signal processor with adaptive band activation
+  for digital hearing aid chip.
+\newblock In {\em Circuits and Systems, 2007. ISCAS 2007. IEEE International
+  Symposium on}, pages 2730--2733. IEEE, 2007.
+
 \bibitem{lukasglitches2017}
 Gerlach Lukas, Pay{\'a}~Vay{\'a} Guillermo, Liu Shuango, Wei{\ss}brich Moritz,
   and Blume Holger.

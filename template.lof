@@ -31,13 +31,13 @@
 \contentsline {figure}{\numberline {5.12}{\ignorespaces Heuristik Evaluation\relax }}{55}{figure.caption.36}
 \contentsline {figure}{\numberline {5.13}{\ignorespaces Schaltleistung Target- und Source-Adressports\relax }}{56}{figure.caption.37}
 \contentsline {figure}{\numberline {5.14}{\ignorespaces Vergleich der Schaltleistungen von Target und Source-Ports\relax }}{57}{figure.caption.38}
-\contentsline {figure}{\numberline {5.15}{\ignorespaces Prozentuale Verbesserung der Verlustleistung- alte zu neue Heuristik\relax }}{58}{figure.caption.39}
-\contentsline {figure}{\numberline {5.16}{\ignorespaces Vergleich der Schaltleistungen f\IeC {\"u}r Heuristik und genetischer Algorithmus\relax }}{59}{figure.caption.40}
-\contentsline {figure}{\numberline {5.17}{\ignorespaces Gesamtverlustleistung genetischer Algorithmus vs. Heuristik\relax }}{60}{figure.caption.41}
+\contentsline {figure}{\numberline {5.15}{\ignorespaces Prozentuale Verbesserung der Verlustleistung- alte zu neue Heuristik\relax }}{57}{figure.caption.39}
+\contentsline {figure}{\numberline {5.16}{\ignorespaces Vergleich der Schaltleistungen f\IeC {\"u}r Heuristik und genetischer Algorithmus\relax }}{58}{figure.caption.40}
+\contentsline {figure}{\numberline {5.17}{\ignorespaces Gesamtverlustleistung genetischer Algorithmus vs. Heuristik\relax }}{59}{figure.caption.41}
 \contentsline {figure}{\numberline {5.18}{\ignorespaces Prozentuale Verbesserung der Verlustleistung\relax }}{60}{figure.caption.42}
-\contentsline {figure}{\numberline {5.19}{\ignorespaces Verlauf der Gesamtleistung alte Heuristik \relax }}{61}{figure.caption.43}
+\contentsline {figure}{\numberline {5.19}{\ignorespaces Verlauf der Gesamtleistung alte Heuristik \relax }}{60}{figure.caption.43}
 \contentsline {figure}{\numberline {5.20}{\ignorespaces Verlauf der Gesamtleistung neue Heuristik\relax }}{61}{figure.caption.44}
-\contentsline {figure}{\numberline {5.21}{\ignorespaces Verlauf der Gesamtleistung genetischer Algorithmus\relax }}{62}{figure.caption.45}
+\contentsline {figure}{\numberline {5.21}{\ignorespaces Verlauf der Gesamtleistung genetischer Algorithmus\relax }}{61}{figure.caption.45}
 \contentsline {figure}{\numberline {5.22}{\ignorespaces Read-Port Multiplexer\relax }}{64}{figure.caption.46}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

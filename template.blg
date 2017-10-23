@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2015)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: template.aux
 The style file: plain.bst
@@ -6,45 +6,45 @@ Database file #1: bib.bib
 Warning--to sort, need author or key in statistica
 Warning--empty journal in davis1991handbook
 Warning--empty journal in lukasglitches2017
-You've used 23 entries,
+You've used 24 entries,
             2118 wiz_defined-function locations,
-            628 strings with 8343 characters,
-and the built_in function-call counts, 8369 in all, are:
-= -- 855
-> -- 339
-< -- 13
-+ -- 136
-- -- 112
-* -- 530
-:= -- 1307
-add.period$ -- 76
-call.type$ -- 23
-change.case$ -- 121
+            633 strings with 8578 characters,
+and the built_in function-call counts, 8905 in all, are:
+= -- 914
+> -- 357
+< -- 14
++ -- 144
+- -- 118
+* -- 562
+:= -- 1380
+add.period$ -- 80
+call.type$ -- 24
+change.case$ -- 127
 chr.to.int$ -- 0
-cite$ -- 26
-duplicate$ -- 356
-empty$ -- 684
-format.name$ -- 112
-if$ -- 1832
+cite$ -- 27
+duplicate$ -- 381
+empty$ -- 728
+format.name$ -- 118
+if$ -- 1958
 int.to.chr$ -- 0
-int.to.str$ -- 23
-missing$ -- 24
-newline$ -- 117
-num.names$ -- 44
-pop$ -- 163
+int.to.str$ -- 24
+missing$ -- 25
+newline$ -- 122
+num.names$ -- 46
+pop$ -- 172
 preamble$ -- 1
-purify$ -- 102
+purify$ -- 107
 quote$ -- 0
-skip$ -- 261
+skip$ -- 282
 stack$ -- 0
-substring$ -- 532
-swap$ -- 116
-text.length$ -- 13
+substring$ -- 578
+swap$ -- 129
+text.length$ -- 14
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 86
+type$ -- 90
 warning$ -- 3
-while$ -- 84
-width$ -- 25
-write$ -- 253
+while$ -- 89
+width$ -- 26
+write$ -- 265
 (There were 3 warnings)

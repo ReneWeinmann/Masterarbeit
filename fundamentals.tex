@@ -544,6 +544,7 @@ MVI V0R1 0x101
 ADD V0R0 V0R0 V0R1
 STORE 0x100 V0R0
 \end{lstlisting}
+\newpage
 Um nun den Code etwas flexibler zu gestalten, wird dem Compiler überlassen, welches Register er benutzt. Die selbe Addition ist in Codebeispiel \ref{virtReg} mit virtuellen Registern realisiert. Hierbei wird dem Scheduler durch ein X gekennzeichnet, dass es sich um ein virtuelles Register handelt. Dabei wählt der Algorithmus anschließend ein optimales Register aus, so dass sich der Entwickler um diese Aufgabe nicht bemühen muss. Dies hat den Vorteil, dass somit für den Code geeignete und optimale Register ausgewählt werden können. Dabei wird darauf geachtet, dass beide Register-Files gleich ausgelastet sind und das es möglich bleibt X2- oder MAC-Befehle (siehe Kapitel \ref{subsec:x2Mode} ff.) zu allokieren. Außerdem sind die Register in diesem Fall so allokiert, dass die Verlustleistungsaufnahme minimal ist. Wie die Register für eine optimale Verlustleistung ausgewählt werden müssen, wird in dieser Arbeit evaluiert und aufgezeigt.
 
 \begin{lstlisting}[frame=single,caption={virtuelle Register},captionpos=b,label=virtReg]

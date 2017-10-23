@@ -49,9 +49,8 @@
 \BOOKMARK [2][-]{subsection.5.1.4}{Genetischer Algorithmus}{section.5.1}% 49
 \BOOKMARK [1][-]{section.5.2}{H\366rger\344tealgorithmen}{chapter.5}% 50
 \BOOKMARK [2][-]{subsection.5.2.1}{emulated floating Point}{section.5.2}% 51
-\BOOKMARK [2][-]{subsection.5.2.2}{FFT emulated floating Point}{section.5.2}% 52
-\BOOKMARK [2][-]{subsection.5.2.3}{Filter emulated floating Point}{section.5.2}% 53
-\BOOKMARK [1][-]{section.5.3}{Einfluss des Register-Daten auf die Verlustleistung}{chapter.5}% 54
-\BOOKMARK [1][-]{section.5.4}{Einfluss der Lastkapazit\344t}{chapter.5}% 55
-\BOOKMARK [0][-]{chapter.6}{Schlussfolgerung}{}% 56
-\BOOKMARK [0][-]{chapter*.47}{Literaturverzeichnis}{}% 57
+\BOOKMARK [2][-]{subsection.5.2.2}{Filter und FFT mit emulated floating point}{section.5.2}% 52
+\BOOKMARK [1][-]{section.5.3}{Einfluss des Register-Daten auf die Verlustleistung}{chapter.5}% 53
+\BOOKMARK [1][-]{section.5.4}{Einfluss der Lastkapazit\344t}{chapter.5}% 54
+\BOOKMARK [0][-]{chapter.6}{Schlussfolgerung}{}% 55
+\BOOKMARK [0][-]{chapter*.47}{Literaturverzeichnis}{}% 56
