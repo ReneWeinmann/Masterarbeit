@@ -81,6 +81,12 @@ Gerlach Lukas, Pay{\'a}~Vay{\'a} Guillermo, Liu Shuango, Wei{\ss}brich Moritz,
   algorithm performance using a hearing aid asip.
 \newblock 2017.
 
+\bibitem{meyer2007digital}
+Uwe Meyer-Baese and U~Meyer-Baese.
+\newblock {\em Digital signal processing with field programmable gate arrays},
+  volume~65.
+\newblock Springer, 2007.
+
 \bibitem{paya2009instruction}
 Guillermo Pay{\'a}-Vay{\'a}, Javier Mart{\'\i}n-Langerwerf, Florian Giesemann,
   Holger Blume, and Peter Pirsch.

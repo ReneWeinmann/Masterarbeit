@@ -5,8 +5,8 @@
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Register File Organisationstypen}}{8}{figure.caption.9}
 \contentsline {figure}{\numberline {2.4}{\ignorespaces Register File Organisation\relax }}{9}{figure.caption.10}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Compiler Ablaufdiagramm\relax }}{21}{figure.caption.13}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Beispiel Register-Allokation\relax }}{24}{figure.caption.14}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Ablaufdiagramm Scheduler\relax }}{21}{figure.caption.13}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Register-Allokationsbeispiel\relax }}{24}{figure.caption.14}
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Heuristik Beispiel\relax }}{26}{figure.caption.15}
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Fortpflanzung mittels Crossover\relax }}{32}{figure.caption.17}
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Vergleich Fitness-Funktionsans\IeC {\"a}tze\relax }}{35}{figure.caption.18}

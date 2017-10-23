@@ -59,7 +59,7 @@ Damit die implementieren Algorithmen hinsichtlich des Verlustleistungsoptimierun
 \end{scriptsize}
 
 Vorerst wird das gewünschte Assembler Programm zusammen mit der Prozessor-Konfiguration in den Scheduler geladen. Hierbei muss unter anderem angegeben werden, mit welchen Takten der Prozessor taktet. Außerdem muss dem Scheduler die Variante der zu verwendenden Register-Allocation (Tabelle \ref{tab:algo_conifg}, Kapitel \ref{chap:register_orga}) übergeben werden. Nach erfolgreichem Compilieren des Codes steht die Binary Datei und der geschedulte Code zur Verfügung. Im Anschluss an diesen Prozess wird die Leistungsanalyse durchgeführt. Hierzu wird die Netzliste des Prozessors und die Binary-Datei benötigt. Das Tool \glqq Prime Time Suite\grqq{ } von Synopsys analysiert hierbei alle Schaltaktivitäten im Prozessor und gibt anschließend eine detaillierte Übersicht über die Leistungsaufnahme des Prozessors aus.\\
-Hierbei wird die Leistung in Internal-, Switching- und Leakage-Leistung aufgeteilt. Die Leakage-Power ist so definiert, dass alle Zeiten die eine Zelle nicht benutzt wird oder ihren Zustand nicht ändert aufsummiert werden und mit den jeweiligen Transistor-Konfigurationen verrechnet werden. Dabei gibt es zwei Verschiedene Ströme die die Verlustleistung verursachen, der Gate-Leakage-Strom $I_{gl}$ und der Source-Drain-Strom $I_{lk}$ (siehe Abbildung \ref{fig:prime_time_power}).  Bei der Leakage-Leistung handelt es sich somit um eine statische Verlustleistung. Hingegen sind Internal- und Switching-Leistung dynamische Verlustleistungen die von den Schaltvorgängen beeinflusst werden. Die Internal-Leistung inkludiert alle Leistungen die in einer Zelle durch das Laden/Entladen von Kapazitäten $I_{SW}$ und der auf Grund der Kurzschluss-Ströme $I_{SC}$ verursachte werden. Dagegen sind in der Switching-Leistung die Verlustleistungen berücksichtigt, die durch das Laden von externen Lastkapazitäten verursacht werden.\cite{primeTime2016}
+Hierbei wird die Leistung in Internal-, Switching- und Leakage-Leistung aufgeteilt. Die Leakage-Power ist so definiert, dass alle XXX Zeiten die eine Zelle nicht benutzt wird oder ihren Zustand nicht ändert aufsummiert werden und mit den jeweiligen Transistor-Konfigurationen verrechnet werden. Dabei gibt es zwei Verschiedene Ströme die die Verlustleistung verursachen, der Gate-Leakage-Strom $I_{gl}$ und der Source-Drain-Strom $I_{lk}$ (siehe Abbildung \ref{fig:prime_time_power}).  Bei der Leakage-Leistung handelt es sich somit um eine statische Verlustleistung. Hingegen sind Internal- und Switching-Leistung dynamische Verlustleistungen die von den Schaltvorgängen beeinflusst werden. Die Internal-Leistung inkludiert alle Leistungen die in einer Zelle durch das Laden/Entladen von Kapazitäten $I_{SW}$ und der auf Grund der Kurzschluss-Ströme $I_{SC}$ verursachte werden. Dagegen sind in der Switching-Leistung die Verlustleistungen berücksichtigt, die durch das Laden von externen Lastkapazitäten verursacht werden.\cite{primeTime2016}
 \begin{figure}[H] 
 	\centering
 	\includegraphics[width=\textwidth]{prime_time_power}
@@ -236,7 +236,7 @@ Die komplette Einsparung fällt relativ gering aus, jedoch ist hervorzuheben, da
 %
 %Mittelwert genetischer Algo gegenüber alter heuristik
 
-Auch hier zeigt ein prozentualer Vergleich der Verlustleistungen des kompletten Prozessors eine Verbesserung der Schaltleistung in den Register-Files. In diesem Fall wird die beste Lösung des genetischen Algorithmus mit der alten Heuristik verglichen. Die Tabelle zeigt eine Verbesserung der Schaltleistung des Gesamten Prozessors um 7,78\%. Die Verlustleistung, die durch die Leakage-Ströme verursacht wurde, ist um zwei bzw. drei Zehnerpotenzen kleiner als die Verlustleistungen die durch die Schaltvorgänge hervorgerufen wird. Aus diesem Grund werden diese vernachlässigt. 
+Auch hier zeigt ein prozentualer Vergleich der Verlustleistungen des kompletten Prozessors eine Verbesserung der Schaltleistung in den Register-Files. In diesem Fall wird die beste Lösung des genetischen Algorithmus mit der alten Heuristik verglichen. Die Tabelle zeigt eine Verbesserung der Schaltleistung des Gesamten Prozessors um 7,78\%. Die Verlustleistung, die durch die XXX Leakage-Ströme verursacht wurde, ist um zwei bzw. drei Zehnerpotenzen kleiner als die Verlustleistungen die durch die Schaltvorgänge hervorgerufen wird. Aus diesem Grund werden diese vernachlässigt. 
 Die prozentuale Veränderung der Internal-Leistung liegt im sehr niedrigen Prozentbereich und wird ebenfalls nicht weiter berücksichtigt. 
 
 \begin{figure}[H]
@@ -285,9 +285,15 @@ f = T *2^E
 Beide Variablen $ T,E$ können als Subwort im Register gespeichert werden. Dabei können diese an eine beliebige Adresse des Registers stehen. Aus diesem Grund werden hierfür zwei virtuelle Register verwendet. Diese Emulation ist besonders geeignet für SIMD-Architekturen, bei der eine Gleitkommaberechnung ohne Aufschlüsseln der Variablen errechnet werden kann. Dadurch ist diese Art von Gleitkommaberechnung äußerst performant.
 Wenn nun ein Algorithmus mit Gleitkommazahlen rechnet, werden viele temporäre Zwischenwerte berechnet, welches den Algorithmus prädestiniert für eine Adressoptimierung macht und aus diesem Grund Algorithmen verwendet werden, die mit diesen arbeiten. \cite{gerlach2016efficient}
 
-\subsection{FFT emulated floating Point}
+\subsection{Filter und FFT mit emulated floating point}
+Im folgenden wird die Verlustleistung der beiden Algorithmen zur Fast Fourier Transformation und zu einem Frequenzfilter analysiert. Die Beiden Abbildungen XXX zeigen die Einsparungen die durch die neue Heursistik und den genetischen Algorithmus erreicht wurden.
 
-\subsection{Filter emulated floating Point}
+Abbildungen FFT und Filter emulated floating point
+
+Im Fall der FFT ist eine Optimierung der Verlustleistung um XXX\% erreichbar. Der Filter mit Gleitkommazahl-Berechnung konnte hingegen eine Einsprung von XXX\% erzielen. Dabei ist anzumerken, dass die Problemstellung der FFT mit nahe zu 8000 Instruktionen groß ausfällt und der genetische Algorithmus nur geringe Verbesserungen finden konnte. Durch ein längere Testdauer, sollte es dem genetischen Algorithmus jedoch möglich sein weitere Verbesserungen zu finden.
+
+%\subsection{Filter emulated floating Point}
+
 
 
 %\subsection{Beamforming}
