@@ -1,11 +1,13 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {algorithm}{\numberline {1}{\ignorespaces physikalische Register\relax }}{14}{algorithm.1}
+\contentsline {algorithm}{\numberline {2}{\ignorespaces virtuelle Register\relax }}{14}{algorithm.2}
 \addvspace {10\p@ }
-\contentsline {algorithm}{\numberline {1}{\ignorespaces Register-Allokationsbeispiel\relax }}{24}{algorithm.1}
-\contentsline {algorithm}{\numberline {2}{\ignorespaces Heuristik Beispiel\relax }}{26}{algorithm.2}
-\contentsline {algorithm}{\numberline {3}{\ignorespaces Pseudocode genetischer Algorithmus\relax }}{31}{algorithm.3}
+\contentsline {algorithm}{\numberline {3}{\ignorespaces Register-Allokationsbeispiel\relax }}{24}{algorithm.3}
+\contentsline {algorithm}{\numberline {4}{\ignorespaces Heuristik Beispiel\relax }}{26}{algorithm.4}
+\contentsline {algorithm}{\numberline {5}{\ignorespaces Pseudocode genetischer Algorithmus\relax }}{31}{algorithm.5}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {algorithm}{\numberline {4}{\ignorespaces Codebeispiel Target-Register \relax }}{51}{algorithm.4}
+\contentsline {algorithm}{\numberline {6}{\ignorespaces Codebeispiel Target-Register \relax }}{51}{algorithm.6}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

@@ -1,20 +1,20 @@
-\nomenclatureentry{aASIP@[{ASIP}]\begingroup Application Specific Instruction Set Processor\nomeqref {0.0}|nompageref}{XI}
-\nomenclatureentry{aMIPS@[{MIPS}]\begingroup Microprocessor Without Interlocked Pipeline Stages\nomeqref {0.0}|nompageref}{XI}
-\nomenclatureentry{aASIC@[{ASIC}]\begingroup Application Specific Integrated Circuit\nomeqref {0.0}|nompageref}{XI}
-\nomenclatureentry{aVLIW@[{VLIW}]\begingroup Very Long Instruction Word\nomeqref {0.0}|nompageref}{XI}
-\nomenclatureentry{aSIMD@[{SIMD}]\begingroup Single Instruction Multiple Data\nomeqref {0.0}|nompageref}{XI}
-\nomenclatureentry{aALU@[{ALU}]\begingroup Arithmetic Logic Unit\nomeqref {0.0}|nompageref}{XI}
-\nomenclatureentry{aIF@[{IF}]\begingroup Instruktion Fetch\nomeqref {0.0}|nompageref}{XI}
-\nomenclatureentry{aDE@[{DE}]\begingroup Decode\nomeqref {0.0}|nompageref}{XI}
-\nomenclatureentry{aRA@[{RA}]\begingroup Register Access\nomeqref {0.0}|nompageref}{XI}
-\nomenclatureentry{aEX@[{EX}]\begingroup Execute\nomeqref {0.0}|nompageref}{XI}
-\nomenclatureentry{aWB@[{WB}]\begingroup Write Back\nomeqref {0.0}|nompageref}{XI}
-\nomenclatureentry{aFPGA@[{FPGA}]\begingroup Field Programmable Gate Array\nomeqref {0.0}|nompageref}{XI}
-\nomenclatureentry{aMI@[{MI}]\begingroup Micro Instructions\nomeqref {0.0}|nompageref}{XI}
-\nomenclatureentry{aMO@[{MO}]\begingroup Micro Operation\nomeqref {0.0}|nompageref}{XI}
-\nomenclatureentry{aSLM@[{SLM}]\begingroup Straight Line Microcode\nomeqref {0.0}|nompageref}{XI}
-\nomenclatureentry{aMAC@[{MAC}]\begingroup Multiply and Accumulate\nomeqref {0.0}|nompageref}{XI}
-\nomenclatureentry{aCMOS@[{CMOS}]\begingroup Complementary Metal-Oxide-Semiconductor\nomeqref {0.0}|nompageref}{XI}
-\nomenclatureentry{aOP@[{OP}]\begingroup Operation\nomeqref {0.0}|nompageref}{XI}
-\nomenclatureentry{aFFT@[{FFT}]\begingroup Fast Fourier Transformation\nomeqref {0.0}|nompageref}{XI}
-\nomenclatureentry{aDSP@[{DSP}]\begingroup Digitaler Signalprozessor\nomeqref {0.0}|nompageref}{XI}
+\nomenclatureentry{aASIP@[{ASIP}]\begingroup Application Specific Instruction Set Processor\nomeqref {0.0}|nompageref}{X}
+\nomenclatureentry{aMIPS@[{MIPS}]\begingroup Microprocessor Without Interlocked Pipeline Stages\nomeqref {0.0}|nompageref}{X}
+\nomenclatureentry{aASIC@[{ASIC}]\begingroup Application Specific Integrated Circuit\nomeqref {0.0}|nompageref}{X}
+\nomenclatureentry{aVLIW@[{VLIW}]\begingroup Very Long Instruction Word\nomeqref {0.0}|nompageref}{X}
+\nomenclatureentry{aSIMD@[{SIMD}]\begingroup Single Instruction Multiple Data\nomeqref {0.0}|nompageref}{X}
+\nomenclatureentry{aALU@[{ALU}]\begingroup Arithmetic Logic Unit\nomeqref {0.0}|nompageref}{X}
+\nomenclatureentry{aIF@[{IF}]\begingroup Instruktion Fetch\nomeqref {0.0}|nompageref}{X}
+\nomenclatureentry{aDE@[{DE}]\begingroup Decode\nomeqref {0.0}|nompageref}{X}
+\nomenclatureentry{aRA@[{RA}]\begingroup Register Access\nomeqref {0.0}|nompageref}{X}
+\nomenclatureentry{aEX@[{EX}]\begingroup Execute\nomeqref {0.0}|nompageref}{X}
+\nomenclatureentry{aWB@[{WB}]\begingroup Write Back\nomeqref {0.0}|nompageref}{X}
+\nomenclatureentry{aFPGA@[{FPGA}]\begingroup Field Programmable Gate Array\nomeqref {0.0}|nompageref}{X}
+\nomenclatureentry{aMI@[{MI}]\begingroup Micro Instructions\nomeqref {0.0}|nompageref}{X}
+\nomenclatureentry{aMO@[{MO}]\begingroup Micro Operation\nomeqref {0.0}|nompageref}{X}
+\nomenclatureentry{aSLM@[{SLM}]\begingroup Straight Line Microcode\nomeqref {0.0}|nompageref}{X}
+\nomenclatureentry{aMAC@[{MAC}]\begingroup Multiply and Accumulate\nomeqref {0.0}|nompageref}{X}
+\nomenclatureentry{aCMOS@[{CMOS}]\begingroup Complementary Metal-Oxide-Semiconductor\nomeqref {0.0}|nompageref}{X}
+\nomenclatureentry{aOP@[{OP}]\begingroup Operation\nomeqref {0.0}|nompageref}{X}
+\nomenclatureentry{aFFT@[{FFT}]\begingroup Fast Fourier Transformation\nomeqref {0.0}|nompageref}{X}
+\nomenclatureentry{aDSP@[{DSP}]\begingroup Digitaler Signalprozessor\nomeqref {0.0}|nompageref}{X}
