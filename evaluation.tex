@@ -15,7 +15,7 @@ Die für die Schreib- und Lesezugriffe verwendeten Adressen werden jeweils zwisc
 
 % Dies liegt daran, dass die benötigten Enable-Signale aufwendig berechnet werden müssen und dies eine kurze Verzögerung nach sich zieht
 Das beschriebene Problem verursacht eine Erhöhung der Schaltaktivität auf den Adressleitungen. Dadurch steigt die Verlustleistung in den Testfällen an den einzelnen Adress-Ports um teilweise bis zu 49,44\%.
-Um diesem Effekt entgegenzuwirken, wurde eine weitere Pipeline-Stufe eingebaut. Diese verzögert die Adressen, so dass keine Glitches an die Register-Ports weitergeleitet werden (siehe Abbildung \ref{fig:glitches_pipeline}). Der zusätzliche Energieverbrauch der Pipeline-Register wird an dieser Stelle nicht weiter untersucht, da der Anstieg der Verlustleistung in den zu vergleichenden Algorithmen identisch ist.
+Um diesem Effekt entgegenzuwirken, wurde eine weitere Pipeline-Stufe eingebaut. Diese verzögert die Adressen so, dass keine Glitches an die Register-Ports weitergeleitet werden (siehe Abbildung \ref{fig:glitches_pipeline}). Der zusätzliche Energieverbrauch der Pipeline-Register wird an dieser Stelle nicht weiter untersucht, da der Anstieg der Verlustleistung in den zu vergleichenden Algorithmen identisch ist.
 
 \begin{figure}[H] 
 	\centering
@@ -73,7 +73,7 @@ Um den Einfluss der Register-Adressen besser verstehen zu können, wurden Assemb
 \label{cap:empirischeTests}
 Um die aufgestellte Annahme, dass sich die Verlustleistung proportional zur Hamming-Distanz verhält, zu bestätigen, wurden zu Beginn Assemblerprogramme entworfen, die nur mit physikalischen bzw. festen Registern arbeiten.
 Außerdem wurden vorerst der Best- und Worst-Case untersucht, um das maximale Optimierungspotential zu ermitteln. Das Programm durchläuft dabei alle Möglichkeiten der Adress-Port-Zuweisung. Es testet zum einen die Register-Allokation und die damit verbundene Hamming-Distanz-Berechnung, zum anderen werden alle Einflüsse der Register-Adressierung ermittelt. Da der Prozessor zwei Register-Files mit jeweils zwei Write- und vier Read-Ports aufweist, bestehen für die Target-Register vier und für die Source-Register 16 Möglichkeiten der Portzuweisung (siehe Tabelle \ref{lese-port} sowie \ref{fig::schreib-port}). Dabei sind X2-Operationen ausgenommen. Im Worst-Case werden die Register so adressiert, dass die maximale Hamming-Distanz entsteht. Dabei wechseln die Adressen von Null auf 31, welches der maximalen Hamming-Distanz von Fünf entspricht. Damit keine Einflüsse durch Scheduling oder Daten entstehen, wurden Instruktionen manuell geschedult und den einzelnen Issue-Slots zugewiesen. Somit ist die Anordnung der Assemblerbefehle für jeden Testfall identisch und der Einfluss ist demzufolge entkoppelt. Im Falle der Datenabhängigkeiten werden alle Register mit einer Null initialisiert und im Anschluss nicht verändert. Dadurch werden alle Instruktionen mit den selben Daten ausgeführt.
-Für den Fall des Best-Case wird die Adresse nicht verändert und immer von der Adresse Null gelesen beziehungsweise auf sie geschrieben.
+Für den Fall des Best-Case wird die Adresse nicht verändert und immer von der Adresse Null gelesen, beziehungsweise auf sie geschrieben.
 Das Power-Analyse-Tool zeigt nach dem Ausführen des Workflows (Abbildung \ref{fig:flow_power_analyse}) eine Übersicht über die Leistungsaufnahme des Prozessors an. Hierbei wird die Leistung in Internal-, Switching- und Leakage-Leistung aufgeteilt (siehe Abbildung \ref{fig:best_power_hierarchy}).
 Diese Leistungen werden hierarchisch nach den einzelnen Prozessor-Modulen aufgeschlüsselt. Die letzte Spalte des Reports zeigt die Aufteilung der Leistungsaufnahme in Prozent. Dabei ist zu erkennen, dass das Register-File (vrf\_inst) mit 65,2\% die größte Leistungsaufnahme im Prozessor aufweist.
 
@@ -138,8 +138,8 @@ Dieser Test wurde für die Adressen Zwei, Fünf, 24, 25, 27 und 31 ausgeführt. 
 	\label{fig:target1_power}
 \end{figure}
 
-Bei allen vier Graphen ist ein Sprung der Leistung bei einer Hamming-Distanz von 64 auffällig. Dieser Sprung lässt sich dadurch erklären, dass zwar die Hamming-Distanzen der Testfälle mit den Register-Adressen fünf und 24 identisch sind, aber unterschiedliche Adressleitungen verwendet werden, welche eine größere Lastkapazität aufweisen. Durch die höhere Lastkapazität wird automatisch auch eine größere Leistung benötigt. Dieses Phänomen wird in Kapitel \ref{cap:lastkapa} näher untersucht und erläutert.\\
-Nachdem die Register getrennt voneinander betrachtet wurden und sich gezeigt hat, dass die Adressen ungefähr die selben Schaltleistungen in den Ports verursachen, soll das Verhalten beim gemeinsamen Schalten der Source- sowie Target-Register untersucht werden. Auch hierbei werden die Tests mit den selben Hamming-Distanzen für Lese- und Schreib-Ports ausgeführt. Das Schaubild \ref{fig:source_target_power} zeigt auch hier, dass ein linearer Verlauf erkennbar ist.
+Bei allen vier Graphen ist ein Sprung der Leistung bei einer Hamming-Distanz von 64 auffällig. Dieser Sprung lässt sich dadurch erklären, dass zwar die Hamming-Distanzen der Testfälle mit den Register-Adressen Fünf und 24 identisch sind, aber unterschiedliche Adressleitungen verwendet werden, welche eine größere Lastkapazität aufweisen. Durch die höhere Lastkapazität wird automatisch auch eine größere Leistung benötigt. Dieses Phänomen wird in Kapitel \ref{cap:lastkapa} näher untersucht und erläutert.\\
+Nachdem die Register getrennt voneinander betrachtet wurden und sich gezeigt hat, dass die Adressen ungefähr die selben Schaltleistungen in den Ports verursachen, wird das Verhalten beim gemeinsamen Schalten der Source- sowie Target-Register untersucht. Auch hierbei werden die Tests mit den selben Hamming-Distanzen für Lese- und Schreib-Ports ausgeführt. Das Schaubild \ref{fig:source_target_power} zeigt auch hier, dass ein linearer Verlauf erkennbar ist.
 
 \begin{figure}[H]
 	\centering
@@ -157,7 +157,7 @@ Außerdem zeigt Abbildung \ref{fig:total_power_source_target} die Gesamtleistung
 	\label{fig:total_power_source_target}
 \end{figure}
 
-Um nun ebenfalls den Einfluss der Daten auf die Verlustleistung zu ermitteln, wurden vorerst alle Register mit zufälligen Zahlen initialisiert und im Anschluss die oben beschriebenen Funktionen abgearbeitet. Diese Änderung verursacht einen Anstieg der Verlustleistung, jedoch ist zu untersuchen, ob dennoch eine Einsparung durch die Adressierung feststellbar ist. Hierzu wurden die Testfälle mehrere Male durchlaufen, so dass die Werte aussagekräftig sind. Das untenstehende Schaubild \ref{fig:random_data_total_power} zeigt die Verläufe des Testfalls mit Null initialisierte Register in rot und mit Zufallszahlen befüllte Register in blau. Die Punktewolken verdeutlichen eine Abhängigkeit der Daten, dennoch ist ein linearer Anstieg der Verlustleistung mit der Hamming-Distanz zu erkennen. Die Linearität ist ebenfalls in der mit Null initialisierten Variante zu erkennen.
+Um nun ebenfalls den Einfluss der Daten auf die Verlustleistung zu ermitteln, wurden vorerst alle Register mit zufälligen Zahlen initialisiert und im Anschluss die oben beschriebenen Funktionen abgearbeitet. Diese Änderung verursacht einen Anstieg der Verlustleistung, jedoch ist zu untersuchen, ob dennoch eine Einsparung durch die Adressierung feststellbar ist. Hierzu wurden die Testfälle mehrere Male durchlaufen, so dass die Werte aussagekräftig sind. Das untenstehende Schaubild \ref{fig:random_data_total_power} zeigt die Verläufe des Testfalls der mit Null initialisierten Register in rot und mit Zufallszahlen befüllten Register in blau. Die Punktewolken verdeutlichen eine Abhängigkeit der Daten, dennoch ist ein linearer Anstieg der Verlustleistung mit der Hamming-Distanz zu erkennen. Die Linearität ist ebenfalls in der mit Null initialisierten Variante zu erkennen.
 
 \begin{figure}[H]
 	\centering
@@ -181,7 +181,7 @@ Nachdem die Register-Files vorbelegt wurden, wird mit der Zuweisung von virtuell
 \end{figure}
 Das Schaubild \ref{fig:heuristik_eval} zeigt den Vergleich von alter zu neuer Heuristik anhand eines der implementierten Testprogramme. Die blockierten Register-Adressen sind blau hinterlegt, die von den Algorithmen ausgewählten Register-Adressen sind rot gekennzeichnet. Durch die beiden unterschiedlichen Verfahren ergibt sich ein Unterschied von 43 Schaltvorgängen in den Adress-Leitungen. Damit dieser in der Verlustleistung deutlicher zu erkennen ist, wird die Zuweisung der virtuellen Register 20 mal wiederholt. Dadurch ergibt sich eine Differenz der Hamming-Distanzen von 556. Dies ist kein Vielfaches von 43, da durch das wiederholte Ausführen der Allokation die Zuweisung mit unterschiedlichen Adressen gestartet wird.
 Damit der Zusammenhang von Verlustleistung zu Schaltaktivität zu erkennen ist, wurden sechs solcher Testfälle mit unterschiedlichen Hamming-Distanzen entwickelt. Hierbei variieren die Distanzen im Bereich zwischen 1173 und 2046 für die alte Heuristik. Diese werden von der neuen Heuristik auf einen Hamming-Distanz-Bereich von 794 bis 1165 optimiert.
-Die Abbildung \ref{fig:schaltleistung_heuristic}. zeigt den Verlauf der Schaltleistung an den Adressports gegenüber der Hamming-Distanz. Es ist auch hier ein linearer Verlauf der Leistung zu erkennen. Die Verschlechterung der Schaltleistung trotz höherer Hamming-Distanz lässt sich mit unterschiedlichen Lastkapazitäten begründen. Durch eine Berücksichtigung dieser, würde die Heuristik die Verlustleistung noch besser modellieren können. 
+Die Abbildung \ref{fig:schaltleistung_heuristic}. zeigt den Verlauf der Schaltleistung an den Adressports gegenüber der Hamming-Distanz. Es ist auch hier ein linearer Verlauf der Leistung zu erkennen. Die Verschlechterung der Schaltleistung trotz höherer Hamming-Distanz lässt sich mit unterschiedlichen Lastkapazitäten begründen. Durch eine Berücksichtigung dieser, könnte die Heuristik die Verlustleistung noch besser modellieren. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{fig/schaltleistung_heuristic.pdf}
@@ -236,8 +236,8 @@ Die komplette Einsparung fällt relativ gering aus, jedoch ist hervorzuheben, da
 %
 %Mittelwert genetischer Algo gegenüber alter heuristik
 
-Auch in Tabelle \ref{fig:power_percent_genetic} zeigt ein prozentualer Vergleich der Verlustleistungen des kompletten Prozessors eine Verbesserung der Schaltleistung in den Register-Files. In diesem Fall wird die beste Lösung des genetischen Algorithmus mit der alten Heuristik verglichen. Die Tabelle zeigt eine Verbesserung der Schaltleistung des gesamten Prozessors um 7,78\%. Die Verlustleistung, die durch die Leakage-Ströme verursacht wird, ist um zwei bzw. drei Zehnerpotenzen kleiner als die Verlustleistungen die durch die Schaltvorgänge hervorgerufen wird. Aus diesem Grund werden diese vernachlässigt. 
-Die prozentuale Veränderung der Internal-Leistung liegt im sehr niedrigen Prozentbereich und wird ebenfalls nicht weiter berücksichtigt. 
+Auch in Tabelle \ref{fig:power_percent_genetic} zeigt ein prozentualer Vergleich der Verlustleistungen des kompletten Prozessors eine Verbesserung der Schaltleistung in den Register-Files. In diesem Fall wird die beste Lösung des genetischen Algorithmus mit der alten Heuristik verglichen. Die Tabelle zeigt eine Verbesserung der Schaltleistung des gesamten Prozessors um 28,31\% und eine Einsparung der Gesamtleistung um 2,56\%. Die Verlustleistung, die durch die Leakage-Ströme verursacht wird, ist um zwei bzw. drei Zehnerpotenzen kleiner als die Verlustleistungen die durch die Schaltvorgänge hervorgerufen werden. Aus diesem Grund werden diese vernachlässigt. 
+Die prozentuale Veränderung der Internal-Leistung liegt im niedrigen Prozentbereich und wird ebenfalls nicht weiter berücksichtigt. 
 
 \begin{figure}[H]
 	\centering
@@ -269,7 +269,7 @@ Die Schaubilder \ref{fig:totalpower_old}, \ref{fig:totalpower_new} sowie \ref{fi
 	\label{fig:totalpower_genetic}
 \end{figure}
 
-Bei der Gesamtleistung für die neue Heuristik ist auffällig, dass die Leistung mit steigender Hamming-Distanz fällt. Das selbe Verhalten ist für den genetischen Algorithmus erkennbar. Im Gegensatz hierzu steigt die Leistung der alte Heuristik mit der Hamming-Distanz an. Dies lässt sich damit begründen, dass es zu einer erhöhten Schaltaktivität in den Write-Back-Signalen kommt. Dieses Phänomen muss näher untersucht werden, was jedoch den Umfang dieser Arbeit übersteigt.
+Bei der Gesamtleistung für die neue Heuristik ist auffällig, dass die Leistung mit steigender Hamming-Distanz fällt. Das selbe Verhalten ist für den genetischen Algorithmus erkennbar. Im Gegensatz hierzu steigt die Leistung der alte Heuristik mit der Hamming-Distanz an. Dieses Phänomen muss näher untersucht werden, was jedoch den Umfang dieser Arbeit übersteigt.
 
 \section{Hörgerätealgorithmen}
 \label{sec:testprogamme}
@@ -303,7 +303,7 @@ Im Fall der FFT ist eine Optimierung der Verlustleistung um XXX\% erreichbar. Da
 
 
 \section{Einfluss der Register-Daten auf die Verlustleistung}
-In Kapitel \ref{cap:empirischeTests} wurde bereits der Einfluss der Daten auf die Verlustleistung ermittelt. Da sich nun jedoch eine Verschlechterung der Register-File-Leistung bei besserer Adressierung in den realen Testfällen ergibt, wurde die Datenabhängigkeit nochmals überprüft. Dabei ergab sich, dass auf Grund des Verhalten des Adress-Decoders eine Veränderung der Daten verursacht wird. Da die Adressen über einen Adress-Decoder decodiert werden müssen und dieser nicht direkt alle Bits auf einmal umschalten kann, liegen über einen kurzen Zeitraum Daten aus anderen Adressen an den Daten-Leitungen an. Dies verursacht dort Schaltleistungen, welche die Verbesserung durch die Adressierung aufheben.
+In Kapitel \ref{cap:empirischeTests} wurde bereits der Einfluss der Daten auf die Verlustleistung ermittelt. Da sich nun jedoch eine Verschlechterung der Register-File-Leistung bei besserer Adressierung in den realen Testfällen ergibt, wurde die Datenabhängigkeit nochmals überprüft. Dabei ergab sich, dass auf Grund des Verhaltens des Adress-Decoders eine Veränderung der Daten verursacht wird. Da die Adressen über einen Adress-Decoder decodiert werden müssen und dieser nicht direkt alle Bits auf einmal umschalten kann, liegen über einen kurzen Zeitraum Daten aus anderen Adressen an den Daten-Leitungen an. Dies verursacht dort Schaltleistungen, welche die Verbesserung durch die Adressierung aufheben.
 %Um dieses Verhalten und die Funktion des Decoders besser nachzuvollziehen wurden nun weitere Testfälle generiert. Diese befüllen wie in Kapitel \ref{cap:empirischeTests} alle Register mit zufälligen Daten. Der unterschied liegt jedoch darin, dass die Instruktionen in allen Testfällen mit den selben Zufallsdaten arbeiten, so dass immer die selben Daten in die entsprechenden Register geschrieben werden.
 %
 %Hierbei war zu erkennen, 

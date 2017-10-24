@@ -170,8 +170,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.75186836"
-     inkscape:cx="373.8321"
-     inkscape:cy="629.59667"
+     inkscape:cx="100.33538"
+     inkscape:cy="416.79346"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -491,7 +491,7 @@
            y="100.06435"
            style="font-size:23.00756645px;line-height:125%;text-align:center;writing-mode:lr-tb;text-anchor:middle" /></flowRegion><flowPara
          id="flowPara4146-1"
-         style="font-size:23.00756645px;line-height:125%;text-align:center;writing-mode:lr-tb;text-anchor:middle">{\tiny prescheduling}</flowPara></flowRoot>    <flowRoot
+         style="font-size:23.00756645px;line-height:125%;text-align:center;writing-mode:lr-tb;text-anchor:middle">{\tiny Prescheduling}</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4140-6-3"
        style="font-style:normal;font-weight:normal;font-size:23.00756645px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -505,7 +505,7 @@
            style="font-size:23.00756645px;text-align:center;text-anchor:middle"
            ry="0" /></flowRegion><flowPara
          style="font-size:23.00756645px;text-align:center;text-anchor:middle"
-         id="flowPara9330">{\tiny virtual }</flowPara></flowRoot>    <flowRoot
+         id="flowPara9330">{\tiny Virtual }</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4140-6-3-3"
        style="font-style:normal;font-weight:normal;font-size:23.00756645px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -518,7 +518,7 @@
            y="100.06435"
            style="font-size:23.00756645px;line-height:125%;text-align:center;writing-mode:lr-tb;text-anchor:middle"
            ry="0" /></flowRegion><flowPara
-         id="flowPara4331">{\tiny register init}</flowPara></flowRoot>    <flowRoot
+         id="flowPara4331">{\tiny Register init}</flowPara></flowRoot>    <flowRoot
        transform="matrix(0.72941176,0,0,0.79316206,82.857439,357.60204)"
        style="font-style:normal;font-weight:normal;font-size:23.00756645px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="flowRoot4140-6-3-0"
@@ -531,7 +531,7 @@
            height="32.115044"
            width="234.52319"
            id="rect4144-9-0-88" /></flowRegion><flowPara
-         id="flowPara4513">{\tiny scheduling}</flowPara></flowRoot>    <flowRoot
+         id="flowPara4513">{\tiny Scheduling}</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4140-6-3-3-2"
        style="font-style:normal;font-weight:normal;font-size:23.00756645px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -570,7 +570,7 @@
            y="100.06435"
            style="font-size:23.00756645px;line-height:125%;text-align:center;writing-mode:lr-tb;text-anchor:middle"
            ry="0" /></flowRegion><flowPara
-         id="flowPara4557">{\tiny register}</flowPara></flowRoot>    <flowRoot
+         id="flowPara4557">{\tiny Register-}</flowPara></flowRoot>    <flowRoot
        transform="matrix(0.72941176,0,0,0.79316206,-142.02253,601.41688)"
        style="font-style:normal;font-weight:normal;font-size:23.00756645px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="flowRoot4140-6-3-3-2-1"
@@ -583,7 +583,7 @@
            height="48.485733"
            width="367.59387"
            id="rect4144-9-0-8-4-0" /></flowRegion><flowPara
-         id="flowPara4509-8">{\tiny genetic }</flowPara></flowRoot>    <flowRoot
+         id="flowPara4509-8">{\tiny genetische }</flowPara></flowRoot>    <flowRoot
        transform="matrix(0.72941176,0,0,0.79316206,189.1495,599.41691)"
        style="font-style:normal;font-weight:normal;font-size:23.00756645px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="flowRoot4140-6-3-3-9-6"
@@ -596,7 +596,7 @@
            height="32.235836"
            width="400.97937"
            id="rect4144-9-0-8-2-86" /></flowRegion><flowPara
-         id="flowPara4511-8">{\tiny heuristik}</flowPara></flowRoot>    <flowRoot
+         id="flowPara4511-8">{\tiny heuristische}</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4140-6-3-3-6"
        style="font-style:normal;font-weight:normal;font-size:23.00756645px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -609,7 +609,7 @@
            y="100.06435"
            style="font-size:23.00756645px;line-height:125%;text-align:center;writing-mode:lr-tb;text-anchor:middle"
            ry="0" /></flowRegion><flowPara
-         id="flowPara4242">{\tiny Binary}</flowPara></flowRoot>    <flowRoot
+         id="flowPara4242">{\tiny Binary-}</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4140-6-3-2"
        style="font-style:normal;font-weight:normal;font-size:23.00756645px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -623,7 +623,7 @@
            style="font-size:23.00756645px;text-align:center;text-anchor:middle"
            ry="0" /></flowRegion><flowPara
          style="font-size:23.00756645px;text-align:center;text-anchor:middle"
-         id="flowPara9330-7">{\tiny renaming }</flowPara></flowRoot>    <flowRoot
+         id="flowPara9330-7">{\tiny Renaming }</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4140-6-3-3-2-2"
        style="font-style:normal;font-weight:normal;font-size:23.00756645px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -636,7 +636,7 @@
            y="100.06435"
            style="font-size:23.00756645px;line-height:125%;text-align:center;writing-mode:lr-tb;text-anchor:middle"
            ry="0" /></flowRegion><flowPara
-         id="flowPara4509-6">{\tiny scheduling}</flowPara></flowRoot>    <flowRoot
+         id="flowPara4509-6">{\tiny Scheduling}</flowPara></flowRoot>    <flowRoot
        transform="matrix(0.72941176,0,0,0.79316206,-142.02253,624.6848)"
        style="font-style:normal;font-weight:normal;font-size:23.00756645px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="flowRoot4140-6-3-3-2-1-5"
@@ -649,7 +649,7 @@
            height="48.485733"
            width="367.59387"
            id="rect4144-9-0-8-4-0-8" /></flowRegion><flowPara
-         id="flowPara4509-8-5">{\tiny register alloc }</flowPara></flowRoot>    <flowRoot
+         id="flowPara4509-8-5">{\tiny Register Allok. }</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4140-6-3-3-6-9"
        style="font-style:normal;font-weight:normal;font-size:23.00756645px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -662,7 +662,7 @@
            y="100.06435"
            style="font-size:23.00756645px;line-height:125%;text-align:center;writing-mode:lr-tb;text-anchor:middle"
            ry="0" /></flowRegion><flowPara
-         id="flowPara4242-3">{\tiny  Output}</flowPara></flowRoot>    <flowRoot
+         id="flowPara4242-3">{\tiny  Datei}</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4140-6-3-3-9-1-6"
        style="font-style:normal;font-weight:normal;font-size:23.00756645px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -675,7 +675,7 @@
            y="100.06435"
            style="font-size:23.00756645px;line-height:125%;text-align:center;writing-mode:lr-tb;text-anchor:middle"
            ry="0" /></flowRegion><flowPara
-         id="flowPara4557-9">{\tiny  allocation}</flowPara></flowRoot>    <flowRoot
+         id="flowPara4557-9">{\tiny  Allokation}</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4140-6-3-3-9-7"
        style="font-style:normal;font-weight:normal;font-size:23.00756645px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -688,7 +688,7 @@
            y="100.06435"
            style="font-size:23.00756645px;line-height:125%;text-align:center;writing-mode:lr-tb;text-anchor:middle"
            ry="0" /></flowRegion><flowPara
-         id="flowPara4511-6">{\tiny scheduling}</flowPara></flowRoot>    <flowRoot
+         id="flowPara4511-6">{\tiny Scheduling}</flowPara></flowRoot>    <flowRoot
        transform="matrix(0.72941176,0,0,0.79316206,189.1495,621.35478)"
        style="font-style:normal;font-weight:normal;font-size:23.00756645px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="flowRoot4140-6-3-3-9-6-3"
@@ -701,5 +701,5 @@
            height="32.235836"
            width="400.97937"
            id="rect4144-9-0-8-2-86-2" /></flowRegion><flowPara
-         id="flowPara4511-8-1">{\tiny register alloc}</flowPara></flowRoot>  </g>
+         id="flowPara4511-8-1">{\tiny Register Alloc}</flowPara></flowRoot>  </g>
 </svg>
