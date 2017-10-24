@@ -531,7 +531,7 @@ Das Scheduling ist zuständig für die Anordnung der MIs bzw. MOs die sich in ei
 Diese Art von Algorithmus findet jedoch nicht immer eine optimale Lösung und ist gerade für große Programme nicht geeignet, da in diesem Fall die Problemstellung zu komplex wird. Aus diesem Grund kann optional ein genetischer Algorithmus eingesetzt werden, der die Länge des kritischen Pfades einer SLM trotz höherer Komplexität reduzieren kann.
 
 
-\section{Register Allokation}
+\section{Register-Allokation}
 \label{sec:register allok}
 Die Register-Allokation ist dafür zuständig, ein für die Berechnung des Algorithmus geeignetes Register auszuwählen und Register-Adressen freizugeben, die nicht mehr benötigt werden.
 Das Codebeispiel \ref{phyReg} zeigt anhand einer einfachen Addition diese Funktion mittels physikalischer Register. Da der Prozessor nicht mit Immediates addieren kann, müssen zwei Hilfsvariablen verwendet werden. In diesem Fall wurden die Register V0R0 und V0R1 gewählt. Mithilfe dieser Register kann der Prozessor nun eine Addition in Zeile drei durchführen. Anschließend wird der Code in den Speicher zurück geschrieben.

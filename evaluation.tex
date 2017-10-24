@@ -1,8 +1,10 @@
 \chapter{Hardware-Anpassungen}
 In diesem Kapitel wird darauf eingegangen, welche Hardware-Anpassungen im Prozessor vorgenommen wurden, um in den Algorithmen eine Verbesserung der Verlustleistung zu ermöglichen.
 \section{Pipelinestufe für Adressports}
-Da der verwendete Prozessor eine Adress-Isolation (siehe Kapitel \ref{subsec:add_iso}) einsetzt, sollten die Adressen so lange an einem Port anliegen, bis diese geändert werden.
-Die für die Schreib- und Lesezugriffe verwendeten Adressen werden jeweils zwischen den Takten von dem Adress-Decoder berechnet und an die benötigten Ports angelegt. Dadurch ist gewährleistet, dass diese mit der steigenden Taktflanke übernommen werden können. Die Auswahl der Ports wird über Enable-Signale geregelt. Im Fall dieser Architektur treten Glitches auf, die auf Grund der unterschiedlichen Berechnungszeiten der Kombinatorik verursacht werden. In Schaubild \ref{fig:glitches} wird dieses Verhalten veranschaulicht. Hier ist zu erkennen, dass das Enable-Signal schaltet, bevor die neue Adresse angelegt wird. Dadurch wird ein Glitch in den Adressleitungen verursacht. Im Schaubild werden die Registerport-Adressen angezeigt, die nicht angesprochen werden sollen, da dort die Glitches am deutlichsten erkennbar sind. Dieses Szenario tritt nur auf, wenn ein Wechsel in den Enable-Signalen stattfindet und sich somit die Herkunft der Adressen geändert hat.
+Da der verwendete Prozessor eine Adress-Isolation (siehe Kapitel \ref{subsec:add_iso}) einsetzt, sollten die Adressen so lange an den Ports anliegen, bis diese geändert werden.
+Die für die Schreib- und Lesezugriffe verwendeten Adressen werden jeweils zwischen den Takten von dem Adress-Decoder berechnet und an die benötigten Ports angelegt. Dadurch ist gewährleistet, dass diese mit der steigenden Taktflanke übernommen werden können. Die Auswahl der Ports wird über Enable-Signale geregelt. Im Fall dieser Architektur treten Glitches auf, die auf Grund der unterschiedlichen Berechnungszeiten der Kombinatorik verursacht werden. In Schaubild \ref{fig:glitches} wird dieses Verhalten veranschaulicht. Hier ist zu erkennen, dass das Enable-Signal schaltet, bevor die neue Adresse angelegt wird. Dadurch wird ein Glitch in den Adressleitungen verursacht. Im Schaubild werden die Registerport-Adressen angezeigt, die nicht angesprochen werden sollen, da dort die Glitches am deutlichsten erkennbar sind.
+\newpage
+Dieses Szenario tritt nur auf, wenn ein Wechsel in den Enable-Signalen stattfindet und sich somit die Herkunft der Adressen geändert hat.
 % Werden beispielsweise zwei Instruktionen verwendet die beide an Register-File 1 schreiben, so werden die entsprechenden Adressen an die Ports 0 und 1 angelegt. Sobald diese zu Verfügung stehen, werden diese von den Enable-Signalen freigegeben.\\
 
 \begin{figure}[H] 
@@ -38,7 +40,7 @@ Da der Prozessor für ein ASIC entwickelt wird, können die Glitches durch den E
 
 \section{Neuberechnung der Immediate-Adressen und Offset-Werte}
 Die im Implementierungsteil erläuterten Änderungen sollten keinen Einfluss auf die Daten der auszuführenden Algorithmen haben. Beim Vergleich der Implementierungen ist jedoch eine Abhängigkeit der Daten aufgetaucht.\\
-Die Decoding-Stage berechnet, unabhängig von den angelegt Instruktionen, aus jeder Adresse eine Immediate-Adresse und leitet diese an die Exekution-Stage weiter. Dort werden Source-Adressen für kurze Zeit als Immediate-Adressen interpretiert und verursachen dadurch Schaltaktivitäten an den Daten-Leitungen. Diese Veränderung der Daten ist nicht erwünscht und wurde aus diesem Grund mittels Anpassung der Hardware entfernt. Um das beschriebene Phänomen zu beheben, wird eine Neuberechnung der Immediate-Adresse nur dann vorgenommen, wenn es sich bei der angelegten Instruktion auch um eine Immediate-Instruktion handelt.
+Die Decoding-Stage berechnet, unabhängig von den angelegt Instruktionen, aus jeder Adresse eine Immediate-Adresse und leitet diese an die Exekution-Stage weiter. Dort werden Source-Adressen für kurze Zeit als Immediate-Adressen interpretiert und verursachen dadurch Schaltaktivitäten an den Datenleitungen. Diese Veränderung der Daten ist nicht erwünscht und wurde aus diesem Grund mittels Anpassung der Hardware entfernt. Um das beschriebene Phänomen zu beheben, wird eine Neuberechnung der Immediate-Adresse nur dann vorgenommen, wenn es sich bei der angelegten Instruktion auch um eine Immediate-Instruktion handelt.
 Mittels dieser Veränderung ist die Verlustleistung nun nicht mehr von den Daten abhängig.
 
 Die selbe Vorgehensweise wurde bei der Neuberechnung der Offset-Werte angewandt, so dass auch hier keine ungewollten Schaltaktivitäten auftauchen.
@@ -63,7 +65,7 @@ Hierbei wird die Leistung in Internal-, Switching- und Leakage-Leistung aufgetei
 %Die Leakage-Leistung ist so definiert, dass alle Zeiten in der eine Zelle nicht benutzt wird oder ihren Zustand nicht ändert, aufsummiert werden und mit den jeweiligen Transistor-Konfigurationen verrechnet werden.
 \begin{figure}[H] 
 	\centering
-	\includegraphics[width=\textwidth]{prime_time_power}
+	\includegraphics[width=.75\textwidth]{prime_time_power}
 	\caption[Komponenten der Leistungsaufnahme]{Komponenten der Leistungsaufnahme \cite{primeTime2016}}
 	\label{fig:prime_time_power}
 \end{figure}
@@ -85,7 +87,7 @@ Diese Leistungen werden hierarchisch nach den einzelnen Prozessor-Modulen aufges
 	\label{fig:best_power_hierarchy}
 \end{figure}
 
-Aus beiden ermittelten Reports für den Worst- und Best-Case wurde die Tabelle \ref{fig:best_powersave} erzeugt. Dabei sind die Einträge in Prozent angegeben und zeigen ein deutliches Einsparungspotential. Außerdem sind alle Prozente auf die Gesamtleistung der entsprechenden Spalte bezogen. Das Augenmerk sollte hierbei auf die Switching-Leistung des Register-Files gelegt werden, denn hier wurden die Veränderungen in der Adressierung erzeugt. Dabei ist deutlich zu erkennen, dass eine maximale Einsparung von 18,33\% zu erreichen ist. Dies zeigt deutlich, dass die Adressierung der Register eine Auswirkung auf die Verlustleistung hat. In den anderen Modulen des Prozessors wurden ebenfalls Verbesserungen zu erzielt. Das liegt vor allem daran, dass die Register-Adressen ebenfalls in diesen angelegt sind. Bei der Execution-Stage ist keine Verbesserung erzielt worden, da dort nur die Daten der jeweiligen Instruktion anliegen. Die Verbesserung der internen Leistungsaufnahme kann damit begründet werden, dass die Adressen ebenfalls Einfluss auf die interne dynamische Verlustleistung haben.
+Aus beiden ermittelten Reports für den Worst- und Best-Case wurde die Tabelle \ref{fig:best_powersave} erzeugt. Dabei sind die Einträge in Prozent angegeben und zeigen ein deutliches Einsparungspotential. Außerdem sind alle Prozente auf die Gesamtleistung der entsprechenden Spalte bezogen. Das Augenmerk sollte hierbei auf die Switching-Leistung des Register-Files gelegt werden, denn hier wurden die Veränderungen in der Adressierung erzeugt. Dabei ist deutlich zu erkennen, dass eine maximale Einsparung von 18,33\% zu erreichen ist. Dies zeigt, dass die Adressierung der Register eine Auswirkung auf die Verlustleistung hat. In den anderen Modulen des Prozessors wurden ebenfalls Verbesserungen erzielt. Das liegt vor allem daran, dass die Register-Adressen ebenfalls in diesen angelegt sind. Bei der Execution-Stage ist keine Verbesserung erzielt worden, da dort nur die Daten der jeweiligen Instruktion anliegen. Die Verbesserung der internen Leistungsaufnahme kann damit begründet werden, dass die Adressen ebenfalls Einfluss auf die interne dynamische Verlustleistung haben.
 Das Resultat der unterschiedlichen Adressierungen ist eine Gesamtverlustleistungseinsparung von 7,87\%.
 
 \begin{figure}[H] 
@@ -270,7 +272,7 @@ Die Schaubilder \ref{fig:totalpower_old}, \ref{fig:totalpower_new} sowie \ref{fi
 	\label{fig:totalpower_genetic}
 \end{figure}
 
-Bei der Gesamtleistung für die neue Heuristik ist auffällig, dass die Leistung mit steigender Hamming-Distanz fällt. Das selbe Verhalten ist für die genetische Algorithmen erkennbar. Hierbei wurden die drei Fitness-Funktionsans\"atze: Hamming-Distanz, gewichtete Hamming-Distanz sowie eine Multiplikation aus Hamming-Distanz und Lastkapazit\"at untersucht. Die gewichtete Hamming-Distanz wurde eingef\"uhrt um das Verhalten der Gesamtleistung besser modellieren zu k\"onnen. Dabei wurden die Hamming-Distanzen f\"ur Source und Target unterschiedlich gewichtet. Die Gewichte wurden mit den Ergebnissen aus den synthetischen Testf\"allen ausgew\"ahlt. Hierbei wurde die Hamming-Distanz der Target-Register mit 0,6 und die der Source-Register mit 0,4 gewichtet. Die Fitness-Funktion aus reiner Lastkapazit\"at hat sich bei den synthetischen Test als nicht sinnvoll erwiesen und wurde aus diesem Grund nicht getestet.
+Bei der Gesamtleistung für die neue Heuristik ist auffällig, dass die Leistung mit steigender Hamming-Distanz fällt. Das selbe Verhalten ist für die genetische Algorithmen erkennbar. Hierbei wurden die drei Fitness-Funktionsans\"atze, Hamming-Distanz, gewichtete Hamming-Distanz sowie eine Multiplikation aus Hamming-Distanz und Lastkapazit\"at, untersucht. Die gewichtete Hamming-Distanz wurde eingef\"uhrt um das Verhalten der Gesamtleistung besser modellieren zu k\"onnen. Dabei wurden die Hamming-Distanzen f\"ur Source und Target unterschiedlich gewichtet. Die Gewichte wurden mit den Ergebnissen aus den synthetischen Testf\"allen ausgew\"ahlt. Hierbei wurde die Hamming-Distanz der Target-Register mit 0,6 und die der Source-Register mit 0,4 gewichtet. Die Fitness-Funktion aus reiner Lastkapazit\"at hat sich bei den synthetischen Test als nicht sinnvoll erwiesen und wurde aus diesem Grund nicht getestet.
 Im Gegensatz zu den genetischen Algorithmen steigt die Leistung der alte Heuristik mit der Hamming-Distanz an. Dieses Phänomen muss näher untersucht werden, was jedoch den Umfang dieser Arbeit übersteigt.
 
 \section{Hörgerätealgorithmen}
@@ -293,21 +295,21 @@ Im Folgenden wird die Verlustleistung des \glqq Fast-Fourier-Transformation\grqq
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{fig/fft_vergleich_heuristik.pdf}
-	\caption{Prozentale Einsparung neue Heuristik}
+	\caption{Prozentuale Einsparung neue Heuristik}
 	\label{fig:fft_vergleich_heuristik}
 \end{figure}
 	
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{fig/fft_vergleich_genetisch.pdf}
-	\caption{Prozentale Einsparung genetischer Algorithmus}
+	\caption{Prozentuale Einsparung genetischer Algorithmus}
 	\label{fig:fft_vergleich_genetisch}
 \end{figure}
 
 Im Fall der FFT kann eine Optimierung der Verlustleistung um 0,41\%  f\"ur den genetischen und 0,34\% f\"ur die neue Heuristik erreicht werden. Dabei ist anzumerken, dass die Problemstellung der FFT mit nahe zu 8000 Instruktionen groß ausfällt und der genetische Algorithmus nur geringe Verbesserungen finden konnte. Durch ein längere Testdauer sollte es dem genetischen Algorithmus jedoch möglich sein, weitere Verbesserungen zu finden.
 
 \subsection{Filter mit Emulated Floating Point}
-In diesem Kapitel soll anhand des Emulated Floating Point Filter evaluiert werden, welche Fitness-Funktion die Verlustleistung eines realen Tests minimieren kann. Hierf\"ur wurden die drei Fitnessans\"atze: Hamming-Distanz, gewichtete Hamming-Distanz und eine Multiplikation aus Hamming-Distanz und Lastkapazit\"at untersucht. Au\ss{}erdem wurde jeder Test mit und ohne Heuristik als Startpopulation ausgef\"uhrt.
+In diesem Kapitel soll anhand des Emulated Floating Point Filters evaluiert werden, welche Fitness-Funktion die Verlustleistung eines realen Tests minimieren kann. Hierf\"ur wurden die drei Fitnessans\"atze, Hamming-Distanz, gewichtete Hamming-Distanz und eine Multiplikation aus Hamming-Distanz und Lastkapazit\"at, untersucht. Au\ss{}erdem wurde jeder Test mit und ohne Heuristik als Startpopulation ausgef\"uhrt.
 
 \begin{figure}[H]
 	\centering
@@ -331,7 +333,7 @@ In diesem Kapitel soll anhand des Emulated Floating Point Filter evaluiert werde
 \end{figure}
 
 
-Das Schaubild \ref{fig:filter_schaltleistung_port_vergleich} zeigt, dass die Schaltleistungen an den Register-Ports, durch den Einsatz von einer Kombination aus Hamming-Distanz und Lastkapazit\"at am besten optimiert werden kann. F\"ur die Schaltleistung im Register-File (siehe Abbildung \ref{fig:filter_schaltleistung_vergleich}) und die Gesamtleistung (siehe Abbildung \ref{fig:filter_gesamtleistung_vergleich}) hat sich eine Gewichtung der Hamming-Distanzen als sinnvoll erwiesen. Eine Startpopulation durch die Heuristik ist f\"ur eine Optimierung der Register-Ports sowie Files immer sinnvoll. Bei der Gesamtleistung hat sich gezeigt, dass die Startpopulation mittels Heuristik, im Fall des genetische Algorithmus mit Hamming-Distanz und Lastkapazit\"at, nicht zielf\"uhrend ist. Die Lastkapazit\"aten und Hamming-Distanzen f\"ur diese Variante zeigt jedoch, dass der genetische Algorithmus sein Minimum nicht gefunden hat, da die Werte f\"ur die Heuristik einen besseren Fitness-Wert aufweisen. Dies zeigt, dass mit unterschiedlichen Fitness-Funktionen die Populationsgr\"o\ss{}e und Durchlaufszahl angepasst werden muss. Des Weiteren ist anzumerken, dass Fitness-Funktionen noch nicht optimal auf die Verlustleistungsoptimierung eingestellt sind. Dabei w\"are eine Kombination aus gewichteten Hamming-Distanzen und Lastkapazit\"at denkbar. Dies erh\"oht jedoch die Anzahl der Variablen weiter und f\"uhrt zu noch aufwendigeren Tests. Au\ss{}erdem ist es f\"ur eine detailliertere Aussage, ein mehrmaliges Ausf\"uheren der Tests n"otig, da die Algorithmen zufallsbasiert arbeiten. 
+Das Schaubild \ref{fig:filter_schaltleistung_port_vergleich} zeigt, dass die Schaltleistungen an den Register-Ports, durch den Einsatz von einer Kombination aus Hamming-Distanz und Lastkapazit\"at, am besten optimiert werden kann. F\"ur die Schaltleistung im Register-File (siehe Abbildung \ref{fig:filter_schaltleistung_vergleich}) und die Gesamtleistung (siehe Abbildung \ref{fig:filter_gesamtleistung_vergleich}) hat sich eine Gewichtung der Hamming-Distanzen als sinnvoll erwiesen. Eine Startpopulation durch die Heuristik ist f\"ur eine Optimierung der Register-Ports sowie -Files immer sinnvoll. Bei der Gesamtleistung hat sich gezeigt, dass die Startpopulation mittels Heuristik, im Fall des genetische Algorithmus mit Hamming-Distanz und Lastkapazit\"at, nicht zielf\"uhrend ist. Die Lastkapazit\"aten und Hamming-Distanzen f\"ur diese Variante zeigen jedoch, dass der genetische Algorithmus sein Minimum nicht gefunden hat, da die Werte f\"ur die Heuristik einen besseren Fitness-Wert aufweisen. Daraus ergibt sich, dass bei unterschiedlichen Fitness-Funktionen die Populationsgr\"o\ss{}e und Durchlaufzahl angepasst werden muss. Des Weiteren ist anzumerken, dass die Fitness-Funktionen noch nicht optimal auf die Verlustleistungsoptimierung eingestellt sind. Dabei w\"are eine Kombination aus gewichteten Hamming-Distanzen und Lastkapazit\"at denkbar. Dies erh\"oht jedoch die Anzahl der Variablen weiter und f\"uhrt somit zu noch aufwendigeren Tests. Au\ss{}erdem ist f\"ur eine detailliertere Aussage ein mehrmaliges Ausf\"uhren der Tests n"otig, da die Algorithmen zufallsbasiert arbeiten. 
 
 
 
@@ -342,7 +344,7 @@ Das Schaubild \ref{fig:filter_schaltleistung_port_vergleich} zeigt, dass die Sch
 
 
 \section{Einfluss der Register-Daten auf die Verlustleistung}
-In Kapitel \ref{cap:empirischeTests} wurde bereits der Einfluss der Daten auf die Verlustleistung ermittelt. Da sich nun jedoch eine Verschlechterung der Register-File-Leistung bei besserer Adressierung in den realen Testfällen ergibt, wurde die Datenabhängigkeit nochmals überprüft. Dabei ergab sich, dass auf Grund des Verhaltens des Adress-Decoders eine Veränderung der Daten verursacht wird. Da die Adressen über einen Adress-Decoder decodiert werden müssen und dieser nicht direkt alle Bits auf einmal umschalten kann, liegen über einen kurzen Zeitraum Daten aus anderen Adressen an den Daten-Leitungen an. Dies verursacht dort Schaltleistungen, welche die Verbesserung durch die Adressierung aufheben.
+In Kapitel \ref{cap:empirischeTests} wurde bereits der Einfluss der Daten auf die Verlustleistung ermittelt. Da sich nun jedoch eine Verschlechterung der Schaltleistung bei besserer Adressierung in den realen Testfällen ergibt, wurde die Datenabhängigkeit nochmals überprüft. Dabei ergab sich, dass auf Grund des Verhaltens des Adress-Decoders eine Veränderung der Daten verursacht wird. Da die Adressen über einen Adress-Decoder decodiert werden müssen und dieser nicht direkt alle Bits auf einmal umschalten kann, liegen über einen kurzen Zeitraum Daten aus anderen Adressen an den Daten-Leitungen an. Dies verursacht dort Schaltleistungen, welche die Verbesserung durch die Adressierung aufheben.
 %Um dieses Verhalten und die Funktion des Decoders besser nachzuvollziehen wurden nun weitere Testfälle generiert. Diese befüllen wie in Kapitel \ref{cap:empirischeTests} alle Register mit zufälligen Daten. Der unterschied liegt jedoch darin, dass die Instruktionen in allen Testfällen mit den selben Zufallsdaten arbeiten, so dass immer die selben Daten in die entsprechenden Register geschrieben werden.
 %
 %Hierbei war zu erkennen, 

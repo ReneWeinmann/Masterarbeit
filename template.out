@@ -11,7 +11,7 @@
 \BOOKMARK [1][-]{section.2.2}{Related Work}{chapter.2}% 11
 \BOOKMARK [1][-]{section.2.3}{Compiler}{chapter.2}% 12
 \BOOKMARK [2][-]{subsection.2.3.1}{Scheduling}{section.2.3}% 13
-\BOOKMARK [1][-]{section.2.4}{Register Allokation}{chapter.2}% 14
+\BOOKMARK [1][-]{section.2.4}{Register-Allokation}{chapter.2}% 14
 \BOOKMARK [2][-]{subsection.2.4.1}{Virtuelle Register}{section.2.4}% 15
 \BOOKMARK [2][-]{subsection.2.4.2}{X2 Betriebsmodus}{section.2.4}% 16
 \BOOKMARK [2][-]{subsection.2.4.3}{MAC Operationen}{section.2.4}% 17
