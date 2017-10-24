@@ -51,14 +51,14 @@
   \begin{picture}(1,0.30387105)%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{Crossover.pdf}}%
     \put(0.03433259,0.27807718){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{{Elternpaar $E_1$}}}}%
-    \put(0.23525829,0.04884398){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.11129241\unitlength}\centering {$x_2$}\end{minipage}}}%
+    \put(0.23888246,0.04038761){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.11129241\unitlength}\centering {$x_2$}\end{minipage}}}%
     \put(0.03557597,0.13869134){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{{Elternpaar $E_2$}}}}%
     \put(0.52197419,0.22051145){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{{Kindchromosom $C$}}}}%
-    \put(0.13740594,0.04909291){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.11129241\unitlength}\centering {$x_1$}\end{minipage}}}%
-    \put(0.72165653,0.1306641){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.11129241\unitlength}\centering {$x_2$}\end{minipage}}}%
-    \put(0.62380418,0.13091303){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.11129241\unitlength}\centering {$x_1$}\end{minipage}}}%
-    \put(0.23673959,0.18822983){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.11129241\unitlength}\centering {$x_2$}\end{minipage}}}%
-    \put(0.13888724,0.18847876){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.11129241\unitlength}\centering {$x_1$}\end{minipage}}}%
+    \put(0.1410301,0.04063653){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.11129241\unitlength}\centering {$x_1$}\end{minipage}}}%
+    \put(0.72528069,0.12220773){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.11129241\unitlength}\centering {$x_2$}\end{minipage}}}%
+    \put(0.62742834,0.12245665){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.11129241\unitlength}\centering {$x_1$}\end{minipage}}}%
+    \put(0.24036375,0.17977346){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.11129241\unitlength}\centering {$x_2$}\end{minipage}}}%
+    \put(0.1425114,0.18002238){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.11129241\unitlength}\centering {$x_1$}\end{minipage}}}%
     \put(0.60542525,0.18104426){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.19305283\unitlength}\centering {\tiny b3}\\ \end{minipage}}}%
     \put(0.46060867,0.18104426){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.19305283\unitlength}\centering {\tiny a0}\\ \end{minipage}}}%
     \put(0.65631337,0.18104426){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.19305283\unitlength}\centering {\tiny b4}\\ \end{minipage}}}%
