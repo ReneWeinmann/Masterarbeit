@@ -59,7 +59,8 @@ Damit die implementieren Algorithmen hinsichtlich der Verlustleistungsoptimierun
 \end{scriptsize}
 
 Vorerst wird das gewünschte Assemblerprogramm zusammen mit der Prozessorkonfiguration in den Scheduler geladen. Hierbei muss unter anderem angegeben werden, mit welchen Takten der Prozessor taktet. Außerdem muss dem Scheduler die Variante der zu verwendenden Register-Allokation (Tabelle \ref{tab:algo_conifg}, Kapitel \ref{chap:register_orga}) übergeben werden. Nach erfolgreichem Kompilieren des Codes steht die Binary-Datei und der geschedulte Code zur Verfügung. Im Anschluss an diesen Prozess wird die Leistungsanalyse durchgeführt. Hierzu wird die Netzliste des Prozessors und die Binary-Datei benötigt. Das Tool \glqq Prime Time Suite\grqq{ }von Synopsys analysiert alle Schaltaktivitäten im Prozessor und gibt anschließend eine detaillierte Übersicht über die Leistungsaufnahme des Prozessors aus.\\
-Hierbei wird die Leistung in Internal-, Switching- und Leakage-Leistung aufgeteilt. Die Leakage-Leistung ist so definiert, dass alle Zeiten in der eine Zelle nicht benutzt wird oder ihren Zustand nicht ändert, aufsummiert werden und mit den jeweiligen Transistor-Konfigurationen verrechnet werden. Dabei gibt es zwei verschiedene Ströme, die die Verlustleistung verursachen, der Gate-Leakage-Strom $I_{gl}$ und der Source-Drain-Strom $I_{lk}$ (siehe Abbildung \ref{fig:prime_time_power}). Bei der Leakage-Leistung handelt es sich somit um eine statische Verlustleistung. Hingegen sind Internal- und Switching-Leistung dynamische Verlustleistungen, die von den Schaltvorgängen beeinflusst werden. Die Internal-Leistung inkludiert alle Leistungen, die in einer Zelle durch das Laden/Entladen von Kapazitäten mit dem Strom $I_{SW}$ und auf Grund der Kurzschluss-Ströme $I_{SC}$ verursacht werden. Dagegen sind in der Switching-Leistung die Verlustleistungen berücksichtigt, die durch das Laden von externen Lastkapazitäten verursacht werden.\cite{primeTime2016}
+Hierbei wird die Leistung in Internal-, Switching- und Leakage-Leistung aufgeteilt.  Dabei gibt es zwei verschiedene Ströme, die die Leakage-Leistung verursachen, der Gate-Leakage-Strom $I_{gl}$ und der Source-Drain-Strom $I_{lk}$ (siehe Abbildung \ref{fig:prime_time_power}). Bei der Leakage-Leistung handelt es sich somit um eine statische Verlustleistung. Hingegen sind Internal- und Switching-Leistung dynamische Verlustleistungen, die von den Schaltvorgängen beeinflusst werden. Die Internal-Leistung inkludiert alle Leistungen, die in einer Zelle durch das Laden/Entladen von Kapazitäten mit dem Strom $I_{SW}$ und auf Grund der Kurzschluss-Ströme $I_{SC}$ verursacht werden. Dagegen sind in der Switching-Leistung die Verlustleistungen berücksichtigt, die durch das Laden von externen Lastkapazitäten verursacht werden.\cite{primeTime2016}
+%Die Leakage-Leistung ist so definiert, dass alle Zeiten in der eine Zelle nicht benutzt wird oder ihren Zustand nicht ändert, aufsummiert werden und mit den jeweiligen Transistor-Konfigurationen verrechnet werden.
 \begin{figure}[H] 
 	\centering
 	\includegraphics[width=\textwidth]{prime_time_power}
@@ -236,7 +237,7 @@ Die komplette Einsparung fällt relativ gering aus, jedoch ist hervorzuheben, da
 %
 %Mittelwert genetischer Algo gegenüber alter heuristik
 
-Auch in Tabelle \ref{fig:power_percent_genetic} zeigt ein prozentualer Vergleich der Verlustleistungen des kompletten Prozessors eine Verbesserung der Schaltleistung in den Register-Files. In diesem Fall wird die beste Lösung des genetischen Algorithmus mit der alten Heuristik verglichen. Die Tabelle zeigt eine Verbesserung der Schaltleistung des gesamten Prozessors um 28,31\% und eine Einsparung der Gesamtleistung um 2,56\%. Die Verlustleistung, die durch die Leakage-Ströme verursacht wird, ist um zwei bzw. drei Zehnerpotenzen kleiner als die Verlustleistungen die durch die Schaltvorgänge hervorgerufen werden. Aus diesem Grund werden diese vernachlässigt. 
+Auch in Tabelle \ref{fig:power_percent_genetic} zeigt ein prozentualer Vergleich der Verlustleistungen des kompletten Prozessors eine Verbesserung der Schaltleistung in den Register-Files. In diesem Fall wird die beste Lösung des genetischen Algorithmus mit der alten Heuristik verglichen. Die Tabelle zeigt eine Verbesserung der Schaltleistung des gesamten Prozessors um 28,31\% und eine Einsparung der Gesamtleistung um 2,56\%. Die Verlustleistung, die durch die Leakage-Ströme verursacht wird, ist um zwei bzw. drei Zehnerpotenzen kleiner als die Verlustleistungen, die durch die Schaltvorgänge hervorgerufen werden. Aus diesem Grund werden diese vernachlässigt. 
 Die prozentuale Veränderung der Internal-Leistung liegt im niedrigen Prozentbereich und wird ebenfalls nicht weiter berücksichtigt. 
 
 \begin{figure}[H]
@@ -269,7 +270,8 @@ Die Schaubilder \ref{fig:totalpower_old}, \ref{fig:totalpower_new} sowie \ref{fi
 	\label{fig:totalpower_genetic}
 \end{figure}
 
-Bei der Gesamtleistung für die neue Heuristik ist auffällig, dass die Leistung mit steigender Hamming-Distanz fällt. Das selbe Verhalten ist für den genetischen Algorithmus erkennbar. Im Gegensatz hierzu steigt die Leistung der alte Heuristik mit der Hamming-Distanz an. Dieses Phänomen muss näher untersucht werden, was jedoch den Umfang dieser Arbeit übersteigt.
+Bei der Gesamtleistung für die neue Heuristik ist auffällig, dass die Leistung mit steigender Hamming-Distanz fällt. Das selbe Verhalten ist für die genetische Algorithmen erkennbar. Hierbei wurden die drei Fitness-Funktionsans\"atze: Hamming-Distanz, gewichtete Hamming-Distanz sowie eine Multiplikation aus Hamming-Distanz und Lastkapazit\"at untersucht. Die gewichtete Hamming-Distanz wurde eingef\"uhrt um das Verhalten der Gesamtleistung besser modelieren zu k\"onnen. Dabei wurden die Hamming-Distanzen f\"ur Source und Target unterschiedlich gewichtet. Die Gewichte wurden mit den Ergebnissen aus den synthetischen Testf\"allen ausgew\"ahlt. Hierbei wurde die Hamming-Distanz der Target-Register mit 0,6 und die der Source-Register mit 0,4 gewichtet. Die Fitness-Funktion aus reiner Lastkapazit\"at hat sich bei den synthetischen Test als nicht sinnvoll erwiesen und wurde aus diesem Grund nicht getestet.
+Im Gegensatz zu den genetischen Algorithmen steigt die Leistung der alte Heuristik mit der Hamming-Distanz an. Dieses Phänomen muss näher untersucht werden, was jedoch den Umfang dieser Arbeit übersteigt.
 
 \section{Hörgerätealgorithmen}
 \label{sec:testprogamme}
@@ -285,14 +287,51 @@ f = T *2^E
 Beide Variablen $T$ und $E$ können als Subwort im Register gespeichert werden. Dabei können diese an einer beliebigen Adresse des Registers stehen. Aus diesem Grund werden hierfür zwei virtuelle Register verwendet. Diese Emulation ist besonders für SIMD-Architekturen geeignet, bei denen eine Gleitkommaberechnung ohne Aufschlüsseln der Variablen errechnet werden kann. Dadurch ist diese Art von Gleitkommaberechnung äußerst performant.
 Wenn nun ein Algorithmus mit Gleitkommazahlen rechnet, werden viele temporäre Zwischenwerte berechnet, was den Algorithmus prädestiniert für eine Adressoptimierung macht. Aus diesem Grund wurden  Algorithmen verwendet, die mit diesen arbeiten. \cite{gerlach2016efficient}
 
-\subsection{Filter und FFT mit Emulated Floating Point}
-Im Folgenden wird die Verlustleistung der beiden Algorithmen zur \glqq Fast-Fourier-Transformation\grqq{ }(FFT) und zu einem Frequenzfilter analysiert. Die beiden Abbildungen XXX zeigen die Einsparungen die durch die neue Heursistik und den genetischen Algorithmus erreicht wurden.
+\subsection{FFT mit Emulated Floating Point}
+Im Folgenden wird die Verlustleistung des \glqq Fast-Fourier-Transformation\grqq{ }(FFT) Algorithmus analysiert. Die beiden Abbildungen \ref{fig:fft_vergleich_heuristik} und \ref{fig:fft_vergleich_genetisch} zeigen die Einsparungen die durch die neue Heursistik und den genetischen Algorithmus erreicht wurden.
 
-Abbildungen FFT und Filter emulated floating point
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{fig/fft_vergleich_heuristik.pdf}
+	\caption{Prozentale Einsparung neue Heuristik}
+	\label{fig:fft_vergleich_heuristik}
+\end{figure}
+	
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{fig/fft_vergleich_genetisch.pdf}
+	\caption{Prozentale Einsparung genetischer Algorithmus}
+	\label{fig:fft_vergleich_genetisch}
+\end{figure}
 
-Im Fall der FFT ist eine Optimierung der Verlustleistung um XXX\% erreichbar. Dabei ist anzumerken, dass die Problemstellung der FFT mit nahe zu 8000 Instruktionen groß ausfällt und der genetische Algorithmus nur geringe Verbesserungen finden konnte. Durch ein längere Testdauer sollte es dem genetischen Algorithmus jedoch möglich sein, weitere Verbesserungen zu finden.
+Im Fall der FFT kann eine Optimierung der Verlustleistung um 0,41\%  f\"ur den genetischen und 0,34\% f\"ur die neue Heuristik erreicht werden. Dabei ist anzumerken, dass die Problemstellung der FFT mit nahe zu 8000 Instruktionen groß ausfällt und der genetische Algorithmus nur geringe Verbesserungen finden konnte. Durch ein längere Testdauer sollte es dem genetischen Algorithmus jedoch möglich sein, weitere Verbesserungen zu finden.
 
-%\subsection{Filter emulated floating Point} Der Filter mit Gleitkommazahl-Berechnung konnte hingegen eine Einsprung von XXX\% erzielen.
+\subsection{Filter mit Emulated Floating Point}
+In diesem Kapitel soll anhand des Emulated Floating Point Filter evaluiert werden, welche Fitness-Funktion die Verlustleistung eines realen Tests minimieren kann. Hierf\"ur wurden die drei Fitnessans\"atze: Hamming-Distanz, gewichtete Hamming-Distanz und eine Multiplikation aus Hamming-Distanz und Lastkapazit\"at untersucht. Au\ss{}erdem wurde jeder Test mit und ohne Heuristik als Startpopulation ausgef\"uhrt.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{fig/filter_schaltleistung_port_vergleich.pdf}
+	\caption{Vergleich der Schaltleistungen des Register-Ports f\"ur den Emulated Floating Point Filter}
+	\label{fig:filter_schaltleistung_port_vergleich}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{fig/filter_schaltleistung_vergleich.pdf}
+	\caption{Vergleich der Schaltleistungen der Register-Files f\"ur den Emulated Floating Point Filter}
+	\label{fig:filter_schaltleistung_vergleich}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{fig/filter_gesamtleistung_vergleich.pdf}
+	\caption{Vergleich der Gesamtleistungen f\"ur den Emulated Floating Point Filter }
+	\label{fig:filter_gesamtleistung_vergleich}
+\end{figure}
+
+
+Das Schaubild \ref{fig:filter_schaltleistung_port_vergleich} zeigt, dass die Schaltleistungen an den Register-Ports, durch den Einsatz von einer Kombination aus Hamming-Distanz und Lastkapazit\"at am besten optimiert werden kann. F\"ur die Schaltleistung im Register-File (siehe Abbildung \ref{fig:filter_schaltleistung_vergleich}) und die Gesamtleistung (siehe Abbildung \ref{fig:filter_gesamtleistung_vergleich}) hat sich eine Gewichtung der Hamming-Distanzen als sinnvoll erwiesen. Eine Startpopulation durch die Heuristik ist f\"ur eine Optimierung der Register-Ports sowie Files immer sinnvoll. Bei der Gesamtleistung hat sich gezeigt, dass die Startpopulation mittels Heuristik, im Fall des genetische Algorithmus mit Hamming-Distanz und Lastkapazit\"at, nicht zielf\"uhrend ist. Die Lastkapazit\"aten und Hamming-Distanzen f\"ur diese Variante zeigt jedoch, dass der genetische Algorithmus sein Minumum nicht gefunden hat, da die Werte f\"ur die Heuristik einen besseren Fitness-Wert aufweisen. Dies zeigt, dass mit unterschiedlichen Fitness-Funktionen die Populationsgr\"o\ss{}e und Durchlaufszahl angepasst werden muss. Desweiteren ist anzumerken, dass Fitness-Funktionen noch nicht optimal auf die Verlustleistungsoptimierung eingestellt sind. Dabei w\"are eine kompination aus gewichteten Hamming-Distanzen und Lastkapazit\"at denkbar. Dies erh\"oht jedoch die Anzahl der Variablen weiter und f\"uhrt zu noch aufwendigeren Tests. Au\ss{}erdem ist es f\"ur eine detailliertere Aussage, ein mehrmaliges Ausf\"uheren der Tests n"otig, da die Algorithmen zufallsbasiert arbeiten. 
 
 
 

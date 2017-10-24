@@ -36,7 +36,7 @@
   }%
   \providecommand\rotatebox[2]{#2}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{650.28569336bp}%
+    \setlength{\unitlength}{622.77875977bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -48,33 +48,29 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.52196837)%
+  \begin{picture}(1,0.59444086)%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{pipeline.pdf}}%
-    \put(0.01412772,0.45773045){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.24260641\unitlength}\raggedright Befehl 1\end{minipage}}}%
-    \put(0.01412772,0.25506082){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.24260641\unitlength}\raggedright Befehl 3\end{minipage}}}%
-    \put(0.01412772,0.35639563){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.24260641\unitlength}\raggedright Befehl 2\end{minipage}}}%
-    \put(0.01412772,0.153726){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.24260641\unitlength}\raggedright Befehl 4\end{minipage}}}%
-    \put(-1.71616874,1.06063272){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.05623895\unitlength}\raggedright \end{minipage}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=2]{pipeline.pdf}}%
-    \put(0.24161272,0.45813846){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 1\end{minipage}}}%
-    \put(0.34117746,0.45813846){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 2\end{minipage}}}%
-    \put(0.44074219,0.45813846){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 3\end{minipage}}}%
-    \put(0.54030692,0.45813846){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 4\end{minipage}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=3]{pipeline.pdf}}%
-    \put(0.33889772,0.35972018){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 1\end{minipage}}}%
-    \put(0.43846245,0.35972018){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 2\end{minipage}}}%
-    \put(0.53802718,0.35972018){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 3\end{minipage}}}%
-    \put(0.63759191,0.35972018){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 4\end{minipage}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=4]{pipeline.pdf}}%
-    \put(0.43618259,0.26130191){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 1\end{minipage}}}%
-    \put(0.53574732,0.26130191){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 2\end{minipage}}}%
-    \put(0.63531205,0.26130191){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 3\end{minipage}}}%
-    \put(0.73487678,0.26130191){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 4\end{minipage}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=5]{pipeline.pdf}}%
-    \put(0.53346771,0.16288362){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 1\end{minipage}}}%
-    \put(0.63303244,0.16288362){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 2\end{minipage}}}%
-    \put(0.73259717,0.16288362){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 3\end{minipage}}}%
-    \put(0.8321619,0.16288362){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.09956471\unitlength}\centering 4\end{minipage}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=6]{pipeline.pdf}}%
+    \put(0.24320102,0.49701885){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.10396229\unitlength}\centering 1\end{minipage}}}%
+    \put(0.34716333,0.49701885){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.10396229\unitlength}\centering 2\end{minipage}}}%
+    \put(0.45112564,0.49701885){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.10396229\unitlength}\centering 3\end{minipage}}}%
+    \put(0.55508795,0.49701885){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.10396229\unitlength}\centering 4\end{minipage}}}%
+    \put(0.3447829,0.39425363){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.10396229\unitlength}\centering 1\end{minipage}}}%
+    \put(0.44874521,0.39425363){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.10396229\unitlength}\centering 2\end{minipage}}}%
+    \put(0.55270753,0.39425363){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.10396229\unitlength}\centering 3\end{minipage}}}%
+    \put(0.65666984,0.39425363){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.10396229\unitlength}\centering 4\end{minipage}}}%
+    \put(0.44636466,0.29148841){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.10396229\unitlength}\centering 1\end{minipage}}}%
+    \put(0.55032697,0.29148841){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.10396229\unitlength}\centering 2\end{minipage}}}%
+    \put(0.65428928,0.29148841){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.10396229\unitlength}\centering 3\end{minipage}}}%
+    \put(0.75825159,0.29148841){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.10396229\unitlength}\centering 4\end{minipage}}}%
+    \put(0.54794667,0.18872318){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.10396229\unitlength}\centering 1\end{minipage}}}%
+    \put(0.65190898,0.18872318){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.10396229\unitlength}\centering 2\end{minipage}}}%
+    \put(0.75587129,0.18872318){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.10396229\unitlength}\centering 3\end{minipage}}}%
+    \put(0.85983361,0.18872318){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.10396229\unitlength}\centering 4\end{minipage}}}%
+    \put(-0.01107,0.49789043){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.25332186\unitlength}\centering Befehl 1\end{minipage}}}%
+    \put(-0.01107,0.28626927){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.25332186\unitlength}\centering Befehl 3\end{minipage}}}%
+    \put(-0.01107,0.39207984){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.25332186\unitlength}\centering Befehl 2\end{minipage}}}%
+    \put(-0.01107,0.18045868){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.25332186\unitlength}\centering Befehl 4\end{minipage}}}%
+    \put(0.30552271,0.59572724){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.50472965\unitlength}\centering Pipeline-Stufen\end{minipage}}}%
+    \put(0.85045988,0.05121444){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.10396229\unitlength}\centering t\end{minipage}}}%
   \end{picture}%
 \endgroup%

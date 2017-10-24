@@ -59,6 +59,13 @@ Richard~W Hamming.
 \newblock Error detecting and error correcting codes.
 \newblock {\em Bell Labs Technical Journal}, 29(2):147--160, 1950.
 
+\bibitem{hartig2014customizing}
+Julian Hartig, Lukas Gerlach, Guillermo Pay{\'a}-Vay{\'a}, and Holger Blume.
+\newblock Customizing a vliw-simd application-specific instruction-set
+  processor for hearing aid devices.
+\newblock In {\em Signal Processing Systems (SiPS), 2014 IEEE Workshop on},
+  pages 1--6. IEEE, 2014.
+
 \bibitem{horowitz1994low}
 Mark Horowitz, Thomas Indermaur, and Ricardo Gonzalez.
 \newblock Low-power digital design.

@@ -36,7 +36,7 @@
   }%
   \providecommand\rotatebox[2]{#2}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{425.02936583bp}%
+    \setlength{\unitlength}{427.24510685bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -48,26 +48,26 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,1.43945166)%
-    \put(0.05608696,0.79874036){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.6285168\unitlength}\raggedright \end{minipage}}}%
+  \begin{picture}(1,1.4319865)%
+    \put(0.05579609,0.794598){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.62525724\unitlength}\raggedright \end{minipage}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{flowchart.pdf}}%
-    \put(0.33294284,1.38569674){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.38695763\unitlength}\centering {\tiny ASM-File}\end{minipage}}}%
-    \put(0.32087352,1.24625898){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.41109577\unitlength}\centering {\tiny prescheduling}\end{minipage}}}%
-    \put(0.31765977,1.12115419){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.42002659\unitlength}\centering {\tiny virtual }\end{minipage}}}%
-    \put(0.35145575,0.9432453){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.34993156\unitlength}\centering {\tiny register init}\end{minipage}}}%
-    \put(0.3654316,0.79312698){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.32198053\unitlength}\centering {\tiny scheduling}\end{minipage}}}%
-    \put(-0.05117586,0.69773462){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.46699708\unitlength}\centering {\tiny genetic}\end{minipage}}}%
-    \put(0.52219237,0.69773457){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.63934406\unitlength}\centering {\tiny heuristik}\end{minipage}}}%
-    \put(0.26970401,0.49504563){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.50416082\unitlength}\centering {\tiny register}\end{minipage}}}%
-    \put(-0.05784262,0.33421311){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.50467533\unitlength}\centering {\tiny genetic }\end{minipage}}}%
-    \put(0.56549695,0.3379775){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.5505108\unitlength}\centering {\tiny heuristik}\end{minipage}}}%
-    \put(0.30388135,0.11835867){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.43755037\unitlength}\centering {\tiny Binary}\end{minipage}}}%
-    \put(0.31765978,1.08154639){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.42002659\unitlength}\centering {\tiny renaming }\end{minipage}}}%
-    \put(-0.05117586,0.65467091){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.46699708\unitlength}\centering {\tiny scheduling}\end{minipage}}}%
-    \put(-0.05784262,0.29041769){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.50467533\unitlength}\centering {\tiny register alloc }\end{minipage}}}%
-    \put(0.30388136,0.08143106){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.43755037\unitlength}\centering {\tiny  Output}\end{minipage}}}%
-    \put(0.26970401,0.45820124){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.50416082\unitlength}\centering {\tiny  allocation}\end{minipage}}}%
-    \put(0.52219237,0.65216751){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.63934406\unitlength}\centering {\tiny scheduling}\end{minipage}}}%
-    \put(0.56549695,0.29668553){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.5505108\unitlength}\centering {\tiny register alloc}\end{minipage}}}%
+    \put(0.33121616,1.37851037){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.38495082\unitlength}\centering {\tiny ASM-File}\end{minipage}}}%
+    \put(0.31920943,1.23979574){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.40896378\unitlength}\centering {\tiny Prescheduling}\end{minipage}}}%
+    \put(0.31601235,1.11533976){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.41784828\unitlength}\centering {\tiny Virtual }\end{minipage}}}%
+    \put(0.34963306,0.93835353){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.34811678\unitlength}\centering {\tiny Register init}\end{minipage}}}%
+    \put(0.36353644,0.78901373){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.3203107\unitlength}\centering {\tiny Scheduling}\end{minipage}}}%
+    \put(-0.05091046,0.69411609){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.46457518\unitlength}\centering {\tiny genetisches}\end{minipage}}}%
+    \put(0.51948422,0.69411604){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.63602835\unitlength}\centering {\tiny heuristisches}\end{minipage}}}%
+    \put(0.26830529,0.49247826){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.50154619\unitlength}\centering {\tiny Register-}\end{minipage}}}%
+    \put(-0.05754264,0.33247984){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.50205803\unitlength}\centering {\tiny genetische }\end{minipage}}}%
+    \put(0.56256422,0.33622471){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.54765579\unitlength}\centering {\tiny heuristische}\end{minipage}}}%
+    \put(0.30230539,0.11774485){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.43528118\unitlength}\centering {\tiny Binary-}\end{minipage}}}%
+    \put(0.31601236,1.07593737){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.41784828\unitlength}\centering {\tiny Renaming }\end{minipage}}}%
+    \put(-0.05091046,0.65127571){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.46457518\unitlength}\centering {\tiny Scheduling}\end{minipage}}}%
+    \put(-0.05754264,0.28891156){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.50205803\unitlength}\centering {\tiny Register Allok. }\end{minipage}}}%
+    \put(0.3023054,0.08100875){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.43528118\unitlength}\centering {\tiny  Datei}\end{minipage}}}%
+    \put(0.26830529,0.45582496){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.50154619\unitlength}\centering {\tiny  Allokation}\end{minipage}}}%
+    \put(0.51948422,0.6487853){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.63602835\unitlength}\centering {\tiny Scheduling}\end{minipage}}}%
+    \put(0.56256422,0.29514689){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.54765579\unitlength}\centering {\tiny Register Alloc}\end{minipage}}}%
   \end{picture}%
 \endgroup%

@@ -10,7 +10,7 @@
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Heuristik Beispiel\relax }}{26}{figure.caption.15}
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Fortpflanzung mittels Crossover\relax }}{32}{figure.caption.17}
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Vergleich Fitness-Funktionsans\IeC {\"a}tze\relax }}{35}{figure.caption.18}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Ermittlung der maximalen Durchlaufszahl\relax }}{36}{figure.caption.19}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Ermittlung der maximalen Durchlaufszahl bei der Populationsberechnung\relax }}{36}{figure.caption.19}
 \contentsline {figure}{\numberline {3.7}{\ignorespaces Verlauf der Fitness mit und ohne Startpopulation\relax }}{38}{figure.caption.20}
 \contentsline {figure}{\numberline {3.8}{\ignorespaces dynamische Anpassung der Mutationsrate\relax }}{39}{figure.caption.21}
 \addvspace {10\p@ }
@@ -38,6 +38,11 @@
 \contentsline {figure}{\numberline {5.19}{\ignorespaces Verlauf der Gesamtleistung alte Heuristik \relax }}{60}{figure.caption.43}
 \contentsline {figure}{\numberline {5.20}{\ignorespaces Verlauf der Gesamtleistung neue Heuristik\relax }}{61}{figure.caption.44}
 \contentsline {figure}{\numberline {5.21}{\ignorespaces Verlauf der Gesamtleistung genetischer Algorithmus\relax }}{61}{figure.caption.45}
-\contentsline {figure}{\numberline {5.22}{\ignorespaces Read-Port Multiplexer\relax }}{64}{figure.caption.46}
+\contentsline {figure}{\numberline {5.22}{\ignorespaces Prozentale Einsparung neue Heuristik\relax }}{63}{figure.caption.46}
+\contentsline {figure}{\numberline {5.23}{\ignorespaces Prozentale Einsparung genetischer Algorithmus\relax }}{63}{figure.caption.47}
+\contentsline {figure}{\numberline {5.24}{\ignorespaces Vergleich der Schaltleistungen des Register-Ports f\"ur den Emulated Floating Point Filter\relax }}{64}{figure.caption.48}
+\contentsline {figure}{\numberline {5.25}{\ignorespaces Vergleich der Schaltleistungen der Register-Files f\"ur den Emulated Floating Point Filter\relax }}{65}{figure.caption.49}
+\contentsline {figure}{\numberline {5.26}{\ignorespaces Vergleich der Gesamtleistungen f\"ur den Emulated Floating Point Filter \relax }}{65}{figure.caption.50}
+\contentsline {figure}{\numberline {5.27}{\ignorespaces Read-Port Multiplexer\relax }}{67}{figure.caption.51}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

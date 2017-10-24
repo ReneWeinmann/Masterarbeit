@@ -250,7 +250,7 @@ escapechar=||}																						% text within defined char is escaped to \La
 % \addto\captionsngerman{\renewcommand{\refname}{Quellenverzeichnis}}
 
  \renewcommand{\nomname}{Abkürzungsverzeichnis}						% rename title of list to the matching german word
-\setlength{\nomlabelwidth}{.6\textwidth}											% set abbreviation width
+\setlength{\nomlabelwidth}{.3\textwidth}											% set abbreviation width
 \renewcommand{\nomlabel}[1]{#1 \dotfill}									% fill space between abbreviation & explanation
 \setlength{\nomitemsep}{-\parsep}													% vertical distance between abbreviations = paragraph distance
 \makenomenclature																					% trigger index creation for abbreviations
@@ -421,6 +421,10 @@ vorgelegen.
 \bibliography{bib}	% Sie benötigen einen *.bib-Datei
 \bibliographystyle{plain}
 \clearpage
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\cleardoublepage
 \newpage
 %
 

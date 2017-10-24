@@ -1,0 +1,97 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Setzt Titelseiten aus dem IMS-Leitfaden (ungefähr).
+%
+% Die Befehle zum setzen der Titelseiten sind \IMStitleA
+% und \IMStitleB und funktionieren wie \maketitle.
+%
+% Konfiguration geht mittels folgender Befehle,
+% die wie \author{Name} verwendet werden:
+% \supervisor, \firstexaminer, \secondexaminer und \thesistype
+%
+% Automatische Übersetzung auf Detusch funktioniert, 
+% wenn man \includepackage[ngerman]{babel} verwendet.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{imstitle}[2014/09/11 IMS custom title page]
+
+\RequirePackage{iflang}
+\RequirePackage{geometry}
+
+% Commands to define names and stuff on the title page, like \author{Name}
+\providecommand{\supervisor}[1]{\def\@supervisor{#1}}
+\providecommand{\firstexaminer}[1]{\def\@firstexaminer{#1}}
+\providecommand{\secondexaminer}[1]{\def\@secondexaminer{#1}}
+\providecommand{\thesistype}[1]{\def\@thesistype{#1}}
+
+% Automatically select german words if \usepackage[ngerman]{babel} is used
+\IfLanguageName{ngerman}{
+    \providecommand\@Supervisorname{Betreuer}
+    \providecommand\@Firstexaminername{Erstpr\"ufer}
+    \providecommand\@Secondexaminername{Zweitpr\"ufer}
+    \providecommand\@IMStitleBy{von}
+}{
+    \providecommand\@Supervisorname{Supervisor}
+    \providecommand\@Firstexaminername{First Examiner}
+    \providecommand\@Secondexaminername{Second Examiner}
+    \providecommand\@IMStitleBy{by}
+}
+
+% Show "usage instructions" by default
+\supervisor{\string\supervisor}
+\firstexaminer{\string\firstexaminer}
+\secondexaminer{\string\secondexaminer}
+\thesistype{\string\thesistype}
+
+\newcommand\IMStitleA{%
+    \thispagestyle{empty}
+    \newgeometry{margin=3cm}
+    \begin{center}%
+        \Large
+        %\bfseries
+        Leibniz Universit\"at Hannover\\
+        Institut f\"ur Mikroelektronische Systeme\\
+        Prof. Dr.-Ing. Holger Blume\\
+        \vfill
+        \parbox{0.75\linewidth}{\centering\@title}
+        \vfill
+        \vfill
+        \@thesistype\\
+        {\normalsize\@IMStitleBy}\\
+        \@author
+        \vfill
+        \@date
+    \end{center}%
+    \newpage
+    \restoregeometry
+}
+
+\newcommand\IMStitleB{%
+    \thispagestyle{empty}
+    \newgeometry{margin=3cm}
+    \begin{center}%
+        \Large
+        %\bfseries
+        Leibniz Universit\"at Hannover\\
+        Institut f\"ur Mikroelektronische Systeme\\
+        Prof. Dr.-Ing. Holger Blume\\
+        \vfill
+        \parbox{0.75\linewidth}{\centering\@title}
+        \vfill
+        \vfill
+        \@thesistype\\
+        {\normalsize\@IMStitleBy}\\
+        \@author
+        \vfill
+        \begin{tabular}{c}
+        \@Supervisorname: \@supervisor\\
+        \@Firstexaminername: \@firstexaminer\\
+        \@Secondexaminername: \@secondexaminer\\
+        \end{tabular}
+    \end{center}%
+    \newpage
+    \restoregeometry
+}
+

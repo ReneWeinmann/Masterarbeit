@@ -24,7 +24,7 @@
 \BOOKMARK [2][-]{subsection.2.6.1}{Fitness}{section.2.6}% 24
 \BOOKMARK [2][-]{subsection.2.6.2}{Crossover}{section.2.6}% 25
 \BOOKMARK [2][-]{subsection.2.6.3}{Mutation}{section.2.6}% 26
-\BOOKMARK [0][-]{chapter.3}{Implementierung einer energieeffizienten Registerallokation}{}% 27
+\BOOKMARK [0][-]{chapter.3}{Implementierung einer energieeffizienten Register-Allokation}{}% 27
 \BOOKMARK [1][-]{section.3.1}{Instruktion-Scheduler}{chapter.3}% 28
 \BOOKMARK [1][-]{section.3.2}{Optimierungsansatz durch Register-Allokation}{chapter.3}% 29
 \BOOKMARK [1][-]{section.3.3}{Heuristik}{chapter.3}% 30
@@ -49,8 +49,9 @@
 \BOOKMARK [2][-]{subsection.5.1.4}{Genetischer Algorithmus}{section.5.1}% 49
 \BOOKMARK [1][-]{section.5.2}{H\366rger\344tealgorithmen}{chapter.5}% 50
 \BOOKMARK [2][-]{subsection.5.2.1}{Emulated Floating Point}{section.5.2}% 51
-\BOOKMARK [2][-]{subsection.5.2.2}{Filter und FFT mit Emulated Floating Point}{section.5.2}% 52
-\BOOKMARK [1][-]{section.5.3}{Einfluss der Register-Daten auf die Verlustleistung}{chapter.5}% 53
-\BOOKMARK [1][-]{section.5.4}{Einfluss der Lastkapazit\344t auf die Verlustleistung}{chapter.5}% 54
-\BOOKMARK [0][-]{chapter.6}{Schlussfolgerung}{}% 55
-\BOOKMARK [0][-]{chapter*.47}{Literaturverzeichnis}{}% 56
+\BOOKMARK [2][-]{subsection.5.2.2}{FFT mit Emulated Floating Point}{section.5.2}% 52
+\BOOKMARK [2][-]{subsection.5.2.3}{Filter mit Emulated Floating Point}{section.5.2}% 53
+\BOOKMARK [1][-]{section.5.3}{Einfluss der Register-Daten auf die Verlustleistung}{chapter.5}% 54
+\BOOKMARK [1][-]{section.5.4}{Einfluss der Lastkapazit\344t auf die Verlustleistung}{chapter.5}% 55
+\BOOKMARK [0][-]{chapter.6}{Schlussfolgerung}{}% 56
+\BOOKMARK [0][-]{chapter*.52}{Literaturverzeichnis}{}% 57

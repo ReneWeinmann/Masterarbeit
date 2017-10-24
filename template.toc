@@ -1,7 +1,7 @@
 \contentsline {chapter}{\nonumberline Abbildungsverzeichnis}{VII}{chapter*.3}
-\contentsline {chapter}{\nonumberline Tabellenverzeichnis}{VIII}{chapter*.4}
-\contentsline {chapter}{\nonumberline List of Algorithms}{IX}{chapter*.5}
-\contentsline {chapter}{Abk\IeC {\"u}rzungsverzeichnis}{X}{chapter*.6}
+\contentsline {chapter}{\nonumberline Tabellenverzeichnis}{IX}{chapter*.4}
+\contentsline {chapter}{\nonumberline List of Algorithms}{X}{chapter*.5}
+\contentsline {chapter}{Abk\IeC {\"u}rzungsverzeichnis}{XI}{chapter*.6}
 \contentsline {chapter}{\numberline {1}Einleitung}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Ziel der Arbeit}{2}{section.1.1}
 \contentsline {chapter}{\numberline {2}Grundlagen digitaler Signalverarbeitung in H\IeC {\"o}rger\IeC {\"a}ten}{4}{chapter.2}
@@ -11,7 +11,7 @@
 \contentsline {section}{\numberline {2.3}Compiler}{12}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}Scheduling}{13}{subsection.2.3.1}
 \contentsline {section}{\numberline {2.4}Register Allokation}{13}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Virtuelle Register}{13}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.1}Virtuelle Register}{14}{subsection.2.4.1}
 \contentsline {subsection}{\numberline {2.4.2}X2 Betriebsmodus}{14}{subsection.2.4.2}
 \contentsline {subsection}{\numberline {2.4.3}MAC Operationen}{15}{subsection.2.4.3}
 \contentsline {subsection}{\numberline {2.4.4}Dummy-Register}{15}{subsection.2.4.4}
@@ -23,7 +23,7 @@
 \contentsline {subsection}{\numberline {2.6.1}Fitness}{18}{subsection.2.6.1}
 \contentsline {subsection}{\numberline {2.6.2}Crossover}{18}{subsection.2.6.2}
 \contentsline {subsection}{\numberline {2.6.3}Mutation}{18}{subsection.2.6.3}
-\contentsline {chapter}{\numberline {3}Implementierung einer energieeffizienten Registerallokation}{20}{chapter.3}
+\contentsline {chapter}{\numberline {3}Implementierung einer energieeffizienten Register-Allokation}{20}{chapter.3}
 \contentsline {section}{\numberline {3.1}Instruktion-Scheduler}{21}{section.3.1}
 \contentsline {section}{\numberline {3.2}Optimierungsansatz durch Register-Allokation}{23}{section.3.2}
 \contentsline {section}{\numberline {3.3}Heuristik}{25}{section.3.3}
@@ -48,8 +48,9 @@
 \contentsline {subsection}{\numberline {5.1.4}Genetischer Algorithmus}{58}{subsection.5.1.4}
 \contentsline {section}{\numberline {5.2}H\IeC {\"o}rger\IeC {\"a}tealgorithmen}{62}{section.5.2}
 \contentsline {subsection}{\numberline {5.2.1}Emulated Floating Point}{62}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Filter und FFT mit Emulated Floating Point}{63}{subsection.5.2.2}
-\contentsline {section}{\numberline {5.3}Einfluss der Register-Daten auf die Verlustleistung}{63}{section.5.3}
-\contentsline {section}{\numberline {5.4}Einfluss der Lastkapazit\IeC {\"a}t auf die Verlustleistung}{64}{section.5.4}
-\contentsline {chapter}{\numberline {6}Schlussfolgerung}{65}{chapter.6}
-\contentsline {chapter}{\nonumberline Literaturverzeichnis}{68}{chapter*.47}
+\contentsline {subsection}{\numberline {5.2.2}FFT mit Emulated Floating Point}{63}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Filter mit Emulated Floating Point}{64}{subsection.5.2.3}
+\contentsline {section}{\numberline {5.3}Einfluss der Register-Daten auf die Verlustleistung}{66}{section.5.3}
+\contentsline {section}{\numberline {5.4}Einfluss der Lastkapazit\IeC {\"a}t auf die Verlustleistung}{67}{section.5.4}
+\contentsline {chapter}{\numberline {6}Schlussfolgerung}{68}{chapter.6}
+\contentsline {chapter}{\nonumberline Literaturverzeichnis}{71}{chapter*.52}
