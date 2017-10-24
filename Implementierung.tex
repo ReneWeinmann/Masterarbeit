@@ -294,8 +294,7 @@ Das untenstehende Schaubild \ref{fig:dyn_genetic} zeigt die Optimierung, die dur
  
 \newpage
 \subsection{Algorithmus Modi}
-Die Tabelle \ref{tab:algo_conifg} zeigt die Algorithmus-Modi des genetischen Algorithmus sowie der Heuristiken und verdeutlicht die Einstellungsmöglichkeiten der Registerallokation. Diese Variablen werden übergeben und wurden so gewählt, dass die einzelnen Versionen besser getestet werden können. 
-Alle weiteren Variablen können nur innerhalb des Algorithmus geändert werden.
+Die Tabelle \ref{tab:algo_conifg} zeigt die Algorithmus-Modi des genetischen Algorithmus sowie der Heuristiken und verdeutlicht die Einstellungsmöglichkeiten der Registerallokation. Dabei bestehen fünf verschiedene Modi-Variablen. E gibt an, ob die alte (0) oder die neuen Heuristik (1) verwendet werden soll. Mit M wird angegeben welche Fitness-Funktion der genetische Algorithmus verwendet. Die Einstellmöglichkeiten liegen zwischen Eins, für eine Fitness-Funktion die aus der Hamming-Distanz besteht und Drei die eine Multiplikation aus Load und Hamming-Distanz darstellt. Mit der Variable G  kann dem Algorithmus mitgeteilt werden, dass der genetische Algorithmus für die Register-Allokation verwendet werden soll. Für diesen bestehen zwei weitere Einstellungsmöglichkeiten, zum einen D, welches die dynamische Parameteranpassung regelt und zum anderen H mit der eingestellt wird, dass mit der neuen Heuristik eine Startpopulation gesucht werden soll. Diese Variablen müssen dem Algorithmus beim Ausführen übergeben werden und sind so gewählt, dass ein automatisierter Test der Versionen ermöglicht wird.
 
 %\begin{itemize}
 %	 \setlength{\itemsep}{-6pt}
