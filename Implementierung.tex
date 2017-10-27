@@ -64,7 +64,6 @@ Durch den Einsatz von frei allokierbaren Registern entsteht ein Freiheitsgrad. D
 	\label{fig:register_aloc_example}
 \end{figure}
 Die virtuellen Register sind im Codebeispiel \ref{code:registerZuweisung} mit einem x gekennzeichnet und können an beliebige Adressen und Register-Files zugewiesen werden. In diesem Beispiel werden von der Register-Allokation die Adressen Null und 31 ausgewählt (siehe Abbildung \ref{fig:register_aloc_example}), welches dem zuvor erwähnten Worst-Case entspricht. Diese Zuweisung soll nun durch einen genetischen Optimierungsalgorithmus optimiert werden.\\
-
 In der bestehenden Implementierung wurde diese Zuweisung der Register so geregelt, dass beide Register-Files immer von einer Seite befüllt werden. Die Auswahl des Register-Files wird über die Anzahl der freien Register-Adressen ermittelt und das File mit der höheren Anzahl an freien Adressen wird verwendet. Dadurch wird ein Register-File-Balancing erreicht, welches sicherstellt, dass beide Files gleich stark ausgelastet sind.\\
 % Außerdem wurde bei der Zuweisung darauf geachtet, dass es weiterhin möglich ist X2-Befehle und MAC-Operationen zu bedienen.\\
 Diese Variante der Register-Allokation nimmt keine Rücksicht auf die Schaltaktivitäten der Adressleitungen und ist demzufolge nicht geeignet um die Verlustleistung zu senken.

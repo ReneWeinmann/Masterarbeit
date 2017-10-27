@@ -27,7 +27,7 @@
 \contentsline {section}{\numberline {3.1}Instruktion-Scheduler}{21}{section.3.1}
 \contentsline {section}{\numberline {3.2}Optimierungsansatz durch Register-Allokation}{23}{section.3.2}
 \contentsline {section}{\numberline {3.3}Heuristik}{25}{section.3.3}
-\contentsline {section}{\numberline {3.4}Genetischer Algorithmus}{29}{section.3.4}
+\contentsline {section}{\numberline {3.4}Genetischer Algorithmus}{28}{section.3.4}
 \contentsline {subsection}{\numberline {3.4.1}Gene und Chromosomen}{29}{subsection.3.4.1}
 \contentsline {subsection}{\numberline {3.4.2}Aufbau}{30}{subsection.3.4.2}
 \contentsline {subsection}{\numberline {3.4.3}Auswahl der Elternpaare}{31}{subsection.3.4.3}
